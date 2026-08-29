@@ -1,194 +1,335 @@
-# Loomi.lat - Contexto del Proyecto
+# Omona
 
-## Descripción
-Plataforma SaaS de agentes de IA para WhatsApp. Automatiza ventas, califica leads y agenda demos 24/7.
+AI-powered WhatsApp sales assistant for LATAM SMBs. Connects to WhatsApp via Baileys, qualifies leads with AI (Azure AI / Grok), and provides a full CRM dashboard.
 
-## Stack Tecnológico
-- **Framework**: Next.js 14 (App Router)
-- **UI**: React + Tailwind CSS + shadcn/ui + Framer Motion
-- **Base de datos**: Supabase (PostgreSQL)
-- **IA**: OpenAI GPT-5.2 (agente full) / GPT-4o-mini (demo)
-- **Pagos**: Stripe
-- **Mensajería**: WhatsApp Cloud API
-- **Auth**: Supabase Auth
+## Architecture
 
-## Estructura Principal
+**Turborepo monorepo** with npm workspaces. Node ≥ 20, npm 10.9.4.
 
 ```
-app/
+apps/server       → Hono REST API + WhatsApp bot (Node.js, tsx)
+apps/dashboard    → Next.js 14 admin dashboard (React 18, Tailwind CSS 3)
+packages/shared   → Shared TypeScript types (@omona/shared)
+supabase/         → Database migrations
+```
+
+## Deployment
+
+- **Server**: Railway (handles cold starts — WhatsApp sessions auto-reconnect on restart)
+- **Dashboard**: Vercel
+- **Database / Auth**: Supabase (managed Postgres + Auth + RLS)
+- **Email**: Resend (from `omona@anthana.agency`)
+
+---
+
+## Server (`apps/server` — `@omona/server`)
+
+### Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `hono` + `@hono/node-server` | HTTP framework |
+| `openai` | AI model inference via Azure AI (OpenAI-compatible SDK) |
+| `baileys` v7 | WhatsApp Web multi-device connection |
+| `@supabase/supabase-js` | Database + auth (service_role key) |
+| `zod` | Input validation and env config parsing |
+| `pino` + `pino-pretty` | Structured logging |
+| `pdf-parse` | PDF text extraction for knowledge base |
+| `mammoth` | DOCX text extraction for knowledge base |
+| `qrcode` | QR code generation for WhatsApp pairing |
+| `dotenv` | Environment variable loading |
+| `better-sqlite3` | (dependency, not directly used in app code) |
+| Groq API (via fetch) | Whisper audio transcription (`GROQ_API_KEY`) |
+| Resend API (via fetch) | Email notifications (`RESEND_API_KEY`) |
+
+### Source Structure
+
+```
+src/
+├── index.ts              # Entry point — Hono app, CORS, health check, cron jobs
+├── config.ts             # Zod-validated env config
+├── logger.ts             # Pino logger
+├── ai/
+│   ├── client.ts         # Centralized AI client (OpenAI SDK → Azure AI endpoint)
+│   ├── engine.ts         # generateResponse() — main AI call with conversation history
+│   ├── prompt-builder.ts # buildSystemPrompt() — sales methodology, personality, calendar context
+│   ├── lead-extractor.ts # parseAIResponse() — JSON parsing from AI output
+│   ├── demo-engine.ts    # In-memory demo chat (no DB, 30min TTL)
+│   └── demo-config.ts    # Hardcoded AgentConfig for Omona's own demo
 ├── api/
-│   ├── demo/chat/        # POST - demo ligera (gpt-4o-mini)
-│   ├── sandbox/          # Demo sandbox completo
-│   │   ├── chat/         # POST - chat con agente full
-│   │   ├── tenants/      # GET - lista tenants
-│   │   ├── tools/        # CRUD herramientas custom
-│   │   └── documents/    # CRUD documentos knowledge
-│   ├── webhook/whatsapp/ # Webhook de WhatsApp
-│   ├── stripe/           # Checkout y webhooks
-│   └── leads/            # CRUD de leads
-├── dashboard/            # Panel de control (protegido)
-│   ├── agent/            # Configuración del agente
-│   │   └── prompt/       # Prompt personalizado
-│   ├── crm/              # Pipeline Kanban
-│   ├── conversations/    # Historial de chats
-│   └── settings/         # Configuración cuenta
-├── demo/                 # Demo pública completa
-├── login/                # Login + solicita acceso
-└── page.tsx              # Landing page (/)
-
-lib/
-├── graph/
-│   ├── graph.ts          # LangGraph entry point (processMessageGraph)
-│   ├── state.ts          # Graph state schema + SimpleAgentResult type
-│   ├── nodes.ts          # 5 nodes: analyze, route, summarize, generate, persist
-│   ├── prompts.ts        # System prompt builder
-│   └── memory.ts         # Conversation state persistence
-├── agents/
-│   ├── defaults.ts       # Default prompts and identity
-│   ├── demo-agent.ts     # Agente ligero para landing demo
-│   ├── few-shot.ts       # Ejemplos para el prompt
-│   └── reasoning.ts      # Análisis con o3-mini
-├── tenant/
-│   └── context.ts        # Multi-tenancy y configs
-└── whatsapp/
-    └── send.ts           # Envío de mensajes WA
-
-components/
-├── ui/                   # shadcn/ui components
-├── dashboard/            # Componentes del dashboard
-└── loomi/                # Componentes del landing
-    ├── interactive-demo.tsx  # Demo chat en landing
-    ├── Hero.tsx
-    ├── Features.tsx
-    └── ...
+│   ├── routes.ts         # Route registrar  — rate limit → auth → trial check → handlers
+│   ├── middleware.ts      # authMiddleware — Supabase JWT verification, auto org/profile creation
+│   ├── rate-limit.ts      # 100 req/min per org
+│   ├── conversations.ts   # CRUD + search + tags + pin + unread + export CSV
+│   ├── leads.ts           # CRUD + pipeline stages + bulk actions + export CSV
+│   ├── settings.ts        # Agent config read/write
+│   ├── handoff.ts         # List/accept/resolve handoffs, send human replies via WhatsApp
+│   ├── whatsapp.ts        # Connect/disconnect/status/QR for WhatsApp sessions
+│   ├── onboarding.ts      # Multi-step onboarding (website scraping, doc upload, manual config)
+│   ├── analytics.ts       # Metrics: conversations, leads, response time, handoff rate, time series
+│   ├── broadcast.ts       # Bulk messaging to filtered contacts
+│   ├── calendar.ts        # Availability rules CRUD, appointment CRUD, 24h WhatsApp reminders
+│   ├── team.ts            # Team member CRUD + Resend email invitations + role management
+│   ├── webhooks.ts        # Webhook subscription CRUD + HMAC signing + event dispatch
+│   ├── admin.ts           # Org management, plan/trial updates, team member listing
+│   ├── test-chat.ts       # Test chat with org's own agent config
+│   └── widget.ts          # Embeddable web chat widget (public, no auth)
+├── services/
+│   ├── conversation.ts    # processIncomingMessage() — main message pipeline
+│   ├── follow-up.ts       # checkStaleConversations() — 24h auto follow-up via WhatsApp
+│   ├── handoff.ts         # triggerHandoff(), acceptHandoff(), resolveHandoff()
+│   ├── lead.ts            # mergeLeadInfo(), adjustLeadScore()
+│   ├── notifications.ts   # Handoff alerts via WhatsApp + Resend email (HTML template)
+│   ├── document-parser.ts # PDF/DOCX/TXT → AI extraction for knowledge base
+│   └── website-parser.ts  # URL scraping → AI extraction (multi-page, JSON-LD, prices)
+├── whatsapp/
+│   ├── session-manager.ts # Baileys socket lifecycle, Supabase auth state, Groq Whisper transcription
+│   ├── message-handler.ts # Delegates to conversation service
+│   ├── qr-manager.ts      # QR code generation/storage
+│   └── supabase-auth-state.ts # Persists Baileys auth creds in Supabase (survives Railway deploys)
+├── db/
+│   ├── client.ts          # Singleton Supabase client (service_role, no session persistence)
+│   └── queries.ts         # All DB operations: orgs, agent_configs, conversations, messages, leads, handoffs, whatsapp_sessions
+├── utils/
+│   └── sanitize.ts        # XSS prevention
+└── types/
+    └── pdf-parse.d.ts     # Type declaration for pdf-parse
 ```
 
-## Sistema de Diseño: Terminal macOS + Vercel
+### Background Jobs (setInterval in `index.ts`)
 
-### Colores (CSS Variables)
-```css
-:root {
-  --background: #0A0A0A;
-  --foreground: #FAFAFA;
-  --surface: #141414;
-  --surface-2: #1C1C1C;
-  --border: #2A2A2A;
-  --muted: #6B6B6B;
-  --terminal-red: #FF5F56;
-  --terminal-yellow: #FFBD2E;
-  --terminal-green: #27C93F;
-}
+| Job | Interval | Description |
+|-----|----------|-------------|
+| `reconnectActiveSessions()` | Once at startup (3s delay) | Reconnects all WhatsApp sessions marked `connected`/`connecting` |
+| `checkStaleConversations()` | Every 4 hours | Sends follow-up to conversations with no customer reply in 24h |
+| `checkUpcomingReminders()` | Every 1 hour | Sends WhatsApp reminders for appointments within 24h |
 
-[data-theme="light"] {
-  --background: #FFFFFF;
-  --foreground: #0A0A0A;
-  --surface: #F5F5F5;
-  --surface-2: #EBEBEB;
-  --border: #E0E0E0;
-}
+### AI Pipeline
+
+1. Incoming WhatsApp message → `session-manager.ts` (Baileys event)
+2. Audio messages → Groq Whisper transcription (`whisper-large-v3`, Spanish)
+3. Media messages → placeholder text (images, video, docs, stickers, contacts, location)
+4. `processIncomingMessage()` in `conversation.ts`:
+   - Dedup by WhatsApp message ID
+   - Skip if conversation is in `handoff` status
+   - Business hours check → after-hours auto-reply
+   - `generateResponse()` → AI call (Azure AI / Grok) with last 20 messages
+   - Parse structured JSON response → extract lead info, score delta, handoff signal
+   - Update lead record, score (0–100 range), and conversation summary
+   - Auto-book appointment if AI included `schedule_appointment` in response
+   - Trigger handoff + notifications if `needs_handoff: true`
+5. AI response format: JSON with `reply`, `extracted_info`, `lead_score_delta`, `needs_handoff`, `handoff_reason`, `conversation_summary`
+
+### API Authentication Flow
+
+1. Dashboard sends `Authorization: Bearer <supabase_jwt>`
+2. `authMiddleware` verifies JWT via `supabase.auth.getUser(token)`
+3. Looks up `profiles.organization_id`
+4. If no profile exists (race condition or trigger failure), creates org + profile + default agent_config
+5. Sets `c.set('auth', { userId, orgId, email })` for downstream handlers
+6. Trial expiration middleware blocks expired free-plan orgs (except onboarding/admin routes)
+
+---
+
+## Dashboard (`apps/dashboard` — `@omona/dashboard`)
+
+### Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `next` 14 | App Router framework |
+| `react` / `react-dom` 18 | UI library |
+| `tailwindcss` 3 + `tailwindcss-animate` + `tailwind-merge` | Styling |
+| `framer-motion` | Animations and transitions |
+| `lucide-react` | Icon library |
+| `class-variance-authority` | Component variant system |
+| `recharts` | Analytics charts (line, bar, area, pie) |
+| `sonner` | Toast notifications |
+| `@supabase/supabase-js` | Client-side auth |
+| `clsx` | Conditional classnames |
+
+### Source Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx           # Root layout (fonts, metadata, Toaster)
+│   ├── globals.css          # Global styles
+│   ├── page.tsx             # SEO landing page (hero + features + pricing + CTA)
+│   ├── icon.svg             # Favicon
+│   ├── (auth)/              # Auth pages (no sidebar)
+│   │   ├── login/           # Email/password + Google OAuth login
+│   │   ├── signup/          # Registration
+│   │   └── forgot-password/ # Password reset request
+│   ├── auth/                # Auth callback routes
+│   │   ├── callback/        # Supabase OAuth callback handler
+│   │   ├── confirm/         # Email confirmation
+│   │   ├── invite/          # Team invite acceptance
+│   │   └── reset-password/  # Password reset form
+│   ├── onboarding/          # Multi-step onboarding wizard
+│   ├── demo/                # Public demo chat page
+│   └── (dashboard)/         # Authenticated dashboard (with sidebar)
+│       ├── layout.tsx       # Dashboard shell — sidebar, auth guard, onboarding redirect
+│       ├── inbox/           # Conversation inbox with chat view
+│       ├── leads/           # Lead management + pipeline Kanban + detail view
+│       ├── handoff/         # Handoff queue
+│       ├── analytics/       # Metrics dashboard
+│       ├── calendar/        # Appointment scheduling
+│       ├── broadcast/       # Bulk messaging
+│       ├── settings/        # Agent config + WhatsApp + team + webhooks
+│       ├── test/            # Test chat with own agent
+│       └── admin/           # Admin panel (org/plan management)
+├── components/
+│   ├── ui/                  # Primitives (Button, Input, Modal, Badge, Card, Skeleton, Tabs, etc.)
+│   ├── shared/              # Layout (Sidebar, Header, EmptyState, CommandPalette, AuthGuard, etc.)
+│   ├── inbox/               # ChatView, MessageBubble, ConversationList, StatusBar, QuickReplies
+│   ├── leads/               # LeadDetail
+│   ├── onboarding/          # OnboardingWizard steps (Website, ManualConfig, DocumentUpload, Completion)
+│   └── settings/            # Settings tabs (GeneralSettings, ProductsEditor, FAQEditor, PersonalitySettings, WhatsAppSettings, TeamSettings, QuickRepliesEditor, WebhooksSettings)
+├── hooks/
+│   ├── useAuth.ts           # Auth state + signIn/signUp/signOut/signInWithGoogle + profile/org data
+│   ├── useAdmin.ts          # Admin operations
+│   ├── useConversations.ts  # Conversation CRUD + polling
+│   ├── useLeads.ts          # Lead CRUD + filtering
+│   ├── useMessages.ts       # Message loading + sending human replies
+│   └── useSupabase.ts       # Supabase client re-export
+└── lib/
+    ├── api.ts               # API client — fetch wrapper with Supabase JWT auth + CSV download
+    ├── supabase.ts          # Supabase browser client (NEXT_PUBLIC_SUPABASE_URL/ANON_KEY)
+    └── utils.ts             # cn(), formatDate/Time/Phone/RelativeTime helpers
 ```
 
-### Patrones de UI
-- **Headers**: Traffic light dots (●●●) + título font-mono
-- **Botones primary**: `bg-foreground text-background`
-- **Botones secondary**: `bg-surface border-border`
-- **Inputs**: `bg-background border-border font-mono`
-- **No Cards para métricas**: No usar tarjetas/cards para mostrar stats, métricas o KPIs. Usar layouts inline compactos (stat bars, rows con separadores `·` o `|`) siguiendo la estética terminal. Las cards de Kanban (LeadCard) son items arrastrables y se mantienen.
-- **Status**: `text-terminal-green` (ok), `text-terminal-yellow` (warn), `text-terminal-red` (error)
+### Dashboard Environment Variables
 
-## Agentes de IA
-
-### Demo Agent (`/api/demo/chat`)
-- **Modelo**: gpt-4o-mini
-- **Uso**: Landing page demo
-- **Características**: Rápido, 1 API call, respuestas cortas
-- **Prompt**: Simplificado para ventas
-
-### Full Agent (`/api/sandbox/chat`)
-- **Modelo**: gpt-4o (optimizado para velocidad)
-- **Uso**: Sandbox y producción
-- **Características**:
-  - Multi-agent analysis (gpt-4o-mini) - con fast path para mensajes simples
-  - Sentiment detection
-  - Few-shot learning
-  - Memory contextual
-  - Custom tools
-  - Knowledge documents
-- **Latencia**: ~2-4s (vs ~15-25s con modelos reasoning)
-
-## Base de Datos (Supabase)
-
-### Tablas Principales
-- `tenants` - Usuarios/empresas
-- `agent_configs` - Config del agente por tenant
-- `leads` - Contactos/prospectos
-- `conversations` - Historial de chats
-- `messages` - Mensajes individuales
-- `tenant_documents` - Knowledge base por tenant
-- `tenant_tools` - Herramientas custom por tenant
-
-### Campos de agent_configs
-```sql
-- system_prompt TEXT        -- Prompt personalizado
-- few_shot_examples JSONB   -- Ejemplos de conversación
-- products_catalog JSONB    -- Catálogo de productos
-- tone TEXT                 -- 'professional' | 'friendly' | 'casual'
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001      # Server API URL
+NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...           # Supabase public anon key
 ```
 
-## Rutas Importantes
+---
 
-| Ruta | Descripción |
+## Shared Package (`packages/shared` — `@omona/shared`)
+
+Exports TypeScript types from `src/types.ts`, re-exported via `src/index.ts`.
+
+### Database Types (mirrors Supabase schema)
+
+| Type | Key Fields |
+|------|------------|
+| `Organization` | `id`, `name`, `slug`, `plan` (free/pro/enterprise) |
+| `Profile` | `id`, `organization_id`, `full_name`, `role` (admin/agent/viewer) |
+| `WhatsAppSession` | `organization_id`, `phone_number`, `status`, `qr_code`, `auth_state` |
+| `AgentConfig` | `business_name`, `products_services[]`, `faqs[]`, `tone`, `sales_mode`, `quick_replies[]`, `system_prompt_override`, `notification_*` |
+| `Product` | `name`, `description`, `price`, `features[]` |
+| `FAQ` | `question`, `answer` |
+| `QuickReply` | `id`, `title`, `message` |
+| `Conversation` | `phone_number`, `contact_name`, `status` (active/handoff/resolved/archived), `tags[]`, `pinned`, `unread_count`, `summary` |
+| `Message` | `conversation_id`, `role` (user/assistant/system), `content`, `whatsapp_message_id`, `metadata` |
+| `Lead` | `phone_number`, `name`, `email`, `company`, `score` (0–100), `status` (new/qualified/contacted/demo_scheduled/converted/lost), `tags[]`, `assigned_to`, `custom_fields` |
+| `Handoff` | `conversation_id`, `reason`, `status` (pending/accepted/resolved), `assigned_to` |
+
+### AI Types
+
+| Type | Description |
 |------|-------------|
-| `/` | Landing page con demo interactiva |
-| `/login` | Login o solicitar acceso demo |
-| `/demo` | Demo completa (tools, docs, prompts) |
-| `/dashboard` | Panel principal |
-| `/dashboard/agent` | Configurar agente |
-| `/dashboard/agent/prompt` | Prompt personalizado |
-| `/dashboard/crm` | Pipeline Kanban |
+| `AIResponse` | `reply`, `extracted_info`, `lead_score_delta` (-10 to +15), `needs_handoff`, `handoff_reason`, `conversation_summary` |
+| `ExtractedLeadInfo` | `name`, `email`, `company`, `company_size`, `budget`, `timeline`, `interest`, `pain_points` |
 
-## Comandos
+### API Types
+
+`PaginatedResponse<T>`, `ConversationWithLastMessage`, `ConversationDetail`, `TestChatRequest`, `TestChatResponse`, `QRCodeResponse`, `WhatsAppStatusResponse`
+
+---
+
+## Database Tables (Supabase)
+
+All tables are org-scoped with RLS policies. Server uses `SUPABASE_SERVICE_KEY` (service_role) to bypass RLS.
+
+| Table | Description |
+|-------|-------------|
+| `organizations` | Multi-tenant orgs (name, slug, plan, trial_ends_at) |
+| `profiles` | Users linked to orgs (role: admin/agent/viewer, onboarding state) |
+| `agent_configs` | AI agent configuration per org (business info, products, FAQs, personality, sales mode) |
+| `conversations` | WhatsApp conversations (status, tags, pinned, unread_count, summary) |
+| `messages` | Chat messages (role, content, WhatsApp message ID, metadata) |
+| `leads` | CRM leads (contact info, qualification fields, score 0–100, pipeline status, tags) |
+| `handoffs` | Human handoff requests (reason, status, assignment) |
+| `whatsapp_sessions` | WhatsApp connection state (status, QR, phone, auth_creds/keys for Baileys) |
+| `appointments` | Calendar appointments (scheduled_at, duration, status, customer info) |
+| `availability_rules` | Business availability for scheduling (day_of_week, start/end time, slot duration) |
+| `team_invitations` | Pending team invites (email, role, token, expiry) |
+| `webhook_subscriptions` | Webhook endpoints (url, events, secret for HMAC, active flag) |
+| `knowledge_documents` | Uploaded documents for AI knowledge base |
+| `broadcast_messages` | Bulk message records |
+
+---
+
+## Environment Variables (Full Reference)
+
+### Server (root `.env`)
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `PORT` | No | `3001` | Server port |
+| `NODE_ENV` | No | `development` | development / production |
+| `SUPABASE_URL` | **Yes** | — | Supabase project URL |
+| `SUPABASE_SERVICE_KEY` | **Yes** | — | Supabase service_role key (bypasses RLS) |
+| `AI_BASE_URL` | No | `https://omona-ai.services.ai.azure.com/models` | Azure AI Model Inference endpoint |
+| `AI_API_KEY` | **Yes** | — | Azure AI API key |
+| `AI_MODEL` | No | `grok-4-1-fast-reasoning-2` | AI model ID |
+| `BAILEYS_AUTH_DIR` | No | `./auth_sessions` | Local WhatsApp auth session directory |
+| `DASHBOARD_URL` | No | `http://localhost:3000` | Dashboard URL (for CORS) |
+| `RESEND_API_KEY` | No | `''` | Resend API key for email notifications |
+| `GROQ_API_KEY` | No | — | Groq API key for Whisper audio transcription |
+
+### Dashboard (`apps/dashboard/.env`)
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_API_URL` | **Yes** | Server API URL |
+| `NEXT_PUBLIC_SUPABASE_URL` | **Yes** | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | **Yes** | Supabase anon/public key |
+
+---
+
+## Commands
 
 ```bash
-npm run dev          # Desarrollo (localhost:3000)
-npm run build        # Build producción
-npx supabase db push # Ejecutar migraciones
+# Install dependencies
+npm install
+
+# Development (all apps via Turbo)
+npm run dev
+
+# Individual apps
+npm run dev:server          # tsx watch src/index.ts
+npm run dev:dashboard       # next dev
+
+# Build
+npm run build               # Build shared package (tsc)
+npm run build:server        # Build server
+npm run build:dashboard     # Build dashboard (next build)
+
+# Production start
+npm run start               # cd apps/server && npx tsx src/index.ts
+
+# Type checking
+cd apps/server && npm run typecheck   # tsc --noEmit
 ```
 
-## Variables de Entorno
+---
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-OPENAI_API_KEY=
-STRIPE_SECRET_KEY=
-WHATSAPP_VERIFY_TOKEN=
-```
+## Code Conventions
 
-## Demo del Landing
-
-El chat en el landing (`InteractiveDemo`) funciona así:
-
-1. **Botones rápidos** ("¿Precio?", etc.) → Respuesta scripted instantánea
-2. **Mensaje libre** → Llama a `/api/demo/chat` (gpt-4o-mini, rápido)
-3. **Aviso** → "Demo simplificada, solicita acceso completo"
-
-## Demo Completa (`/demo`)
-
-Features:
-- Selector de tenant
-- Toggle default/custom prompt
-- Panel de tools y documentos
-- Rate limiting: 10 msg/min
-- Usa el agente full (gpt-5.2)
-
-## Commits Recientes
-
-```
-feat: add demo-agent for fast landing page responses
-feat: add knowledge documents and custom tools to sandbox
-style: update sandbox to terminal macOS + Vercel design
-feat: add custom prompt selector to sandbox
-feat: add sandbox demo for client demonstrations
-```
+- **TypeScript** throughout, strict mode (`tsconfig.base.json` at root)
+- **ESM modules** (`"type": "module"` in server)
+- **Spanish UI copy** — error messages, notifications, and AI prompts are in Spanish (es-MX)
+- **Zod** for env config validation and API input validation
+- **Supabase RLS** for multi-tenant data isolation
+- **Pino** structured JSON logging
+- **No test framework** currently configured
+- **CORS**: open (`origin: '*'`) in development
+- **DNS**: forced IPv4 (`dns.setDefaultResultOrder('ipv4first')`)
+- **Sender domain**: `omona@anthana.agency` (Resend)
+- **Dashboard URL**: `dashboard-seven-henna-45.vercel.app` (hardcoded in notifications)
