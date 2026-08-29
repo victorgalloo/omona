@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { LandingNav } from '@/components/landing/LandingNav';
 import { LandingHero } from '@/components/landing/LandingHero';
 import { LandingFeatures } from '@/components/landing/LandingFeatures';
+import { LandingCrmEmbedded } from '@/components/landing/LandingCrmEmbedded';
 import { LandingHowItWorks } from '@/components/landing/LandingHowItWorks';
 import { LandingStats } from '@/components/landing/LandingStats';
 import { LandingPricing } from '@/components/landing/LandingPricing';
@@ -195,6 +196,8 @@ export default function LandingPage() {
 
       <LandingFeatures />
 
+      <LandingCrmEmbedded />
+
       <div className="max-w-5xl mx-auto px-4"><div className="border-t border-dashed border-border" /></div>
 
       <LandingUseCases />
@@ -219,7 +222,7 @@ export default function LandingPage() {
               <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
               <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
               <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-              <span className="font-mono font-semibold text-lg text-foreground ml-2">loomi_</span>
+              <span className="font-mono font-semibold text-lg text-foreground ml-2">omona_</span>
             </div>
             <div className="flex gap-6 text-sm text-muted">
               <Link href="/login" className="hover:text-foreground transition-colors">Iniciar sesión</Link>
@@ -230,7 +233,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-8 text-center">
-            <p className="text-sm text-muted">© {new Date().getFullYear()} loomi by anthana · made with ♥ in méxico</p>
+            <p className="text-sm text-muted">© {new Date().getFullYear()} omona by anthana · made with ♥ in méxico</p>
           </div>
         </div>
       </footer>

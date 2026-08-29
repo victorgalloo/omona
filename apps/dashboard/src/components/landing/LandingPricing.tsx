@@ -171,7 +171,7 @@ export function LandingPricing() {
 
               {/* CTA */}
               <a
-                href="https://api.whatsapp.com/send?phone=529849800629&text=Hola%2C%20me%20interesa%20el%20plan%20Custom%20de%20Loomi"
+                href="https://api.whatsapp.com/send?phone=529849800629&text=Hola%2C%20me%20interesa%20el%20plan%20Custom%20de%20Omona"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full rounded-xl border border-border px-6 py-3.5 text-base font-medium text-foreground transition-colors hover:bg-surface-2 hover:border-border-hover mb-8"

@@ -18,7 +18,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-24">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-muted mb-10 font-mono">
-          <Link href="/" className="hover:text-foreground transition-colors">loomi.lat</Link>
+          <Link href="/" className="hover:text-foreground transition-colors">omona.tech</Link>
           <span>/</span>
           <Link href="/blog" className="hover:text-foreground transition-colors">{t.blog.backToBlog}</Link>
           <span>/</span>
@@ -78,7 +78,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
 
         {/* CTA */}
         <div className="mt-16 p-8 rounded-2xl bg-surface border border-border">
-          <p className="text-muted font-mono text-sm mb-2">loomi_</p>
+          <p className="text-muted font-mono text-sm mb-2">omona_</p>
           <h2 className="text-2xl font-bold text-foreground mb-3">
             {t.blog.cta.heading}
           </h2>

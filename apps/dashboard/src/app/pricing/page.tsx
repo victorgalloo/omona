@@ -3,19 +3,19 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { PricingPageContent } from './PricingPageContent';
 
 export const metadata: Metadata = {
-  title: 'Precios | Loomi - Agente de Ventas IA para WhatsApp',
+  title: 'Precios | Omona - Agente de Ventas IA para WhatsApp',
   description:
     'Planes desde $499 MXN/mes. Automatiza tus ventas por WhatsApp con IA. 14 días gratis, sin tarjeta de crédito. CRM integrado para pymes en México y LATAM.',
   openGraph: {
-    title: 'Precios | Loomi - Agente de Ventas IA para WhatsApp',
+    title: 'Precios | Omona - Agente de Ventas IA para WhatsApp',
     description:
       'Planes desde $499 MXN/mes con 14 días gratis. Agente IA para WhatsApp con CRM integrado para pymes en México y LATAM.',
     locale: 'es_MX',
     type: 'website',
-    url: 'https://loomi.lat/pricing',
+    url: 'https://omona.tech/pricing',
   },
   alternates: {
-    canonical: 'https://loomi.lat/pricing',
+    canonical: 'https://omona.tech/pricing',
   },
 };
 
@@ -24,15 +24,15 @@ const pricingSchema = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Precios de Loomi',
-      url: 'https://loomi.lat/pricing',
+      name: 'Precios de Omona',
+      url: 'https://omona.tech/pricing',
       description:
-        'Planes y precios del agente de ventas IA para WhatsApp de Loomi. Starter desde $499 MXN/mes y Pro desde $1,499 MXN/mes.',
+        'Planes y precios del agente de ventas IA para WhatsApp de Omona. Starter desde $499 MXN/mes y Pro desde $1,499 MXN/mes.',
       inLanguage: 'es-MX',
     },
     {
       '@type': 'SoftwareApplication',
-      name: 'Loomi',
+      name: 'Omona',
       applicationCategory: 'BusinessApplication',
       offers: [
         {
@@ -43,7 +43,7 @@ const pricingSchema = {
           price: '499',
           priceCurrency: 'MXN',
           priceValidUntil: '2026-12-31',
-          url: 'https://loomi.lat/signup',
+          url: 'https://omona.tech/signup',
           eligibleQuantity: {
             '@type': 'QuantitativeValue',
             unitText: 'mes',
@@ -57,7 +57,7 @@ const pricingSchema = {
           price: '1499',
           priceCurrency: 'MXN',
           priceValidUntil: '2026-12-31',
-          url: 'https://loomi.lat/signup',
+          url: 'https://omona.tech/signup',
           eligibleQuantity: {
             '@type': 'QuantitativeValue',
             unitText: 'mes',
@@ -70,10 +70,10 @@ const pricingSchema = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: '¿Cuánto cuesta Loomi?',
+          name: '¿Cuánto cuesta Omona?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Loomi tiene dos planes: Starter desde $499 MXN/mes (~$25 USD) y Pro desde $1,499 MXN/mes (~$75 USD). Ambos incluyen 14 días de prueba gratuita sin tarjeta de crédito.',
+            text: 'Omona tiene dos planes: Starter desde $499 MXN/mes (~$25 USD) y Pro desde $1,499 MXN/mes (~$75 USD). Ambos incluyen 14 días de prueba gratuita sin tarjeta de crédito.',
           },
         },
         {

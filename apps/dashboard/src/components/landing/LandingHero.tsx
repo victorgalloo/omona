@@ -128,7 +128,7 @@ export function LandingHero() {
             className="mb-6"
           >
             <span className="block text-7xl sm:text-8xl lg:text-9xl font-black tracking-tighter text-foreground">
-              LOOMI<span className="animate-blink text-[#27C93F]">_</span>
+              OMONA<span className="animate-blink text-[#27C93F]">_</span>
             </span>
             <span className="sr-only">Omona - {t.hero.tagline}</span>
           </motion.h1>

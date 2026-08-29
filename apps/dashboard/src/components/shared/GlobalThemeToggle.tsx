@@ -23,7 +23,7 @@ export function GlobalThemeToggle() {
   const toggle = useCallback(() => {
     const next = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('loomi-theme', next);
+    localStorage.setItem('omona-theme', next);
     setIsDark(!isDark);
   }, [isDark]);
 

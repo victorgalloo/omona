@@ -10,7 +10,7 @@ export default function ServiciosPage() {
       tag="servicios"
       title="Vende más servicios"
       titleBreak="sin contestar WhatsApp"
-      subtitle="Agencias, consultoras y freelancers pierden leads porque tardan en responder. Loomi responde al instante, califica y agenda — tú solo cierras."
+      subtitle="Agencias, consultoras y freelancers pierden leads porque tardan en responder. Omona responde al instante, califica y agenda — tú solo cierras."
       heroImage="/images/use-cases/services.jpg"
       stats={[
         { value: '<1s', label: 'Tiempo de respuesta' },
@@ -30,7 +30,7 @@ export default function ServiciosPage() {
         {
           icon: MessageSquare,
           title: 'Cotizaciones al instante',
-          description: 'Loomi responde preguntas sobre precios, paquetes y alcance en segundos. Conoce tu catálogo como tu mejor vendedor.',
+          description: 'Omona responde preguntas sobre precios, paquetes y alcance en segundos. Conoce tu catálogo como tu mejor vendedor.',
         },
         {
           icon: Target,
@@ -40,12 +40,12 @@ export default function ServiciosPage() {
         {
           icon: Calendar,
           title: 'Agenda sin fricción',
-          description: 'Cuando el prospecto está listo, Loomi agenda la llamada o demo directo en tu calendario. Cero ida y vuelta de mensajes.',
+          description: 'Cuando el prospecto está listo, Omona agenda la llamada o demo directo en tu calendario. Cero ida y vuelta de mensajes.',
         },
         {
           icon: Zap,
           title: 'Follow-up inteligente',
-          description: 'Si el prospecto no responde, Loomi hace seguimiento automático a las 24h. Ninguna oportunidad se escapa del radar.',
+          description: 'Si el prospecto no responde, Omona hace seguimiento automático a las 24h. Ninguna oportunidad se escapa del radar.',
         },
       ]}
       conversation={[

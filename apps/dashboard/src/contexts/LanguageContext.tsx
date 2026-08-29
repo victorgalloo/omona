@@ -21,7 +21,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>('es');
 
   useEffect(() => {
-    const saved = localStorage.getItem('loomi-lang') as Lang | null;
+    const saved = localStorage.getItem('omona-lang') as Lang | null;
     if (saved === 'es' || saved === 'en') {
       setLangState(saved);
       document.documentElement.setAttribute('lang', saved);
@@ -30,7 +30,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = (next: Lang) => {
     setLangState(next);
-    localStorage.setItem('loomi-lang', next);
+    localStorage.setItem('omona-lang', next);
     document.documentElement.setAttribute('lang', next);
   };
 

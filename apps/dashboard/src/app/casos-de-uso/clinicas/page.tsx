@@ -10,7 +10,7 @@ export default function ClinicasPage() {
       tag="salud"
       title="Tu recepcionista AI"
       titleBreak="que nunca falta"
-      subtitle="Clínicas y consultorios pierden pacientes por no contestar a tiempo. Loomi agenda citas, responde dudas y envía recordatorios — 24/7, sin saturar a tu equipo."
+      subtitle="Clínicas y consultorios pierden pacientes por no contestar a tiempo. Omona agenda citas, responde dudas y envía recordatorios — 24/7, sin saturar a tu equipo."
       heroImage="/images/use-cases/clinic.jpg"
       stats={[
         { value: '-60%', label: 'Menos no-shows' },
@@ -30,7 +30,7 @@ export default function ClinicasPage() {
         {
           icon: CalendarCheck,
           title: 'Agenda automática 24/7',
-          description: 'Pacientes agendan citas a cualquier hora. Loomi muestra disponibilidad real y confirma al instante — incluso de madrugada.',
+          description: 'Pacientes agendan citas a cualquier hora. Omona muestra disponibilidad real y confirma al instante — incluso de madrugada.',
         },
         {
           icon: Bell,
@@ -40,7 +40,7 @@ export default function ClinicasPage() {
         {
           icon: ShieldCheck,
           title: 'FAQ resueltas al instante',
-          description: 'Horarios, precios, ubicación, preparación para estudios — Loomi responde todo sin intervención de tu equipo.',
+          description: 'Horarios, precios, ubicación, preparación para estudios — Omona responde todo sin intervención de tu equipo.',
         },
         {
           icon: Clock,
@@ -65,7 +65,7 @@ export default function ClinicasPage() {
         'Oftalmólogos',
         'Fisioterapeutas',
       ]}
-      ctaTitle="Deja que Loomi atienda mientras tú consultas"
+      ctaTitle="Deja que Omona atienda mientras tú consultas"
     />
   );
 }

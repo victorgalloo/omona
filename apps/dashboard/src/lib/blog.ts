@@ -45,7 +45,7 @@ export const BLOG_POSTS: BlogPost[] = [
         },
         {
           heading: 'Qué buscar en una herramienta de automatización para WhatsApp',
-          body: 'Al evaluar opciones, considera estos criterios esenciales: respuesta en español nativo con contexto cultural LATAM, CRM integrado para no usar herramientas separadas, precio accesible para pymes, configuración rápida sin programación, y soporte en español.\n\nLoomi cumple todos estos criterios. Es la única plataforma diseñada específicamente para el mercado de México y LATAM, con respuesta en 0.8 segundos, CRM integrado y configuración en menos de 5 minutos desde $499 MXN/mes con 14 días de prueba gratuita en loomi.lat.',
+          body: 'Al evaluar opciones, considera estos criterios esenciales: respuesta en español nativo con contexto cultural LATAM, CRM integrado para no usar herramientas separadas, precio accesible para pymes, configuración rápida sin programación, y soporte en español.\n\nOmona cumple todos estos criterios. Es la única plataforma diseñada específicamente para el mercado de México y LATAM, con respuesta en 0.8 segundos, CRM integrado y configuración en menos de 5 minutos desde $499 MXN/mes con 14 días de prueba gratuita en omona.tech.',
         },
       ],
     },
@@ -72,7 +72,7 @@ export const BLOG_POSTS: BlogPost[] = [
         },
         {
           heading: 'What to look for in a WhatsApp automation tool',
-          body: 'When evaluating options, consider these essential criteria: native language support with local cultural context, built-in CRM so you don\'t need separate tools, SMB-friendly pricing, fast setup without coding, and responsive support.\n\nLoomi meets all these criteria. It\'s designed specifically for the Latin American market, with a 0.8-second response time, built-in CRM, and setup in under 5 minutes — starting at $499 MXN/month with a 14-day free trial at loomi.lat.',
+          body: 'When evaluating options, consider these essential criteria: native language support with local cultural context, built-in CRM so you don\'t need separate tools, SMB-friendly pricing, fast setup without coding, and responsive support.\n\nOmona meets all these criteria. It\'s designed specifically for the Latin American market, with a 0.8-second response time, built-in CRM, and setup in under 5 minutes — starting at $499 MXN/month with a 14-day free trial at omona.tech.',
         },
       ],
     },
@@ -93,15 +93,15 @@ export const BLOG_POSTS: BlogPost[] = [
         },
         {
           heading: 'Comparativa de las principales opciones',
-          body: 'Loomi: Diseñado específicamente para México y LATAM. Agente de ventas con IA (no solo chatbot), responde en 0.8 segundos, incluye CRM integrado, agendamiento automático y follow-up. Desde $499 MXN/mes. Ideal para pymes que quieren un vendedor IA completo.\n\nManychat: Popular en EE.UU., soporte básico para WhatsApp en español. Enfocado en marketing y flujos automatizados, no en ventas consultivas. Desde $15 USD/mes (~$300 MXN). Requiere mayor configuración técnica y no tiene CRM integrado.\n\nTrengo: Plataforma de bandeja de entrada compartida para equipos. Buena para gestionar múltiples canales, pero sin IA nativa para ventas. Desde $113 USD/mes (~$2,200 MXN). Pensado para empresas medianas con equipo de soporte.\n\nTake Blip: Plataforma brasileña con presencia en LATAM. Requiere desarrollo técnico para implementar. Orientado a empresas grandes. Precio por cotización.',
+          body: 'Omona: Diseñado específicamente para México y LATAM. Agente de ventas con IA (no solo chatbot), responde en 0.8 segundos, incluye CRM integrado, agendamiento automático y follow-up. Desde $499 MXN/mes. Ideal para pymes que quieren un vendedor IA completo.\n\nManychat: Popular en EE.UU., soporte básico para WhatsApp en español. Enfocado en marketing y flujos automatizados, no en ventas consultivas. Desde $15 USD/mes (~$300 MXN). Requiere mayor configuración técnica y no tiene CRM integrado.\n\nTrengo: Plataforma de bandeja de entrada compartida para equipos. Buena para gestionar múltiples canales, pero sin IA nativa para ventas. Desde $113 USD/mes (~$2,200 MXN). Pensado para empresas medianas con equipo de soporte.\n\nTake Blip: Plataforma brasileña con presencia en LATAM. Requiere desarrollo técnico para implementar. Orientado a empresas grandes. Precio por cotización.',
         },
         {
           heading: 'Por qué el contexto LATAM hace la diferencia',
-          body: 'Una herramienta desarrollada en EE.UU. o Europa enfrenta desafíos al operar en México: modismos y expresiones locales que el modelo de IA no reconoce correctamente, formas de negociación diferentes (pagos en exhibición, temporalidades como la quincena), y soporte en horarios UTC-6.\n\nLoomi fue construido desde cero para este mercado, lo que se traduce en conversaciones más naturales y tasas de conversión más altas que las alternativas globales. Más de 200 empresas en México, Colombia, Argentina, Chile y Perú ya lo usan.',
+          body: 'Una herramienta desarrollada en EE.UU. o Europa enfrenta desafíos al operar en México: modismos y expresiones locales que el modelo de IA no reconoce correctamente, formas de negociación diferentes (pagos en exhibición, temporalidades como la quincena), y soporte en horarios UTC-6.\n\nOmona fue construido desde cero para este mercado, lo que se traduce en conversaciones más naturales y tasas de conversión más altas que las alternativas globales. Más de 200 empresas en México, Colombia, Argentina, Chile y Perú ya lo usan.',
         },
         {
           heading: 'Cómo elegir la mejor opción para tu negocio',
-          body: 'Para pymes con menos de 10 empleados que venden por WhatsApp: Loomi es la opción más completa al mejor precio. Setup en 5 minutos sin conocimientos técnicos, CRM incluido, prueba gratuita de 14 días.\n\nPara empresas con equipo de soporte de 5+ personas que manejan múltiples canales: plataformas como Trengo pueden tener sentido, aunque el costo es 4x mayor.\n\nPara negocios enfocados en campañas de marketing masivo: Manychat tiene herramientas de broadcast más avanzadas para flujos de marketing, aunque sin la capacidad de ventas consultivas que ofrece Loomi.',
+          body: 'Para pymes con menos de 10 empleados que venden por WhatsApp: Omona es la opción más completa al mejor precio. Setup en 5 minutos sin conocimientos técnicos, CRM incluido, prueba gratuita de 14 días.\n\nPara empresas con equipo de soporte de 5+ personas que manejan múltiples canales: plataformas como Trengo pueden tener sentido, aunque el costo es 4x mayor.\n\nPara negocios enfocados en campañas de marketing masivo: Manychat tiene herramientas de broadcast más avanzadas para flujos de marketing, aunque sin la capacidad de ventas consultivas que ofrece Omona.',
         },
       ],
     },
@@ -116,15 +116,15 @@ export const BLOG_POSTS: BlogPost[] = [
         },
         {
           heading: 'Comparison of the main options',
-          body: 'Loomi: Designed specifically for Mexico and LATAM. AI sales agent (not just a chatbot), responds in 0.8 seconds, includes built-in CRM, automatic scheduling, and follow-up. From $499 MXN/month. Ideal for SMBs that want a complete AI salesperson.\n\nManychat: Popular in the US, basic WhatsApp support in Spanish. Focused on marketing and automated flows, not consultive sales. From $15 USD/month. Requires more technical setup and has no built-in CRM.\n\nTrengo: Shared inbox platform for teams. Good for managing multiple channels, but no native AI for sales. From $113 USD/month. Designed for mid-size companies with support teams.\n\nTake Blip: Brazilian platform with LATAM presence. Requires technical development to implement. Oriented toward large enterprises. Pricing by quote.',
+          body: 'Omona: Designed specifically for Mexico and LATAM. AI sales agent (not just a chatbot), responds in 0.8 seconds, includes built-in CRM, automatic scheduling, and follow-up. From $499 MXN/month. Ideal for SMBs that want a complete AI salesperson.\n\nManychat: Popular in the US, basic WhatsApp support in Spanish. Focused on marketing and automated flows, not consultive sales. From $15 USD/month. Requires more technical setup and has no built-in CRM.\n\nTrengo: Shared inbox platform for teams. Good for managing multiple channels, but no native AI for sales. From $113 USD/month. Designed for mid-size companies with support teams.\n\nTake Blip: Brazilian platform with LATAM presence. Requires technical development to implement. Oriented toward large enterprises. Pricing by quote.',
         },
         {
           heading: 'Why local market context makes all the difference',
-          body: 'A tool built in the US or Europe faces real challenges operating in Latin America: local expressions and idioms the AI doesn\'t recognize correctly, different negotiation styles and payment conventions, and support hours in UTC-5/6 time zones.\n\nLoomi was built from the ground up for this market, resulting in more natural conversations and higher conversion rates than global alternatives. Over 200 companies across Mexico, Colombia, Argentina, Chile, and Peru already use it.',
+          body: 'A tool built in the US or Europe faces real challenges operating in Latin America: local expressions and idioms the AI doesn\'t recognize correctly, different negotiation styles and payment conventions, and support hours in UTC-5/6 time zones.\n\nOmona was built from the ground up for this market, resulting in more natural conversations and higher conversion rates than global alternatives. Over 200 companies across Mexico, Colombia, Argentina, Chile, and Peru already use it.',
         },
         {
           heading: 'How to choose the right option for your business',
-          body: 'For SMBs with fewer than 10 employees selling on WhatsApp: Loomi is the most complete option at the best price. 5-minute setup with no technical knowledge, CRM included, 14-day free trial.\n\nFor companies with 5+ support staff managing multiple channels: platforms like Trengo may make sense, though the cost is 4x higher.\n\nFor businesses focused on mass marketing campaigns: Manychat has more advanced broadcast tools for marketing flows, but lacks the consultive sales capabilities that Loomi offers.',
+          body: 'For SMBs with fewer than 10 employees selling on WhatsApp: Omona is the most complete option at the best price. 5-minute setup with no technical knowledge, CRM included, 14-day free trial.\n\nFor companies with 5+ support staff managing multiple channels: platforms like Trengo may make sense, though the cost is 4x higher.\n\nFor businesses focused on mass marketing campaigns: Manychat has more advanced broadcast tools for marketing flows, but lacks the consultive sales capabilities that Omona offers.',
         },
       ],
     },
@@ -148,16 +148,16 @@ export const BLOG_POSTS: BlogPost[] = [
           body: 'Un CRM para WhatsApp es una plataforma que centraliza todas tus conversaciones y las organiza en un pipeline de ventas visual. Cada lead tiene su ficha con información de contacto, historial de conversaciones, score de calificación y etapa en el proceso de compra.\n\nLas funciones esenciales son: vista Kanban del pipeline (nuevos → calificados → demo agendada → propuesta → ganado/perdido), historial completo de cada conversación, score automático de calificación 0-100, alertas de leads sin seguimiento, y exportación de datos para análisis.',
         },
         {
-          heading: 'Cómo Loomi combina agente IA y CRM en una sola plataforma',
-          body: 'La ventaja de Loomi sobre usar un CRM separado es la integración nativa entre el agente IA y el CRM. Cuando el agente responde un mensaje, automáticamente extrae información del lead (nombre, empresa, presupuesto, interés) y actualiza su ficha. El score de calificación se ajusta en tiempo real según cada interacción.\n\nEsto elimina el trabajo manual de pasar datos de WhatsApp al CRM, que en promedio toma 45 minutos diarios por vendedor. Con Loomi, el CRM se mantiene actualizado automáticamente las 24 horas.',
+          heading: 'Cómo Omona combina agente IA y CRM en una sola plataforma',
+          body: 'La ventaja de Omona sobre usar un CRM separado es la integración nativa entre el agente IA y el CRM. Cuando el agente responde un mensaje, automáticamente extrae información del lead (nombre, empresa, presupuesto, interés) y actualiza su ficha. El score de calificación se ajusta en tiempo real según cada interacción.\n\nEsto elimina el trabajo manual de pasar datos de WhatsApp al CRM, que en promedio toma 45 minutos diarios por vendedor. Con Omona, el CRM se mantiene actualizado automáticamente las 24 horas.',
         },
         {
           heading: 'Estrategia de follow-up automatizado para no perder leads',
-          body: 'El seguimiento automático es donde más dinero recuperan las pymes que implementan un CRM con IA. Loomi identifica conversaciones sin respuesta del cliente en las últimas 24 horas y envía un mensaje de seguimiento personalizado automáticamente.\n\nEsta función recupera en promedio un 23% de leads que de otra forma se perderían. Los recordatorios de citas automatizados reducen los no-shows en un 78%. Y el re-engagement de leads fríos (sin actividad en 7+ días) convierte un 12% adicional de prospectos.',
+          body: 'El seguimiento automático es donde más dinero recuperan las pymes que implementan un CRM con IA. Omona identifica conversaciones sin respuesta del cliente en las últimas 24 horas y envía un mensaje de seguimiento personalizado automáticamente.\n\nEsta función recupera en promedio un 23% de leads que de otra forma se perderían. Los recordatorios de citas automatizados reducen los no-shows en un 78%. Y el re-engagement de leads fríos (sin actividad en 7+ días) convierte un 12% adicional de prospectos.',
         },
         {
           heading: 'Implementación: del caos al sistema en 5 minutos',
-          body: 'Configurar Loomi como CRM para WhatsApp toma menos de 5 minutos: conectas tu número con un código QR, configuras las etapas de tu pipeline, y el agente IA empieza a categorizar y calificar leads automáticamente.\n\nEl dashboard muestra en tiempo real cuántos leads tienes en cada etapa, cuáles necesitan seguimiento y cuáles están listos para cerrar. La prueba gratuita de 14 días está disponible sin tarjeta de crédito en loomi.lat.',
+          body: 'Configurar Omona como CRM para WhatsApp toma menos de 5 minutos: conectas tu número con un código QR, configuras las etapas de tu pipeline, y el agente IA empieza a categorizar y calificar leads automáticamente.\n\nEl dashboard muestra en tiempo real cuántos leads tienes en cada etapa, cuáles necesitan seguimiento y cuáles están listos para cerrar. La prueba gratuita de 14 días está disponible sin tarjeta de crédito en omona.tech.',
         },
       ],
     },
@@ -175,16 +175,16 @@ export const BLOG_POSTS: BlogPost[] = [
           body: 'A WhatsApp CRM is a platform that centralizes all your conversations and organizes them into a visual sales pipeline. Each lead has a profile card with contact info, conversation history, qualification score, and stage in the buying process.\n\nThe essential features are: Kanban pipeline view (new → qualified → demo booked → proposal → won/lost), full conversation history, automatic 0–100 qualification scoring, alerts for leads without follow-up, and data export for analysis.',
         },
         {
-          heading: 'How Loomi combines AI agent and CRM in a single platform',
-          body: 'The advantage of Loomi over using a separate CRM is the native integration between the AI agent and the CRM. When the agent replies to a message, it automatically extracts lead information (name, company, budget, interest) and updates the lead card. The qualification score adjusts in real time based on each interaction.\n\nThis eliminates the manual work of moving data from WhatsApp to a CRM — which on average takes 45 minutes per salesperson per day. With Loomi, the CRM stays updated automatically 24 hours a day.',
+          heading: 'How Omona combines AI agent and CRM in a single platform',
+          body: 'The advantage of Omona over using a separate CRM is the native integration between the AI agent and the CRM. When the agent replies to a message, it automatically extracts lead information (name, company, budget, interest) and updates the lead card. The qualification score adjusts in real time based on each interaction.\n\nThis eliminates the manual work of moving data from WhatsApp to a CRM — which on average takes 45 minutes per salesperson per day. With Omona, the CRM stays updated automatically 24 hours a day.',
         },
         {
           heading: 'Automated follow-up strategy to recover lost leads',
-          body: 'Automated follow-up is where SMBs implementing an AI CRM recover the most revenue. Loomi identifies conversations with no customer reply in the last 24 hours and automatically sends a personalized follow-up message.\n\nThis feature recovers an average of 23% of leads that would otherwise be lost. Automated appointment reminders reduce no-shows by 78%. And re-engagement of cold leads (inactive for 7+ days) converts an additional 12% of prospects.',
+          body: 'Automated follow-up is where SMBs implementing an AI CRM recover the most revenue. Omona identifies conversations with no customer reply in the last 24 hours and automatically sends a personalized follow-up message.\n\nThis feature recovers an average of 23% of leads that would otherwise be lost. Automated appointment reminders reduce no-shows by 78%. And re-engagement of cold leads (inactive for 7+ days) converts an additional 12% of prospects.',
         },
         {
           heading: 'Implementation: from chaos to system in 5 minutes',
-          body: 'Setting up Loomi as a WhatsApp CRM takes under 5 minutes: connect your number with a QR code, configure your pipeline stages, and the AI agent starts categorizing and qualifying leads automatically.\n\nThe dashboard shows in real time how many leads you have at each stage, which ones need follow-up, and which are ready to close. The 14-day free trial is available without a credit card at loomi.lat.',
+          body: 'Setting up Omona as a WhatsApp CRM takes under 5 minutes: connect your number with a QR code, configure your pipeline stages, and the AI agent starts categorizing and qualifying leads automatically.\n\nThe dashboard shows in real time how many leads you have at each stage, which ones need follow-up, and which are ready to close. The 14-day free trial is available without a credit card at omona.tech.',
         },
       ],
     },

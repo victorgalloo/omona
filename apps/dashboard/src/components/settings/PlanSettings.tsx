@@ -81,7 +81,7 @@ export function PlanSettings() {
         )}
         {isPro && (
           <p className="text-sm text-muted">
-            Tienes acceso completo a todas las funciones de Loomi.
+            Tienes acceso completo a todas las funciones de Omona.
           </p>
         )}
       </div>
@@ -145,7 +145,7 @@ export function PlanSettings() {
           ) : (
             <div className="space-y-2">
               <a
-                href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Loomi%20a%20Pro"
+                href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Omona%20a%20Pro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full rounded-xl bg-accent-green px-4 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -154,7 +154,7 @@ export function PlanSettings() {
                 Actualizar por WhatsApp
               </a>
               <a
-                href="mailto:joscardona@icloud.com?subject=Quiero%20actualizar%20a%20Pro%20en%20Loomi"
+                href="mailto:joscardona@icloud.com?subject=Quiero%20actualizar%20a%20Pro%20en%20Omona"
                 className="flex items-center justify-center gap-2 w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
               >
                 <Mail className="h-4 w-4" />

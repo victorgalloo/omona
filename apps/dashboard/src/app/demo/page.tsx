@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       'Prueba gratis el agente de ventas IA de Omona. Chatea en tiempo real y ve como responde, califica leads y agenda citas por WhatsApp.',
     locale: 'es_MX',
     type: 'website',
-    url: 'https://loomi.lat/demo',
+    url: 'https://omona.tech/demo',
   },
   twitter: {
     card: 'summary_large_image',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       'Prueba gratis el agente de ventas IA de Omona. Chatea en tiempo real y ve como responde, califica leads y agenda citas.',
   },
   alternates: {
-    canonical: 'https://loomi.lat/demo',
+    canonical: 'https://omona.tech/demo',
   },
 };
 

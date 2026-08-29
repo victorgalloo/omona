@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@loomi_lat',
+    site: '@omona_lat',
     title: 'Omona | Agente de Ventas IA para WhatsApp',
     description:
       'Automatiza tus ventas por WhatsApp con IA. Responde 24/7, califica leads y agenda citas. CRM para pymes en Mexico y LATAM.',
@@ -93,12 +93,12 @@ function ThemeScript() {
   const script = `
     (function() {
       try {
-        var theme = localStorage.getItem('loomi-theme');
+        var theme = localStorage.getItem('omona-theme');
         if (theme === 'dark') {
           document.documentElement.setAttribute('data-theme', 'dark');
         } else {
           document.documentElement.setAttribute('data-theme', 'light');
-          localStorage.setItem('loomi-theme', 'light');
+          localStorage.setItem('omona-theme', 'light');
         }
       } catch(e) {
         document.documentElement.setAttribute('data-theme', 'light');

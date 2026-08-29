@@ -85,7 +85,7 @@ function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number })
         {msg.role === 'assistant' && (
           <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#27C93F] mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#27C93F] animate-pulse" />
-            loomi_
+            omona_
           </span>
         )}
         <p>{msg.text}</p>
@@ -278,7 +278,7 @@ export function UseCasePageLayout({
         </div>
       </section>
 
-      {/* ── PAIN POINTS (sin loomi) ────────────────────── */}
+      {/* ── PAIN POINTS (sin omona) ────────────────────── */}
       <section className="py-24 sm:py-32 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
@@ -305,7 +305,7 @@ export function UseCasePageLayout({
         </div>
       </section>
 
-      {/* ── BENEFITS (con loomi) ───────────────────────── */}
+      {/* ── BENEFITS (con omona) ───────────────────────── */}
       <section className="py-24 sm:py-32 px-4 sm:px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
@@ -469,7 +469,7 @@ export function UseCasePageLayout({
               <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
               <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
               <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-              <span className="font-mono font-semibold text-lg text-foreground ml-2">loomi_</span>
+              <span className="font-mono font-semibold text-lg text-foreground ml-2">omona_</span>
             </Link>
             <div className="flex gap-6 text-sm text-muted">
               <Link href="/login" className="hover:text-foreground transition-colors">{t.useCaseLayout.footer.login}</Link>
@@ -478,7 +478,7 @@ export function UseCasePageLayout({
             </div>
           </div>
           <div className="mt-8 text-center">
-            <p className="text-sm text-muted">© {new Date().getFullYear()} loomi by anthana · made with ♥ in méxico</p>
+            <p className="text-sm text-muted">© {new Date().getFullYear()} omona by anthana · made with ♥ in méxico</p>
           </div>
         </div>
       </footer>

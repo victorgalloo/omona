@@ -67,7 +67,7 @@ export function LandingNav() {
               <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
               <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
             </div>
-            <span className="font-mono font-semibold text-lg text-foreground ml-1">loomi_</span>
+            <span className="font-mono font-semibold text-lg text-foreground ml-1">omona_</span>
           </Link>
 
           {/* Desktop nav links */}

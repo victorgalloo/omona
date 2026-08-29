@@ -10,7 +10,7 @@ export default function BienesRaicesPage() {
       tag="inmobiliarias"
       title="Califica prospectos"
       titleBreak="antes de la visita"
-      subtitle="En bienes raíces, cada visita cuesta tiempo y dinero. Loomi filtra prospectos por presupuesto, zona y necesidades — tu asesor solo atiende leads reales."
+      subtitle="En bienes raíces, cada visita cuesta tiempo y dinero. Omona filtra prospectos por presupuesto, zona y necesidades — tu asesor solo atiende leads reales."
       heroImage="/images/use-cases/real-state.jpg"
       stats={[
         { value: '80%', label: 'Leads pre-calificados' },
@@ -30,17 +30,17 @@ export default function BienesRaicesPage() {
         {
           icon: Filter,
           title: 'Filtro automático',
-          description: 'Loomi pregunta presupuesto, zona, recámaras y tipo de operación. Tu asesor recibe un lead con toda la info lista.',
+          description: 'Omona pregunta presupuesto, zona, recámaras y tipo de operación. Tu asesor recibe un lead con toda la info lista.',
         },
         {
           icon: MapPin,
           title: 'Info de propiedades al instante',
-          description: 'Precios, amenidades, ubicación, disponibilidad — Loomi resuelve todo sobre tu inventario sin que tu equipo intervenga.',
+          description: 'Precios, amenidades, ubicación, disponibilidad — Omona resuelve todo sobre tu inventario sin que tu equipo intervenga.',
         },
         {
           icon: Users,
           title: 'Handoff al asesor correcto',
-          description: 'Cuando el lead califica, Loomi lo transfiere con todo el contexto: presupuesto, preferencias, urgencia y score.',
+          description: 'Cuando el lead califica, Omona lo transfiere con todo el contexto: presupuesto, preferencias, urgencia y score.',
         },
         {
           icon: TrendingUp,

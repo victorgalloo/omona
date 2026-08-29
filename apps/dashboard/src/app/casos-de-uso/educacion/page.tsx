@@ -10,7 +10,7 @@ export default function EducacionPage() {
       tag="educación"
       title="Llena tus grupos"
       titleBreak="sin saturar admisiones"
-      subtitle="El 70% de los prospectos educativos preguntan por WhatsApp. Loomi responde sobre programas, costos y becas, y agenda entrevistas — sin que admisiones levante el teléfono."
+      subtitle="El 70% de los prospectos educativos preguntan por WhatsApp. Omona responde sobre programas, costos y becas, y agenda entrevistas — sin que admisiones levante el teléfono."
       heroImage="/images/use-cases/college.jpg"
       stats={[
         { value: '70%', label: 'Consultas por WhatsApp' },
@@ -30,17 +30,17 @@ export default function EducacionPage() {
         {
           icon: BookOpen,
           title: 'Info de programas al instante',
-          description: 'Plan de estudios, duración, modalidad, requisitos — Loomi resuelve todas las dudas del prospecto sin demora ni inconsistencias.',
+          description: 'Plan de estudios, duración, modalidad, requisitos — Omona resuelve todas las dudas del prospecto sin demora ni inconsistencias.',
         },
         {
           icon: DollarSign,
           title: 'Costos y becas claros',
-          description: 'Loomi informa sobre colegiaturas, planes de pago, becas disponibles y requisitos financieros de forma transparente y uniforme.',
+          description: 'Omona informa sobre colegiaturas, planes de pago, becas disponibles y requisitos financieros de forma transparente y uniforme.',
         },
         {
           icon: UserCheck,
           title: 'Entrevistas agendadas automáticamente',
-          description: 'Cuando el prospecto está interesado, Loomi agenda la entrevista de admisión o la clase muestra directo en el calendario.',
+          description: 'Cuando el prospecto está interesado, Omona agenda la entrevista de admisión o la clase muestra directo en el calendario.',
         },
         {
           icon: MessagesSquare,

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Términos de Uso | Loomi',
-  description: 'Términos y condiciones de uso de Loomi. Conoce las reglas que rigen el uso de nuestra plataforma.',
+  title: 'Términos de Uso | Omona',
+  description: 'Términos y condiciones de uso de Omona. Conoce las reglas que rigen el uso de nuestra plataforma.',
 };
 
 export default function TerminosPage() {
@@ -16,7 +16,7 @@ export default function TerminosPage() {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-            <span className="font-mono font-semibold text-sm text-foreground ml-1.5">loomi_</span>
+            <span className="font-mono font-semibold text-sm text-foreground ml-1.5">omona_</span>
           </Link>
           <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors">
             Volver al inicio
@@ -33,12 +33,12 @@ export default function TerminosPage() {
         <div className="space-y-10 text-muted-foreground text-[15px] leading-relaxed">
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">1. Aceptación de los términos</h2>
-            <p>Al acceder y utilizar Loomi ("el Servicio"), operado por Anthana ("nosotros"), aceptas estar sujeto a estos Términos de Uso. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar el Servicio. El uso continuado del Servicio después de la publicación de cambios constituye la aceptación de dichos cambios.</p>
+            <p>Al acceder y utilizar Omona ("el Servicio"), operado por Anthana ("nosotros"), aceptas estar sujeto a estos Términos de Uso. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar el Servicio. El uso continuado del Servicio después de la publicación de cambios constituye la aceptación de dichos cambios.</p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">2. Descripción del servicio</h2>
-            <p>Loomi es una plataforma de automatización de ventas por WhatsApp que utiliza inteligencia artificial. El Servicio incluye:</p>
+            <p>Omona es una plataforma de automatización de ventas por WhatsApp que utiliza inteligencia artificial. El Servicio incluye:</p>
             <ul className="list-disc list-inside space-y-2 ml-2 mt-3">
               <li>Conexión con WhatsApp para envío y recepción automática de mensajes.</li>
               <li>Agente de inteligencia artificial para respuestas automatizadas.</li>
@@ -62,7 +62,7 @@ export default function TerminosPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">4. Planes y pagos</h2>
-            <p className="mb-3">Loomi ofrece diferentes planes de suscripción:</p>
+            <p className="mb-3">Omona ofrece diferentes planes de suscripción:</p>
             <ul className="list-disc list-inside space-y-2 ml-2">
               <li><strong className="text-foreground">Prueba gratuita:</strong> 14 días sin costo ni tarjeta de crédito requerida.</li>
               <li><strong className="text-foreground">Plan Pro:</strong> suscripción mensual con las funcionalidades incluidas en el plan. Limitado a 1,000 conversaciones por mes.</li>
@@ -73,7 +73,7 @@ export default function TerminosPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">5. Uso aceptable</h2>
-            <p className="mb-3">Al usar Loomi, te comprometes a:</p>
+            <p className="mb-3">Al usar Omona, te comprometes a:</p>
             <ul className="list-disc list-inside space-y-2 ml-2">
               <li>Cumplir con las políticas de uso de WhatsApp y sus términos de servicio.</li>
               <li>No enviar spam, mensajes no solicitados o contenido ilegal a través de la plataforma.</li>
@@ -91,7 +91,7 @@ export default function TerminosPage() {
               <li>Las respuestas generadas por IA pueden no ser siempre perfectas o apropiadas.</li>
               <li>Eres responsable de configurar adecuadamente tu agente (productos, FAQs, tono, modo de venta).</li>
               <li>El sistema de handoff permite transferir conversaciones a un humano cuando sea necesario.</li>
-              <li>Loomi no garantiza la precisión de la calificación automática de leads.</li>
+              <li>Omona no garantiza la precisión de la calificación automática de leads.</li>
               <li>Es tu responsabilidad supervisar las conversaciones y ajustar la configuración del agente según sea necesario.</li>
             </ul>
           </section>
@@ -103,7 +103,7 @@ export default function TerminosPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">8. Aplicación móvil (iOS)</h2>
-            <p className="mb-3">Al descargar y usar la aplicación móvil de Loomi desde la App Store de Apple, aceptas adicionalmente que:</p>
+            <p className="mb-3">Al descargar y usar la aplicación móvil de Omona desde la App Store de Apple, aceptas adicionalmente que:</p>
             <ul className="list-disc list-inside space-y-2 ml-2">
               <li>La licencia de uso se limita a un dispositivo iOS de tu propiedad o control.</li>
               <li>Apple no tiene obligación alguna de proveer servicios de mantenimiento o soporte para la app.</li>
@@ -143,7 +143,7 @@ export default function TerminosPage() {
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">13. Contacto</h2>
             <p>Para preguntas sobre estos términos, contáctanos en:</p>
-            <p className="mt-2 font-mono text-[#27C93F]">hello@loomi.lat</p>
+            <p className="mt-2 font-mono text-[#27C93F]">hello@omona.tech</p>
           </section>
         </div>
       </main>
@@ -151,7 +151,7 @@ export default function TerminosPage() {
       {/* Footer */}
       <footer className="border-t border-border py-8">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted">© {new Date().getFullYear()} loomi by anthana</p>
+          <p className="text-sm text-muted">© {new Date().getFullYear()} omona by anthana</p>
           <div className="flex gap-6 text-sm text-muted">
             <Link href="/privacidad" className="hover:text-foreground transition-colors">Privacidad</Link>
             <Link href="/" className="hover:text-foreground transition-colors">Inicio</Link>

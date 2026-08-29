@@ -231,7 +231,7 @@ export function Sidebar({ mobile, onClose }: { mobile?: boolean; onClose?: () =>
                 />
               </div>
               <a
-                href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Loomi"
+                href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Omona"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1.5 w-full rounded-lg bg-accent-green px-3 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90"
@@ -243,7 +243,7 @@ export function Sidebar({ mobile, onClose }: { mobile?: boolean; onClose?: () =>
           ) : (
             <div className="flex justify-center">
               <a
-                href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Loomi"
+                href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Omona"
                 target="_blank"
                 rel="noopener noreferrer"
                 title={t.dashboard.trialTooltip(trial.daysRemaining ?? 0)}

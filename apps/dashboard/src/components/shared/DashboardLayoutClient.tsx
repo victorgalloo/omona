@@ -13,7 +13,7 @@ function ThemeToggleButton() {
   const toggle = () => {
     const next = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('loomi-theme', next);
+    localStorage.setItem('omona-theme', next);
     setIsDark(!isDark);
   };
 
@@ -45,7 +45,7 @@ function TrialTopBanner() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('loomi-trial-banner-dismissed');
+    const saved = localStorage.getItem('omona-trial-banner-dismissed');
     if (saved) {
       const dismissedAt = parseInt(saved, 10);
       // Re-show if < 3 days remaining regardless of dismissal
@@ -77,7 +77,7 @@ function TrialTopBanner() {
       </div>
       <div className="flex items-center gap-2 shrink-0">
         <a
-          href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Loomi"
+          href="https://wa.me/5214773920529?text=Hola%2C%20quiero%20actualizar%20mi%20plan%20de%20Omona"
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
@@ -90,7 +90,7 @@ function TrialTopBanner() {
         <button
           onClick={() => {
             setDismissed(true);
-            localStorage.setItem('loomi-trial-banner-dismissed', String(Date.now()));
+            localStorage.setItem('omona-trial-banner-dismissed', String(Date.now()));
           }}
           className="text-current opacity-60 hover:opacity-100 transition-opacity"
         >

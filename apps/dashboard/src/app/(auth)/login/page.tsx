@@ -70,7 +70,7 @@ function LoginContent() {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
           </div>
-          <span className="font-mono font-semibold text-foreground ml-1">loomi_</span>
+          <span className="font-mono font-semibold text-foreground ml-1">omona_</span>
         </Link>
       </div>
 
