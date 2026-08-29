@@ -1,0 +1,637 @@
+/**
+ * Supabase Database Operations
+ */
+
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Lead, Conversation, Message, Appointment } from '@/types';
+import { trackLeadQualified } from '@/lib/integrations/meta-conversions';
+
+// Singleton pattern for Supabase client
+let supabaseClient: SupabaseClient | null = null;
+
+export function getSupabase(): SupabaseClient {
+  if (!supabaseClient) {
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Missing Supabase credentials');
+    }
+
+    supabaseClient = createClient(supabaseUrl, supabaseKey);
+  }
+  return supabaseClient;
+}
+
+// ============================================
+// Lead Operations
+// ============================================
+
+export async function getLeadByPhone(phone: string): Promise<Lead | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('leads')
+    .select('*')
+    .eq('phone', phone)
+    .single();
+
+  if (error || !data) return null;
+
+  return {
+    id: data.id,
+    phone: data.phone,
+    name: data.name,
+    email: data.email,
+    company: data.company,
+    industry: data.industry,
+    stage: data.stage,
+    createdAt: new Date(data.created_at),
+    lastInteraction: new Date(data.last_interaction)
+  };
+}
+
+/**
+ * Get lead by phone and tenant_id (multi-tenant)
+ */
+export async function getLeadByPhoneAndTenant(phone: string, tenantId: string): Promise<Lead | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('leads')
+    .select('*')
+    .eq('phone', phone)
+    .eq('tenant_id', tenantId)
+    .single();
+
+  if (error || !data) return null;
+
+  return {
+    id: data.id,
+    phone: data.phone,
+    name: data.name,
+    email: data.email,
+    company: data.company,
+    industry: data.industry,
+    stage: data.stage,
+    createdAt: new Date(data.created_at),
+    lastInteraction: new Date(data.last_interaction)
+  };
+}
+
+export async function getLeadById(leadId: string): Promise<Lead | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('leads')
+    .select('*')
+    .eq('id', leadId)
+    .single();
+
+  if (error || !data) return null;
+
+  return {
+    id: data.id,
+    phone: data.phone,
+    name: data.name,
+    email: data.email,
+    company: data.company,
+    industry: data.industry,
+    stage: data.stage,
+    createdAt: new Date(data.created_at),
+    lastInteraction: new Date(data.last_interaction),
+    serviceWindowStart: data.service_window_start ? new Date(data.service_window_start) : null,
+    serviceWindowType: data.service_window_type ?? null,
+  };
+}
+
+export async function createLead(
+  phone: string,
+  name: string = 'Usuario',
+  options?: { isTest?: boolean; tenantId?: string }
+): Promise<Lead> {
+  const supabase = getSupabase();
+
+  const insertData: Record<string, unknown> = {
+    phone,
+    name,
+    stage: 'Cold',
+    is_test: options?.isTest ?? false
+  };
+
+  // Add tenant_id for multi-tenant leads
+  if (options?.tenantId) {
+    insertData.tenant_id = options.tenantId;
+  }
+
+  const { data, error } = await supabase
+    .from('leads')
+    .insert(insertData)
+    .select()
+    .single();
+
+  if (error) {
+    // Handle duplicate: same phone may exist for another tenant or without tenant_id
+    if (error.code === '23505' && options?.tenantId) {
+      // Try to find existing lead for this phone (without tenant_id) and assign it
+      const { data: existing } = await supabase
+        .from('leads')
+        .select()
+        .eq('phone', phone)
+        .is('tenant_id', null)
+        .single();
+
+      if (existing) {
+        // Assign orphaned lead to this tenant
+        await supabase
+          .from('leads')
+          .update({ tenant_id: options.tenantId })
+          .eq('id', existing.id);
+
+        return {
+          id: existing.id,
+          phone: existing.phone,
+          name: existing.name,
+          email: existing.email,
+          company: existing.company,
+          industry: existing.industry,
+          stage: existing.stage,
+          createdAt: new Date(existing.created_at),
+          lastInteraction: new Date(existing.last_interaction)
+        };
+      }
+    }
+    console.error('Error creating lead:', error);
+    throw error;
+  }
+
+  return {
+    id: data.id,
+    phone: data.phone,
+    name: data.name,
+    email: data.email,
+    company: data.company,
+    industry: data.industry,
+    stage: data.stage,
+    createdAt: new Date(data.created_at),
+    lastInteraction: new Date(data.last_interaction)
+  };
+}
+
+export async function updateLead(
+  leadId: string,
+  updates: Partial<Pick<Lead, 'name' | 'email' | 'company' | 'industry' | 'stage'>>
+): Promise<void> {
+  const supabase = getSupabase();
+
+  const { error } = await supabase
+    .from('leads')
+    .update(updates)
+    .eq('id', leadId);
+
+  if (error) {
+    console.error('Error updating lead:', error);
+  }
+}
+
+export async function updateLeadStage(leadId: string, stage: string): Promise<void> {
+  await updateLead(leadId, { stage });
+}
+
+export async function updateLeadIndustry(leadId: string, industry: string): Promise<void> {
+  await updateLead(leadId, { industry });
+}
+
+/**
+ * Save lead qualification data from WhatsApp Flow
+ */
+export async function saveLeadQualification(
+  leadId: string,
+  phone: string,
+  qualification: {
+    challenge: string;
+    messageVolume: string;
+    industry: string;
+  }
+): Promise<void> {
+  const supabase = getSupabase();
+
+  const { error } = await supabase
+    .from('leads')
+    .update({
+      challenge: qualification.challenge,
+      message_volume: qualification.messageVolume,
+      industry: qualification.industry,
+      is_qualified: true,
+      stage: 'Cold',
+      last_interaction: new Date().toISOString(),
+    })
+    .eq('id', leadId);
+
+  if (error) {
+    console.error('[Supabase] Error saving qualification:', error.message);
+    throw error;
+  }
+
+  console.log(`[Supabase] Lead ${leadId} qualified with:`, qualification);
+
+  // Look up tenant_id for the lead to associate with CAPI event
+  const { data: leadRow } = await supabase
+    .from('leads')
+    .select('tenant_id')
+    .eq('id', leadId)
+    .single();
+
+  // Track conversion event for Meta (non-blocking)
+  trackLeadQualified({ phone, leadId, tenantId: leadRow?.tenant_id ?? undefined }).catch((err) => {
+    console.error('[Meta] Failed to track lead qualified:', err);
+  });
+}
+
+// ============================================
+// Conversation Operations
+// ============================================
+
+export async function getActiveConversation(leadId: string): Promise<Conversation | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('conversations')
+    .select('*')
+    .eq('lead_id', leadId)
+    .is('ended_at', null)
+    .order('started_at', { ascending: false })
+    .limit(1);
+
+  if (error || !data || data.length === 0) return null;
+
+  const row = data[0];
+  return {
+    id: row.id,
+    leadId: row.lead_id,
+    startedAt: new Date(row.started_at),
+    endedAt: row.ended_at ? new Date(row.ended_at) : undefined,
+    summary: row.summary
+  };
+}
+
+export async function createConversation(leadId: string): Promise<Conversation> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('conversations')
+    .insert({ lead_id: leadId })
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error creating conversation:', error);
+    throw error;
+  }
+
+  return {
+    id: data.id,
+    leadId: data.lead_id,
+    startedAt: new Date(data.started_at),
+    summary: data.summary
+  };
+}
+
+export async function endConversation(conversationId: string, summary?: string): Promise<void> {
+  const supabase = getSupabase();
+
+  const { error } = await supabase
+    .from('conversations')
+    .update({
+      ended_at: new Date().toISOString(),
+      summary
+    })
+    .eq('id', conversationId);
+
+  if (error) {
+    console.error('Error ending conversation:', error);
+  }
+}
+
+// ============================================
+// Message Operations
+// ============================================
+
+export async function saveMessage(
+  conversationId: string,
+  role: 'user' | 'assistant',
+  content: string,
+  leadId?: string,
+  inServiceWindow?: boolean,
+  media?: { url: string; type: string; filename?: string }
+): Promise<string> {
+  const supabase = getSupabase();
+
+  const insertData: Record<string, unknown> = {
+    conversation_id: conversationId,
+    role,
+    content,
+  };
+
+  // Only tag outgoing (assistant) messages with window status
+  if (role === 'assistant' && inServiceWindow !== undefined) {
+    insertData.in_service_window = inServiceWindow;
+  }
+
+  // Media attachment fields
+  if (media) {
+    insertData.media_url = media.url;
+    insertData.media_type = media.type;
+    if (media.filename) insertData.media_filename = media.filename;
+  }
+
+  const { data, error } = await supabase
+    .from('messages')
+    .insert(insertData)
+    .select('id')
+    .single();
+
+  if (error) {
+    console.error('Error saving message:', error);
+    throw error;
+  }
+
+  // Update last_interaction is handled by trigger, but we can also do it explicitly
+  if (leadId) {
+    await supabase
+      .from('leads')
+      .update({ last_interaction: new Date().toISOString() })
+      .eq('id', leadId);
+  }
+
+  return data.id;
+}
+
+export async function getRecentMessages(
+  conversationId: string,
+  limit: number = 20
+): Promise<Message[]> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('messages')
+    .select('*')
+    .eq('conversation_id', conversationId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  if (error || !data) return [];
+
+  return data.reverse().map(m => ({
+    id: m.id,
+    role: m.role as 'user' | 'assistant',
+    content: m.content,
+    timestamp: new Date(m.created_at)
+  }));
+}
+
+// ============================================
+// Memory Operations
+// ============================================
+
+export async function getLeadMemory(leadId: string): Promise<string | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('lead_memory')
+    .select('memory')
+    .eq('lead_id', leadId)
+    .single();
+
+  if (error || !data) return null;
+
+  return data.memory;
+}
+
+export async function saveLeadMemory(leadId: string, memory: string): Promise<void> {
+  const supabase = getSupabase();
+
+  const { error } = await supabase
+    .from('lead_memory')
+    .upsert({
+      lead_id: leadId,
+      memory,
+      updated_at: new Date().toISOString()
+    }, {
+      onConflict: 'lead_id'
+    });
+
+  if (error) {
+    console.error('Error saving memory:', error);
+  }
+}
+
+// ============================================
+// Appointment Operations
+// ============================================
+
+export async function createAppointment(
+  leadId: string,
+  scheduledAt: Date,
+  eventId?: string
+): Promise<Appointment> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('appointments')
+    .insert({
+      lead_id: leadId,
+      scheduled_at: scheduledAt.toISOString(),
+      event_id: eventId,
+      status: 'scheduled'
+    })
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error creating appointment:', error);
+    throw error;
+  }
+
+  return {
+    id: data.id,
+    scheduledAt: new Date(data.scheduled_at),
+    eventId: data.event_id
+  };
+}
+
+export async function getActiveAppointment(leadId: string): Promise<Appointment | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('appointments')
+    .select('*')
+    .eq('lead_id', leadId)
+    .eq('status', 'scheduled')
+    .gte('scheduled_at', new Date().toISOString())
+    .order('scheduled_at', { ascending: true })
+    .limit(1)
+    .single();
+
+  if (error || !data) return null;
+
+  return {
+    id: data.id,
+    scheduledAt: new Date(data.scheduled_at),
+    eventId: data.event_id
+  };
+}
+
+export async function updateAppointmentStatus(
+  appointmentId: string,
+  status: 'scheduled' | 'completed' | 'cancelled' | 'no_show'
+): Promise<void> {
+  const supabase = getSupabase();
+
+  const { error } = await supabase
+    .from('appointments')
+    .update({ status })
+    .eq('id', appointmentId);
+
+  if (error) {
+    console.error('Error updating appointment:', error);
+  }
+}
+
+// ============================================
+// Cold Leads Query (for re-engagement cron)
+// ============================================
+
+export async function getColdLeads(hoursInactive: number = 48, limit: number = 50): Promise<Lead[]> {
+  const supabase = getSupabase();
+
+  const cutoffDate = new Date(Date.now() - hoursInactive * 60 * 60 * 1000);
+
+  const { data, error } = await supabase
+    .from('leads')
+    .select('*')
+    .lt('last_interaction', cutoffDate.toISOString())
+    .not('stage', 'in', '("Hot","Ganado","Perdido")')
+    .order('last_interaction', { ascending: true })
+    .limit(limit);
+
+  if (error || !data) return [];
+
+  return data.map(lead => ({
+    id: lead.id,
+    phone: lead.phone,
+    name: lead.name,
+    email: lead.email,
+    company: lead.company,
+    industry: lead.industry,
+    stage: lead.stage,
+    createdAt: new Date(lead.created_at),
+    lastInteraction: new Date(lead.last_interaction)
+  }));
+}
+
+// ============================================
+// Stats/Analytics
+// ============================================
+
+export async function getConversationCount(leadId: string): Promise<number> {
+  const supabase = getSupabase();
+
+  const { count, error } = await supabase
+    .from('conversations')
+    .select('*', { count: 'exact', head: true })
+    .eq('lead_id', leadId);
+
+  if (error) return 0;
+  return count || 0;
+}
+
+export async function getFirstInteractionDate(leadId: string): Promise<Date | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from('leads')
+    .select('created_at')
+    .eq('id', leadId)
+    .single();
+
+  if (error || !data) return null;
+  return new Date(data.created_at);
+}
+
+// ============================================
+// Test Data Management
+// ============================================
+
+/**
+ * Reset test data for a specific phone number
+ * Deletes lead, conversations, and messages
+ */
+export async function resetTestLead(phone: string, tenantId?: string): Promise<{ success: boolean; error?: string }> {
+  const supabase = getSupabase();
+
+  try {
+    // Find all leads matching this phone (optionally scoped to tenant)
+    let query = supabase.from('leads').select('id').eq('phone', phone);
+    if (tenantId) query = query.eq('tenant_id', tenantId);
+    const { data: leads } = await query;
+
+    if (!leads || leads.length === 0) {
+      return { success: true }; // Nothing to reset
+    }
+
+    for (const lead of leads) {
+      const id = lead.id;
+
+      // Get conversation IDs
+      const { data: convs } = await supabase.from('conversations').select('id').eq('lead_id', id);
+      const convIds = (convs || []).map(c => c.id);
+
+      if (convIds.length > 0) {
+        await supabase.from('messages').delete().in('conversation_id', convIds);
+        await supabase.from('handoffs').delete().in('conversation_id', convIds);
+      }
+
+      // Delete related data
+      await Promise.all([
+        supabase.from('conversations').delete().eq('lead_id', id),
+        supabase.from('appointments').delete().eq('lead_id', id),
+        supabase.from('lead_memory').delete().eq('lead_id', id),
+        supabase.from('conversion_events_queue').delete().eq('lead_id', id),
+      ]);
+
+      // Delete the lead
+      await supabase.from('leads').delete().eq('id', id);
+    }
+
+    console.log(`[DB] Reset test lead: ${phone}`);
+    return { success: true };
+
+  } catch (error) {
+    console.error('[DB] Error resetting test lead:', error);
+    return { success: false, error: String(error) };
+  }
+}
+
+/**
+ * Reset ALL test data (all leads with is_test=true)
+ */
+export async function resetAllTestData(): Promise<{ success: boolean; count: number; error?: string }> {
+  const supabase = getSupabase();
+
+  try {
+    // Call the SQL function we created
+    const { error } = await supabase.rpc('reset_test_data');
+
+    if (error) {
+      throw error;
+    }
+
+    console.log('[DB] All test data reset');
+    return { success: true, count: 0 };
+
+  } catch (error) {
+    console.error('[DB] Error resetting all test data:', error);
+    return { success: false, count: 0, error: String(error) };
+  }
+}
