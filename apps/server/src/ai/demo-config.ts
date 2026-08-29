@@ -1,4 +1,4 @@
-import type { AgentConfig } from '@loomi/shared';
+import type { AgentConfig } from '@omona/shared';
 
 /**
  * Demo config — Omona selling itself.

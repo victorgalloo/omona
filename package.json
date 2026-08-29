@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "dev": "turbo dev",
-    "build": "cd packages/shared && npx tsc",
+    "build": "turbo build",
     "lint": "turbo lint",
     "dev:server": "npm run dev --workspace=apps/server",
     "dev:dashboard": "npm run dev --workspace=apps/dashboard",
