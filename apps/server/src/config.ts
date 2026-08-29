@@ -35,7 +35,7 @@ const envSchema = z.object({
   APNS_KEY_ID:    z.string().default(''),
   APNS_TEAM_ID:   z.string().default(''),
   APNS_KEY:       z.string().default(''),
-  APNS_BUNDLE_ID: z.string().default('com.carloscadona.loomi-ios'),
+  APNS_BUNDLE_ID: z.string().default('com.anthana.omona-ios'),
   APNS_SANDBOX:   z.string().default('').transform(v => v === 'true'),
 });
 
