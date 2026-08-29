@@ -12,7 +12,7 @@ export const DEMO_CONFIG: AgentConfig = {
   business_description: 'Omona es una plataforma que te da un agente de ventas con IA para WhatsApp. Configuras tu negocio, conectas tu WhatsApp y el agente responde, califica leads y cierra ventas automáticamente — 24/7.',
   industry: 'SaaS / Inteligencia Artificial',
   target_audience: 'Negocios en México y LATAM que venden por WhatsApp — e-commerce, agencias, consultoras, servicios profesionales, restaurantes, clínicas, inmobiliarias, cualquier negocio que reciba mensajes de clientes.',
-  website_url: 'https://loomi.speakezier.com',
+  website_url: 'https://omona.tech',
   products_services: [
     {
       name: 'Omona Starter',
