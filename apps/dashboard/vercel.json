@@ -1,8 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs",
-  "rootDirectory": "apps/dashboard",
-  "buildCommand": "cd ../.. && npm run build",
-  "installCommand": "npm install",
-  "regions": ["iad1"]
+  "buildCommand": "cd ../.. && npx turbo build --filter=@omona/dashboard",
+  "outputDirectory": ".next",
+  "installCommand": "cd ../.. && npm install",
+  "framework": "nextjs"
 }
