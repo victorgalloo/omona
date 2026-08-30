@@ -155,7 +155,6 @@ Sé amigable y guía al usuario para configurar todo lo necesario.`,
       content: message,
     }],
     maxTokens: 2048,
-    temperature: 0.5,
   });
   
   let parsed;

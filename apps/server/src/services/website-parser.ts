@@ -269,7 +269,6 @@ Responde con este formato JSON exacto:
 }`
     }],
     maxTokens: 4096,
-    temperature: 0,
   });
 
   logger.info({ rawLen: rawText.length }, 'AI extraction complete');

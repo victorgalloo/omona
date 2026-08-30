@@ -25,12 +25,11 @@ export async function chatCompletion(opts: {
   system: string;
   messages: Array<{ role: 'user' | 'assistant'; content: string }>;
   maxTokens?: number;
-  temperature?: number;
 }): Promise<string> {
   const response = await ai.chat.completions.create({
     model: AI_MODEL,
-    max_tokens: opts.maxTokens ?? 1024,
-    temperature: opts.temperature ?? 0.7,
+    // GPT-5.x solo acepta max_completion_tokens y rechaza temperature != 1
+    max_completion_tokens: opts.maxTokens ?? 1024,
     messages: [
       { role: 'system', content: opts.system },
       ...opts.messages,

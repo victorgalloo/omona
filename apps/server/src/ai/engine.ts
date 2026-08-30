@@ -8,7 +8,6 @@ import type { AgentConfig, AIResponse } from '@omona/shared';
 import { logger } from '../logger.js';
 
 const MAX_TOKENS = 1024;
-const TEMPERATURE = 0.7;
 const HISTORY_LIMIT = 20;
 
 export async function generateResponse(
@@ -64,7 +63,6 @@ export async function generateResponse(
       system: systemPrompt,
       messages: chatMessages,
       maxTokens: MAX_TOKENS,
-      temperature: TEMPERATURE,
     });
 
     logger.debug({ rawResponse: rawText.substring(0, 300) }, 'AI response');

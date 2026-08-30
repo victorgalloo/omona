@@ -45,7 +45,6 @@ export async function generateDemoResponse(
       system: systemPrompt,
       messages: recentHistory,
       maxTokens: 1024,
-      temperature: 0.7,
     });
 
     const parsed = parseAIResponse(rawText);

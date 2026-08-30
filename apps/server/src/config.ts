@@ -11,9 +11,9 @@ const envSchema = z.object({
 
   // AI model — Azure AI Model Inference (OpenAI-compatible)
   // BASE_URL: https://xxx.services.ai.azure.com/models
-  AI_BASE_URL: z.string().default('https://omona-ai.services.ai.azure.com/openai/v1'),
+  AI_BASE_URL: z.string().default('https://omona-ai-prod.services.ai.azure.com/openai/v1'),
   AI_API_KEY: z.string().min(1),
-  AI_MODEL: z.string().default('grok-4-1-fast-reasoning'),
+  AI_MODEL: z.string().default('gpt-5-4-mini'),
 
   // Baileys
   BAILEYS_AUTH_DIR: z.string().default('./auth_sessions'),
