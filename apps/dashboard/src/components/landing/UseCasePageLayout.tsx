@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2, X as XIcon, type LucideIcon } from 'lucide-react';
 import { LandingNav } from './LandingNav';
 import { useT } from '@/contexts/LanguageContext';
+import { Logo } from '../shared/Logo';
 
 /* ── Types ─────────────────────────────────────────────── */
 
@@ -47,6 +48,8 @@ interface UseCasePageProps {
   industries: string[];
   /* CTA */
   ctaTitle: string;
+  /* FAQ (opcional) — se renderiza antes del CTA y alimenta el JSON-LD de FAQPage */
+  faqs?: { q: string; a: string }[];
 }
 
 /* ── Animated counter ──────────────────────────────────── */
@@ -149,6 +152,7 @@ export function UseCasePageLayout({
   industriesLabel,
   industries,
   ctaTitle,
+  faqs,
 }: UseCasePageProps) {
   const t = useT();
   const heroRef = useRef(null);
@@ -406,6 +410,31 @@ export function UseCasePageLayout({
         </div>
       </section>
 
+      {/* ── FAQ ────────────────────────────────────────── */}
+      {faqs && faqs.length > 0 && (
+        <section className="py-24 sm:py-32 px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto">
+            <SectionHeader mono="faq_" title="Preguntas frecuentes" />
+
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <motion.div
+                  key={faq.q}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  className="rounded-xl border border-border bg-surface p-6"
+                >
+                  <h3 className="text-base font-medium text-foreground mb-2">{faq.q}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── FINAL CTA ──────────────────────────────────── */}
       <section className="py-24 sm:py-32 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
@@ -466,9 +495,7 @@ export function UseCasePageLayout({
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
             <Link href="/" className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+              <Logo size={24} className="shrink-0 text-foreground" />
               <span className="font-mono font-semibold text-lg text-foreground ml-2">omona_</span>
             </Link>
             <div className="flex gap-6 text-sm text-muted">
