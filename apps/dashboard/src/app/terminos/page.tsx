@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Logo } from '../../components/shared/Logo';
 
 export const metadata: Metadata = {
   title: 'Términos de Uso | Omona',
@@ -13,9 +14,7 @@ export default function TerminosPage() {
       <header className="border-b border-border">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 py-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+            <Logo size={18} className="shrink-0 text-foreground" />
             <span className="font-mono font-semibold text-sm text-foreground ml-1.5">omona_</span>
           </Link>
           <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors">

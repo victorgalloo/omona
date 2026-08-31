@@ -10,6 +10,7 @@ import { LandingPricing } from '@/components/landing/LandingPricing';
 import { LandingUseCases } from '@/components/landing/LandingUseCases';
 import { LandingCTA } from '@/components/landing/LandingCTA';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { Logo } from '../components/shared/Logo';
 
 export const metadata: Metadata = {
   title: 'Omona | Agente de Ventas IA para WhatsApp | Mexico y LATAM',
@@ -219,9 +220,7 @@ export default function LandingPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
             <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+              <Logo size={24} className="shrink-0 text-foreground" />
               <span className="font-mono font-semibold text-lg text-foreground ml-2">omona_</span>
             </div>
             <div className="flex gap-6 text-sm text-muted">

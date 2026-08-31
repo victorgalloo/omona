@@ -41,11 +41,7 @@ export async function sendAppointmentEmail(appointment: {
         html: `
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:480px;margin:0 auto;padding:32px 20px;background:#0C0C0C;color:#FAFAFA">
             <div style="text-align:center;margin-bottom:24px">
-              <div style="display:inline-flex;align-items:center;gap:6px;margin-bottom:8px">
-                <div style="width:10px;height:10px;border-radius:50%;background:#FF5F56;display:inline-block"></div>
-                <div style="width:10px;height:10px;border-radius:50%;background:#FFBD2E;display:inline-block"></div>
-                <div style="width:10px;height:10px;border-radius:50%;background:#27C93F;display:inline-block"></div>
-              </div>
+              <img src="https://omona.tech/logo-mark-white.png" width="34" height="34" alt="Omona" style="display:block;margin:0 auto 10px;border:0" />
               <div style="font-family:monospace;font-size:20px;font-weight:600;color:#FAFAFA">${businessName}</div>
             </div>
             <div style="background:#161616;border:1px solid #2A2A2A;border-radius:12px;padding:32px">

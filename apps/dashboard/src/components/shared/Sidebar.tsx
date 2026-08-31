@@ -28,6 +28,7 @@ import { useIsSuperadmin } from '@/hooks/useAdmin';
 import { useUserRole, useTrialStatus } from './AuthGuard';
 import { cn } from '@/lib/utils';
 import { useT } from '@/contexts/LanguageContext';
+import { Logo } from '../shared/Logo';
 
 type NavItem = {
   href: string;
@@ -118,11 +119,7 @@ export function Sidebar({ mobile, onClose }: { mobile?: boolean; onClose?: () =>
     >
       {/* Header */}
       <div className="flex h-14 items-center gap-2 border-b border-border px-4">
-        <div className="flex items-center gap-1.5">
-          <div className={cn('rounded-full bg-terminal-red', collapsed ? 'w-2 h-2' : 'w-2.5 h-2.5')} />
-          <div className={cn('rounded-full bg-terminal-yellow', collapsed ? 'w-2 h-2' : 'w-2.5 h-2.5')} />
-          <div className={cn('rounded-full bg-terminal-green', collapsed ? 'w-2 h-2' : 'w-2.5 h-2.5')} />
-        </div>
+        <Logo size={collapsed ? 20 : 22} className="shrink-0 text-foreground" />
         {!collapsed && (
           <span className="font-mono font-semibold text-sm text-foreground ml-1.5">omona_</span>
         )}

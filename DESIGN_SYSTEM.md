@@ -14,23 +14,49 @@
 - **Footer**: `© {year} loomi by anthana · made with ♥ in méxico`
 
 ### Logo / Brand Mark
-No existe un archivo SVG/PNG de logo. El brand mark es 100% tipográfico + CSS:
+
+El brand mark es un símbolo: un **anillo con una ranura radial de lados paralelos
+cortada a 135°** (abajo-izquierda). Radio interior / exterior = `0.527`.
+
+Se renderiza con `<Logo />` (`components/shared/Logo.tsx`), que usa `currentColor`
+— hereda el color del contenedor y funciona en tema claro y oscuro sin variantes.
 
 ```tsx
-<div className="flex items-center gap-1.5">
-  <div className="w-3 h-3 rounded-full bg-terminal-red" />
-  <div className="w-3 h-3 rounded-full bg-terminal-yellow" />
-  <div className="w-3 h-3 rounded-full bg-terminal-green" />
-</div>
-<span className="font-mono font-semibold text-lg text-foreground">loomi_</span>
+import { Logo } from '@/components/shared/Logo';
+
+<Logo size={24} className="shrink-0 text-foreground" />
+<span className="font-mono font-semibold text-lg text-foreground">omona_</span>
 ```
 
-| Variante | Dots | Gap | Tamaño texto |
-|----------|------|-----|-------------|
-| Navbar / Footer | `w-3 h-3` | `gap-1.5` | `text-lg` |
-| Sidebar expandido | `w-2.5 h-2.5` | `gap-1.5` | `text-sm` |
-| Sidebar colapsado | `w-2 h-2` | `gap-1` | — (solo dots) |
-| Terminal headers | `w-3 h-3` | `gap-2` | — (título aparte) |
+| Variante | `size` | Texto del wordmark |
+|----------|--------|--------------------|
+| Navbar / Footer | `24` | `text-lg` |
+| Sidebar expandido | `22` | `text-sm` |
+| Sidebar colapsado | `20` | — (solo símbolo) |
+| Auth (login/signup) | `20` | por defecto |
+| Legales (términos/privacidad) | `18` | `text-sm` |
+
+#### Archivos
+
+| Archivo | Uso |
+|---------|-----|
+| `src/app/icon.svg` | Favicon — teja `#0C0C0C` + marca `#FAFAFA` |
+| `src/app/apple-icon.svg` | Apple touch icon, 180×180 |
+| `public/favicon.ico` | Fallback multi-resolución (16→256) |
+| `public/logo-mark.svg` / `.png` | Marca suelta oscura, fondo transparente |
+| `public/logo-mark-white.svg` / `.png` | Marca suelta clara — **la que usan los emails** |
+| `public/og-image.png` | Open Graph 1200×630 |
+
+> Los clientes de correo descartan SVG inline. Las plantillas de
+> `apps/server/src/api/` referencian `https://omona.tech/logo-mark-white.png`
+> como `<img>`.
+
+#### Terminal chrome ≠ logo
+
+Los tres puntos rojo/amarillo/verde **siguen existiendo**, pero solo como cromo de
+ventana de terminal (`LandingHero`, `LandingPricing`, `LandingCrmEmbedded`,
+`LandingUseCases`, cards de `UseCasePageLayout`). Ya no son la marca — no los
+uses junto al wordmark.
 
 ### Taglines
 - **H1 Hero**: `LOOMI_` (con cursor `_` animado `animate-blink`)

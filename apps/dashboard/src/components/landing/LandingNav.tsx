@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Menu, X, Wrench, Stethoscope, Building2, GraduationCap, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
+import { Logo } from '../shared/Logo';
 
 type LucideIcon = React.ComponentType<{ className?: string }>;
 
@@ -62,11 +63,7 @@ export function LandingNav() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3" aria-label="Omona - Inicio">
-            <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-            </div>
+            <Logo size={24} className="shrink-0 text-foreground" />
             <span className="font-mono font-semibold text-lg text-foreground ml-1">omona_</span>
           </Link>
 

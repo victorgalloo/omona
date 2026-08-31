@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, Loader2, Eye, EyeOff, Mail } from 'lucide-react';
 import { usePostHog } from 'posthog-js/react';
 import { useAuth } from '@/hooks/useAuth';
+import { Logo } from '../../../components/shared/Logo';
 
 export default function SignupPage() {
   return (
@@ -73,11 +74,7 @@ function SignupContent() {
         {/* Top bar */}
         <div className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-            </div>
+            <Logo size={20} className="shrink-0 text-foreground" />
             <span className="font-mono font-semibold text-foreground ml-1">omona_</span>
           </Link>
         </div>
@@ -141,11 +138,7 @@ function SignupContent() {
       {/* Top bar */}
       <div className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-          </div>
+          <Logo size={20} className="shrink-0 text-foreground" />
           <span className="font-mono font-semibold text-foreground ml-1">omona_</span>
         </Link>
       </div>

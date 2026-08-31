@@ -21,12 +21,12 @@ export default async function Image() {
           fontFamily: 'system-ui, sans-serif',
         }}
       >
-        {/* Logo dots */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
-          <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#FF5F56' }} />
-          <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#FFBD2E' }} />
-          <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#27C93F' }} />
-          <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: 48, color: '#FAFAFA', marginLeft: 12 }}>
+        {/* Marca Omona */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginBottom: '32px' }}>
+          <svg width="52" height="52" viewBox="0 0 32 32" fill="#FAFAFA">
+            <path d="M4.876 26.063A15 15 0 1 1 5.937 27.124L10.966 22.095A7.905 7.905 0 1 0 9.905 21.034Z" />
+          </svg>
+          <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: 48, color: '#FAFAFA' }}>
             omona_
           </span>
         </div>
