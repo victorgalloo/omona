@@ -1,0 +1,89 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ResolverAMIporSSM",
+      "Effect": "Allow",
+      "Action": "ssm:GetParameters",
+      "Resource": "arn:aws:ssm:*::parameter/aws/service/ami-amazon-linux-latest/*"
+    },
+    {
+      "Sid": "LecturaDeRed",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeKeyPairs",
+        "ec2:DescribeInstances",
+        "ec2:DescribeAddresses",
+        "ec2:DescribeImages",
+        "ec2:DescribeInstanceStatus"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CrearInfraestructura",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateKeyPair",
+        "ec2:CreateSecurityGroup",
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:RunInstances",
+        "ec2:CreateTags",
+        "ec2:AllocateAddress",
+        "ec2:AssociateAddress"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "OperarLaInstancia",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:StartInstances",
+        "ec2:StopInstances",
+        "ec2:RebootInstances",
+        "ec2:TerminateInstances",
+        "ec2:ReleaseAddress",
+        "ec2:DisassociateAddress"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": { "aws:ResourceTag/Project": "omona" }
+      }
+    },
+    {
+      "Sid": "RolDeSSMParaLaInstancia",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "iam:CreateInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::*:role/omona-server-role",
+        "arn:aws:iam::*:instance-profile/omona-server-role"
+      ]
+    },
+    {
+      "Sid": "SesionDeEmergencia",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:StartSession",
+        "ssm:TerminateSession",
+        "ssm:DescribeSessions",
+        "ssm:DescribeInstanceInformation"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Identidad",
+      "Effect": "Allow",
+      "Action": "sts:GetCallerIdentity",
+      "Resource": "*"
+    }
+  ]
+}

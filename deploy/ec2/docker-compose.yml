@@ -1,0 +1,43 @@
+# Omona server en EC2 — una sola instancia (ver README: por qué no se escala horizontal).
+# Uso: docker compose -f /opt/omona/app/deploy/ec2/docker-compose.yml up -d --build
+
+services:
+  server:
+    build:
+      context: ../..            # raíz del repo — usa el Dockerfile que ya corre en Railway
+      dockerfile: Dockerfile
+    container_name: omona-server
+    restart: unless-stopped
+    env_file:
+      - /opt/omona/.env         # fuera del árbol del repo: rsync --delete no lo toca
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+    expose:
+      - "8080"                  # solo dentro de la red de compose; Caddy es el único público
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 90s         # arranque con tsx + reconexión de sesiones WhatsApp
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: omona-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - /opt/omona/.env         # aporta API_DOMAIN y ACME_EMAIL al Caddyfile
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data        # certificados Let's Encrypt — DEBE persistir
+      - caddy_config:/config
+    depends_on:
+      - server
+
+volumes:
+  caddy_data:
+  caddy_config:

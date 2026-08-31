@@ -1,0 +1,22 @@
+# TLS automático vía Let's Encrypt. Requisito: el registro A de {$API_DOMAIN}
+# debe apuntar a la Elastic IP ANTES de levantar este contenedor,
+# o el desafío HTTP-01 falla y Caddy entra en backoff.
+
+{
+	email {$ACME_EMAIL}
+}
+
+{$API_DOMAIN} {
+	encode zstd gzip
+
+	# Meta firma los webhooks sobre el cuerpo crudo — sin reescrituras aquí.
+	reverse_proxy server:8080 {
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Real-IP {remote_host}
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

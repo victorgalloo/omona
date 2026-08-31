@@ -7,6 +7,10 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends python3 make g++ \
     && rm -rf /var/lib/apt/lists/*
 
+# IPv6 roto en algunas redes (misma razón que index.ts:2 y session-manager.ts:49):
+# sin esto `npm ci` muere con ECONNRESET al resolver registry.npmjs.org.
+ENV NODE_OPTIONS=--dns-result-order=ipv4first
+
 # Workspace: solo lo que el server necesita
 COPY package.json package-lock.json turbo.json tsconfig.base.json ./
 COPY packages/ ./packages/

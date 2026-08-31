@@ -12,3 +12,4 @@ apps/server/loomi.db*
 apps/server/auth_sessions/
 .vercel
 .env*.local
+.env.production

@@ -9,10 +9,16 @@ function resolveBaseURL(url: string): string {
   return url;
 }
 
+// Azure autentica con el header `api-key`; OpenAI directo usa `Authorization: Bearer`,
+// que el SDK ya pone a partir de apiKey. Mandarle el header extra a OpenAI no rompe
+// nada, pero filtra la llave en una cabecera de más en cada request — así que sólo
+// se añade cuando el endpoint es de Azure.
+const isAzure = /\.azure\.com/i.test(config.AI_BASE_URL);
+
 export const ai = new OpenAI({
   baseURL: resolveBaseURL(config.AI_BASE_URL),
   apiKey: config.AI_API_KEY,
-  defaultHeaders: { 'api-key': config.AI_API_KEY },
+  ...(isAzure ? { defaultHeaders: { 'api-key': config.AI_API_KEY } } : {}),
 });
 
 export const AI_MODEL = config.AI_MODEL;
