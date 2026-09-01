@@ -57,7 +57,7 @@ function FeatureRow({ feature, index }: { feature: FeatureItem; index: number })
         >
           <p className="text-muted font-mono text-sm mb-2">{feature.tech}</p>
           <h3 className="text-4xl sm:text-5xl font-bold text-foreground mb-3">
-            .{feature.title}
+            {feature.title}
           </h3>
           <p className="text-xl text-muted mb-4">{feature.subtitle}</p>
           <p className="text-muted leading-relaxed max-w-lg text-base">
