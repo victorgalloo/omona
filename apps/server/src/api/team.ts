@@ -3,6 +3,7 @@ import { getAuth, requireRole } from './middleware.js';
 import { getSupabase } from '../db/client.js';
 import { config } from '../config.js';
 import { logger } from '../logger.js';
+import { emailFrom } from '../services/email.js';
 
 const sb = () => getSupabase();
 
@@ -90,7 +91,7 @@ teamRoutes.post('/invites', requireRole('admin'), async (c) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Omona <omona@anthana.agency>',
+          from: emailFrom(),
           to: [email],
           subject: 'Te invitaron a Omona',
           html: `

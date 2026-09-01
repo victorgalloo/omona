@@ -1,6 +1,7 @@
 import { config } from '../config.js';
 import { whatsappRouter } from '../whatsapp/router.js';
 import { logger } from '../logger.js';
+import { emailFrom } from '../services/email.js';
 
 const DASHBOARD_URL = config.DASHBOARD_URL;
 
@@ -105,7 +106,7 @@ async function sendEmailNotification(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'omona@anthana.agency',
+      from: emailFrom(),
       to: [toEmail],
       subject: `🚨 Handoff: ${contactName} necesita atención`,
       html,

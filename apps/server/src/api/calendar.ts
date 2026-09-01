@@ -3,6 +3,7 @@ import { getAuth, requireRole } from './middleware.js';
 import { getSupabase } from '../db/client.js';
 import { config } from '../config.js';
 import { logger } from '../logger.js';
+import { emailFrom } from '../services/email.js';
 import { getAgentConfig } from '../db/queries.js';
 import { whatsappRouter } from '../whatsapp/router.js';
 
@@ -35,7 +36,7 @@ export async function sendAppointmentEmail(appointment: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: `${businessName} <omona@anthana.agency>`,
+        from: emailFrom(businessName),
         to: [appointment.customer_email],
         subject: `Cita confirmada - ${dateStr}`,
         html: `

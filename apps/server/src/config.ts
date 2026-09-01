@@ -28,6 +28,12 @@ const envSchema = z.object({
   // Resend (email notifications)
   RESEND_API_KEY: z.string().default(''),
 
+  // Dirección remitente. El dominio DEBE estar verificado en Resend o la API
+  // rechaza el envío: era la causa de que no llegaran los correos de
+  // confirmación (anthana.agency no tenía SPF, DKIM ni MX).
+  EMAIL_FROM_ADDRESS: z.string().default('hola@omona.tech'),
+  EMAIL_FROM_NAME: z.string().default('Omona'),
+
   // Supabase Auth Hook secret (for send_email hook verification)
   SUPABASE_HOOK_SECRET: z.string().default(''),
 
