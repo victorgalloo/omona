@@ -235,3 +235,78 @@ export interface WhatsAppStatusResponse {
   phone_number: string | null;
   last_connected_at: string | null;
 }
+
+/* ── CRM: actividades, tareas, empresas, campos personalizados y vistas ── */
+
+export type ActivityKind = 'note' | 'call' | 'email' | 'stage_change' | 'task_done' | 'agent';
+
+export interface LeadActivity {
+  id: string;
+  organization_id: string;
+  lead_id: string;
+  kind: ActivityKind;
+  body: string | null;
+  /** Para stage_change: { from, to }. */
+  meta: Record<string, unknown>;
+  /** null cuando la generó el agente y no una persona. */
+  author_id: string | null;
+  created_at: string;
+}
+
+export type TaskStatus = 'open' | 'done' | 'cancelled';
+
+export interface Task {
+  id: string;
+  organization_id: string;
+  lead_id: string | null;
+  title: string;
+  detail: string | null;
+  due_at: string | null;
+  status: TaskStatus;
+  assignee_id: string | null;
+  /** true cuando el agente detectó un compromiso en la conversación. */
+  created_by_agent: boolean;
+  completed_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Company {
+  id: string;
+  organization_id: string;
+  name: string;
+  /** Nombre normalizado; evita duplicar la misma empresa por mayúsculas o acentos. */
+  slug: string;
+  domain: string | null;
+  size: string | null;
+  industry: string | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export type CustomFieldType = 'text' | 'number' | 'date' | 'select' | 'boolean';
+
+export interface CustomFieldDef {
+  id: string;
+  organization_id: string;
+  /** Clave estable dentro de leads.custom_fields. */
+  key: string;
+  label: string;
+  type: CustomFieldType;
+  options: string[];
+  position: number;
+  created_at: string;
+}
+
+export interface SavedView {
+  id: string;
+  organization_id: string;
+  name: string;
+  entity: 'leads' | 'tasks' | 'companies';
+  filters: Record<string, unknown>;
+  sort: Record<string, unknown>;
+  is_shared: boolean;
+  owner_id: string | null;
+  created_at: string;
+}

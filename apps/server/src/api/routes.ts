@@ -4,6 +4,7 @@ import { authMiddleware, type AuthContext } from './middleware.js';
 import { rateLimitMiddleware } from './rate-limit.js';
 import { conversationRoutes } from './conversations.js';
 import { leadRoutes } from './leads.js';
+import { crmRoutes } from './crm.js';
 import { settingsRoutes } from './settings.js';
 import { handoffRoutes } from './handoff.js';
 import { testChatRoutes } from './test-chat.js';
@@ -48,6 +49,7 @@ apiRoutes.use('/*', async (c, next) => {
 
 apiRoutes.route('/conversations', conversationRoutes);
 apiRoutes.route('/leads', leadRoutes);
+apiRoutes.route('/crm', crmRoutes);
 apiRoutes.route('/settings', settingsRoutes);
 apiRoutes.route('/handoffs', handoffRoutes);
 apiRoutes.route('/test', testChatRoutes);
