@@ -204,7 +204,7 @@ function FAQSettings() {
 export default function SettingsPage() {
   return (
     <div className="flex h-full flex-col">
-      <Header title="Ajustes" />
+      <Header title="Ajustes" subtitle="Configura tu agente, conecta tu WhatsApp y administra a tu equipo." />
       <div className="flex justify-end px-6 pt-2">
         <RestartTutorialButton />
       </div>

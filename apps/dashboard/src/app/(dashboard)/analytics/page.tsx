@@ -89,9 +89,21 @@ export default function AnalyticsPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Analíticas" />
+      <Header title="Analíticas" subtitle="Cuántas conversaciones entran, en cuánto se contestan y dónde se pierden." />
 
       <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+        {!loading && (data?.total_conversations ?? 0) === 0 && (
+          <div className="border-t border-border py-10 text-center">
+            <p className="text-sm font-semibold text-foreground mb-1">
+              Todavía no hay nada que medir
+            </p>
+            <p className="text-sm text-muted max-w-md mx-auto">
+              Los números aparecen solos en cuanto tu agente empiece a atender
+              conversaciones. Si aún no conectas tu WhatsApp, ese es el primer paso.
+            </p>
+          </div>
+        )}
+
         {/* Stat Cards */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {loading ? (

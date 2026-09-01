@@ -53,13 +53,10 @@ export function LandingHowItWorks() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           className="text-center mb-24"
         >
           <p className="text-muted text-sm font-mono mb-4">{t.howItWorks.sectionLabel}</p>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
             {t.howItWorks.heading}
           </h2>
           <p className="text-xl text-muted">

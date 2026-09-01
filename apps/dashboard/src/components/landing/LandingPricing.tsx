@@ -48,26 +48,16 @@ export function LandingPricing() {
         {/* Header */}
         <div className="text-center mb-16">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             className="text-muted text-sm font-mono mb-4"
           >
             pricing_
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6"
+            className="text-3xl sm:text-4xl font-bold text-foreground mb-6"
           >
             Simple y transparente
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
             className="text-xl text-muted max-w-2xl mx-auto"
           >
             Sin costos ocultos. Sin contratos largos. Cancela cuando quieras.
@@ -79,10 +69,6 @@ export function LandingPricing() {
 
           {/* ── PRO ──────────────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
             className="relative border-t border-border pt-8"
           >
             {/* Terminal header */}
@@ -142,10 +128,6 @@ export function LandingPricing() {
 
           {/* ── CUSTOM ───────────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
             className="border-t border-border pt-8"
           >
             {/* Terminal header */}
@@ -197,10 +179,6 @@ export function LandingPricing() {
 
         {/* Bottom note */}
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
           className="text-center text-sm text-muted mt-10"
         >
           Todos los precios son en pesos mexicanos (MXN) + IVA. 14 días de prueba gratis.

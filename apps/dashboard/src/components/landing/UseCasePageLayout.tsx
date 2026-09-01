@@ -57,10 +57,6 @@ interface UseCasePageProps {
 function AnimatedStat({ stat, index }: { stat: Stat; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
       className="text-center px-4 py-6"
     >
       <p className="text-4xl sm:text-5xl font-black font-mono text-foreground mb-2">{stat.value}</p>
@@ -74,10 +70,6 @@ function AnimatedStat({ stat, index }: { stat: Stat; index: number }) {
 function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: 0.15 * index }}
       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
     >
       <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -106,27 +98,17 @@ function SectionHeader({ mono, title, subtitle }: { mono: string; title: string;
   return (
     <div className="mb-12">
       <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         className="text-muted text-sm font-mono mb-4"
       >
         {mono}
       </motion.p>
       <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground mb-4"
       >
         {title}
       </motion.h2>
       {subtitle && (
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
           className="text-lg text-muted max-w-2xl"
         >
           {subtitle}
@@ -207,7 +189,7 @@ export function UseCasePageLayout({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-[1.05]"
+            className="text-3xl sm:text-4xl font-bold text-foreground mb-6 leading-[1.05]"
           >
             {title}
             {titleBreak && <><br />{titleBreak}</>}
@@ -297,10 +279,6 @@ export function UseCasePageLayout({
             {painPoints.map((point, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="flex items-start gap-3 border-l-2 border-[#EF4444]/30 pl-4 py-2"
               >
                 <XIcon className="w-4 h-4 text-[#EF4444] mt-0.5 shrink-0" />
@@ -323,10 +301,6 @@ export function UseCasePageLayout({
             {benefits.map((benefit, i) => (
               <motion.div
                 key={benefit.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="border-t border-border pt-6"
               >
                 <div className="w-10 h-10 rounded-xl bg-[#27C93F]/10 border border-[#27C93F]/20 flex items-center justify-center mb-4">
@@ -398,10 +372,6 @@ export function UseCasePageLayout({
             {industries.map((industry, i) => (
               <motion.div
                 key={industry}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
                 className="flex items-center gap-3 border-t border-border py-3.5"
               >
                 <CheckCircle2 className="w-4 h-4 text-[#27C93F] shrink-0" />
@@ -422,10 +392,6 @@ export function UseCasePageLayout({
               {faqs.map((faq, i) => (
                 <motion.div
                   key={faq.q}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.05 }}
                   className="border-t border-border pt-6"
                 >
                   <h3 className="text-base font-medium text-foreground mb-2">{faq.q}</h3>
@@ -441,10 +407,6 @@ export function UseCasePageLayout({
       <section className="py-24 sm:py-32 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="border-t border-border pt-10 sm:pt-14 relative"
           >
             {/* Gradient glow */}

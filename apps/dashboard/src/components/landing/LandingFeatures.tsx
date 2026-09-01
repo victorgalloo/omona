@@ -81,26 +81,16 @@ export function LandingFeatures() {
         {/* Header */}
         <div className="text-center mb-24">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             className="text-muted text-sm font-mono mb-4"
           >
             {t.features.sectionLabel}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6"
+            className="text-3xl sm:text-4xl font-bold text-foreground mb-6"
           >
             {t.features.heading}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
             className="text-xl text-muted max-w-2xl mx-auto"
           >
             {t.features.subheading}

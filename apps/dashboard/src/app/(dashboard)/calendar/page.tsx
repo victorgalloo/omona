@@ -79,7 +79,7 @@ export default function CalendarPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Calendario">
+      <Header title="Calendario" subtitle="Las citas que agendó tu agente y las reglas de tu disponibilidad.">
         <Button size="sm" onClick={() => setShowForm(true)}>
           <Plus className="mr-1.5 h-4 w-4" />
           Nueva cita

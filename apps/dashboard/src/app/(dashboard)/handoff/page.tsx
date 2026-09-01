@@ -92,7 +92,7 @@ export default function HandoffPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Cola de handoff">
+      <Header title="Cola de handoff" subtitle="Conversaciones que el agente escaló porque necesitan a una persona.">
         <Badge variant="warning">{pendingHandoffs.length} pendientes</Badge>
       </Header>
 

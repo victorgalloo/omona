@@ -18,26 +18,16 @@ export function LandingUseCases() {
         {/* Header */}
         <div className="text-center mb-16">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             className="text-muted text-sm font-mono mb-4"
           >
             {t.useCases.sectionLabel}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6"
+            className="text-3xl sm:text-4xl font-bold text-foreground mb-6"
           >
             {t.useCases.heading}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
             className="text-xl text-muted max-w-2xl mx-auto"
           >
             {t.useCases.subheading}
@@ -51,10 +41,6 @@ export function LandingUseCases() {
             return (
               <motion.div
                 key={useCase.tag}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
               >
                 <Link
                   href={useCase.href}

@@ -12,30 +12,18 @@ export function LandingCTA() {
       <div className="mx-auto max-w-5xl px-4 sm:px-6 text-center">
 
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6"
+          className="text-3xl sm:text-4xl font-bold text-foreground mb-6"
         >
           {t.cta.heading}
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
           className="text-xl text-muted mb-10"
         >
           {t.cta.subheading}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
           <Link
@@ -61,10 +49,6 @@ export function LandingCTA() {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.35 }}
           className="mt-6 text-sm text-muted"
         >
           {t.cta.trust}

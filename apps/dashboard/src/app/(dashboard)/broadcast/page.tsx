@@ -42,7 +42,7 @@ export default function BroadcastPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Difusión" />
+      <Header title="Difusión" subtitle="Manda un mensaje a varios contactos a la vez, filtrando por etapa o etiqueta." />
 
       <div className="flex-1 overflow-y-auto p-4 md:p-6">
         <div className="mx-auto max-w-xl space-y-6">

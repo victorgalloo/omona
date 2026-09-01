@@ -70,7 +70,7 @@ export default function PipelinePage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Pipeline de Leads">
+      <Header title="Pipeline de Leads" subtitle="Tus oportunidades por etapa, de nuevo hasta convertido.">
         <Link href="/leads" className="text-xs text-accent-green hover:underline font-medium">
           ← Vista tabla
         </Link>

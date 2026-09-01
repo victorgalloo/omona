@@ -36,7 +36,7 @@ export default function LeadsPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Leads">
+      <Header title="Leads" subtitle="Cada persona que te escribió, con lo que el agente averiguó de ella.">
         <div className="flex items-center gap-1 border-t border-border p-0.5">
           <span className="flex h-7 items-center gap-1 rounded-md bg-accent-green/10 px-2 text-xs font-medium text-accent-green">
             <Table2 className="h-3.5 w-3.5" /> Tabla
