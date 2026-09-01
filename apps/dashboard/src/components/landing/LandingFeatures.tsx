@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Brain, Calendar, RefreshCw, Target, Users, TrendingUp } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
@@ -19,7 +19,9 @@ type FeatureItem = {
 
 function FeatureRow({ feature, index }: { feature: FeatureItem; index: number }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const { scrollYProgress } = useScroll({ target: mounted ? ref : undefined, offset: ['start end', 'center center'] });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const xLeft  = useTransform(scrollYProgress, [0, 0.5], [-80, 0]);

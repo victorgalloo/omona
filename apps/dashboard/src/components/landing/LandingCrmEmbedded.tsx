@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
 import { Check, Columns3, ListTodo, Users } from 'lucide-react';
 
@@ -67,13 +66,7 @@ export function LandingCrmEmbedded() {
         </div>
 
         {/* Screenshot in terminal chrome */}
-        <motion.div
-          key={active}
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.35 }}
-          className="rounded-xl overflow-hidden border border-border bg-surface shadow-2xl"
-        >
+        <div className="rounded-xl overflow-hidden border border-border bg-surface shadow-2xl">
           {/* traffic lights bar */}
           <div className="flex items-center gap-2 px-4 py-3 bg-surface-2 border-b border-border">
             <div className="flex gap-1.5">
@@ -86,12 +79,12 @@ export function LandingCrmEmbedded() {
           {/* image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            key={SHOTS[active].src}
             src={SHOTS[active].src}
             alt={SHOTS[active].alt}
-            className="w-full h-auto block"
-            loading="lazy"
+            className="w-full h-auto block animate-in fade-in duration-300"
           />
-        </motion.div>
+        </div>
 
         {/* Caption */}
         <p className="text-center text-muted text-sm mt-6 max-w-2xl mx-auto">

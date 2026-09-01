@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
 
@@ -8,7 +8,9 @@ type Step = { title: string; detail: string };
 
 function StepItem({ step, isLast, number }: { step: Step; isLast: boolean; number: string }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const { scrollYProgress } = useScroll({ target: mounted ? ref : undefined, offset: ['start end', 'center center'] });
 
   const opacity  = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 1]);
   const xNumber  = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
