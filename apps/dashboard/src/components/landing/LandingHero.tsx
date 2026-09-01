@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, ChevronDown } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';

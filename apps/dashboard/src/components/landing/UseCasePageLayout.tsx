@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowLeft, ArrowRight, CheckCircle2, X as XIcon, type LucideIcon } from 'lucide-react';
 import { LandingNav } from './LandingNav';
 import { useT } from '@/contexts/LanguageContext';

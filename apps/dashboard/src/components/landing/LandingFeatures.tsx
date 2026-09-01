@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Brain, Calendar, RefreshCw, Target, Users, TrendingUp } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 

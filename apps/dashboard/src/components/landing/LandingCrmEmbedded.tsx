@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
 import { Check, Columns3, ListTodo, Users } from 'lucide-react';
 
@@ -32,10 +32,6 @@ const SHOTS = [
 export function LandingCrmEmbedded() {
   const t = useT();
   const [active, setActive] = useState(0);
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] });
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-  const y = useTransform(scrollYProgress, [0, 0.4], [60, 0]);
 
   return (
     <section id="crm" className="py-24 px-4 sm:px-6 bg-background">
@@ -76,7 +72,6 @@ export function LandingCrmEmbedded() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35 }}
-          style={{ opacity, y }}
           className="rounded-xl overflow-hidden border border-border bg-surface shadow-2xl"
         >
           {/* traffic lights bar */}
