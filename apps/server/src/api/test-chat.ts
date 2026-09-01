@@ -55,12 +55,12 @@ testChatRoutes.post('/chat', async (c) => {
     if (info.timeline) leadUpdate.timeline = info.timeline;
     if (info.interest) leadUpdate.interest = info.interest;
     if (info.pain_points) leadUpdate.pain_points = info.pain_points;
-    if (Object.keys(leadUpdate).length > 0) await updateLead(lead.id, leadUpdate);
+    if (Object.keys(leadUpdate).length > 0) await updateLead(orgId, lead.id, leadUpdate);
 
-    if (aiResponse.lead_score_delta !== 0) await updateLeadScore(lead.id, aiResponse.lead_score_delta);
+    if (aiResponse.lead_score_delta !== 0) await updateLeadScore(orgId, lead.id, aiResponse.lead_score_delta);
 
     if (aiResponse.conversation_summary) {
-      await updateConversation(conv.id, { summary: aiResponse.conversation_summary } as any);
+      await updateConversation(orgId, conv.id, { summary: aiResponse.conversation_summary } as any);
     }
 
     if (aiResponse.needs_handoff && aiResponse.handoff_reason) {

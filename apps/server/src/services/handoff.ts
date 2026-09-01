@@ -20,14 +20,14 @@ export async function triggerHandoff(orgId: string, conversationId: string, reas
 /**
  * Accept a handoff — mark as accepted.
  */
-export function acceptHandoff(handoffId: string) {
-  updateHandoff(handoffId, { status: 'accepted' });
+export function acceptHandoff(orgId: string, handoffId: string) {
+  updateHandoff(orgId, handoffId, { status: 'accepted' });
 }
 
 /**
  * Resolve a handoff and set conversation back to active.
  */
-export function resolveHandoff(handoffId: string, conversationId: string) {
-  updateHandoff(handoffId, { status: 'resolved', resolved_at: new Date().toISOString() });
-  updateConversation(conversationId, { status: 'active' } as any);
+export function resolveHandoff(orgId: string, handoffId: string, conversationId: string) {
+  updateHandoff(orgId, handoffId, { status: 'resolved', resolved_at: new Date().toISOString() });
+  updateConversation(orgId, conversationId, { status: 'active' } as any);
 }

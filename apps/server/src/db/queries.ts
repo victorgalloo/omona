@@ -1,4 +1,5 @@
 import { getSupabase } from './client.js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import type { AgentConfig, Conversation, Message, Lead, Handoff, Product, FAQ } from '@omona/shared';
 
 const sb = () => getSupabase();
@@ -43,16 +44,26 @@ export async function upsertAgentConfig(orgId: string, updates: Partial<AgentCon
 // Conversations
 // ============================================================================
 
-export async function getOrCreateConversation(orgId: string, phoneNumber: string, contactName?: string): Promise<Conversation> {
-  const { data } = await sb().from('conversations').select('*').eq('organization_id', orgId).eq('phone_number', phoneNumber).single();
+export async function getOrCreateConversation(
+  orgId: string,
+  phoneNumber: string,
+  contactName?: string,
+  client?: SupabaseClient,
+): Promise<Conversation> {
+  const database = client ?? sb();
+  const { data } = await database.from('conversations').select('*').eq('organization_id', orgId).eq('phone_number', phoneNumber).single();
   if (data) {
     if (contactName && !data.contact_name) {
-      await sb().from('conversations').update({ contact_name: contactName }).eq('id', data.id);
+      await database
+        .from('conversations')
+        .update({ contact_name: contactName })
+        .eq('id', data.id)
+        .eq('organization_id', orgId);
       data.contact_name = contactName;
     }
     return { ...data, metadata: data.metadata || {} };
   }
-  const { data: created, error } = await sb().from('conversations').insert({ organization_id: orgId, phone_number: phoneNumber, contact_name: contactName || null }).select().single();
+  const { data: created, error } = await database.from('conversations').insert({ organization_id: orgId, phone_number: phoneNumber, contact_name: contactName || null }).select().single();
   if (error) throw error;
   return { ...created, metadata: created.metadata || {} };
 }
@@ -72,14 +83,32 @@ export async function listConversations(orgId: string, status?: string) {
   return results;
 }
 
-export async function getConversation(convId: string): Promise<Conversation | null> {
-  const { data } = await sb().from('conversations').select('*').eq('id', convId).single();
+export async function getConversation(
+  orgId: string,
+  convId: string,
+  client: SupabaseClient = sb(),
+): Promise<Conversation | null> {
+  const { data } = await client
+    .from('conversations')
+    .select('*')
+    .eq('id', convId)
+    .eq('organization_id', orgId)
+    .single();
   if (!data) return null;
   return { ...data, metadata: data.metadata || {} };
 }
 
-export async function updateConversation(convId: string, updates: Partial<Conversation>): Promise<void> {
-  const { error } = await sb().from('conversations').update({ ...updates, updated_at: new Date().toISOString() }).eq('id', convId);
+export async function updateConversation(
+  orgId: string,
+  convId: string,
+  updates: Partial<Conversation>,
+  client: SupabaseClient = sb(),
+): Promise<void> {
+  const { error } = await client
+    .from('conversations')
+    .update({ ...updates, updated_at: new Date().toISOString() })
+    .eq('id', convId)
+    .eq('organization_id', orgId);
   if (error) throw new Error(`updateConversation failed for ${convId}: ${error.message}`);
 }
 
@@ -113,31 +142,57 @@ export async function messageExists(waMessageId: string): Promise<boolean> {
 // Leads
 // ============================================================================
 
-export async function getOrCreateLead(orgId: string, conversationId: string, phoneNumber: string): Promise<Lead> {
-  const { data } = await sb().from('leads').select('*').eq('organization_id', orgId).eq('conversation_id', conversationId).single();
+export async function getOrCreateLead(
+  orgId: string,
+  conversationId: string,
+  phoneNumber: string,
+  client?: SupabaseClient,
+): Promise<Lead> {
+  const database = client ?? sb();
+  const { data } = await database
+    .from('leads')
+    .select('*')
+    .eq('organization_id', orgId)
+    .eq('conversation_id', conversationId)
+    .single();
   if (data) return data;
 
-  const { data: created, error } = await sb().from('leads').insert({ organization_id: orgId, conversation_id: conversationId, phone_number: phoneNumber }).select().single();
+  const { data: created, error } = await database
+    .from('leads')
+    .insert({ organization_id: orgId, conversation_id: conversationId, phone_number: phoneNumber })
+    .select()
+    .single();
   if (error) throw error;
-  await sb().from('conversations').update({ lead_id: created.id }).eq('id', conversationId);
+
+  await database
+    .from('conversations')
+    .update({ lead_id: created.id })
+    .eq('id', conversationId)
+    .eq('organization_id', orgId);
   return created;
 }
 
-export async function updateLead(leadId: string, updates: Partial<Lead>): Promise<void> {
+export async function updateLead(
+  orgId: string,
+  leadId: string,
+  updates: Partial<Lead>,
+  client: SupabaseClient = sb(),
+): Promise<void> {
   const clean: Record<string, any> = {};
   for (const [k, v] of Object.entries(updates)) {
     if (v !== null && v !== undefined) clean[k] = v;
   }
   if (Object.keys(clean).length === 0) return;
   clean.updated_at = new Date().toISOString();
-  await sb().from('leads').update(clean).eq('id', leadId);
+  const { error } = await client.from('leads').update(clean).eq('id', leadId).eq('organization_id', orgId);
+  if (error) throw new Error(`updateLead failed for ${leadId}: ${error.message}`);
 }
 
-export async function updateLeadScore(leadId: string, delta: number): Promise<void> {
-  const { data } = await sb().from('leads').select('score').eq('id', leadId).single();
+export async function updateLeadScore(orgId: string, leadId: string, delta: number): Promise<void> {
+  const { data } = await sb().from('leads').select('score').eq('id', leadId).eq('organization_id', orgId).single();
   if (!data) return;
   const newScore = Math.max(0, Math.min(100, (data.score || 0) + delta));
-  await sb().from('leads').update({ score: newScore, updated_at: new Date().toISOString() }).eq('id', leadId);
+  await sb().from('leads').update({ score: newScore, updated_at: new Date().toISOString() }).eq('id', leadId).eq('organization_id', orgId);
 }
 
 export async function listLeads(orgId: string, status?: string): Promise<Lead[]> {
@@ -148,8 +203,17 @@ export async function listLeads(orgId: string, status?: string): Promise<Lead[]>
   return data || [];
 }
 
-export async function getLead(leadId: string): Promise<Lead | null> {
-  const { data } = await sb().from('leads').select('*').eq('id', leadId).single();
+export async function getLead(
+  orgId: string,
+  leadId: string,
+  client: SupabaseClient = sb(),
+): Promise<Lead | null> {
+  const { data } = await client
+    .from('leads')
+    .select('*')
+    .eq('id', leadId)
+    .eq('organization_id', orgId)
+    .single();
   return data || null;
 }
 
@@ -160,7 +224,7 @@ export async function getLead(leadId: string): Promise<Lead | null> {
 export async function createHandoff(orgId: string, conversationId: string, reason: string): Promise<Handoff> {
   const { data, error } = await sb().from('handoffs').insert({ organization_id: orgId, conversation_id: conversationId, reason }).select().single();
   if (error) throw error;
-  await updateConversation(conversationId, { status: 'handoff' } as any);
+  await updateConversation(orgId, conversationId, { status: 'handoff' } as any);
   return data;
 }
 
@@ -172,14 +236,19 @@ export async function listHandoffs(orgId: string, status?: string) {
   if (!data) return [];
   const results = [];
   for (const h of data) {
-    const conv = await getConversation(h.conversation_id);
+    const conv = await getConversation(orgId, h.conversation_id);
     results.push({ ...h, conversation: conv });
   }
   return results;
 }
 
-export async function updateHandoff(handoffId: string, updates: { status?: string; assigned_to?: string; resolved_at?: string }): Promise<void> {
-  const { error } = await sb().from('handoffs').update(updates).eq('id', handoffId);
+export async function updateHandoff(
+  orgId: string,
+  handoffId: string,
+  updates: { status?: string; assigned_to?: string; resolved_at?: string },
+  client: SupabaseClient = sb(),
+): Promise<void> {
+  const { error } = await client.from('handoffs').update(updates).eq('id', handoffId).eq('organization_id', orgId);
   if (error) throw new Error(`updateHandoff failed for ${handoffId}: ${error.message}`);
 }
 

@@ -52,7 +52,8 @@ conversationRoutes.get('/', async (c) => {
 });
 
 conversationRoutes.get('/:id', async (c) => {
-  const conv = await getConversation(c.req.param('id'));
+  const { orgId } = getAuth(c);
+  const conv = await getConversation(orgId, c.req.param('id'));
   if (!conv) return c.json({ error: 'Conversación no encontrada' }, 404);
   const messages = await getMessages(conv.id);
   return c.json({ ...conv, messages });
@@ -63,7 +64,9 @@ conversationRoutes.patch('/:id', requireRole('admin', 'agent'), async (c) => {
   const body = await c.req.json();
   const convId = c.req.param('id');
 
-  await updateConversation(convId, body);
+  const existing = await getConversation(orgId, convId);
+  if (!existing) return c.json({ error: 'Conversación no encontrada' }, 404);
+  await updateConversation(orgId, convId, body);
 
   // If manually setting to handoff, create a handoff record so the bot stays paused
   if (body.status === 'handoff') {
@@ -109,41 +112,52 @@ conversationRoutes.patch('/:id', requireRole('admin', 'agent'), async (c) => {
     }
   }
 
-  const updated = await getConversation(convId);
+  const updated = await getConversation(orgId, convId);
   return c.json(updated);
 });
 
 // Tags
 conversationRoutes.post('/:id/tags', requireRole('admin', 'agent'), async (c) => {
+  const { orgId } = getAuth(c);
   const { tag } = await c.req.json();
   if (!tag) return c.json({ error: 'Tag requerido' }, 400);
-  const conv = await getConversation(c.req.param('id'));
+  const conv = await getConversation(orgId, c.req.param('id'));
   if (!conv) return c.json({ error: 'Not found' }, 404);
   const tags = Array.from(new Set([...(conv.tags || []), tag]));
-  await getSupabase().from('conversations').update({ tags }).eq('id', c.req.param('id'));
+  await getSupabase().from('conversations').update({ tags }).eq('id', c.req.param('id')).eq('organization_id', orgId);
   return c.json({ tags });
 });
 
 conversationRoutes.delete('/:id/tags/:tag', requireRole('admin', 'agent'), async (c) => {
-  const conv = await getConversation(c.req.param('id'));
+  const { orgId } = getAuth(c);
+  const conv = await getConversation(orgId, c.req.param('id'));
   if (!conv) return c.json({ error: 'Not found' }, 404);
   const tags = (conv.tags || []).filter((t: string) => t !== c.req.param('tag'));
-  await getSupabase().from('conversations').update({ tags }).eq('id', c.req.param('id'));
+  await getSupabase().from('conversations').update({ tags }).eq('id', c.req.param('id')).eq('organization_id', orgId);
   return c.json({ tags });
 });
 
 // Pin/unpin
 conversationRoutes.post('/:id/pin', requireRole('admin', 'agent'), async (c) => {
-  const conv = await getConversation(c.req.param('id'));
+  const { orgId } = getAuth(c);
+  const conv = await getConversation(orgId, c.req.param('id'));
   if (!conv) return c.json({ error: 'Not found' }, 404);
   const pinned = !conv.pinned;
-  await getSupabase().from('conversations').update({ pinned }).eq('id', c.req.param('id'));
+  await getSupabase().from('conversations').update({ pinned }).eq('id', c.req.param('id')).eq('organization_id', orgId);
   return c.json({ pinned });
 });
 
 // Mark as read
 conversationRoutes.post('/:id/read', async (c) => {
-  await getSupabase().from('conversations').update({ unread_count: 0 }).eq('id', c.req.param('id'));
+  const { orgId } = getAuth(c);
+  const { data } = await getSupabase()
+    .from('conversations')
+    .update({ unread_count: 0 })
+    .eq('id', c.req.param('id'))
+    .eq('organization_id', orgId)
+    .select('id')
+    .maybeSingle();
+  if (!data) return c.json({ error: 'Conversación no encontrada' }, 404);
   return c.json({ ok: true });
 });
 
@@ -152,7 +166,7 @@ conversationRoutes.post('/:id/send', requireRole('admin', 'agent'), async (c) =>
   const body = await c.req.json();
   const message = body.message || body.content;
   if (!message) return c.json({ error: 'Mensaje requerido' }, 400);
-  const conv = await getConversation(c.req.param('id'));
+  const conv = await getConversation(orgId, c.req.param('id'));
   if (!conv) return c.json({ error: 'Conversación no encontrada' }, 404);
   const msg = await addMessage(conv.id, 'assistant', message);
   let whatsapp_sent = false;

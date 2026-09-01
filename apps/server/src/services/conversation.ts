@@ -11,11 +11,12 @@ import { sendAppointmentEmail } from '../api/calendar.js';
  * Check if a conversation has any open (pending/accepted) handoffs.
  * If not, the conversation is stuck in handoff status and should be auto-recovered.
  */
-async function hasActiveHandoffs(conversationId: string): Promise<boolean> {
+async function hasActiveHandoffs(orgId: string, conversationId: string): Promise<boolean> {
   const { data } = await getSupabase()
     .from('handoffs')
     .select('id')
     .eq('conversation_id', conversationId)
+    .eq('organization_id', orgId)
     .in('status', ['pending', 'accepted'])
     .limit(1);
   return (data?.length ?? 0) > 0;
@@ -42,7 +43,7 @@ export async function processIncomingMessage(
   // (LID users can't be reached by reconstructing JID from phone number)
   if (whatsappJid && (conv.metadata as any)?.whatsapp_jid !== whatsappJid) {
     try {
-      await updateConversation(conv.id, {
+      await updateConversation(orgId, conv.id, {
         metadata: { ...(conv.metadata as any), whatsapp_jid: whatsappJid },
       } as any);
     } catch (err) {
@@ -52,7 +53,7 @@ export async function processIncomingMessage(
 
   if (conv.status === 'handoff') {
     // Check if there are actually open handoffs — if not, auto-recover
-    const stillInHandoff = await hasActiveHandoffs(conv.id);
+    const stillInHandoff = await hasActiveHandoffs(orgId, conv.id);
     if (stillInHandoff) {
       logger.info({ conversationId: conv.id, phoneNumber }, 'Message saved during handoff — bot paused, awaiting human reply');
       await addMessage(conv.id, 'user', messageText, waMessageId);
@@ -61,7 +62,7 @@ export async function processIncomingMessage(
     // No open handoffs — conversation is stuck, auto-recover to active
     logger.warn({ conversationId: conv.id, phoneNumber }, 'Conversation stuck in handoff with no active handoffs, auto-recovering to active');
     try {
-      await updateConversation(conv.id, { status: 'active' } as any);
+      await updateConversation(orgId, conv.id, { status: 'active' } as any);
     } catch (err) {
       logger.error({ err, conversationId: conv.id }, 'Failed to auto-recover conversation status, proceeding anyway');
     }
@@ -88,13 +89,13 @@ export async function processIncomingMessage(
   if (info.timeline) leadUpdate.timeline = info.timeline;
   if (info.interest) leadUpdate.interest = info.interest;
   if (info.pain_points) leadUpdate.pain_points = info.pain_points;
-  if (Object.keys(leadUpdate).length > 0) await updateLead(lead.id, leadUpdate);
+  if (Object.keys(leadUpdate).length > 0) await updateLead(orgId, lead.id, leadUpdate);
 
-  if (aiResponse.lead_score_delta !== 0) await updateLeadScore(lead.id, aiResponse.lead_score_delta);
+  if (aiResponse.lead_score_delta !== 0) await updateLeadScore(orgId, lead.id, aiResponse.lead_score_delta);
 
   if (aiResponse.conversation_summary) {
     try {
-      await updateConversation(conv.id, { summary: aiResponse.conversation_summary } as any);
+      await updateConversation(orgId, conv.id, { summary: aiResponse.conversation_summary } as any);
     } catch (err) {
       logger.warn({ err, conversationId: conv.id }, 'Failed to update conversation summary');
     }
