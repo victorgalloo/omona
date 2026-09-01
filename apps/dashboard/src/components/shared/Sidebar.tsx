@@ -22,6 +22,7 @@ import {
   Shield,
   Zap,
   Crown,
+  CheckSquare,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useIsSuperadmin } from '@/hooks/useAdmin';
@@ -65,6 +66,7 @@ function useSections(): NavSection[] {
         { href: '/settings', label: 'Setup', icon: Settings2, roles: ['admin'] },
         { href: '/handoff', label: 'Handoff', icon: FileText, roles: ['admin', 'agent'] },
         { href: '/leads', label: 'Leads', icon: BookOpen },
+        { href: '/tasks', label: 'Tareas', icon: CheckSquare },
       ],
     },
     {

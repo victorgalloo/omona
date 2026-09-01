@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { api } from '@/lib/api';
+import { ActivityTimeline } from '@/components/crm/ActivityTimeline';
+import { LeadTasks } from '@/components/crm/LeadTasks';
 
 interface Lead {
   id: string;
@@ -251,22 +253,13 @@ export default function LeadDetailPage() {
               </select>
             </div>
 
-            {/* Notes */}
-            <div>
-              <h3 className="mb-2 text-sm font-semibold text-foreground">Notas</h3>
-            <Textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Agrega notas sobre este lead..."
-              rows={5}
-              className="resize-none text-sm"
-            />
-            <Button size="sm" onClick={handleSaveNotes} disabled={saving} className="mt-3">
-              {saving ? <Loader2 className="mr-1.5 h-4 w-4 animate-spin" /> : <Save className="mr-1.5 h-4 w-4" />}
-              Guardar notas
-            </Button>
-            </div>
+
           </div>
+        </div>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <ActivityTimeline leadId={lead.id} />
+          <LeadTasks leadId={lead.id} />
         </div>
 
         {/* Suggested Replies */}
