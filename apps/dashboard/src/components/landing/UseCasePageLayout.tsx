@@ -301,7 +301,7 @@ export function UseCasePageLayout({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="flex items-start gap-3 rounded-xl border border-[#EF4444]/10 bg-[#EF4444]/5 px-5 py-4"
+                className="flex items-start gap-3 border-l-2 border-[#EF4444]/30 pl-4 py-2"
               >
                 <XIcon className="w-4 h-4 text-[#EF4444] mt-0.5 shrink-0" />
                 <span className="text-sm text-muted-foreground">{point}</span>
@@ -327,7 +327,7 @@ export function UseCasePageLayout({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="rounded-2xl border border-border bg-surface p-6 hover:border-border-hover transition-colors"
+                className="border-t border-border pt-6"
               >
                 <div className="w-10 h-10 rounded-xl bg-[#27C93F]/10 border border-[#27C93F]/20 flex items-center justify-center mb-4">
                   <benefit.icon className="w-5 h-5 text-[#27C93F]" />
@@ -350,7 +350,7 @@ export function UseCasePageLayout({
           />
 
           <div className="max-w-2xl mx-auto">
-            <div className="rounded-2xl border border-border bg-surface overflow-hidden shadow-2xl shadow-black/20">
+            <div className="border-t border-border pt-4">
               {/* Terminal header */}
               <div className="flex items-center justify-between px-5 py-3 border-b border-border">
                 <div className="flex items-center gap-2">
@@ -402,7 +402,7 @@ export function UseCasePageLayout({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3.5 hover:border-border-hover transition-colors"
+                className="flex items-center gap-3 border-t border-border py-3.5"
               >
                 <CheckCircle2 className="w-4 h-4 text-[#27C93F] shrink-0" />
                 <span className="text-sm text-muted-foreground">{industry}</span>
@@ -426,7 +426,7 @@ export function UseCasePageLayout({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className="rounded-xl border border-border bg-surface p-6"
+                  className="border-t border-border pt-6"
                 >
                   <h3 className="text-base font-medium text-foreground mb-2">{faq.q}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
@@ -445,7 +445,7 @@ export function UseCasePageLayout({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-2xl border border-border bg-surface p-10 sm:p-14 relative overflow-hidden"
+            className="border-t border-border pt-10 sm:pt-14 relative"
           >
             {/* Gradient glow */}
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#27C93F]/5 rounded-full blur-3xl pointer-events-none" />

@@ -23,7 +23,6 @@ function FeatureRow({ feature, index }: { feature: FeatureItem; index: number })
   useEffect(() => setMounted(true), []);
   const { scrollYProgress } = useScroll({ target: mounted ? ref : undefined, offset: ['start end', 'center center'] });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const xLeft  = useTransform(scrollYProgress, [0, 0.5], [-80, 0]);
   const xRight = useTransform(scrollYProgress, [0, 0.5], [80, 0]);
 
@@ -32,7 +31,6 @@ function FeatureRow({ feature, index }: { feature: FeatureItem; index: number })
   return (
     <motion.div
       ref={ref}
-      style={{ opacity }}
       className="min-h-[40vh] flex items-center py-16 border-b border-border/50 last:border-0"
     >
       <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">

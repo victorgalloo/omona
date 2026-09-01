@@ -83,7 +83,7 @@ export function LandingPricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative rounded-2xl border border-border bg-surface overflow-hidden"
+            className="relative border-t border-border pt-8"
           >
             {/* Terminal header */}
             <div className="flex items-center gap-2 px-5 py-3 border-b border-border">
@@ -146,7 +146,7 @@ export function LandingPricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl border border-border bg-surface overflow-hidden"
+            className="border-t border-border pt-8"
           >
             {/* Terminal header */}
             <div className="flex items-center gap-2 px-5 py-3 border-b border-border">

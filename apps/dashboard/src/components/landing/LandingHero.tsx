@@ -23,7 +23,7 @@ function ChatDemo() {
       transition={{ delay: 0.9, duration: 0.6 }}
       className="w-full max-w-sm mx-auto"
     >
-      <div className="rounded-2xl border border-border bg-surface overflow-hidden">
+      <div className="border-t border-border pt-4">
         <div className="px-4 py-3 border-b border-border bg-surface-2 flex items-center gap-2">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />

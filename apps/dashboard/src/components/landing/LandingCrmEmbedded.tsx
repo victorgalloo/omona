@@ -66,7 +66,7 @@ export function LandingCrmEmbedded() {
         </div>
 
         {/* Screenshot in terminal chrome */}
-        <div className="rounded-xl overflow-hidden border border-border bg-surface shadow-2xl">
+        <div className="border-t border-border pt-4">
           {/* traffic lights bar */}
           <div className="flex items-center gap-2 px-4 py-3 bg-surface-2 border-b border-border">
             <div className="flex gap-1.5">
