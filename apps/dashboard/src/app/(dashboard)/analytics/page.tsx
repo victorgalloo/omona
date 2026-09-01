@@ -4,9 +4,15 @@ import { useEffect, useState } from 'react';
 import { MessageSquare, Users, PhoneForwarded, Target, Bot, TrendingUp, Zap, BarChart3 } from 'lucide-react';
 import { Header } from '@/components/shared/Header';
 import { api } from '@/lib/api';
-import {
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, FunnelChart, Funnel, LabelList,
-} from 'recharts';
+import { LineChart } from '@/components/charts/line-chart';
+import { BarChart } from '@/components/charts/bar-chart';
+import { Bar } from '@/components/charts/bar';
+import { BarXAxis } from '@/components/charts/bar-x-axis';
+import { Line } from '@/components/charts/line';
+import { Grid } from '@/components/charts/grid';
+import { Background } from '@/components/charts/background';
+import { XAxis as ChartXAxis } from '@/components/charts/x-axis';
+import { ChartTooltip } from '@/components/charts/tooltip';
 
 interface Analytics {
   total_conversations: number;
@@ -48,7 +54,7 @@ interface AIPerformance {
 
 function StatCard({ icon: Icon, label, value, suffix }: { icon: any; label: string; value: number | string; suffix?: string }) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 shadow-sm">
+    <div className="flex items-center gap-4 border-t border-border p-4">
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-green/10">
         <Icon className="h-6 w-6 text-accent-green" />
       </div>
@@ -84,9 +90,21 @@ export default function AnalyticsPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Analíticas" />
+      <Header title="Analíticas" subtitle="Cuántas conversaciones entran, en cuánto se contestan y dónde se pierden." />
 
       <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+        {!loading && (data?.total_conversations ?? 0) === 0 && (
+          <div className="border-t border-border py-10 text-center">
+            <p className="text-sm font-semibold text-foreground mb-1">
+              Todavía no hay nada que medir
+            </p>
+            <p className="text-sm text-muted max-w-md mx-auto">
+              Los números aparecen solos en cuanto tu agente empiece a atender
+              conversaciones. Si aún no conectas tu WhatsApp, ese es el primer paso.
+            </p>
+          </div>
+        )}
+
         {/* Stat Cards */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {loading ? (
@@ -106,40 +124,40 @@ export default function AnalyticsPage() {
         {/* Charts */}
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Conversations by Day */}
-          <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+          <div className="border-t border-border p-4">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Conversaciones últimos 30 días</h3>
-            {loading ? <SkeletonChart /> : (
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={data?.conversations_by_day ?? []}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} tickFormatter={(d) => d.slice(5)} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="count" stroke="#25D366" strokeWidth={2} dot={{ fill: '#25D366', r: 3 }} name="Conversaciones" />
-                </LineChart>
-              </ResponsiveContainer>
-            )}
+            <LineChart
+              data={data?.conversations_by_day ?? []}
+              status={loading ? 'loading' : 'ready'}
+              loadingLabel="Cargando conversaciones"
+              style={{ height: 300 }}
+            >
+              <Background />
+              <Grid />
+              <ChartXAxis />
+              <Line dataKey="count" stroke="#25D366" strokeWidth={2} showMarkers />
+              <ChartTooltip />
+            </LineChart>
           </div>
 
           {/* Leads by Status */}
-          <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+          <div className="border-t border-border p-4">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Leads por estado</h3>
-            {loading ? <SkeletonChart /> : (
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={(data?.leads_by_status ?? []).map(d => ({ ...d, label: STATUS_LABELS[d.status] || d.status }))}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
-                  <XAxis dataKey="label" tick={{ fontSize: 11 }} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-                  <Tooltip />
-                  <Bar dataKey="count" fill="#25D366" radius={[4, 4, 0, 0]} name="Leads" />
-                </BarChart>
-              </ResponsiveContainer>
-            )}
+            <BarChart
+              data={(data?.leads_by_status ?? []).map(d => ({ ...d, label: STATUS_LABELS[d.status] || d.status }))}
+              xDataKey="label"
+              status={loading ? 'loading' : 'ready'}
+              className="h-[300px]"
+            >
+              <BarXAxis />
+              <Bar dataKey="count" fill="#25D366" />
+              <ChartTooltip />
+            </BarChart>
           </div>
         </div>
 
         {/* Conversion Funnel */}
-        <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className="border-t border-border p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold text-foreground">Embudo de conversión</h3>
             {funnel && (
@@ -173,7 +191,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* AI Performance */}
-        <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className="border-t border-border p-4">
           <h3 className="mb-4 text-sm font-semibold text-foreground">Rendimiento del AI</h3>
           {loading ? (
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">

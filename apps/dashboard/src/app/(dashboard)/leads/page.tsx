@@ -36,8 +36,8 @@ export default function LeadsPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header title="Leads">
-        <div className="flex items-center gap-1 rounded-lg border border-border bg-background p-0.5">
+      <Header title="Leads" subtitle="Cada persona que te escribió, con lo que el agente averiguó de ella.">
+        <div className="flex items-center gap-1 border-t border-border p-0.5">
           <span className="flex h-7 items-center gap-1 rounded-md bg-accent-green/10 px-2 text-xs font-medium text-accent-green">
             <Table2 className="h-3.5 w-3.5" /> Tabla
           </span>
@@ -49,7 +49,7 @@ export default function LeadsPage() {
 
       {/* Filters — below header on mobile */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 px-4 md:px-6 py-3 border-b border-border bg-background">
-        <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 flex-1">
+        <div className="flex items-center gap-2 border-t border-border px-3 py-1.5 flex-1">
           <Search className="h-4 w-4 text-muted shrink-0" />
           <input
             type="text"
@@ -73,7 +73,7 @@ export default function LeadsPage() {
         <button
           onClick={handleExport}
           disabled={exporting}
-          className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground hover:bg-surface disabled:opacity-50 transition-colors whitespace-nowrap"
+          className="flex items-center gap-2 border-t border-border px-3 py-1.5 text-sm font-medium text-foreground hover:bg-surface disabled:opacity-50 transition-colors whitespace-nowrap"
         >
           <Download className="h-4 w-4" />
           {exporting ? 'Exportando...' : 'Exportar CSV'}
@@ -84,7 +84,7 @@ export default function LeadsPage() {
         {loading ? (
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="flex items-center gap-4 rounded-lg border border-border bg-background p-4 animate-pulse">
+              <div key={i} className="flex items-center gap-4 border-t border-border p-4 animate-pulse">
                 <div className="h-4 w-1/4 rounded bg-surface-2" />
                 <div className="h-4 w-1/6 rounded bg-surface-2" />
                 <div className="h-4 w-1/5 rounded bg-surface-2" />

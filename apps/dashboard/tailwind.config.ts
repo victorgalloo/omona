@@ -80,7 +80,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
+        mono: ['var(--font-mono)', 'SF Mono', 'Menlo', 'monospace'],
       },
       fontSize: {
         label: ['13px', { lineHeight: '1.4' }],

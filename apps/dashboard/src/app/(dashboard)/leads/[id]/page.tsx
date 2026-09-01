@@ -164,7 +164,7 @@ export default function LeadDetailPage() {
       <div className="flex-1 overflow-y-auto p-4 md:p-6">
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Lead Info */}
-          <div className="rounded-xl border border-border bg-background p-5 shadow-sm">
+          <div className="border-t border-border p-5">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-semibold text-foreground">Información</h3>
               <ScoreCircle score={lead.score} />
@@ -199,7 +199,7 @@ export default function LeadDetailPage() {
           </div>
 
           {/* Tags + Assignment */}
-          <div className="rounded-xl border border-border bg-background p-5 shadow-sm lg:col-span-2 space-y-5">
+          <div className="border-t border-border p-5 lg:col-span-2 space-y-5">
             {/* Tags */}
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -271,7 +271,7 @@ export default function LeadDetailPage() {
 
         {/* Suggested Replies */}
         {lead.conversation_id && (
-          <div className="mt-6 rounded-xl border border-border bg-background p-5 shadow-sm">
+          <div className="mt-6 border-t border-border p-5">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-accent-green" />
@@ -298,7 +298,7 @@ export default function LeadDetailPage() {
 
         {/* Conversation Timeline */}
         {messages.length > 0 && (
-          <div className="mt-6 rounded-xl border border-border bg-background p-5 shadow-sm">
+          <div className="mt-6 border-t border-border p-5">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Conversación</h3>
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {messages.map((msg) => (

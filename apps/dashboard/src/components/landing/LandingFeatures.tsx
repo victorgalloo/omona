@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Brain, Calendar, RefreshCw, Target, Users, TrendingUp } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 
@@ -19,9 +19,10 @@ type FeatureItem = {
 
 function FeatureRow({ feature, index }: { feature: FeatureItem; index: number }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const { scrollYProgress } = useScroll({ target: mounted ? ref : undefined, offset: ['start end', 'center center'] });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const xLeft  = useTransform(scrollYProgress, [0, 0.5], [-80, 0]);
   const xRight = useTransform(scrollYProgress, [0, 0.5], [80, 0]);
 
@@ -30,7 +31,6 @@ function FeatureRow({ feature, index }: { feature: FeatureItem; index: number })
   return (
     <motion.div
       ref={ref}
-      style={{ opacity }}
       className="min-h-[40vh] flex items-center py-16 border-b border-border/50 last:border-0"
     >
       <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -55,7 +55,7 @@ function FeatureRow({ feature, index }: { feature: FeatureItem; index: number })
         >
           <p className="text-muted font-mono text-sm mb-2">{feature.tech}</p>
           <h3 className="text-4xl sm:text-5xl font-bold text-foreground mb-3">
-            .{feature.title}
+            {feature.title}
           </h3>
           <p className="text-xl text-muted mb-4">{feature.subtitle}</p>
           <p className="text-muted leading-relaxed max-w-lg text-base">
@@ -81,26 +81,16 @@ export function LandingFeatures() {
         {/* Header */}
         <div className="text-center mb-24">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             className="text-muted text-sm font-mono mb-4"
           >
             {t.features.sectionLabel}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6"
+            className="text-3xl sm:text-4xl font-bold text-foreground mb-6"
           >
             {t.features.heading}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
             className="text-xl text-muted max-w-2xl mx-auto"
           >
             {t.features.subheading}

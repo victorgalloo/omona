@@ -233,7 +233,7 @@ export function BusinessSettings() {
 
             {/* Products preview */}
             {scanResult.products_services?.length > 0 && (
-              <div className="rounded-lg border border-border bg-background p-3">
+              <div className="border-t border-border p-3">
                 <p className="mb-2 text-xs font-semibold text-muted uppercase tracking-wide">Productos detectados</p>
                 <div className="space-y-1.5 max-h-40 overflow-y-auto">
                   {scanResult.products_services.slice(0, 8).map((p, i) => (
@@ -257,7 +257,7 @@ export function BusinessSettings() {
 
             {/* USPs */}
             {scanResult.unique_selling_points?.length > 0 && (
-              <div className="rounded-lg border border-border bg-background p-3">
+              <div className="border-t border-border p-3">
                 <p className="mb-2 text-xs font-semibold text-muted uppercase tracking-wide">Puntos de venta únicos</p>
                 <ul className="space-y-1">
                   {scanResult.unique_selling_points.map((usp, i) => (
@@ -334,7 +334,7 @@ export function BusinessSettings() {
             </div>
 
             {uploadResult.products_services?.length > 0 && (
-              <div className="rounded-lg border border-border bg-background p-3">
+              <div className="border-t border-border p-3">
                 <p className="mb-2 text-xs font-semibold text-muted uppercase tracking-wide">Productos del documento</p>
                 <div className="space-y-1.5 max-h-40 overflow-y-auto">
                   {uploadResult.products_services.slice(0, 10).map((p, i) => (

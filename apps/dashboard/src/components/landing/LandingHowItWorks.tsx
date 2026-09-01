@@ -1,14 +1,16 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
 
 type Step = { title: string; detail: string };
 
 function StepItem({ step, isLast, number }: { step: Step; isLast: boolean; number: string }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const { scrollYProgress } = useScroll({ target: mounted ? ref : undefined, offset: ['start end', 'center center'] });
 
   const opacity  = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 1]);
   const xNumber  = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
@@ -51,13 +53,10 @@ export function LandingHowItWorks() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           className="text-center mb-24"
         >
           <p className="text-muted text-sm font-mono mb-4">{t.howItWorks.sectionLabel}</p>
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
             {t.howItWorks.heading}
           </h2>
           <p className="text-xl text-muted">

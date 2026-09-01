@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
 
 export function LandingStats() {
@@ -19,10 +19,6 @@ export function LandingStats() {
         {t.stats.map((stat, index) => (
           <motion.div
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
             className="bg-background p-8 lg:p-12 text-center"
           >
             <span className="text-5xl sm:text-6xl font-black text-foreground">{stat.value}</span>

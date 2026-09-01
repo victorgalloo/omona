@@ -327,21 +327,21 @@ export default function AdminPage() {
       </div>
 
       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <div className="rounded-xl border border-border bg-background p-4">
+        <div className="border-t border-border p-4">
           <div className="mb-1 flex items-center gap-2 text-muted">
             <Users className="h-4 w-4" />
             <span className="text-xs">Total cuentas</span>
           </div>
           <p className="text-2xl font-bold text-foreground">{totalAccounts}</p>
         </div>
-        <div className="rounded-xl border border-border bg-background p-4">
+        <div className="border-t border-border p-4">
           <div className="mb-1 flex items-center gap-2 text-accent-green">
             <Power className="h-4 w-4" />
             <span className="text-xs">Activas</span>
           </div>
           <p className="text-2xl font-bold text-foreground">{activeAccounts}</p>
         </div>
-        <div className="rounded-xl border border-border bg-background p-4">
+        <div className="border-t border-border p-4">
           <div className="mb-1 flex items-center gap-2 text-error">
             <PowerOff className="h-4 w-4" />
             <span className="text-xs">Trial expirado</span>
@@ -476,7 +476,7 @@ export default function AdminPage() {
                       <td colSpan={6} className="px-6 py-5">
                         <div className="space-y-4">
                           <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-                            <div className="rounded-2xl border border-border bg-background p-4">
+                            <div className="border-t border-border p-4">
                               <p className="mb-3 text-xs uppercase tracking-wider text-muted">Usuarios del account</p>
                               <div className="space-y-3">
                                 {acc.profiles?.map((profile) => (
@@ -493,7 +493,7 @@ export default function AdminPage() {
                               </div>
                             </div>
 
-                            <div className="rounded-2xl border border-border bg-background p-4">
+                            <div className="border-t border-border p-4">
                               <p className="mb-3 text-xs uppercase tracking-wider text-muted">Detalles</p>
                               <div className="space-y-2 text-xs">
                                 <p><span className="text-muted">Plan:</span> <span className="font-medium text-foreground">{acc.plan}</span></p>
@@ -505,7 +505,7 @@ export default function AdminPage() {
                           </div>
 
                           <div className="grid grid-cols-1 gap-4 xl:grid-cols-[360px_minmax(0,1fr)]">
-                            <div className="overflow-hidden rounded-2xl border border-border bg-background">
+                            <div className="overflow-hidden border-t border-border">
                               <div className="flex items-center justify-between border-b border-border px-4 py-3">
                                 <div>
                                   <p className="text-sm font-semibold text-foreground">Mensajes del account</p>
@@ -521,7 +521,7 @@ export default function AdminPage() {
                               </div>
 
                               <div className="border-b border-border px-4 py-3">
-                                <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2">
+                                <div className="flex items-center gap-2 border-t border-border px-3 py-2">
                                   <Search className="h-4 w-4 text-muted" />
                                   <input
                                     value={conversationSearch[acc.id] || ''}
@@ -578,7 +578,7 @@ export default function AdminPage() {
                               </div>
                             </div>
 
-                            <div className="overflow-hidden rounded-2xl border border-border bg-background">
+                            <div className="overflow-hidden border-t border-border">
                               {!selectedConversationId ? (
                                 <div className="flex h-full min-h-[540px] items-center justify-center p-6 text-center">
                                   <div>

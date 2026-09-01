@@ -1,9 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowLeft, ArrowRight, CheckCircle2, X as XIcon, type LucideIcon } from 'lucide-react';
 import { LandingNav } from './LandingNav';
 import { useT } from '@/contexts/LanguageContext';
@@ -57,10 +57,6 @@ interface UseCasePageProps {
 function AnimatedStat({ stat, index }: { stat: Stat; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
       className="text-center px-4 py-6"
     >
       <p className="text-4xl sm:text-5xl font-black font-mono text-foreground mb-2">{stat.value}</p>
@@ -74,10 +70,6 @@ function AnimatedStat({ stat, index }: { stat: Stat; index: number }) {
 function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: 0.15 * index }}
       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
     >
       <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -106,27 +98,17 @@ function SectionHeader({ mono, title, subtitle }: { mono: string; title: string;
   return (
     <div className="mb-12">
       <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         className="text-muted text-sm font-mono mb-4"
       >
         {mono}
       </motion.p>
       <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground mb-4"
       >
         {title}
       </motion.h2>
       {subtitle && (
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
           className="text-lg text-muted max-w-2xl"
         >
           {subtitle}
@@ -156,7 +138,9 @@ export function UseCasePageLayout({
 }: UseCasePageProps) {
   const t = useT();
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const { scrollYProgress } = useScroll({ target: mounted ? heroRef : undefined, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
@@ -205,7 +189,7 @@ export function UseCasePageLayout({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-black text-foreground mb-6 leading-[1.05]"
+            className="text-3xl sm:text-4xl font-bold text-foreground mb-6 leading-[1.05]"
           >
             {title}
             {titleBreak && <><br />{titleBreak}</>}
@@ -295,11 +279,7 @@ export function UseCasePageLayout({
             {painPoints.map((point, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="flex items-start gap-3 rounded-xl border border-[#EF4444]/10 bg-[#EF4444]/5 px-5 py-4"
+                className="flex items-start gap-3 border-l-2 border-[#EF4444]/30 pl-4 py-2"
               >
                 <XIcon className="w-4 h-4 text-[#EF4444] mt-0.5 shrink-0" />
                 <span className="text-sm text-muted-foreground">{point}</span>
@@ -321,11 +301,7 @@ export function UseCasePageLayout({
             {benefits.map((benefit, i) => (
               <motion.div
                 key={benefit.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="rounded-2xl border border-border bg-surface p-6 hover:border-border-hover transition-colors"
+                className="border-t border-border pt-6"
               >
                 <div className="w-10 h-10 rounded-xl bg-[#27C93F]/10 border border-[#27C93F]/20 flex items-center justify-center mb-4">
                   <benefit.icon className="w-5 h-5 text-[#27C93F]" />
@@ -348,7 +324,7 @@ export function UseCasePageLayout({
           />
 
           <div className="max-w-2xl mx-auto">
-            <div className="rounded-2xl border border-border bg-surface overflow-hidden shadow-2xl shadow-black/20">
+            <div className="border-t border-border pt-4">
               {/* Terminal header */}
               <div className="flex items-center justify-between px-5 py-3 border-b border-border">
                 <div className="flex items-center gap-2">
@@ -396,11 +372,7 @@ export function UseCasePageLayout({
             {industries.map((industry, i) => (
               <motion.div
                 key={industry}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3.5 hover:border-border-hover transition-colors"
+                className="flex items-center gap-3 border-t border-border py-3.5"
               >
                 <CheckCircle2 className="w-4 h-4 text-[#27C93F] shrink-0" />
                 <span className="text-sm text-muted-foreground">{industry}</span>
@@ -420,11 +392,7 @@ export function UseCasePageLayout({
               {faqs.map((faq, i) => (
                 <motion.div
                   key={faq.q}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className="rounded-xl border border-border bg-surface p-6"
+                  className="border-t border-border pt-6"
                 >
                   <h3 className="text-base font-medium text-foreground mb-2">{faq.q}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
@@ -439,11 +407,7 @@ export function UseCasePageLayout({
       <section className="py-24 sm:py-32 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl border border-border bg-surface p-10 sm:p-14 relative overflow-hidden"
+            className="border-t border-border pt-10 sm:pt-14 relative"
           >
             {/* Gradient glow */}
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#27C93F]/5 rounded-full blur-3xl pointer-events-none" />

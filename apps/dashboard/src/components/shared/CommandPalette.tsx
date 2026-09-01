@@ -60,7 +60,7 @@ export function CommandPalette() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh] bg-black/50 backdrop-blur-sm" onClick={() => setOpen(false)}>
-      <div className="w-full max-w-md rounded-2xl border border-border bg-surface shadow-elevated" onClick={e => e.stopPropagation()}>
+      <div className="w-full max-w-md border-t border-border shadow-elevated" onClick={e => e.stopPropagation()}>
         <div className="flex items-center gap-3 border-b border-border px-4 py-3">
           <Search className="h-5 w-5 text-muted" />
           <input

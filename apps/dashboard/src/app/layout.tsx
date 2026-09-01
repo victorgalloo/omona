@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { PHProvider } from '@/components/providers/PostHogProvider';
 import { PostHogPageView } from '@/components/providers/PostHogPageView';
@@ -10,6 +10,13 @@ import './globals.css';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+});
+
+// tailwind.config.ts ya declaraba JetBrains Mono, pero nunca se cargaba:
+// las etiquetas font-mono caían al monoespaciado del sistema.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://omona.tech';
@@ -65,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" data-theme="light" suppressHydrationWarning className={inter.variable}>
+    <html lang="es" data-theme="light" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
         <ThemeScript />
         <LanguageProvider>

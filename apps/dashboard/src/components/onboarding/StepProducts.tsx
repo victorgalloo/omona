@@ -67,7 +67,7 @@ export function StepProducts({ onComplete }: StepProductsProps) {
 
           <div className="space-y-4">
             {products.map((product, i) => (
-              <div key={i} className="rounded-lg border border-border bg-surface/50 p-4">
+              <div key={i} className="border-t border-border p-4">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium text-muted">
                     Producto {i + 1}
@@ -123,7 +123,7 @@ export function StepProducts({ onComplete }: StepProductsProps) {
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="rounded-lg border border-border bg-surface/50 p-4">
+              <div key={i} className="border-t border-border p-4">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium text-muted">
                     Pregunta {i + 1}

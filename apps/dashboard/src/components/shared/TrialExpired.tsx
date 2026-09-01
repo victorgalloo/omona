@@ -63,7 +63,7 @@ export function TrialExpired() {
 
         <a
           href="mailto:joscardona@icloud.com?subject=Quiero%20continuar%20con%20Omona"
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-2"
+          className="inline-flex w-full items-center justify-center gap-2 border-t border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-2"
         >
           Contactar por email
         </a>
