@@ -89,15 +89,15 @@ export default function CalendarPage() {
       <div className="flex-1 overflow-y-auto">
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-3 px-4 pt-4 pb-2">
-          <div className="rounded-xl border border-border bg-background p-3">
+          <div className="border-t border-border p-3">
             <p className="text-[11px] text-muted uppercase tracking-wider">Esta semana</p>
             <p className="text-2xl font-bold text-foreground mt-0.5">{totalWeek}</p>
           </div>
-          <div className="rounded-xl border border-border bg-background p-3">
+          <div className="border-t border-border p-3">
             <p className="text-[11px] text-muted uppercase tracking-wider">Confirmadas</p>
             <p className="text-2xl font-bold text-accent-green mt-0.5">{confirmedCount}</p>
           </div>
-          <div className="rounded-xl border border-border bg-background p-3">
+          <div className="border-t border-border p-3">
             <p className="text-[11px] text-muted uppercase tracking-wider">Completadas</p>
             <p className="text-2xl font-bold text-info mt-0.5">{completedCount}</p>
           </div>
@@ -178,7 +178,7 @@ function AppointmentCard({ appt, onStatusChange }: { appt: Appointment; onStatus
   const isActive = ['pending', 'confirmed'].includes(appt.status);
 
   return (
-    <div className="rounded-xl border border-border bg-background p-4 shadow-sm hover:border-border/80 transition-colors">
+    <div className="border-t border-border p-4 hover:border-border/80 transition-colors">
       <div className="flex items-start justify-between">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
@@ -305,7 +305,7 @@ function NewAppointmentModal({ onClose, onCreated }: { onClose: () => void; onCr
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4" onClick={onClose}>
-      <div className="w-full max-w-md rounded-2xl border border-border bg-background p-6 shadow-lg" onClick={e => e.stopPropagation()}>
+      <div className="w-full max-w-md border-t border-border p-6" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-bold text-foreground">Nueva cita</h2>
           <button onClick={onClose} className="rounded-lg p-1 text-muted hover:text-foreground hover:bg-surface transition-colors">

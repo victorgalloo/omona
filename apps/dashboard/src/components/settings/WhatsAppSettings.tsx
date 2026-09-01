@@ -212,7 +212,7 @@ export function WhatsAppSettings() {
 
       {/* How it works */}
       {!isConnected && !isConnecting && (
-        <div className="rounded-lg border border-border bg-surface p-4">
+        <div className="border-t border-border p-4">
           <h4 className="text-sm font-medium text-foreground mb-2">¿Cómo funciona?</h4>
           <ol className="space-y-2 text-xs text-muted">
             <li className="flex items-start gap-2">

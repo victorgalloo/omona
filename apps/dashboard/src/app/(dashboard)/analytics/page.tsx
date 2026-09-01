@@ -53,7 +53,7 @@ interface AIPerformance {
 
 function StatCard({ icon: Icon, label, value, suffix }: { icon: any; label: string; value: number | string; suffix?: string }) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 shadow-sm">
+    <div className="flex items-center gap-4 border-t border-border p-4">
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-green/10">
         <Icon className="h-6 w-6 text-accent-green" />
       </div>
@@ -111,7 +111,7 @@ export default function AnalyticsPage() {
         {/* Charts */}
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Conversations by Day */}
-          <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+          <div className="border-t border-border p-4">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Conversaciones últimos 30 días</h3>
             <LineChart
               data={data?.conversations_by_day ?? []}
@@ -127,7 +127,7 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Leads by Status */}
-          <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+          <div className="border-t border-border p-4">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Leads por estado</h3>
             {loading ? <SkeletonChart /> : (
               <ResponsiveContainer width="100%" height={300}>
@@ -144,7 +144,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Conversion Funnel */}
-        <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className="border-t border-border p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold text-foreground">Embudo de conversión</h3>
             {funnel && (
@@ -178,7 +178,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* AI Performance */}
-        <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className="border-t border-border p-4">
           <h3 className="mb-4 text-sm font-semibold text-foreground">Rendimiento del AI</h3>
           {loading ? (
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">

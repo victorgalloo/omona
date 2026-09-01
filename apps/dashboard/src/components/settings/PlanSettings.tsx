@@ -155,7 +155,7 @@ export function PlanSettings() {
               </a>
               <a
                 href="mailto:joscardona@icloud.com?subject=Quiero%20actualizar%20a%20Pro%20en%20Omona"
-                className="flex items-center justify-center gap-2 w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+                className="flex items-center justify-center gap-2 w-full border-t border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
               >
                 <Mail className="h-4 w-4" />
                 Contactar por email
@@ -166,7 +166,7 @@ export function PlanSettings() {
       </div>
 
       {/* FAQ */}
-      <div className="rounded-xl border border-border bg-surface p-5 space-y-3">
+      <div className="border-t border-border p-5 space-y-3">
         <h4 className="text-sm font-semibold text-foreground">Preguntas frecuentes</h4>
         <div className="space-y-3 text-sm">
           <div>

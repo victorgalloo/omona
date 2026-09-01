@@ -111,7 +111,7 @@ export default function BroadcastPage() {
 
           {/* Result */}
           {result && (
-            <div className="rounded-lg border border-border bg-background p-4">
+            <div className="border-t border-border p-4">
               <h4 className="font-medium text-foreground mb-2">Resultado</h4>
               <div className="flex gap-4">
                 <div className="flex items-center gap-1.5 text-sm">
