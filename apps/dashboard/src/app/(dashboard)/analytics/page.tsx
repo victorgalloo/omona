@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { MessageSquare, Users, PhoneForwarded, Target, Bot, TrendingUp, Zap, BarChart3 } from 'lucide-react';
 import { Header } from '@/components/shared/Header';
 import { api } from '@/lib/api';
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, FunnelChart, Funnel, LabelList,
-} from 'recharts';
 import { LineChart } from '@/components/charts/line-chart';
+import { BarChart } from '@/components/charts/bar-chart';
+import { Bar } from '@/components/charts/bar';
+import { BarXAxis } from '@/components/charts/bar-x-axis';
 import { Line } from '@/components/charts/line';
 import { Grid } from '@/components/charts/grid';
+import { Background } from '@/components/charts/background';
 import { XAxis as ChartXAxis } from '@/components/charts/x-axis';
 import { ChartTooltip } from '@/components/charts/tooltip';
 
@@ -131,6 +132,7 @@ export default function AnalyticsPage() {
               loadingLabel="Cargando conversaciones"
               style={{ height: 300 }}
             >
+              <Background />
               <Grid />
               <ChartXAxis />
               <Line dataKey="count" stroke="#25D366" strokeWidth={2} showMarkers />
@@ -141,17 +143,16 @@ export default function AnalyticsPage() {
           {/* Leads by Status */}
           <div className="border-t border-border p-4">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Leads por estado</h3>
-            {loading ? <SkeletonChart /> : (
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={(data?.leads_by_status ?? []).map(d => ({ ...d, label: STATUS_LABELS[d.status] || d.status }))}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
-                  <XAxis dataKey="label" tick={{ fontSize: 11 }} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-                  <Tooltip />
-                  <Bar dataKey="count" fill="#25D366" radius={[4, 4, 0, 0]} name="Leads" />
-                </BarChart>
-              </ResponsiveContainer>
-            )}
+            <BarChart
+              data={(data?.leads_by_status ?? []).map(d => ({ ...d, label: STATUS_LABELS[d.status] || d.status }))}
+              xDataKey="label"
+              status={loading ? 'loading' : 'ready'}
+              className="h-[300px]"
+            >
+              <BarXAxis />
+              <Bar dataKey="count" fill="#25D366" />
+              <ChartTooltip />
+            </BarChart>
           </div>
         </div>
 

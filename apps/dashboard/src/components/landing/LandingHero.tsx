@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, ChevronDown } from 'lucide-react';
+import { ShimmeringText } from '@/components/shimmering-text';
 import { useT } from '@/contexts/LanguageContext';
 
 const FLOATING_SHAPES = [
@@ -117,7 +118,8 @@ export function LandingHero() {
           </div>
 
           <p className="mb-4 font-mono text-sm text-muted animate-in fade-in duration-500">
-            omona<span className="animate-blink text-[#27C93F]">_</span>
+            <ShimmeringText text="omona" />
+            <span className="animate-blink text-[#27C93F]">_</span>
           </p>
 
           <h1 className="mb-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-3 duration-700">
