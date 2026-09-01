@@ -21,7 +21,7 @@ handoffRoutes.post('/:id/accept', requireRole('admin', 'agent'), async (c) => {
   const handoff = handoffs.find((h) => h.id === handoffId);
 
   if (handoff?.conversation_id) {
-    const conv = await getConversation(handoff.conversation_id);
+    const conv = await getConversation(orgId, handoff.conversation_id);
     if (conv?.phone_number) {
       try {
         const storedJid = (conv.metadata as any)?.whatsapp_jid as string | undefined;
@@ -35,10 +35,10 @@ handoffRoutes.post('/:id/accept', requireRole('admin', 'agent'), async (c) => {
         logger.warn({ err }, 'Failed to send accept WhatsApp message to customer');
       }
     }
-    await updateConversation(handoff.conversation_id, { status: 'handoff' } as any);
+    await updateConversation(orgId, handoff.conversation_id, { status: 'handoff' } as any);
   }
 
-  await updateHandoff(handoffId, { status: 'accepted' });
+  await updateHandoff(orgId, handoffId, { status: 'accepted' });
   return c.json({ ok: true });
 });
 
@@ -54,18 +54,18 @@ handoffRoutes.post('/:id/resolve', requireRole('admin', 'agent'), async (c) => {
 
   // Mark handoff as resolved FIRST so the self-healing in processIncomingMessage
   // can detect there are no active handoffs and auto-recover the conversation
-  await updateHandoff(handoffId, { status: 'resolved', resolved_at: new Date().toISOString() });
+  await updateHandoff(orgId, handoffId, { status: 'resolved', resolved_at: new Date().toISOString() });
 
   if (handoff.conversation_id) {
     // Always set conversation back to active, even if WhatsApp send fails
     try {
-      await updateConversation(handoff.conversation_id, { status: 'active' } as any);
+      await updateConversation(orgId, handoff.conversation_id, { status: 'active' } as any);
       logger.info({ conversationId: handoff.conversation_id, orgId }, 'Handoff resolved, conversation set back to active');
     } catch (err) {
       logger.error({ err, conversationId: handoff.conversation_id }, 'Failed to set conversation back to active');
     }
 
-    const conv = await getConversation(handoff.conversation_id);
+    const conv = await getConversation(orgId, handoff.conversation_id);
     if (conv?.phone_number) {
       try {
         const storedJid = (conv.metadata as any)?.whatsapp_jid as string | undefined;

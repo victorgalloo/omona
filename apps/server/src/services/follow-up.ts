@@ -54,7 +54,7 @@ export async function checkStaleConversations(): Promise<void> {
       await addMessage(conv.id, 'assistant', FOLLOW_UP_MESSAGE);
 
       // Mark follow-up sent
-      await updateConversation(conv.id, {
+      await updateConversation(conv.organization_id, conv.id, {
         metadata: { ...metadata, follow_up_sent: true },
       } as any);
 

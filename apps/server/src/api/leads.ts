@@ -43,7 +43,8 @@ leadRoutes.get('/', async (c) => {
 });
 
 leadRoutes.get('/:id', async (c) => {
-  const lead = await getLead(c.req.param('id'));
+  const { orgId } = getAuth(c);
+  const lead = await getLead(orgId, c.req.param('id'));
   if (!lead) return c.json({ error: 'Lead no encontrado' }, 404);
   return c.json(lead);
 });
@@ -65,59 +66,70 @@ leadRoutes.post('/bulk', requireRole('admin', 'agent'), async (c) => {
 });
 
 leadRoutes.patch('/:id', requireRole('admin', 'agent'), async (c) => {
+  const { orgId } = getAuth(c);
   const body = await c.req.json();
-  await updateLead(c.req.param('id'), body);
-  const updated = await getLead(c.req.param('id'));
+  const leadId = c.req.param('id');
+  if (!await getLead(orgId, leadId)) return c.json({ error: 'Lead no encontrado' }, 404);
+  await updateLead(orgId, leadId, body);
+  const updated = await getLead(orgId, leadId);
   return c.json(updated);
 });
 
 // ── Tags ──────────────────────────────────────────────────────────────────
 leadRoutes.post('/:id/tags', requireRole('admin', 'agent'), async (c) => {
+  const { orgId } = getAuth(c);
   const { tag } = await c.req.json();
   if (!tag) return c.json({ error: 'Tag requerido' }, 400);
   const leadId = c.req.param('id');
-  const { data: lead } = await getSupabase().from('leads').select('tags').eq('id', leadId).single();
-  const tags = [...new Set([...(lead?.tags || []), tag])];
-  await getSupabase().from('leads').update({ tags }).eq('id', leadId);
+  const { data: lead } = await getSupabase().from('leads').select('tags').eq('id', leadId).eq('organization_id', orgId).single();
+  if (!lead) return c.json({ error: 'Lead no encontrado' }, 404);
+  const tags = [...new Set([...(lead.tags || []), tag])];
+  await getSupabase().from('leads').update({ tags }).eq('id', leadId).eq('organization_id', orgId);
   return c.json({ tags });
 });
 
 leadRoutes.delete('/:id/tags/:tag', requireRole('admin', 'agent'), async (c) => {
+  const { orgId } = getAuth(c);
   const leadId = c.req.param('id');
   const tagToRemove = decodeURIComponent(c.req.param('tag'));
-  const { data: lead } = await getSupabase().from('leads').select('tags').eq('id', leadId).single();
-  const tags = (lead?.tags || []).filter((t: string) => t !== tagToRemove);
-  await getSupabase().from('leads').update({ tags }).eq('id', leadId);
+  const { data: lead } = await getSupabase().from('leads').select('tags').eq('id', leadId).eq('organization_id', orgId).single();
+  if (!lead) return c.json({ error: 'Lead no encontrado' }, 404);
+  const tags = (lead.tags || []).filter((t: string) => t !== tagToRemove);
+  await getSupabase().from('leads').update({ tags }).eq('id', leadId).eq('organization_id', orgId);
   return c.json({ tags });
 });
 
 // ── Assignment ────────────────────────────────────────────────────────────
 leadRoutes.post('/:id/assign', requireRole('admin', 'agent'), async (c) => {
+  const { orgId } = getAuth(c);
   const { user_id } = await c.req.json();
-  await getSupabase().from('leads').update({ assigned_to: user_id || null, updated_at: new Date().toISOString() }).eq('id', c.req.param('id'));
-  const updated = await getLead(c.req.param('id'));
+  const leadId = c.req.param('id');
+  const { data: updated } = await getSupabase().from('leads').update({ assigned_to: user_id || null, updated_at: new Date().toISOString() }).eq('id', leadId).eq('organization_id', orgId).select().maybeSingle();
+  if (!updated) return c.json({ error: 'Lead no encontrado' }, 404);
   return c.json(updated);
 });
 
 // ── Custom Fields ─────────────────────────────────────────────────────────
 leadRoutes.patch('/:id/custom-fields', requireRole('admin', 'agent'), async (c) => {
+  const { orgId } = getAuth(c);
   const fields = await c.req.json();
   const leadId = c.req.param('id');
-  const { data: lead } = await getSupabase().from('leads').select('custom_fields').eq('id', leadId).single();
-  const custom_fields = { ...(lead?.custom_fields || {}), ...fields };
-  await getSupabase().from('leads').update({ custom_fields, updated_at: new Date().toISOString() }).eq('id', leadId);
+  const { data: lead } = await getSupabase().from('leads').select('custom_fields').eq('id', leadId).eq('organization_id', orgId).single();
+  if (!lead) return c.json({ error: 'Lead no encontrado' }, 404);
+  const custom_fields = { ...(lead.custom_fields || {}), ...fields };
+  await getSupabase().from('leads').update({ custom_fields, updated_at: new Date().toISOString() }).eq('id', leadId).eq('organization_id', orgId);
   return c.json({ custom_fields });
 });
 
 // ── Suggested Replies (AI-powered) ────────────────────────────────────────
 leadRoutes.get('/:id/suggested-replies', async (c) => {
   const leadId = c.req.param('id');
-  const lead = await getLead(leadId);
+  const { orgId } = getAuth(c);
+  const lead = await getLead(orgId, leadId);
   if (!lead?.conversation_id) return c.json({ suggestions: [] });
 
   const { getRecentMessages } = await import('../db/queries.js');
   const { getAgentConfig } = await import('../db/queries.js');
-  const { orgId } = getAuth(c);
   const [messages, agentConfig] = await Promise.all([
     getRecentMessages(lead.conversation_id, 10),
     getAgentConfig(orgId),
