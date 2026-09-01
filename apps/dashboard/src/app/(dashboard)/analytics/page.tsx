@@ -5,8 +5,13 @@ import { MessageSquare, Users, PhoneForwarded, Target, Bot, TrendingUp, Zap, Bar
 import { Header } from '@/components/shared/Header';
 import { api } from '@/lib/api';
 import {
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, FunnelChart, Funnel, LabelList,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, FunnelChart, Funnel, LabelList,
 } from 'recharts';
+import { LineChart } from '@/components/charts/line-chart';
+import { Line } from '@/components/charts/line';
+import { Grid } from '@/components/charts/grid';
+import { XAxis as ChartXAxis } from '@/components/charts/x-axis';
+import { ChartTooltip } from '@/components/charts/tooltip';
 
 interface Analytics {
   total_conversations: number;
@@ -108,17 +113,17 @@ export default function AnalyticsPage() {
           {/* Conversations by Day */}
           <div className="rounded-xl border border-border bg-background p-4 shadow-sm">
             <h3 className="mb-4 text-sm font-semibold text-foreground">Conversaciones últimos 30 días</h3>
-            {loading ? <SkeletonChart /> : (
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={data?.conversations_by_day ?? []}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E0E0E0" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} tickFormatter={(d) => d.slice(5)} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 11 }} />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="count" stroke="#25D366" strokeWidth={2} dot={{ fill: '#25D366', r: 3 }} name="Conversaciones" />
-                </LineChart>
-              </ResponsiveContainer>
-            )}
+            <LineChart
+              data={data?.conversations_by_day ?? []}
+              status={loading ? 'loading' : 'ready'}
+              loadingLabel="Cargando conversaciones"
+              style={{ height: 300 }}
+            >
+              <Grid />
+              <ChartXAxis />
+              <Line dataKey="count" stroke="#25D366" strokeWidth={2} showMarkers />
+              <ChartTooltip />
+            </LineChart>
           </div>
 
           {/* Leads by Status */}
