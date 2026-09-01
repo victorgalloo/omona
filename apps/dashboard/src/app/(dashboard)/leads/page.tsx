@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Search, Download, LayoutGrid, Table2 } from 'lucide-react';
 import { Header } from '@/components/shared/Header';
+import { SavedViews } from '@/components/crm/SavedViews';
 import { LeadTable } from '@/components/leads/LeadTable';
 import { useLeads } from '@/hooks/useLeads';
 import { Select, SelectItem } from '@/components/ui/select';
@@ -46,6 +47,17 @@ export default function LeadsPage() {
           </Link>
         </div>
       </Header>
+
+      <div className="px-4 md:px-6 pt-3">
+        <SavedViews
+          entity="leads"
+          filters={{ status: statusFilter, search }}
+          onApply={(f) => {
+            setStatusFilter(String(f.status ?? 'all'));
+            setSearch(String(f.search ?? ''));
+          }}
+        />
+      </div>
 
       {/* Filters — below header on mobile */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 px-4 md:px-6 py-3 border-b border-border bg-background">

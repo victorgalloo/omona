@@ -14,6 +14,7 @@ import { WebhookSettings } from '@/components/settings/WebhookSettings';
 import { CalendarSettings } from '@/components/settings/CalendarSettings';
 import { TeamSettings } from '@/components/settings/TeamSettings';
 import { PlanSettings } from '@/components/settings/PlanSettings';
+import { CustomFieldsSettings } from '@/components/settings/CustomFieldsSettings';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -227,6 +228,7 @@ export default function SettingsPage() {
             </TabsList>
 
             <TabsContent value="plan">
+              <CustomFieldsSettings />
               <PlanSettings />
             </TabsContent>
 

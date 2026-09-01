@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { api } from '@/lib/api';
 import { ActivityTimeline } from '@/components/crm/ActivityTimeline';
 import { LeadTasks } from '@/components/crm/LeadTasks';
+import { CustomFields } from '@/components/crm/CustomFields';
 
 interface Lead {
   id: string;
@@ -256,6 +257,11 @@ export default function LeadDetailPage() {
 
           </div>
         </div>
+
+        <CustomFields
+          leadId={lead.id}
+          values={(lead as unknown as { custom_fields?: Record<string, unknown> }).custom_fields ?? {}}
+        />
 
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
           <ActivityTimeline leadId={lead.id} />
