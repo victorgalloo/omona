@@ -1,0 +1,58 @@
+name: Desplegar server a EC2
+
+# Solo cuando cambia lo que el server realmente empaqueta. El dashboard vive
+# en Vercel y no debe reiniciar este contenedor: cada despliegue corta las
+# sesiones persistentes de WhatsApp.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/server/**'
+      - 'packages/shared/**'     # @omona/shared, dependencia del server
+      - 'deploy/ec2/**'
+      - 'Dockerfile'
+      - 'package-lock.json'
+  workflow_dispatch:              # además, disparo manual desde Actions
+
+# Dos despliegues a la vez dejarían el contenedor en un estado indefinido.
+# No se cancela el que ya corre: interrumpir un build a medias es peor.
+concurrency:
+  group: deploy-server
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar la llave SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/omona-ec2.pem
+          chmod 600 ~/.ssh/omona-ec2.pem
+
+      - name: Desplegar
+        env:
+          HOST: ${{ secrets.EC2_HOST }}
+          KEY: /home/runner/.ssh/omona-ec2.pem
+        run: ./deploy/ec2/deploy.sh
+
+      - name: Borrar la llave
+        if: always()
+        run: rm -f ~/.ssh/omona-ec2.pem
+
+      - name: Verificar que el server quedó sano
+        run: |
+          for i in $(seq 1 10); do
+            if curl -fsS --max-time 10 "https://${{ secrets.API_DOMAIN }}/health" >/dev/null; then
+              echo "✓ /health responde desde internet"
+              exit 0
+            fi
+            sleep 6
+          done
+          echo "✗ /health no respondió públicamente tras el despliegue"
+          exit 1
