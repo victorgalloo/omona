@@ -11,44 +11,35 @@ import { Shimmer } from './motion/Shimmer';
 /**
  * Regla del héroe: **nunca puede haber un fotograma sin movimiento.**
  *
- * Es lo que separa a ManyChat de la landing de IA promedio. En su DOM hay 14
- * videos en loop, un marquee de 40s y hasta una flecha con animación propia:
- * siempre hay algo moviéndose. Nuestra versión anterior sólo tenía animación de
- * entrada — revelaba y se quedaba muerta — y por eso el negro con tipografía
- * blanca enorme leía como el fondo por defecto de cualquier producto de IA.
+ * Todo el movimiento continuo de aquí —el halo, las burbujas— es CSS, no
+ * `motion`. Dos razones. Una, que las animaciones CSS las mueve el compositor y
+ * siguen corriendo aunque el hilo principal esté ocupado, mientras que `motion`
+ * depende de requestAnimationFrame. Y dos, que el estado de una animación CSS se
+ * lee del estilo computado, así que se puede comprobar que está corriendo sin
+ * necesidad de verla — con rAF no, y eso costó tres rondas de diagnóstico ciego.
  *
- * Aquí hay tres capas continuas: el halo que respira, el loop del producto, y
- * las burbujas de ambiente. Las tres se apagan con `prefers-reduced-motion`.
+ * `motion` se queda sólo con las animaciones de entrada, que ocurren una vez.
  */
 
-/** Mensajes que suben y se desvanecen: la sensación de que no paran de entrar. */
+/** Mensajes que entran sin parar. Las clases y los delays son CSS puro. */
 const AMBIENTE = [
-  { text: '¿Manejan tubería de cobre?', delay: 0, x: '4%' },
-  { text: '¿A cuánto el bulto?', delay: 2.6, x: '46%' },
-  { text: '¿Abren el domingo?', delay: 5.1, x: '22%' },
-  { text: '¿Facturan?', delay: 7.4, x: '62%' },
+  { text: '¿Manejan tubería de cobre?', delay: '0s', left: '2%', top: '58%' },
+  { text: '¿A cuánto el bulto?', delay: '2.4s', left: '38%', top: '72%' },
+  { text: '¿Abren el domingo?', delay: '4.8s', left: '14%', top: '80%' },
+  { text: '¿Facturan?', delay: '7.1s', left: '52%', top: '64%' },
 ];
 
 function BurbujasDeAmbiente() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden">
       {AMBIENTE.map((m) => (
-        <motion.span
+        <span
           key={m.text}
-          className="absolute whitespace-nowrap border border-band-fg/20 px-3 py-1.5 font-mono text-xs text-band-fg/50"
-          style={{ left: m.x, bottom: 0 }}
-          initial={{ opacity: 0, y: 0 }}
-          animate={{ opacity: [0, 0.9, 0.9, 0], y: [0, -260, -300, -340] }}
-          transition={{
-            duration: 9,
-            times: [0, 0.15, 0.75, 1],
-            repeat: Infinity,
-            delay: m.delay,
-            ease: 'linear',
-          }}
+          className="anim-burbuja absolute whitespace-nowrap border border-band-fg/35 bg-band-bg/70 px-3 py-1.5 font-mono text-xs text-band-fg/80 backdrop-blur-sm"
+          style={{ left: m.left, top: m.top, animationDelay: m.delay }}
         >
           {m.text}
-        </motion.span>
+        </span>
       ))}
     </div>
   );
@@ -60,24 +51,24 @@ export function LandingHero() {
 
   return (
     <Band tone="contrast" wipe={false} className="min-h-screen flex items-center overflow-hidden">
-      {/* Capa 1 — el halo respira y se desplaza. Nunca está quieto. */}
-      <motion.div
+      {/* Halo: recorrido amplio y ciclo corto. El anterior se movía 70px en 16s
+          detrás de un desenfoque de 140px — corría, pero no se veía. */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute -left-[12%] top-[6%] -z-10 h-[560px] w-[560px] rounded-full blur-[140px]"
-        style={{ background: 'var(--neon-lime)' }}
-        animate={reduced ? { opacity: 0.16 } : { opacity: [0.12, 0.22, 0.12], x: [0, 70, 0], y: [0, 40, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+        className="anim-halo pointer-events-none absolute -left-[15%] top-0 -z-10 h-[46vw] w-[46vw] rounded-full blur-[120px]"
+        style={{ background: 'var(--neon-lime)', ['--halo-dur' as string]: '11s' }}
       />
-      <motion.div
+      <div
         aria-hidden
-        className="pointer-events-none absolute right-0 bottom-0 -z-10 h-[460px] w-[460px] rounded-full blur-[140px]"
-        style={{ background: 'var(--electric-blue)' }}
-        animate={reduced ? { opacity: 0.14 } : { opacity: [0.16, 0.08, 0.16], x: [0, -60, 0], y: [0, -50, 0] }}
-        transition={{ duration: 21, repeat: Infinity, ease: 'easeInOut' }}
+        className="anim-halo pointer-events-none absolute -right-[10%] bottom-0 -z-10 h-[40vw] w-[40vw] rounded-full blur-[120px]"
+        style={{
+          background: 'var(--electric-blue)',
+          ['--halo-dur' as string]: '15s',
+          animationDirection: 'reverse',
+        }}
       />
 
-      {/* Capa 3 — ambiente. Va detrás del contenido pero delante del halo. */}
-      {!reduced && <BurbujasDeAmbiente />}
+      <BurbujasDeAmbiente />
 
       <div className="relative grid w-full items-center gap-14 py-24 lg:grid-cols-[1fr_1fr]">
         <div>
@@ -119,7 +110,6 @@ export function LandingHero() {
               href="/signup"
               className="group relative inline-flex items-center gap-2.5 overflow-hidden bg-neon-lime px-9 py-4 text-base font-semibold text-ink"
             >
-              {/* El CTA tampoco se queda quieto. */}
               <Shimmer />
               <span className="relative">{t.hero.cta}</span>
               <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -137,7 +127,7 @@ export function LandingHero() {
           </motion.div>
         </div>
 
-        {/* Capa 2 — el producto, contestando de verdad. */}
+        {/* El producto, contestando de verdad. */}
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

@@ -30,6 +30,69 @@
   .animate-marquee { animation: none; }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   MOVIMIENTO CONTINUO
+
+   Todo lo que gira en bucle vive aquí y no en `motion`. La razón es
+   concreta: `motion` anima por requestAnimationFrame, o sea en el hilo
+   principal, y una animación CSS la mueve el compositor. La CSS sigue
+   corriendo aunque el JavaScript esté ocupado y no depende del bucle de
+   ninguna librería.
+
+   Y hay una segunda razón, de proceso: el estado de una animación CSS se
+   lee del estilo computado (`animationName`, `animationPlayState`), así que
+   se puede AFIRMAR que está corriendo sin necesidad de verla. Con rAF no
+   se puede, y eso costó tres rondas de "parece que no se mueve".
+
+   `motion` se queda sólo con lo que CSS no puede hacer: lo ligado a la
+   posición de scroll.
+   ───────────────────────────────────────────────────────────── */
+
+/* Halo del héroe. El anterior recorría 70px en 16s detrás de un desenfoque
+   de 140px — matemáticamente en movimiento, visualmente quieto. */
+@keyframes deriva-halo {
+  0%   { transform: translate3d(0, 0, 0) scale(1);      opacity: 0.10; }
+  50%  { transform: translate3d(18vw, 8vh, 0) scale(1.25); opacity: 0.30; }
+  100% { transform: translate3d(0, 0, 0) scale(1);      opacity: 0.10; }
+}
+
+.anim-halo {
+  animation: deriva-halo var(--halo-dur, 11s) ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Mensajes que entran: suben y se desvanecen. */
+@keyframes sube-burbuja {
+  0%   { transform: translate3d(0, 40px, 0); opacity: 0; }
+  12%  { transform: translate3d(0, 0, 0);    opacity: 1; }
+  75%  { transform: translate3d(0, -240px, 0); opacity: 1; }
+  100% { transform: translate3d(0, -320px, 0); opacity: 0; }
+}
+
+.anim-burbuja {
+  animation: sube-burbuja var(--burbuja-dur, 9s) linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Brillo que recorre un botón en reposo. */
+@keyframes brillo {
+  0%, 55%, 100% { transform: translate3d(-140%, 0, 0); }
+  35%           { transform: translate3d(560%, 0, 0); }
+}
+
+.anim-brillo {
+  animation: brillo 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-halo,
+  .anim-burbuja,
+  .anim-brillo {
+    animation: none;
+  }
+}
+
 @layer base {
   /* ─────────────────────────────────────────────────────────────
      PALETA FOSFORESCENTE + NEGRO BRILLOSO
