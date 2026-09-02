@@ -72,10 +72,10 @@ function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number })
     <motion.div
       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
     >
-      <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+      <div className={`max-w-[80%] px-4 py-3 text-sm leading-relaxed ${
         msg.role === 'user'
           ? 'bg-foreground text-background'
-          : 'bg-surface-2 border border-border text-foreground'
+          : 'border border-foreground/25 text-foreground'
       }`}>
         {msg.role === 'assistant' && (
           <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#27C93F] mb-2">
@@ -176,7 +176,7 @@ export function UseCasePageLayout({
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex items-center gap-4 mb-8"
           >
-            <div className="w-14 h-14 rounded-2xl bg-surface border border-border flex items-center justify-center">
+            <div className="flex h-14 w-14 items-center justify-center border-2 border-foreground">
               <Icon className="w-7 h-7 text-foreground" />
             </div>
             <span className="text-sm font-mono text-[#27C93F] bg-[#27C93F]/10 border border-[#27C93F]/20 rounded-full px-3 py-1">
@@ -214,7 +214,7 @@ export function UseCasePageLayout({
           >
             <Link
               href="/signup"
-              className="group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-xl bg-foreground px-8 py-4 text-base font-medium text-background transition-all hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2.5 bg-neon-lime px-8 py-4 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
             >
               <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               {t.useCaseLayout.heroCta}
@@ -222,7 +222,7 @@ export function UseCasePageLayout({
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-surface hover:border-border-hover"
+              className="inline-flex items-center justify-center gap-2 border border-foreground px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
             >
               {t.useCaseLayout.heroDemo}
             </Link>
@@ -235,8 +235,8 @@ export function UseCasePageLayout({
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-16"
           >
-            <div className="rounded-2xl border border-border overflow-hidden">
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-border bg-surface">
+            <div className="overflow-hidden border-2 border-foreground">
+              <div className="flex items-center gap-2 border-b-2 border-foreground px-5 py-3">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
@@ -303,7 +303,7 @@ export function UseCasePageLayout({
                 key={benefit.title}
                 className="border-t border-border pt-6"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#27C93F]/10 border border-[#27C93F]/20 flex items-center justify-center mb-4">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center border-2 border-foreground">
                   <benefit.icon className="w-5 h-5 text-[#27C93F]" />
                 </div>
                 <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
@@ -348,10 +348,10 @@ export function UseCasePageLayout({
 
               {/* Input bar */}
               <div className="border-t border-border px-5 py-3 flex items-center gap-3">
-                <div className="flex-1 rounded-xl bg-background border border-border px-4 py-2.5">
+                <div className="flex-1 border border-foreground/30 px-4 py-2.5">
                   <span className="text-sm text-muted">{t.useCaseLayout.inputPlaceholder}</span>
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-[#27C93F] flex items-center justify-center shrink-0">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-neon-lime">
                   <ArrowRight className="w-4 h-4 text-background" />
                 </div>
               </div>
@@ -431,7 +431,7 @@ export function UseCasePageLayout({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/signup"
-                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-xl bg-foreground px-8 py-4 text-base font-medium text-background transition-all hover:opacity-90"
+                  className="group inline-flex items-center justify-center gap-2.5 bg-neon-lime px-8 py-4 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
                 >
                   <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                   {t.useCaseLayout.ctaPrimary}
@@ -441,7 +441,7 @@ export function UseCasePageLayout({
                   href="https://api.whatsapp.com/send?phone=529849800629"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-surface-2 hover:border-border-hover"
+                  className="inline-flex items-center justify-center gap-2 border border-foreground px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#27C93F]">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>

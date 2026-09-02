@@ -7,6 +7,8 @@ import { MessageCircle, Menu, X, Wrench, Stethoscope, Building2, GraduationCap, 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 import { Logo } from '../shared/Logo';
+import { BAND_TONES } from './motion/Band';
+import { useActiveBand } from '@/hooks/useActiveBand';
 
 type LucideIcon = React.ComponentType<{ className?: string }>;
 
@@ -31,6 +33,7 @@ export function LandingNav() {
   const { lang, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const activeBand = useActiveBand();
   const [isCasosOpen, setIsCasosOpen] = useState(false);
   const [isMobileCasosOpen, setIsMobileCasosOpen] = useState(false);
 
@@ -52,10 +55,12 @@ export function LandingNav() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-xl border-b border-border'
-          : 'bg-transparent'
+      // Hereda las variables de la banda activa: sobre el héroe negro el texto
+      // se vuelve hueso, sobre la banda lima se vuelve negro. Sin esto el nav
+      // desaparecía en cuanto pasaba sobre una sección de su mismo color.
+      style={BAND_TONES[activeBand] as React.CSSProperties}
+      className={`fixed top-0 left-0 right-0 z-50 text-band transition-colors duration-300 ${
+        isScrolled ? 'border-b border-band-fg/15 bg-band-bg/90 backdrop-blur-xl' : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -63,8 +68,8 @@ export function LandingNav() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3" aria-label="Omona - Inicio">
-            <Logo size={24} className="shrink-0 text-foreground" />
-            <span className="font-mono font-semibold text-lg text-foreground ml-1">omona_</span>
+            <Logo size={24} className="shrink-0 text-band-fg" />
+            <span className="font-mono font-semibold text-lg text-band-fg ml-1">omona_</span>
           </Link>
 
           {/* Desktop nav links */}
@@ -73,10 +78,10 @@ export function LandingNav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative text-muted hover:text-foreground transition-colors text-sm group"
+                className="relative text-band-muted hover:text-band-fg transition-colors text-sm group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-band-fg transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
 
@@ -86,10 +91,10 @@ export function LandingNav() {
               onMouseEnter={() => setIsCasosOpen(true)}
               onMouseLeave={() => setIsCasosOpen(false)}
             >
-              <button className="relative flex items-center gap-1 text-muted hover:text-foreground transition-colors text-sm group">
+              <button className="relative flex items-center gap-1 text-band-muted hover:text-band-fg transition-colors text-sm group">
                 {t.nav.useCases}
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isCasosOpen ? 'rotate-180' : ''}`} />
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-band-fg transition-all duration-300 group-hover:w-full" />
               </button>
 
               <AnimatePresence>

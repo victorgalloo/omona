@@ -3,28 +3,41 @@
 import { useState } from 'react';
 import { useT } from '@/contexts/LanguageContext';
 import { Check, Columns3, ListTodo, Users } from 'lucide-react';
+import { Band } from './motion/Band';
+import { LoopVideo } from './motion/LoopVideo';
+import { RevealText } from './motion/RevealText';
 
-const SHOTS = [
+/**
+ * Las tres vistas de NUESTRO dashboard. Antes esto mostraba capturas de Twenty
+ * —un CRM ajeno que ya no usamos— así que enseñaba un producto que no es el
+ * nuestro. Ahora son loops de Remotion dibujados sobre las pantallas reales
+ * (apps/video/src/compositions/CrmReal.tsx): no necesitan login ni datos
+ * sembrados, y se re-rinden solos cuando cambia la paleta.
+ */
+const VISTAS = [
   {
-    src: '/screenshots/twenty-kanban.png',
-    alt: 'CRM Omona — pipeline de oportunidades en Kanban',
+    video: 'pipeline-real',
     icon: Columns3,
     label: 'Pipeline',
-    caption: 'Oportunidades por etapa: New → Screening → Meeting → Proposal → Customer, con valor por columna y contacto responsable',
+    alt: 'Tablero con las seis etapas del pipeline y los leads que el agente ya calificó.',
+    caption:
+      'Las seis etapas reales de tu tablero: cada lead que atiende el agente entra en Nuevo y avanza solo hasta Convertido, con su score al lado.',
   },
   {
-    src: '/screenshots/twenty-people.png',
-    alt: 'CRM Omona — contactos de escuelas con su empresa y teléfono',
+    video: 'inbox-real',
     icon: Users,
-    label: 'Contactos',
-    caption: 'Cada conversación del agente crea y enriquece el contacto: escuela, cargo, teléfono y correo, sin captura manual',
+    label: 'Inbox',
+    alt: 'Bandeja de conversaciones con el hilo abierto y el agente respondiendo.',
+    caption:
+      'Todas las conversaciones en un lugar, con lo que dijo cada cliente. Tu equipo entra cuando quiere; el agente sigue atendiendo el resto.',
   },
   {
-    src: '/screenshots/twenty-tasks.png',
-    alt: 'CRM Omona — tareas generadas por el agente de IA',
+    video: 'tareas-real',
     icon: ListTodo,
     label: 'Tareas',
-    caption: 'El agente agenda las tareas de seguimiento con fecha límite para que tu equipo cierre, no solo registre',
+    alt: 'Lista de tareas con vencimientos, una de ellas recién completada.',
+    caption:
+      'El agente deja los pendientes con fecha límite para que tu equipo cierre, no solo registre. Lo vencido se marca solo.',
   },
 ] as const;
 
@@ -33,27 +46,27 @@ export function LandingCrmEmbedded() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="crm" className="py-24 px-4 sm:px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-muted font-mono text-sm mb-3">// crm-embebido</p>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-            {t.features.crm.title}
-          </h2>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
-            {t.features.crm.subtitle}
-          </p>
-        </div>
+    <Band tone="cyan" id="crm" className="py-24 sm:py-32">
+      {/* Header */}
+      <div className="mb-14 max-w-3xl">
+        <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">
+          crm_embebido
+        </p>
+        <RevealText
+          as="h2"
+          lines={[t.features.crm.title]}
+          className="mb-5 text-display font-bold text-band-fg"
+        />
+        <p className="text-xl leading-relaxed text-band-muted">{t.features.crm.subtitle}</p>
+      </div>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-2 mb-10">
-          {SHOTS.map((s, i) => (
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {VISTAS.map((s, i) => (
             <button
               key={s.label}
               onClick={() => setActive(i)}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono border transition-colors ${
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-mono border transition-colors ${
                 active === i
                   ? 'bg-foreground text-background border-foreground'
                   : 'bg-surface text-muted border-border hover:text-foreground'
@@ -65,46 +78,46 @@ export function LandingCrmEmbedded() {
           ))}
         </div>
 
-        {/* Screenshot in terminal chrome */}
-        <div className="border-t border-border pt-4">
-          {/* traffic lights bar */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-surface-2 border-b border-border">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-            </div>
-            <span className="ml-3 font-mono text-xs text-muted">crm.omona.tech — {SHOTS[active].label}</span>
-          </div>
+      {/* El screenshot va en un marco duro del color de la banda, no en una
+          card con sombra: sobre cyan una caja gris se vería pegada encima. */}
+      <div className="border-2 border-band-fg">
+        <div className="flex items-center gap-2 border-b-2 border-band-fg px-4 py-3">
+          <span className="font-mono text-xs text-band-muted">
+            crm.omona.tech — {VISTAS[active].label}
+          </span>
+        </div>
           {/* image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            key={SHOTS[active].src}
-            src={SHOTS[active].src}
-            alt={SHOTS[active].alt}
-            className="w-full h-auto block animate-in fade-in duration-300"
-          />
+          {VISTAS.map((vista, i) => (
+            <div key={vista.video} className={i === active ? 'block' : 'hidden'}>
+              <LoopVideo
+                name={vista.video}
+                alt={vista.alt}
+                active={i === active}
+                className="block h-auto w-full"
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Caption */}
-        <p className="text-center text-muted text-sm mt-6 max-w-2xl mx-auto">
-          {SHOTS[active].caption}
-        </p>
+      {/* Caption */}
+      <p className="mt-6 max-w-2xl text-sm leading-relaxed text-band-muted">
+        {VISTAS[active].caption}
+      </p>
 
         {/* Bullets */}
-        <div className="grid sm:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
+      <div className="mt-16 grid max-w-5xl gap-8 sm:grid-cols-2">
           {[
             t.features.crm.bullet1,
             t.features.crm.bullet2,
             t.features.crm.bullet3,
+            t.features.crm.bullet4,
           ].map((b, i) => (
-            <div key={i} className="flex gap-3">
-              <Check className="w-5 h-5 text-foreground shrink-0 mt-0.5" />
-              <p className="text-muted text-sm leading-relaxed">{b}</p>
+            <div key={i} className="flex gap-3 border-t border-band-fg/25 pt-4">
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-band-fg" />
+              <p className="text-sm leading-relaxed text-band-muted">{b}</p>
             </div>
           ))}
-        </div>
       </div>
-    </section>
+    </Band>
   );
 }

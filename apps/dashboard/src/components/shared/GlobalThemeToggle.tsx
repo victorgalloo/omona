@@ -31,16 +31,11 @@ export function GlobalThemeToggle() {
     <button
       onClick={toggle}
       title="Cambiar tema"
-      className="fixed bottom-4 right-4 z-50 p-2.5 rounded-full shadow-md transition-colors"
-      style={{
-        background: isDark ? '#2a2a2a' : '#f5f5f5',
-        border: '1px solid ' + (isDark ? '#3a3a3a' : '#e0e0e0'),
-      }}
+      // Sin hex sueltos: con la paleta fosforescente estos valores grises
+      // quedaban fuera de sistema en las dos direcciones.
+      className="fixed bottom-4 right-4 z-50 rounded-full border border-border bg-surface p-2.5 text-muted transition-colors hover:text-foreground"
     >
-      {isDark
-        ? <Sun className="h-4 w-4" style={{ color: '#a3a3a3' }} />
-        : <Moon className="h-4 w-4" style={{ color: '#525252' }} />
-      }
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>
   );
 }

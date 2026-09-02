@@ -1,183 +1,159 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
-import { ArrowRight, MessageCircle, ChevronDown } from 'lucide-react';
-import { ShimmeringText } from '@/components/shimmering-text';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
+import { Band } from './motion/Band';
+import { LoopVideo } from './motion/LoopVideo';
+import { Shimmer } from './motion/Shimmer';
 
-const FLOATING_SHAPES = [
-  { size: 6,  x: '15%', y: '20%', delay: 0,   duration: 7  },
-  { size: 4,  x: '80%', y: '15%', delay: 1,   duration: 9  },
-  { size: 8,  x: '10%', y: '70%', delay: 2,   duration: 8  },
-  { size: 5,  x: '85%', y: '65%', delay: 0.5, duration: 10 },
-  { size: 3,  x: '50%', y: '85%', delay: 1.5, duration: 6  },
-  { size: 7,  x: '70%', y: '40%', delay: 3,   duration: 11 },
+/**
+ * Regla del héroe: **nunca puede haber un fotograma sin movimiento.**
+ *
+ * Es lo que separa a ManyChat de la landing de IA promedio. En su DOM hay 14
+ * videos en loop, un marquee de 40s y hasta una flecha con animación propia:
+ * siempre hay algo moviéndose. Nuestra versión anterior sólo tenía animación de
+ * entrada — revelaba y se quedaba muerta — y por eso el negro con tipografía
+ * blanca enorme leía como el fondo por defecto de cualquier producto de IA.
+ *
+ * Aquí hay tres capas continuas: el halo que respira, el loop del producto, y
+ * las burbujas de ambiente. Las tres se apagan con `prefers-reduced-motion`.
+ */
+
+/** Mensajes que suben y se desvanecen: la sensación de que no paran de entrar. */
+const AMBIENTE = [
+  { text: '¿Manejan tubería de cobre?', delay: 0, x: '4%' },
+  { text: '¿A cuánto el bulto?', delay: 2.6, x: '46%' },
+  { text: '¿Abren el domingo?', delay: 5.1, x: '22%' },
+  { text: '¿Facturan?', delay: 7.4, x: '62%' },
 ];
 
-function ChatDemo() {
-  const t = useT();
+function BurbujasDeAmbiente() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.9, duration: 0.6 }}
-      className="w-full max-w-sm mx-auto"
-    >
-      <div className="border-t border-border pt-4">
-        <div className="px-4 py-3 border-b border-border bg-surface-2 flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-            <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-            <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-          </div>
-          <span className="text-xs text-muted font-mono ml-2">whatsapp_demo</span>
-        </div>
-        <div className="p-4 space-y-3">
-          {t.hero.chat.map((msg, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 + i * 0.35 }}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-              <div
-                className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm leading-relaxed ${
-                  msg.role === 'user'
-                    ? 'bg-foreground text-background'
-                    : 'bg-surface-2 text-foreground border border-border'
-                }`}
-              >
-                {msg.text}
-              </div>
-            </motion.div>
-          ))}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.8 }}
-            className="flex justify-start"
-          >
-            <div className="bg-surface-2 border border-border px-4 py-3 rounded-2xl flex items-center gap-1.5">
-              {[0, 0.2, 0.4].map((d, i) => (
-                <motion.span
-                  key={i}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: d }}
-                  className="w-2 h-2 rounded-full bg-[#27C93F]"
-                />
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {AMBIENTE.map((m) => (
+        <motion.span
+          key={m.text}
+          className="absolute whitespace-nowrap border border-band-fg/20 px-3 py-1.5 font-mono text-xs text-band-fg/50"
+          style={{ left: m.x, bottom: 0 }}
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: [0, 0.9, 0.9, 0], y: [0, -260, -300, -340] }}
+          transition={{
+            duration: 9,
+            times: [0, 0.15, 0.75, 1],
+            repeat: Infinity,
+            delay: m.delay,
+            ease: 'linear',
+          }}
+        >
+          {m.text}
+        </motion.span>
+      ))}
+    </div>
   );
 }
 
 export function LandingHero() {
   const t = useT();
+  const reduced = useReducedMotion();
+
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-background">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
-      </div>
+    <Band tone="contrast" wipe={false} className="min-h-screen flex items-center overflow-hidden">
+      {/* Capa 1 — el halo respira y se desplaza. Nunca está quieto. */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -left-[12%] top-[6%] -z-10 h-[560px] w-[560px] rounded-full blur-[140px]"
+        style={{ background: 'var(--neon-lime)' }}
+        animate={reduced ? { opacity: 0.16 } : { opacity: [0.12, 0.22, 0.12], x: [0, 70, 0], y: [0, 40, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-0 -z-10 h-[460px] w-[460px] rounded-full blur-[140px]"
+        style={{ background: 'var(--electric-blue)' }}
+        animate={reduced ? { opacity: 0.14 } : { opacity: [0.16, 0.08, 0.16], x: [0, -60, 0], y: [0, -50, 0] }}
+        transition={{ duration: 21, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-      {FLOATING_SHAPES.map((shape, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: shape.size * 4,
-            height: shape.size * 4,
-            left: shape.x,
-            top: shape.y,
-            background: 'rgba(250,250,250,0.05)',
-          }}
-          animate={{ y: [0, -20, 0], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: shape.duration, repeat: Infinity, delay: shape.delay, ease: 'easeInOut' }}
-        />
-      ))}
+      {/* Capa 3 — ambiente. Va detrás del contenido pero delante del halo. */}
+      {!reduced && <BurbujasDeAmbiente />}
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-32 grid lg:grid-cols-2 gap-16 items-center">
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-          <div className="mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
-            <div className="inline-flex items-center gap-2 rounded-full bg-surface border border-border px-4 py-2 text-sm text-muted">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-[#27C93F]" />
-              {t.hero.badge}
-            </div>
-          </div>
-
-          <p className="mb-4 font-mono text-sm text-muted animate-in fade-in duration-500">
-            <ShimmeringText text="omona" />
-            <span className="animate-blink text-[#27C93F]">_</span>
-          </p>
-
-          <h1 className="mb-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground animate-in fade-in slide-in-from-bottom-3 duration-700">
-            {t.hero.tagline}
+      <div className="relative grid w-full items-center gap-14 py-24 lg:grid-cols-[1fr_1fr]">
+        <div>
+          <h1 className="mb-6 text-display-lg font-bold text-band-fg">
+            {t.hero.tagline.split(' ').map((word, i) => (
+              // El espacio va como margen, no como texto: dentro de un
+              // inline-block con overflow hidden se colapsa y las palabras
+              // salían pegadas ("11:40p.m.Alguiencontesta.").
+              <span key={i} className="mr-[0.24em] inline-block overflow-hidden align-bottom">
+                <motion.span
+                  className="inline-block"
+                  initial={reduced ? false : { y: '110%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ duration: 0.85, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
           </h1>
 
-          <p
+          <motion.p
             id="hero-description"
-            className="text-lg lg:text-xl text-muted mb-10 max-w-xl animate-in fade-in slide-in-from-bottom-3 duration-700"
+            initial={reduced ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 max-w-lg text-xl leading-snug text-band-muted"
           >
             {t.hero.subtagline}
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in duration-700">
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-start gap-4"
+          >
             <Link
               href="/signup"
-              className="group relative overflow-hidden flex items-center justify-center gap-2 rounded-lg bg-foreground px-8 py-4 text-base font-medium text-background shadow-lg transition-all hover:opacity-90"
+              className="group relative inline-flex items-center gap-2.5 overflow-hidden bg-neon-lime px-9 py-4 text-base font-semibold text-ink"
             >
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              {t.hero.cta}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {/* El CTA tampoco se queda quieto. */}
+              <Shimmer />
+              <span className="relative">{t.hero.cta}</span>
+              <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
+
             <a
               href="https://api.whatsapp.com/send?phone=529849800629"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-lg border border-border px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-surface hover:border-border-hover"
+              className="inline-flex items-center gap-2 text-sm text-band-muted underline decoration-band-fg/30 underline-offset-4 transition-colors hover:text-band-fg"
             >
-              <MessageCircle className="h-4 w-4" />
-              {t.hero.whatsapp}
+              <MessageCircle className="h-3.5 w-3.5" />
+              {t.hero.whatsappLink}
             </a>
-          </div>
-
-          <div className="mt-8 flex flex-col items-center lg:items-start gap-1 animate-in fade-in duration-700">
-            <p className="text-sm text-muted">{t.hero.setup}</p>
-            <p className="text-xs text-muted/60">{t.hero.companies}</p>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="hidden lg:block">
-          <ChatDemo />
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
+        {/* Capa 2 — el producto, contestando de verdad. */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="text-muted/50"
+          initial={reduced ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden lg:block"
         >
-          <ChevronDown className="w-5 h-5" />
+          <div className="overflow-hidden border-2 border-band-fg/70">
+            <LoopVideo
+              name="chat-respondiendo"
+              alt={t.hero.chatContext}
+              priority
+              className="block h-auto w-full"
+            />
+          </div>
         </motion.div>
-      </motion.div>
-    </section>
+      </div>
+    </Band>
   );
 }

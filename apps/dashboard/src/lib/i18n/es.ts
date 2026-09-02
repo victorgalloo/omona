@@ -1,3 +1,5 @@
+import type { Testimonial } from './types';
+
 export const es = {
   nav: {
     features: 'Funciones',
@@ -10,13 +12,21 @@ export const es = {
     signup: 'Empezar gratis',
   },
   hero: {
+    // Estas cuatro ya no se renderizan: el héroe se quedó con titular,
+    // subtítulo y un CTA para que el movimiento tenga aire. `chat` se conserva
+    // porque es el texto que está horneado en el loop ChatRespondiendo
+    // (apps/video); si cambia allá, cambia aquí.
     badge: 'Disponible para México y LATAM',
-    // Dice el resultado concreto, no la categoría abstracta.
-    tagline: 'Contesta cada WhatsApp de tus clientes, aunque tú no estés',
-    subtagline:
-      'Conectas tu número y un agente con IA responde en segundos: resuelve dudas de tu catálogo, cotiza, agenda la cita y te pasa la conversación cuando conviene que entres tú.',
+    // Cuatro palabras y una hora concreta. La promesa de categoría ("contesta
+    // cada WhatsApp de tus clientes") la podía firmar cualquier competidor;
+    // esto no. La sorpresa está en que ese "alguien" no eres tú, y el subtítulo
+    // la remata en una línea. Lo demás que vivía aquí (badge de país, nota de
+    // setup) se quitó del héroe: era relleno que le estorbaba al movimiento.
+    tagline: '11:40 p.m. Alguien contesta.',
+    subtagline: 'Y no eres tú. Es tu agente, con tus precios, cerrando la venta.',
     cta: 'Empezar gratis',
     whatsapp: 'WhatsApp',
+    whatsappLink: 'O escríbenos por WhatsApp',
     setup: 'Conectas tu número escaneando un QR · Sin tarjeta',
     // Antes decía "200+ empresas confían en Omona", una cifra que no se sostiene.
     companies: 'Tu número de siempre. Sin trámite con Meta.',
@@ -46,6 +56,7 @@ export const es = {
       bullet1: 'Pipeline visual: cada lead que atiende el agente aparece como oportunidad en el tablero, con etapa y valor.',
       bullet2: 'Contactos que se llenan solos: empresa, cargo, teléfono y correo salen de lo que el cliente escribió.',
       bullet3: 'Tu equipo toma el control cuando quiere: mueve etapas, crea tareas y deja notas sobre la conversación del agente.',
+      bullet4: 'Y te dice dónde se te caen: cuántas conversaciones entran, en cuánto se contestan y en qué etapa se pierden.',
     },
     items: [
       {
@@ -53,36 +64,42 @@ export const es = {
         subtitle: 'Aunque no venga en el guion',
         description: 'Lee el mensaje completo, identifica qué necesita el cliente y responde con la información real de tu catálogo. Si le ponen una objeción, la reconoce y la contesta.',
         tech: 'razona antes de responder',
+        videoAlt: 'Un cliente pregunta por un compresor a las 11:40 de la noche y el agente responde con precio y plazo de entrega.',
+      },
+      {
+        title: 'Entiende las notas de voz',
+        subtitle: 'Nadie las va a escuchar dos veces',
+        description: 'Transcribe el audio que te mandan y responde a lo que realmente dijeron. No pierdes la venta por no traer audífonos.',
+        tech: 'transcribe el audio',
+        videoAlt: 'Una nota de voz se transcribe a texto y el agente responde a lo que el cliente pidió.',
       },
       {
         title: 'Agenda la cita él solo',
         subtitle: 'Sin ida y vuelta de mensajes',
         description: 'Cuando detecta que el cliente está listo, consulta tu disponibilidad real, propone horarios concretos y confirma la cita dentro del mismo chat.',
         tech: 'conectado a tu calendario',
+        videoAlt: 'El agente ofrece tres horarios, el cliente elige uno y la cita queda marcada en el calendario.',
       },
       {
         title: 'Da seguimiento sin que se lo pidas',
         subtitle: 'La conversación no se enfría',
         description: 'Si el cliente dejó de responder, el agente retoma la conversación por su cuenta con un mensaje que tiene sentido para lo que se estaba hablando.',
         tech: 'retoma conversaciones frías',
+        videoAlt: 'Pasan 24 horas sin respuesta y el agente retoma la conversación por su cuenta.',
       },
       {
         title: 'Nota cuándo llamar a un humano',
         subtitle: 'Y te pasa la conversación',
         description: 'Si el cliente se molesta, duda o pregunta algo fuera de su alcance, escala a tu equipo y avisa. Quien entre ve el historial completo.',
         tech: 'sabe cuándo salirse',
+        videoAlt: 'El cliente pide un descuento, el agente escala la conversación y una persona del equipo la recibe con todo el contexto.',
       },
       {
         title: 'Te deja el CRM ya ordenado',
         subtitle: 'Tablero por etapas',
-        description: 'Cada cliente aparece en un tablero con su etapa, su historial y todo lo que dijo. No tienes que abrir WhatsApp para saber cómo va.',
-        tech: 'CRM incluido',
-      },
-      {
-        title: 'Te dice dónde se te caen',
-        subtitle: 'Números de tu operación',
-        description: 'Cuántas conversaciones entran, en cuánto se contestan, cuántas escalan a una persona y en qué punto se pierden los clientes.',
-        tech: 'analítica en el panel',
+        description: 'Cada cliente aparece en un tablero con su etapa, su historial y todo lo que dijo. Y te dice en qué punto se te están cayendo.',
+        tech: 'CRM y analítica incluidos',
+        videoAlt: 'Una tarjeta de lead aparece en el pipeline, sus campos se llenan solos y avanza a la etapa Calificado.',
       },
     ],
   },
@@ -142,7 +159,7 @@ export const es = {
     subheading: 'Sin tarjeta de crédito. Cancela cuando quieras.',
     primary: 'Empezar gratis',
     secondary: 'WhatsApp',
-    trust: '200+ empresas confían en Omona',
+    trust: 'Y si prefieres verlo antes, habla con el agente en el demo.',
   },
   footer: {
     login: 'Iniciar sesión',
@@ -294,6 +311,274 @@ export const es = {
       '/test': 'Pruebas',
     } as Record<string, string>,
     language: 'Idioma',
+  },
+  problems: {
+    sectionLabel: 'problemas_',
+    // Páginas nombradas con la frase que el dueño del negocio diría en voz alta,
+    // no con el nombre de la función que la resuelve. Es la columna "Problems"
+    // que ManyChat tiene en su footer, y es superficie de búsqueda pagada y
+    // orgánica: la gente busca su problema, no nuestra categoría.
+    items: [
+      {
+        slug: 'no-alcanzo-a-contestar',
+        short: 'No alcanzo a contestar',
+        title: 'No alcanzas a contestar',
+        titleBreak: 'y ahí se va la venta',
+        subtitle: 'Cada mensaje que tarda en contestarse es un cliente que ya le está escribiendo a otro. No es falta de ganas: es que no hay manos.',
+        video: 'chat-respondiendo',
+        videoAlt: 'Un cliente pregunta por un compresor a las 11:40 de la noche y el agente responde con precio y plazo de entrega.',
+        metaTitle: 'No alcanzo a contestar los WhatsApp de mi negocio | Omona',
+        metaDescription: 'Si tardas en contestar, el cliente ya le escribió a otro. Omona responde cada WhatsApp en segundos con la información real de tu catálogo. Prueba gratis 14 días.',
+        pains: [
+          'Llegan veinte mensajes juntos y contestas los que alcanzas.',
+          'El de la mañana lo ves en la tarde y ya no responde.',
+          'Contestas manejando, comiendo, en la junta.',
+          'Y aun así sientes que vas atrás.',
+        ],
+        answers: [
+          {
+            title: 'Contesta todos, al mismo tiempo',
+            body: 'No hay fila. Si llegan veinte mensajes juntos, los veinte reciben respuesta en segundos, cada uno con lo que preguntó.',
+          },
+          {
+            title: 'Con tu información, no con frases hechas',
+            body: 'Le cargas tu catálogo, tus precios y tus preguntas frecuentes. De ahí saca lo que responde, así que cotiza como cotizarías tú.',
+          },
+          {
+            title: 'Te avisa solo cuando te necesita',
+            body: 'Si el cliente pide algo que el agente no puede autorizar, escala la conversación y te la pasa con el historial completo.',
+          },
+        ],
+      },
+      {
+        slug: 'se-me-enfrian-los-clientes',
+        short: 'Se me enfrían los clientes',
+        title: 'Preguntaron, cotizaste',
+        titleBreak: 'y nunca volviste a saber',
+        subtitle: 'El seguimiento es lo primero que se cae cuando hay trabajo. Y es justo donde estaba el dinero.',
+        video: 'seguimiento-automatico',
+        videoAlt: 'Pasan 24 horas sin respuesta y el agente retoma la conversación por su cuenta.',
+        metaTitle: 'Se me enfrían los clientes que preguntan por WhatsApp | Omona',
+        metaDescription: 'Cotizas y nadie da seguimiento. Omona retoma solo las conversaciones que se quedaron a medias, con un mensaje que tiene sentido. Prueba gratis 14 días.',
+        pains: [
+          'Mandaste la cotización y ahí quedó.',
+          'Te acuerdas del cliente tres semanas después.',
+          'Nadie tiene la lista de a quién le falta respuesta.',
+          'Y volver a escribir a estas alturas se siente raro.',
+        ],
+        answers: [
+          {
+            title: 'Retoma sin que se lo pidas',
+            body: 'Si el cliente dejó de contestar, el agente vuelve por su cuenta con un mensaje que continúa lo que se estaba hablando, no con un "¿sigues interesado?".',
+          },
+          {
+            title: 'Sabe a quién le falta respuesta',
+            body: 'Cada conversación queda con su etapa y su última interacción. No hay lista que llevar a mano ni recordatorio que se te pase.',
+          },
+          {
+            title: 'Y te dice dónde se caen',
+            body: 'En qué etapa se pierden los clientes y cuánto tardas en contestar. Con eso se arregla el proceso, no nada más el mensaje.',
+          },
+        ],
+      },
+      {
+        slug: 'no-puedo-desconectarme',
+        short: 'No puedo desconectarme',
+        title: 'Tu negocio cierra',
+        titleBreak: 'tu WhatsApp no',
+        subtitle: 'Domingo, vacaciones, dos de la mañana. El teléfono suena igual, y contestar dejó de ser opcional.',
+        video: 'handoff',
+        videoAlt: 'El cliente pide un descuento, el agente escala la conversación y una persona del equipo la recibe con todo el contexto.',
+        metaTitle: 'No puedo desconectarme del WhatsApp del negocio | Omona',
+        metaDescription: 'Tu negocio cierra y tu WhatsApp no. Omona atiende fuera de horario y solo te busca cuando de verdad hace falta. Prueba gratis 14 días.',
+        pains: [
+          'Revisas el teléfono en la cena, en el cine, en la cama.',
+          'Si te desconectas un día, se acumula.',
+          'Salir de vacaciones significa dejar el negocio parado.',
+          'Y no puedes contratar a alguien nada más para contestar.',
+        ],
+        answers: [
+          {
+            title: 'Atiende a la hora que sea',
+            body: 'No hay horario. El cliente que escribe a las dos de la mañana recibe respuesta a las dos de la mañana, con precio y disponibilidad.',
+          },
+          {
+            title: 'Solo te busca cuando hace falta',
+            body: 'El agente resuelve lo que puede resolver. Cuando aparece algo que necesita a una persona, escala y avisa. El resto no te interrumpe.',
+          },
+          {
+            title: 'Y puedes tomar el chat cuando quieras',
+            body: 'Entras al panel, tomas la conversación y el agente se calla en ese chat. Sigue atendiendo los demás.',
+          },
+        ],
+      },
+      {
+        slug: 'nadie-sabe-en-que-quedo-ese-chat',
+        short: 'Nadie sabe en qué quedó',
+        title: 'Nadie sabe',
+        titleBreak: 'en qué quedó ese chat',
+        subtitle: 'Toda la información de tus ventas vive en un teléfono, en un hilo, sin buscador. Y si esa persona no está, no está.',
+        video: 'crm-se-llena-solo',
+        videoAlt: 'Una tarjeta de lead aparece en el pipeline, sus campos se llenan solos y avanza a la etapa Calificado.',
+        metaTitle: 'Nadie sabe en qué quedó ese chat de WhatsApp | Omona',
+        metaDescription: 'Tus ventas viven en un hilo de WhatsApp sin orden. Omona convierte cada conversación en un contacto y una oportunidad, sin capturar nada. Prueba gratis 14 días.',
+        pains: [
+          'Buscas "el señor del compresor" y no lo encuentras.',
+          'Nadie capturó el teléfono ni la empresa en ningún lado.',
+          'Si el vendedor se va, se va su WhatsApp.',
+          'Y el Excel que iban a llenar nunca se llenó.',
+        ],
+        answers: [
+          {
+            title: 'El contacto se llena solo',
+            body: 'Nombre, empresa, teléfono y correo salen de lo que el cliente escribió. Nadie captura nada y aun así el dato está.',
+          },
+          {
+            title: 'Cada conversación es una oportunidad en el tablero',
+            body: 'Con su etapa, su valor y su historial completo. Ves el estado de tus ventas sin abrir WhatsApp.',
+          },
+          {
+            title: 'La información es del negocio',
+            body: 'Vive en tu panel, no en el teléfono de quien atendió. Tu equipo entra, mueve etapas y deja notas.',
+          },
+        ],
+      },
+    ],
+    painsTitle: '¿Te suena?',
+    answersTitle: 'Qué hace Omona con eso',
+    otherTitle: 'Otros problemas que resuelve',
+    ctaTitle: 'Pruébalo antes de darnos un dato tuyo',
+    ctaBody: 'Habla con el agente en el demo. Sin registro, sin correo, sin tarjeta.',
+    ctaDemo: 'Abrir el demo',
+    ctaSignup: 'Empezar gratis 14 días',
+    backHome: 'Volver al inicio',
+  },
+  faq: {
+    sectionLabel: 'preguntas_',
+    heading: 'Lo que todos preguntan antes de pagar',
+    subheading: 'Las respuestas honestas, incluidas las incómodas.',
+    items: [
+      {
+        q: '¿Me van a bloquear el número de WhatsApp?',
+        a: 'Omona se conecta escaneando un código QR, igual que cuando abres WhatsApp Web: usas tu mismo número y no haces trámite con Meta. Eso también quiere decir que aplican las reglas de uso de WhatsApp. Si mandas mensajes masivos a gente que no te escribió, el riesgo de bloqueo es el mismo que si los mandaras a mano. Omona está pensado para contestar a quien te escribe primero, y ahí ese riesgo no existe.',
+      },
+      {
+        q: '¿Va a sonar a robot?',
+        a: 'No responde con frases hechas: lee el mensaje completo y contesta con la información de tu catálogo, en el tono que tú configures. Antes de conectar tu número puedes hablar con el agente en el demo y juzgarlo tú. Si te suena a robot ahí, te va a sonar a robot con tus clientes.',
+      },
+      {
+        q: '¿Qué pasa cuando no sabe algo?',
+        a: 'Lo escala. Cuando el cliente pregunta algo fuera de su alcance, pide un descuento que nadie autorizó o se molesta, el agente pasa la conversación a tu equipo y avisa. Quien entra ve el historial completo, lo que el cliente dijo y por qué se escaló. No inventa una respuesta para salir del paso.',
+      },
+      {
+        q: '¿Puedo apagarlo y contestar yo?',
+        a: 'Sí, en cualquier momento y por conversación. Cuando tomas un chat desde el panel, el agente se calla en ese chat y sigue atendiendo los demás. Tu número nunca deja de ser tuyo.',
+      },
+      {
+        q: '¿Cuánto tardo en tenerlo funcionando?',
+        a: 'La conexión son cinco minutos: escaneas el QR y ya está recibiendo mensajes. Lo que toma un rato es cargarle bien tu catálogo, tus precios y tus preguntas frecuentes, porque de ahí sale la calidad de las respuestas. Puedes subir un PDF o darle la dirección de tu sitio y él extrae lo que necesita.',
+      },
+      {
+        q: '¿Necesito tarjeta para probarlo?',
+        a: 'No. Son 14 días con todo incluido, sin tarjeta. Solo un correo y un número de WhatsApp. Si no lo renuevas, se apaga: no hay cargo sorpresa.',
+      },
+    ],
+  },
+  proof: {
+    sectionLabel: 'prueba_',
+    heading: 'No te pedimos que nos creas',
+    subheading: 'Preferimos que lo compruebes tú, en tres mensajes, antes de darnos un solo dato tuyo.',
+    // Cuando existan citas reales de clientes se pegan aquí y el marquee
+    // toma el lugar principal. Una cifra inventada haría más daño que el hueco.
+    testimonials: [] as Testimonial[],
+    demoTitle: 'Habla con el agente ahora mismo',
+    demoBody: 'Es el mismo motor que va a atender a tus clientes, configurado para un negocio de ejemplo. Pregúntale precios, ponle objeciones, pídele una cita. Si no te convence en tres mensajes, no te va a convencer un testimonio.',
+    demoCta: 'Abrir el demo',
+    demoNote: 'sin registro · sin correo · no te pedimos tarjeta',
+  },
+  beforeAfter: {
+    sectionLabel: 'antes_despues_',
+    heading: 'Tu WhatsApp, antes y después',
+    subheading: 'La misma tienda, el mismo número, la misma semana.',
+    beforeKicker: 'sin omona',
+    beforeTitle: 'Tú eres el chat',
+    beforeItems: [
+      'Contestas a las once de la noche porque si no, se va.',
+      'El que preguntó el lunes ya compró en otro lado.',
+      'Cotizas lo mismo veinte veces al día.',
+      'Nadie se acuerda en qué quedó ese chat.',
+    ],
+    afterKicker: 'con omona',
+    afterTitle: 'El chat trabaja solo',
+    afterItems: [
+      'Contesta él, a la hora que sea, en segundos.',
+      'Nadie espera. Nadie se va con el de enfrente.',
+      'Cotiza con tu catálogo, no con frases hechas.',
+      'Todo queda en el CRM sin que nadie capture nada.',
+    ],
+  },
+  priceAdvantage: {
+    sectionLabel: 'comparativa_',
+    headingLines: ['La IA conversacional', 'más barata de la región'],
+    subheading: 'Y con la IA incluida en el precio, no como un extra que cuesta lo mismo que el plan.',
+    tableCaption: 'Comparativa de precio mensual de entrada entre plataformas de WhatsApp con IA para el mercado latinoamericano.',
+    colTool: 'plataforma',
+    colPrice: 'desde (MXN/mes)',
+    colAi: 'IA incluida',
+    colCrm: 'CRM incluido',
+    colNote: 'la letra chica',
+    rows: [
+      {
+        tool: 'Omona',
+        price: '$499',
+        ai: true,
+        crm: true,
+        note: 'Sin cobro por contacto ni por conversación.',
+        isOmona: true,
+      },
+      {
+        tool: 'Wati Growth',
+        price: '~$835',
+        ai: false,
+        crm: false,
+        note: 'Solo WhatsApp. El agente de IA es un add-on de unos $100 USD al mes.',
+        isOmona: false,
+      },
+      {
+        tool: 'ManyChat Pro + IA',
+        price: '~$1,150',
+        ai: true,
+        crm: false,
+        note: 'El add-on de IA cuesta lo mismo que el plan. Encima, Meta cobra por mensaje.',
+        isOmona: false,
+      },
+      {
+        tool: 'Respond.io Starter',
+        price: '~$1,340',
+        ai: false,
+        crm: false,
+        note: 'Los agentes de IA empiezan en el plan Growth, cerca de $2,700.',
+        isOmona: false,
+      },
+      {
+        tool: 'Leadsales Basic',
+        price: '~$1,650',
+        ai: false,
+        crm: true,
+        note: 'CRM sobre WhatsApp, sin agente de IA que converse.',
+        isOmona: false,
+      },
+      {
+        tool: 'Kosmo IA Starter',
+        price: '$4,497',
+        ai: true,
+        crm: true,
+        note: 'Cupo de 800 clientes nuevos al mes en el plan de entrada.',
+        isOmona: false,
+      },
+    ],
+    source: 'Precios públicos de cada proveedor, verificados el 1 de septiembre de 2026 y convertidos a pesos. Los planes cambian seguido: si ves otra cifra en su sitio, escríbenos y la corregimos.',
+    cta: 'Empezar gratis 14 días',
   },
 };
 

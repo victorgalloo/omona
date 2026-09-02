@@ -1,68 +1,82 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
+import { Band } from './motion/Band';
+import { RevealText } from './motion/RevealText';
 
 type Step = { title: string; detail: string };
 
+/**
+ * Antes esto ataba opacidad y desplazamiento al progreso de `useScroll` sobre
+ * cada paso. Con el ref diferido un render, `useScroll` nunca se re-enganchaba
+ * y los cuatro pasos se quedaban permanentemente en opacidad 0.3 — se veían
+ * apagados y nadie entendía por qué. Un paso es un elemento corto: solo
+ * necesita revelarse una vez, y `whileInView` hace justo eso sin listeners.
+ */
 function StepItem({ step, isLast, number }: { step: Step; isLast: boolean; number: string }) {
-  const ref = useRef(null);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  const { scrollYProgress } = useScroll({ target: mounted ? ref : undefined, offset: ['start end', 'center center'] });
-
-  const opacity  = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 1]);
-  const xNumber  = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
-  const xContent = useTransform(scrollYProgress, [0, 0.5], [30, 0]);
+  const reduced = useReducedMotion();
+  const reveal = {
+    initial: reduced ? undefined : { opacity: 0, x: -40 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, amount: 0.5 } as const,
+  };
 
   return (
-    <motion.div ref={ref} style={{ opacity }} className="relative pb-20 last:pb-0">
-      {/* Connecting line */}
+    <div className="relative pb-20 last:pb-0">
+      {/* Hilo que une los pasos */}
       {!isLast && (
-        <div className="absolute left-[52px] lg:left-[68px] top-28 bottom-0 w-px bg-border" />
+        <div className="absolute left-[52px] top-28 bottom-0 w-px bg-band-fg/25 lg:left-[68px]" />
       )}
 
       <div className="flex gap-8 lg:gap-16 items-start">
         {/* Number */}
-        <motion.div style={{ x: xNumber }} className="shrink-0">
-          <span className="text-[80px] lg:text-[120px] font-black leading-none font-mono block text-surface">
+        <motion.div
+          {...reveal}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="shrink-0"
+        >
+          <span className="block font-mono text-[80px] font-black leading-none text-band-fg/15 lg:text-[120px]">
             {number}
           </span>
         </motion.div>
 
         {/* Content */}
-        <motion.div style={{ x: xContent }} className="pt-4 lg:pt-8">
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <motion.div
+          initial={reduced ? undefined : { opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="pt-4 lg:pt-8"
+        >
+          <h3 className="mb-4 text-display-sm font-bold text-band-fg">
             {step.title}
           </h3>
-          <span className="inline-block text-base text-muted px-4 py-2 bg-surface rounded-full border border-border">
+          <span className="inline-block border border-band-fg/40 px-4 py-2 text-base text-band-muted">
             {step.detail}
           </span>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function LandingHowItWorks() {
   const t = useT();
   return (
-    <section id="proceso" className="py-32 sm:py-48 px-4 sm:px-6 bg-background overflow-hidden">
-      <div className="max-w-5xl mx-auto">
-
-        {/* Header */}
-        <motion.div
-          className="text-center mb-24"
-        >
-          <p className="text-muted text-sm font-mono mb-4">{t.howItWorks.sectionLabel}</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-            {t.howItWorks.heading}
-          </h2>
-          <p className="text-xl text-muted">
-            {t.howItWorks.subheading}
-          </p>
-        </motion.div>
+    <Band tone="contrast" id="proceso" className="overflow-hidden py-28 sm:py-40">
+      {/* Header */}
+      <div className="mb-20 max-w-3xl">
+        <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">
+          {t.howItWorks.sectionLabel}
+        </p>
+        <RevealText
+          as="h2"
+          lines={[t.howItWorks.heading]}
+          className="mb-5 text-display font-bold text-band-fg"
+        />
+        <p className="text-xl text-band-muted">{t.howItWorks.subheading}</p>
+      </div>
 
         {/* Steps */}
         <div className="relative">
@@ -74,8 +88,7 @@ export function LandingHowItWorks() {
               isLast={index === t.howItWorks.steps.length - 1}
             />
           ))}
-        </div>
       </div>
-    </section>
+    </Band>
   );
 }
