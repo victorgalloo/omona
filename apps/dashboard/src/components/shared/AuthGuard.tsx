@@ -1,11 +1,12 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import { supabase } from '@/lib/supabase';
 import { api } from '@/lib/api';
 import { TrialExpired } from './TrialExpired';
+import { Logo } from './Logo';
 
 export type UserRole = 'admin' | 'agent' | 'viewer';
 
@@ -45,6 +46,19 @@ export function useTrialStatus() {
   return useContext(TrialContext);
 }
 
+// --- Tutorial ---
+
+/**
+ * Veces que se le ha mostrado el tutorial a esta cuenta. Viaja en el mismo
+ * select de `profiles` que AuthGuard ya hacía, así que no cuesta una petición
+ * extra. `null` = todavía no se sabe (no mostrar nada mientras tanto).
+ */
+const TutorialViewsContext = createContext<number | null>(null);
+
+export function useTutorialViews() {
+  return useContext(TutorialViewsContext);
+}
+
 /**
  * AuthGuard — protects dashboard routes.
  *
@@ -66,9 +80,17 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const [trialStatus, setTrialStatus] = useState<TrialStatus>({
     plan: 'free', trialEndsAt: null, daysRemaining: null, isTrial: false,
   });
+  const [tutorialViews, setTutorialViews] = useState<number | null>(null);
   const router = useRouter();
   const pathname = usePathname();
   const posthog = usePostHog();
+
+  // La verificación sólo necesita la ruta con la que se montó, para el
+  // early-exit de /onboarding. Tenerla en las dependencias del efecto hacía
+  // que las tres consultas a Supabase se repitieran en CADA navegación del
+  // dashboard, que era la causa principal de la lentitud percibida.
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
 
   useEffect(() => {
     let cancelled = false;
@@ -84,7 +106,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         }
 
         // Skip onboarding check if we're already on the onboarding page
-        if (pathname === '/onboarding') {
+        if (pathnameRef.current === '/onboarding') {
           if (!cancelled) {
             posthog?.identify(session.user.id, { email: session.user.email });
             setAuthenticated(true);
@@ -98,9 +120,11 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         try {
           const { data: profile, error } = await supabase
             .from('profiles')
-            .select('onboarding_completed, organization_id, role')
+            .select('onboarding_completed, organization_id, role, is_superadmin, tutorial_views')
             .eq('id', session.user.id)
             .single();
+
+          if (!error && profile && !cancelled) setTutorialViews(profile.tutorial_views ?? 0);
 
           // Set user role from profile
           if (!error && profile?.role) {
@@ -117,9 +141,10 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
               // Re-check profile — middleware may have accepted an invite
               const { data: freshProfile } = await supabase
                 .from('profiles')
-                .select('onboarding_completed, organization_id, role')
+                .select('onboarding_completed, organization_id, role, tutorial_views')
                 .eq('id', session.user.id)
                 .single();
+              if (freshProfile && !cancelled) setTutorialViews(freshProfile.tutorial_views ?? 0);
               if (freshProfile?.onboarding_completed === true) {
                 // Invite was auto-accepted — skip onboarding
                 if (freshProfile.role && !cancelled) setUserRole(freshProfile.role as UserRole);
@@ -140,13 +165,6 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
           // Check trial expiration (skip for superadmins)
           if (!error && profile?.organization_id) {
             try {
-              // Check if superadmin
-              const { data: adminCheck } = await supabase
-                .from('profiles')
-                .select('is_superadmin')
-                .eq('id', session.user.id)
-                .single();
-
               const { data: org } = await supabase
                 .from('organizations')
                 .select('plan, trial_ends_at')
@@ -163,7 +181,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
                 setTrialStatus({ plan, trialEndsAt, daysRemaining, isTrial });
               }
 
-              if (!adminCheck?.is_superadmin && org && org.plan === 'free' && org.trial_ends_at) {
+              if (!profile.is_superadmin && org && org.plan === 'free' && org.trial_ends_at) {
                 const trialEnd = new Date(org.trial_ends_at);
                 if (trialEnd < new Date()) {
                   if (!cancelled) {
@@ -211,17 +229,21 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     });
 
     return () => { cancelled = true; subscription.unsubscribe(); };
-  }, [router, pathname, posthog]);
+    // pathname NO va aquí a propósito: se lee por ref (ver arriba). Incluirlo
+    // reejecutaba las consultas de sesión en cada cambio de pantalla.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router, posthog]);
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-surface">
-        <div className="flex flex-col items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-green">
-            <span className="text-xl font-bold text-background">L</span>
+      <div className="flex h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <Logo size={22} className="text-foreground" />
+            <span className="font-mono text-sm font-semibold text-foreground">omona_</span>
           </div>
-          <div className="h-1 w-24 overflow-hidden rounded-full bg-[#E0E0E0]">
-            <div className="h-full w-1/2 animate-[shimmer_1s_ease-in-out_infinite] rounded-full bg-accent-green" />
+          <div className="h-px w-24 overflow-hidden bg-border">
+            <div className="h-full w-1/2 animate-shimmer bg-foreground" />
           </div>
         </div>
       </div>
@@ -241,7 +263,9 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   return (
     <UserRoleContext.Provider value={roleValue}>
       <TrialContext.Provider value={trialStatus}>
-        {children}
+        <TutorialViewsContext.Provider value={tutorialViews}>
+          {children}
+        </TutorialViewsContext.Provider>
       </TrialContext.Provider>
     </UserRoleContext.Provider>
   );

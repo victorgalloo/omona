@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 import {
   Globe, Loader2, Plus, Trash2, ArrowRight, ArrowLeft,
   Bot, Sparkles, SendHorizontal, Check, MessageSquare,
-  Briefcase, Package, Sliders, Zap,
+  Briefcase, Package, Sliders, Zap, Smartphone,
 } from 'lucide-react';
 import { usePostHog } from 'posthog-js/react';
 import { api } from '@/lib/api';
+import { StepChooseChannel } from '@/components/onboarding/StepChooseChannel';
 
 interface Product {
   name: string;
@@ -40,6 +41,7 @@ const STEPS = [
   { id: 'business', icon: Briefcase, title: 'Tu negocio' },
   { id: 'products', icon: Package, title: 'Productos' },
   { id: 'personality', icon: Sliders, title: 'Personalidad' },
+  { id: 'channel', icon: Smartphone, title: 'Canal' },
   { id: 'test', icon: MessageSquare, title: 'Prueba' },
 ];
 
@@ -441,6 +443,10 @@ export default function OnboardingPage() {
 
           {/* Step 4: Test */}
           {step === 4 && (
+            <StepChooseChannel onConnected={() => setStep(5)} />
+          )}
+
+          {step === 5 && (
             <div className="space-y-4">
               <div className="text-center">
                 <h2 className="text-xl font-bold text-foreground">¡Prueba tu agente!</h2>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { Logo } from './Logo';
 
 export function TrialExpired() {
   const [daysExpired, setDaysExpired] = useState(0);
@@ -32,8 +33,9 @@ export function TrialExpired() {
     <div className="flex min-h-screen items-center justify-center bg-surface p-4">
       <div className="w-full max-w-md text-center">
         {/* Logo */}
-        <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-green">
-          <span className="text-3xl font-bold text-white">L</span>
+        <div className="mx-auto mb-8 flex items-center justify-center gap-2">
+          <Logo size={26} className="text-foreground" />
+          <span className="font-mono text-base font-semibold text-foreground">omona_</span>
         </div>
 
         {/* Title */}

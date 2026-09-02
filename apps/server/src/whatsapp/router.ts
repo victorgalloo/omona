@@ -11,7 +11,7 @@
  */
 import * as db from '../db/queries.js';
 import { sessionManager } from './session-manager.js';
-import { cloudApi, type CloudApiCreds } from './cloud-api.js';
+import { cloudApi, type CloudApiCreds, type MessageTemplate } from './cloud-api.js';
 import { logger } from '../logger.js';
 
 export type WhatsAppProvider = 'baileys' | 'cloud_api';
@@ -39,15 +39,55 @@ function invalidate(orgId: string): void {
 }
 
 export const whatsappRouter = {
-  /** Envía un mensaje por el canal configurado de la org. */
-  async sendMessage(orgId: string, phoneNumber: string, text: string, jid?: string): Promise<void> {
+  /** Canal configurado de la org, con el cache de 60s. */
+  providerOf,
+
+  /**
+   * Envía un mensaje por el canal configurado de la org.
+   *
+   * Con Cloud API respeta la ventana de 24 h de Meta: si el contacto no ha
+   * escrito en ese lapso, el texto libre se rechaza (error 131047) y hace
+   * falta una plantilla. La decisión vive aquí para que ningún llamador
+   * —conversaciones, handoff, difusión, calendario— tenga que saber la regla.
+   */
+  async sendMessage(
+    orgId: string,
+    phoneNumber: string,
+    text: string,
+    jid?: string,
+    /** Plantilla a usar si la ventana ya se cerró. */
+    fallbackTemplate?: { name: string; language: string; params?: string[] },
+  ): Promise<void> {
     const provider = await providerOf(orgId);
+
     if (provider === 'cloud_api') {
       const creds = await getCloudCreds(orgId);
-      await cloudApi.sendMessage(creds, phoneNumber, text);
+
+      if (await withinServiceWindow(orgId, phoneNumber)) {
+        await cloudApi.sendMessage(creds, phoneNumber, text);
+        return;
+      }
+
+      if (!fallbackTemplate) {
+        // Antes esto salía como un cloud_api_send_failed_400 opaco que la
+        // difusión contaba como "fallido" sin decir por qué.
+        throw new Error('cloud_api_outside_service_window');
+      }
+
+      await cloudApi.sendTemplate(creds, phoneNumber, fallbackTemplate);
       return;
     }
+
     await sessionManager.sendMessage(orgId, phoneNumber, text, jid);
+  },
+
+  /** ¿Se le puede escribir texto libre a este contacto ahora mismo? */
+  withinServiceWindow,
+
+  /** Plantillas aprobadas de la org. Vacío si no es Cloud API. */
+  async listTemplates(orgId: string): Promise<MessageTemplate[]> {
+    if ((await providerOf(orgId)) !== 'cloud_api') return [];
+    return cloudApi.listTemplates(await getCloudCreds(orgId));
   },
 
   /** Estado de conexión uniforme para el dashboard. */
@@ -100,4 +140,17 @@ async function getCloudCreds(orgId: string): Promise<CloudApiCreds> {
     throw new Error('cloud_api_not_configured');
   }
   return creds;
+}
+
+const VENTANA_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Meta permite texto libre sólo dentro de las 24 h siguientes al último
+ * mensaje del cliente. Con Baileys no aplica.
+ */
+async function withinServiceWindow(orgId: string, phoneNumber: string): Promise<boolean> {
+  if ((await providerOf(orgId)) !== 'cloud_api') return true;
+  const ultimo = await db.lastInboundAt(orgId, phoneNumber);
+  if (!ultimo) return false;
+  return Date.now() - ultimo.getTime() < VENTANA_MS;
 }

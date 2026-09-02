@@ -14,6 +14,18 @@ import { logger } from '../logger.js';
 
 const GRAPH = 'https://graph.facebook.com/v21.0';
 
+/** Plantilla registrada en la WABA, tal como la devuelve Meta. */
+export interface MessageTemplate {
+  name: string;
+  language: string;
+  status: 'APPROVED' | 'PENDING' | 'REJECTED' | 'PAUSED' | 'DISABLED';
+  category: 'MARKETING' | 'UTILITY' | 'AUTHENTICATION';
+  /** Texto del cuerpo, con {{1}}, {{2}}… donde van las variables. */
+  body: string;
+  /** Cuántas variables espera el cuerpo. */
+  variables: number;
+}
+
 export interface CloudApiCreds {
   phone_number_id: string;
   waba_id?: string | null;
@@ -57,6 +69,73 @@ export const cloudApi = {
     }
     const json = (await res.json()) as { messages?: { id: string }[] };
     return { messageId: json.messages?.[0]?.id ?? 'unknown' };
+  },
+
+  /**
+   * Manda una plantilla aprobada. Es la única forma de escribirle a alguien
+   * fuera de la ventana de 24 h: el texto libre lo rechaza Meta con el
+   * error 131047.
+   */
+  async sendTemplate(
+    creds: CloudApiCreds,
+    phoneNumber: string,
+    template: { name: string; language: string; params?: string[] },
+  ): Promise<{ messageId: string }> {
+    const to = phoneNumber.replace(/[^\d]/g, '');
+    const params = template.params ?? [];
+
+    const res = await fetch(`${GRAPH}/${creds.phone_number_id}/messages`, {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${creds.access_token}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to,
+        type: 'template',
+        template: {
+          name: template.name,
+          language: { code: template.language },
+          // Meta rechaza un components vacío: sólo se manda si hay variables.
+          ...(params.length
+            ? { components: [{ type: 'body', parameters: params.map((text) => ({ type: 'text', text })) }] }
+            : {}),
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      logger.error(
+        { status: res.status, body: body.slice(0, 300), template: template.name, phone: phoneNumber },
+        'Cloud API template send failed',
+      );
+      throw new Error(`cloud_api_template_failed_${res.status}`);
+    }
+    const json = (await res.json()) as { messages?: { id: string }[] };
+    return { messageId: json.messages?.[0]?.id ?? 'unknown' };
+  },
+
+  /**
+   * Lista las plantillas de la WABA. Primer uso real de `waba_id`, que hasta
+   * ahora se guardaba y nunca se leía.
+   */
+  async listTemplates(creds: CloudApiCreds): Promise<MessageTemplate[]> {
+    if (!creds.waba_id) throw new Error('cloud_api_missing_waba_id');
+
+    const url = `${GRAPH}/${creds.waba_id}/message_templates?limit=100`;
+    const res = await fetch(url, { headers: { authorization: `Bearer ${creds.access_token}` } });
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      logger.error({ status: res.status, body: body.slice(0, 300) }, 'Cloud API list templates failed');
+      throw new Error(`cloud_api_templates_failed_${res.status}`);
+    }
+
+    const json = (await res.json()) as { data?: RawTemplate[] };
+    return (json.data ?? []).map(toTemplate);
   },
 
   /** Verifica la firma del webhook (X-Hub-Signature-256) contra el app secret. */
@@ -136,4 +215,27 @@ export interface IncomingMessage {
   text: string;
   messageId: string;
   timestamp: Date;
+}
+
+interface RawTemplate {
+  name: string;
+  language: string;
+  status: string;
+  category: string;
+  components?: { type: string; text?: string }[];
+}
+
+/** Aplana la respuesta de Meta a lo que la interfaz necesita mostrar. */
+function toTemplate(raw: RawTemplate): MessageTemplate {
+  const body = raw.components?.find((c) => c.type === 'BODY')?.text ?? '';
+  // Las variables son {{1}}, {{2}}… y pueden repetirse: cuenta las distintas.
+  const distintas = new Set(body.match(/\{\{(\d+)\}\}/g) ?? []);
+  return {
+    name: raw.name,
+    language: raw.language,
+    status: raw.status as MessageTemplate['status'],
+    category: raw.category as MessageTemplate['category'],
+    body,
+    variables: distintas.size,
+  };
 }

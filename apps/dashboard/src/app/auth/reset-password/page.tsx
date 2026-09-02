@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageSquare, Loader2, CheckCircle2 } from 'lucide-react';
+import { Loader2, CheckCircle2 } from 'lucide-react';
+import { Logo } from '@/components/shared/Logo';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
@@ -61,11 +62,9 @@ export default function ResetPasswordPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-surface p-4">
       <div className="w-full max-w-sm">
-        <div className="mb-8 flex flex-col items-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent-green">
-            <MessageSquare className="h-7 w-7 text-background" />
-          </div>
-          <h1 className="text-2xl font-bold text-foreground">Omona</h1>
+        <div className="mb-8 flex items-center justify-center gap-2">
+          <Logo size={24} className="shrink-0 text-foreground" />
+          <span className="font-mono text-lg font-semibold text-foreground">omona_</span>
         </div>
 
         <div className="rounded-xl border border-border bg-background p-6 shadow-sm">

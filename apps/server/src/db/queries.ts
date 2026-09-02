@@ -133,6 +133,39 @@ export async function getMessages(conversationId: string): Promise<Message[]> {
   return (data || []).map(m => ({ ...m, metadata: m.metadata || {} }));
 }
 
+/**
+ * Momento del último mensaje ENTRANTE de un contacto, o null si nunca escribió.
+ *
+ * Es lo que define la ventana de 24 h de Meta: dentro de ella se puede
+ * responder con texto libre; fuera, sólo con una plantilla aprobada.
+ * `messages` no tiene organization_id — se acota por la conversación, que sí.
+ */
+export async function lastInboundAt(
+  orgId: string,
+  phoneNumber: string,
+  client: SupabaseClient = sb(),
+): Promise<Date | null> {
+  const { data: conv } = await client
+    .from('conversations')
+    .select('id')
+    .eq('organization_id', orgId)
+    .eq('phone_number', phoneNumber)
+    .maybeSingle();
+
+  if (!conv?.id) return null;
+
+  const { data: msg } = await client
+    .from('messages')
+    .select('created_at')
+    .eq('conversation_id', conv.id)
+    .eq('role', 'user')
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  return msg?.created_at ? new Date(msg.created_at) : null;
+}
+
 export async function messageExists(waMessageId: string): Promise<boolean> {
   const { data } = await sb().from('messages').select('id').eq('whatsapp_message_id', waMessageId).limit(1);
   return (data?.length ?? 0) > 0;

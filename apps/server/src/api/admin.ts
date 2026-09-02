@@ -347,8 +347,13 @@ adminRoutes.delete('/accounts/:orgId', async (c) => {
   await sb().from('conversations').delete().eq('organization_id', orgId);
   await sb().from('leads').delete().eq('organization_id', orgId);
   await sb().from('broadcast_messages').delete().eq('organization_id', orgId);
-  await sb().from('knowledge_documents').delete().eq('organization_id', orgId);
-  await sb().from('webhook_subscriptions').delete().eq('organization_id', orgId);
+  await sb().from('broadcast_campaigns').delete().eq('organization_id', orgId);
+  // 'knowledge_documents' tampoco existe en la base: resto de una función que
+  // no llegó. Se deja comentado en vez de borrar contra una tabla fantasma.
+  // await sb().from('knowledge_documents').delete().eq('organization_id', orgId);
+  // La tabla se llama 'webhooks' (migración 007). 'webhook_subscriptions' no
+  // existe, así que al borrar una cuenta sus webhooks se quedaban vivos.
+  await sb().from('webhooks').delete().eq('organization_id', orgId);
   await sb().from('availability_rules').delete().eq('organization_id', orgId);
   await sb().from('team_invites').delete().eq('organization_id', orgId);
   await sb().from('whatsapp_sessions').delete().eq('organization_id', orgId);

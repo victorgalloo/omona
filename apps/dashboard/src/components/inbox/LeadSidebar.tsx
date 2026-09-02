@@ -40,13 +40,17 @@ const statusLabels: Record<string, string> = {
   lost: 'Perdido',
 };
 
-const statusColors: Record<string, 'success' | 'info' | 'warning' | 'default' | 'error'> = {
-  new: 'info',
-  qualified: 'success',
-  contacted: 'warning',
-  demo_scheduled: 'default',
-  converted: 'success',
-  lost: 'error',
+// Etapas en monocromático, igual que el tablero de /leads/pipeline. La
+// distinción es tipográfica, no cromática: 'converted' pesa más porque es el
+// estado ganado. No se tocan las variantes de Badge — son compartidas por toda
+// la app y agrisarlas apagaría también los errores y advertencias reales.
+const statusColors: Record<string, 'outline' | 'terminal'> = {
+  new: 'outline',
+  qualified: 'outline',
+  contacted: 'outline',
+  demo_scheduled: 'outline',
+  converted: 'terminal',
+  lost: 'outline',
 };
 
 export function LeadSidebar({ lead, onClose }: LeadSidebarProps) {

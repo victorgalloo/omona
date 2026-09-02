@@ -48,14 +48,19 @@ const statusLabels: Record<string, string> = {
   demo_scheduled: 'Demo Agendada', converted: 'Convertido', lost: 'Perdido',
 };
 
+// Etapas en monocromático, igual que el tablero de /leads/pipeline. La
+// distinción es tipográfica, no cromática: 'converted' pesa más porque es el
+// estado ganado. No se tocan las variantes de Badge — son compartidas por toda
+// la app y agrisarlas apagaría también los errores y advertencias reales.
 const statusColors: Record<string, string> = {
-  new: 'bg-info-muted text-blue-800', qualified: 'bg-success-muted text-green-800',
-  contacted: 'bg-yellow-100 text-yellow-800', demo_scheduled: 'bg-purple-100 text-purple-800',
-  converted: 'bg-emerald-100 text-emerald-800', lost: 'bg-error-muted text-red-800',
+  new: 'border-border text-muted', qualified: 'border-border text-muted',
+  contacted: 'border-border text-muted', demo_scheduled: 'border-border text-muted',
+  converted: 'border-border bg-surface-2 text-foreground', lost: 'border-border text-muted',
 };
 
 function ScoreCircle({ score }: { score: number }) {
-  const color = score >= 60 ? '#25D366' : score >= 30 ? '#F59E0B' : '#EF4444';
+  // Sin semáforo: la intensidad la da el arco, no el color.
+  const color = 'var(--foreground)';
   const pct = Math.min(100, Math.max(0, score));
   const r = 36, circ = 2 * Math.PI * r, offset = circ - (pct / 100) * circ;
   return (
@@ -158,7 +163,7 @@ export default function LeadDetailPage() {
         </Link>
         <div>
           <h1 className="text-lg font-semibold text-foreground">{lead.name || lead.phone_number}</h1>
-          <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${statusColors[lead.status] || 'bg-surface text-foreground'}`}>
+          <span className={`inline-block border px-2 py-0.5 font-mono text-xs ${statusColors[lead.status] || 'border-border text-muted'}`}>
             {statusLabels[lead.status] || lead.status}
           </span>
         </div>

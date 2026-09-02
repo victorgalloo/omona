@@ -9,11 +9,12 @@ const envSchema = z.object({
   SUPABASE_URL: z.string().min(1),
   SUPABASE_SERVICE_KEY: z.string().min(1),
 
-  // AI model — Azure AI Model Inference (OpenAI-compatible)
-  // BASE_URL: https://xxx.services.ai.azure.com/models
-  AI_BASE_URL: z.string().default('https://omona-ai-prod.services.ai.azure.com/openai/v1'),
+  // Modelo de IA. Producción corre OpenAI directo; los defaults reflejan eso.
+  // La API es compatible con OpenAI, así que cambiar de proveedor (Azure,
+  // Bedrock, Z.ai, cualquier gateway) es sólo cambiar estas tres variables.
+  AI_BASE_URL: z.string().default('https://api.openai.com/v1'),
   AI_API_KEY: z.string().min(1),
-  AI_MODEL: z.string().default('gpt-5-4-mini'),
+  AI_MODEL: z.string().default('gpt-5.6-terra'),
 
   // Baileys
   BAILEYS_AUTH_DIR: z.string().default('./auth_sessions'),
@@ -34,8 +35,6 @@ const envSchema = z.object({
   EMAIL_FROM_ADDRESS: z.string().default('hola@omona.tech'),
   EMAIL_FROM_NAME: z.string().default('Omona'),
 
-  // Supabase Auth Hook secret (for send_email hook verification)
-  SUPABASE_HOOK_SECRET: z.string().default(''),
 
   // Apple Push Notifications (optional)
   APNS_KEY_ID:    z.string().default(''),

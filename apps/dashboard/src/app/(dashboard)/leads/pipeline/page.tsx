@@ -17,17 +17,20 @@ interface Lead {
 }
 
 const COLUMNS = [
-  { status: 'new', label: 'Nuevo', color: 'bg-info-muted border-info/20', badge: 'bg-info' },
-  { status: 'qualified', label: 'Calificado', color: 'bg-success-muted border-green-200', badge: 'bg-accent-green' },
-  { status: 'contacted', label: 'Contactado', color: 'bg-warning-muted border-warning/20', badge: 'bg-warning-muted0' },
-  { status: 'demo_scheduled', label: 'Demo Agendada', color: 'bg-purple-50 border-purple-200', badge: 'bg-purple-500' },
-  { status: 'converted', label: 'Convertido', color: 'bg-emerald-50 border-emerald-200', badge: 'bg-emerald-500' },
-  { status: 'lost', label: 'Perdido', color: 'bg-error-muted border-error/20', badge: 'bg-error' },
+  { status: 'new', label: 'Nuevo' },
+  { status: 'qualified', label: 'Calificado' },
+  { status: 'contacted', label: 'Contactado' },
+  { status: 'demo_scheduled', label: 'Demo Agendada' },
+  { status: 'converted', label: 'Convertido' },
+  { status: 'lost', label: 'Perdido' },
 ];
 
 function ScoreBadge({ score }: { score: number }) {
-  const color = score >= 60 ? 'bg-success-muted text-green-700' : score >= 30 ? 'bg-yellow-100 text-warning' : 'bg-error-muted text-error';
-  return <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${color}`}>{score}</span>;
+  return (
+    <span className="shrink-0 border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted">
+      {score}
+    </span>
+  );
 }
 
 export default function PipelinePage() {
@@ -80,7 +83,7 @@ export default function PipelinePage() {
         {loading ? (
           <div className="flex gap-4">
             {COLUMNS.map(c => (
-              <div key={c.status} className="w-64 shrink-0 animate-pulse rounded-xl bg-surface h-96" />
+              <div key={c.status} className="h-96 w-64 shrink-0 animate-pulse border border-border bg-surface" />
             ))}
           </div>
         ) : (
@@ -90,16 +93,14 @@ export default function PipelinePage() {
               return (
                 <div
                   key={col.status}
-                  className={`w-64 shrink-0 rounded-xl border ${col.color} p-3 flex flex-col`}
+                  className="flex w-64 shrink-0 flex-col border border-border p-3"
                   onDragOver={handleDragOver}
                   onDrop={(e) => handleDrop(e, col.status)}
                 >
                   {/* Column Header */}
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">{col.label}</h3>
-                    <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold text-background ${col.badge}`}>
-                      {colLeads.length}
-                    </span>
+                  <div className="mb-3 flex items-baseline justify-between border-b border-border pb-2">
+                    <h3 className="font-mono text-xs uppercase tracking-wider text-foreground">{col.label}</h3>
+                    <span className="font-mono text-xs text-muted">{colLeads.length}</span>
                   </div>
 
                   {/* Cards */}
@@ -110,7 +111,7 @@ export default function PipelinePage() {
                         href={`/leads/${lead.id}`}
                         draggable
                         onDragStart={(e) => handleDragStart(e, lead.id)}
-                        className={`block rounded-lg border border-white/80 bg-background p-3 shadow-sm cursor-grab active:cursor-grabbing transition-opacity hover:shadow-md ${
+                        className={`block cursor-grab border border-border bg-background p-3 transition-colors hover:border-border-hover active:cursor-grabbing ${
                           dragId === lead.id ? 'opacity-50' : ''
                         }`}
                       >
@@ -131,7 +132,7 @@ export default function PipelinePage() {
                       </Link>
                     ))}
                     {colLeads.length === 0 && (
-                      <div className="flex items-center justify-center h-20 rounded-lg border-2 border-dashed border-border text-xs text-muted">
+                      <div className="flex h-20 items-center justify-center border border-dashed border-border font-mono text-xs text-muted">
                         Arrastra leads aquí
                       </div>
                     )}

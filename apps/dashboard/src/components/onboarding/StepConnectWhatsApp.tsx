@@ -30,8 +30,34 @@ export function StepConnectWhatsApp({ onComplete }: StepConnectWhatsAppProps) {
     }
   }, [onComplete]);
 
+  // Este componente sólo consultaba el QR y nunca pedía generarlo, así que se
+  // quedaba esperando indefinidamente un código que nadie había creado.
+  // Arrancar la sesión es responsabilidad de quien muestra la pantalla.
   useEffect(() => {
-    pollQR();
+    let cancelado = false;
+
+    (async () => {
+      try {
+        const actual = await api.get<QRResponse>('/api/whatsapp/qr');
+        if (cancelado) return;
+        setQrCode(actual.qr_code);
+        setStatus(actual.status);
+        if (actual.status === 'connected') { onComplete(); return; }
+        // Sólo arrancar si no hay nada en curso: /connect limpia el QR y pone
+        // la sesión en 'connecting', así que llamarlo sobre una sesión viva la
+        // tumbaría.
+        if (actual.status === 'disconnected') {
+          await api.post('/api/whatsapp/connect');
+        }
+      } catch {
+        // Si falla, el polling de abajo lo vuelve a intentar.
+      }
+    })();
+
+    return () => { cancelado = true; };
+  }, [onComplete]);
+
+  useEffect(() => {
     const interval = setInterval(pollQR, 3000);
     return () => clearInterval(interval);
   }, [pollQR]);

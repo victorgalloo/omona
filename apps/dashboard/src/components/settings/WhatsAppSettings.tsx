@@ -11,10 +11,12 @@ interface WAStatus {
   status: string;
   phone_number: string | null;
   qr_code: string | null;
+  provider?: 'baileys' | 'cloud_api';
 }
 
 export function WhatsAppSettings() {
   const [status, setStatus] = useState<WAStatus>({ status: 'disconnected', phone_number: null, qr_code: null });
+  const [cambiandoCanal, setCambiandoCanal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [connecting, setConnecting] = useState(false);
   const pollRef = useRef<ReturnType<typeof setInterval>>();
@@ -88,8 +90,55 @@ export function WhatsAppSettings() {
   const isConnecting = status.status === 'connecting' || status.status === 'qr_pending' || connecting;
   const hasQR = !!status.qr_code;
 
+  const canal = status.provider ?? 'baileys';
+
+  async function cambiarCanal(provider: 'baileys' | 'cloud_api') {
+    if (provider === canal) return;
+    setCambiandoCanal(true);
+    try {
+      await api.post('/api/whatsapp/provider', { provider });
+      await fetchStatus();
+      toast.success(
+        provider === 'baileys'
+          ? 'Ahora contestas desde tu número de siempre'
+          : 'Cambiado a la API oficial. Falta cargar las credenciales de Meta.'
+      );
+    } catch {
+      toast.error('No pudimos cambiar el canal');
+    } finally {
+      setCambiandoCanal(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
+      {/* Canal. Hasta ahora no había forma de cambiarlo desde la interfaz:
+          setProvider existía en el servidor pero nadie lo llamaba. */}
+      <div className="rounded-lg border border-border p-4">
+        <h3 className="font-medium text-foreground">Canal</h3>
+        <p className="mt-0.5 text-sm text-muted">Por dónde salen y entran los mensajes de tu agente.</p>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+          {([
+            { id: 'baileys' as const, titulo: 'Tu número de siempre', pie: 'Se vincula con QR, sin costo por mensaje' },
+            { id: 'cloud_api' as const, titulo: 'API oficial de Meta', pie: 'Canal soportado, con costo por mensaje que tú inicias' },
+          ]).map((o) => (
+            <button
+              key={o.id}
+              onClick={() => cambiarCanal(o.id)}
+              disabled={cambiandoCanal}
+              className={`flex-1 border p-3 text-left transition-colors disabled:opacity-50 ${
+                canal === o.id ? 'border-foreground' : 'border-border hover:border-border-hover'
+              }`}
+            >
+              <div className="flex items-center gap-1.5 text-sm font-medium text-foreground">
+                {canal === o.id && <CheckCircle2 className="h-3.5 w-3.5 text-accent-green" />}
+                {o.titulo}
+              </div>
+              <div className="mt-0.5 text-xs text-muted">{o.pie}</div>
+            </button>
+          ))}
+        </div>
+      </div>
       {/* Status card */}
       <div className="rounded-lg border border-border p-4">
         <div className="flex items-center gap-4">

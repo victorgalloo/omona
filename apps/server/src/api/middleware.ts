@@ -172,35 +172,64 @@ export async function authMiddleware(c: Context, next: Next) {
             .select('organization_id')
             .eq('id', user.id)
             .single();
+
           if (existing?.organization_id) {
             orgId = existing.organization_id;
           } else {
-            logger.error({ error: orgErr }, 'Failed to create org');
-            return c.json({ error: 'Error creando organización' }, 500);
+            // El slug es determinista (`org-` + los 8 primeros del user id), así
+            // que un choque significa que YA creamos la org para este usuario en
+            // un intento anterior que murió antes de enlazar el perfil. Sin esta
+            // recuperación el usuario quedaba atrapado para siempre: la org
+            // existía, su perfil no apuntaba a ella, y cada petición devolvía 500.
+            const { data: huerfana } = await sb()
+              .from('organizations')
+              .select('id')
+              .eq('slug', slug)
+              .single();
+
+            if (huerfana?.id) {
+              orgId = huerfana.id;
+              logger.warn({ orgId, userId: user.id }, 'Org huérfana adoptada tras choque de slug');
+            } else {
+              logger.error({ error: orgErr }, 'Failed to create org');
+              return c.json({ error: 'Error creando organización' }, 500);
+            }
           }
         } else {
           orgId = org.id;
-
-          await sb()
-            .from('profiles')
-            .upsert({
-              id: user.id,
-              organization_id: orgId,
-              full_name: userName,
-              role: 'admin',
-              onboarding_completed: false,
-            });
-
-          await sb()
-            .from('agent_configs')
-            .insert({
-              organization_id: orgId,
-              business_name: orgName,
-              language: 'es-MX',
-            });
-
-          logger.info({ userId: user.id, orgId, email: user.email }, 'New user onboarded (fallback)');
         }
+
+        // El enlace perfil→org corre en AMBAS ramas. Antes vivía sólo en el
+        // camino feliz, así que si el insert de la org fallaba a medias el
+        // perfil nunca se creaba y el usuario volvía a chocar en la siguiente
+        // petición, indefinidamente.
+        const { error: perfilErr } = await sb()
+          .from('profiles')
+          .upsert({
+            id: user.id,
+            organization_id: orgId,
+            full_name: userName,
+            role: 'admin',
+            onboarding_completed: false,
+          });
+
+        if (perfilErr) {
+          // Si esto falla, el usuario queda sin perfil y nada más va a
+          // funcionar: mejor decirlo fuerte que seguir en silencio.
+          logger.error({ error: perfilErr, userId: user.id, orgId }, 'No pude enlazar el perfil con su organización');
+          return c.json({ error: 'Error creando el perfil' }, 500);
+        }
+
+        // agent_configs puede existir ya si adoptamos una org huérfana.
+        await sb()
+          .from('agent_configs')
+          .upsert({
+            organization_id: orgId,
+            business_name: orgName,
+            language: 'es-MX',
+          }, { onConflict: 'organization_id' });
+
+        logger.info({ userId: user.id, orgId, email: user.email }, 'New user onboarded (fallback)');
       }
     }
   }

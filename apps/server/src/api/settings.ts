@@ -46,3 +46,32 @@ settingsRoutes.put('/onboarding', async (c) => {
   await getSupabase().from('profiles').update(updates).eq('id', userId);
   return c.json({ ok: true });
 });
+
+// Tutorial de 10 pasos. El contador vive en el perfil y no en localStorage,
+// para que no reaparezca en cada navegador nuevo del mismo usuario.
+// Se muestra mientras tutorial_views < 2.
+const TUTORIAL_MAX_VIEWS = 2;
+
+settingsRoutes.post('/tutorial-view', async (c) => {
+  const { userId } = getAuth(c);
+  const supabase = getSupabase();
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('tutorial_views')
+    .eq('id', userId)
+    .single();
+
+  // Se topa en el máximo: sin esto, una pestaña rezagada podría dejar el
+  // contador en un número arbitrario.
+  const views = Math.min((profile?.tutorial_views ?? 0) + 1, TUTORIAL_MAX_VIEWS);
+
+  await supabase.from('profiles').update({ tutorial_views: views }).eq('id', userId);
+  return c.json({ tutorial_views: views });
+});
+
+settingsRoutes.post('/tutorial-reset', async (c) => {
+  const { userId } = getAuth(c);
+  await getSupabase().from('profiles').update({ tutorial_views: 0 }).eq('id', userId);
+  return c.json({ tutorial_views: 0 });
+});

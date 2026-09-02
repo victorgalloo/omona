@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { usePathname, useRouter } from 'next/navigation';
+import { api } from '@/lib/api';
+import { useTutorialViews } from './AuthGuard';
 import {
   MessageSquare,
   Users,
@@ -142,8 +144,11 @@ const TUTORIAL_STEPS: TutorialStep[] = [
 
 // ── Storage Key ──────────────────────────────────────────────────────
 
-const STORAGE_KEY = 'omona_tutorial_completed';
-const STORAGE_STEP_KEY = 'omona_tutorial_step';
+// El contador autoritativo es profiles.tutorial_views (por cuenta, no por
+// navegador). Esta marca de sesión sólo evita que recargar la página a media
+// sesión queme una de las dos vistas disponibles.
+const SESSION_COUNTED_KEY = 'omona-tutorial-counted';
+const MAX_VIEWS = 2;
 
 // ── Spotlight Component ──────────────────────────────────────────────
 
@@ -329,23 +334,37 @@ export function OnboardingTutorial() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  // Llega en el mismo select de profiles que AuthGuard ya hacía; `null`
+  // significa que todavía no se sabe, así que no se muestra nada.
+  const tutorialViews = useTutorialViews();
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
-    setMounted(true);
-    const completed = localStorage.getItem(STORAGE_KEY);
-    if (!completed) {
-      // Small delay so the page renders first
-      const timer = setTimeout(() => setActive(true), 800);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+    if (tutorialViews === null || tutorialViews >= MAX_VIEWS) return;
+
+    // Un pequeño retraso para que la pantalla alcance a renderizar debajo.
+    const timer = setTimeout(() => {
+      setActive(true);
+
+      // La vista se cuenta cuando el tutorial se muestra de verdad, no en cada
+      // carga de página, y una sola vez por sesión del navegador.
+      if (sessionStorage.getItem(SESSION_COUNTED_KEY)) return;
+      sessionStorage.setItem(SESSION_COUNTED_KEY, '1');
+      api.post('/api/settings/tutorial-view').catch(() => {
+        // Si el incremento falla, se vuelve a mostrar la próxima vez.
+        // Preferible a esconderlo por un error de red.
+        sessionStorage.removeItem(SESSION_COUNTED_KEY);
+      });
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [tutorialViews]);
 
   const step = TUTORIAL_STEPS[currentStep];
 
   const handleNext = useCallback(() => {
     if (currentStep >= TUTORIAL_STEPS.length - 1) {
-      // Done
-      localStorage.setItem(STORAGE_KEY, 'true');
       setActive(false);
       router.push('/settings');
       return;
@@ -356,7 +375,6 @@ export function OnboardingTutorial() {
       router.push(nextStep.route);
     }
     setCurrentStep((s) => s + 1);
-    localStorage.setItem(STORAGE_STEP_KEY, String(currentStep + 1));
   }, [currentStep, pathname, router]);
 
   const handlePrev = useCallback(() => {
@@ -366,13 +384,11 @@ export function OnboardingTutorial() {
       router.push(prevStep.route);
     }
     setCurrentStep((s) => s - 1);
-    localStorage.setItem(STORAGE_STEP_KEY, String(currentStep - 1));
   }, [currentStep, pathname, router]);
 
-  const handleSkip = useCallback(() => {
-    localStorage.setItem(STORAGE_KEY, 'true');
-    setActive(false);
-  }, []);
+  // Cerrarlo no lo marca como terminado para siempre: la vista ya se contó al
+  // mostrarse, y quedan las que queden.
+  const handleSkip = useCallback(() => setActive(false), []);
 
   if (!mounted || !active) return null;
 
@@ -407,9 +423,15 @@ export function OnboardingTutorial() {
 // ── Restart Button (for settings page) ──────────────────────────────
 
 export function RestartTutorialButton() {
-  const handleRestart = () => {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(STORAGE_STEP_KEY);
+  const handleRestart = async () => {
+    try {
+      await api.post('/api/settings/tutorial-reset');
+    } catch {
+      // Si el reset no llega al servidor, recargar no serviría de nada.
+      return;
+    }
+    // La marca de sesión también, o el contador no se incrementaría al volver.
+    sessionStorage.removeItem(SESSION_COUNTED_KEY);
     window.location.reload();
   };
 
