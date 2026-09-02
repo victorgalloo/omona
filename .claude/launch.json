@@ -4,8 +4,23 @@
     {
       "name": "dashboard",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev:dashboard"],
-      "port": 3000
+      "runtimeArgs": [
+        "run",
+        "dev:dashboard"
+      ],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "dashboard-verify",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev:verify",
+        "--workspace=apps/dashboard"
+      ],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

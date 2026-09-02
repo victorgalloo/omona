@@ -2,7 +2,8 @@
   "name": "omona",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "apps/server",
+    "apps/dashboard",
     "packages/*"
   ],
   "scripts": {
@@ -13,7 +14,10 @@
     "dev:dashboard": "npm run dev --workspace=apps/dashboard",
     "build:server": "npm run build --workspace=apps/server",
     "build:dashboard": "npm run build --workspace=apps/dashboard",
-    "start": "cd apps/server && npx tsx src/index.ts"
+    "start": "cd apps/server && npx tsx src/index.ts",
+    "video:studio": "npm --prefix apps/video run studio",
+    "video:render": "npm --prefix apps/video run render",
+    "video:install": "npm --prefix apps/video install"
   },
   "devDependencies": {
     "turbo": "^2",

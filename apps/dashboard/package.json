@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:verify": "NEXT_DIST_DIR=.next-verify next dev",
+    "check:contrast": "node scripts/check-contrast.mjs"
   },
   "dependencies": {
     "@number-flow/react": "^0.6.2",

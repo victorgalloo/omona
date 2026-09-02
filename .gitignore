@@ -13,3 +13,7 @@ apps/server/auth_sessions/
 .vercel
 .env*.local
 .env.production
+
+# Artefactos de build y planes de herramientas locales
+*.tsbuildinfo
+.hermes/
