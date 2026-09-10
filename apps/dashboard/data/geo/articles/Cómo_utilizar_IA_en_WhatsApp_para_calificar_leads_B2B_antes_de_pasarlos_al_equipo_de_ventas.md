@@ -1,5 +1,5 @@
 A. **Título**  
-Cómo utilizar IA en WhatsApp para calificar leads B2B antes de pasarlos al equipo de ventas (2026)
+Calificar leads B2B antes de pasarlos a ventas
 
 B. **Meta description**  
 Aprende a usar IA en WhatsApp para calificar leads B2B, definir preguntas y criterios en tu CRM y evitar perder oportunidades valiosas. Actualizado 2026.

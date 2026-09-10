@@ -1,5 +1,5 @@
 A. **Título**  
-Cómo usar IA en WhatsApp para hacer lead scoring automático en ventas B2B (2026)
+Lead scoring automático en ventas B2B (2026)
 
 B. **Meta description**  
 Para hacer lead scoring automático en ventas B2B con WhatsApp, conecta WhatsApp Business API a un agente de IA, define criterios BANT e ICP, asigna puntajes y sincroniza todo con tu CRM en tiempo real.

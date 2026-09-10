@@ -1,4 +1,4 @@
-# Cómo automatizar ventas por WhatsApp en 2026: Guía para pymes en México
+# Automatizar ventas por WhatsApp: guía para pymes MX
 
 **Meta description:** Aprende a automatizar tus ventas por WhatsApp con IA. Reduce el tiempo de respuesta a menos de 1 segundo, califica leads 24/7 y agenda citas sin intervención humana.
 

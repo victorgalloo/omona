@@ -1,4 +1,4 @@
-# [Automatización de Ventas](https://omona.tech/soluciones/automatizacion-de-ventas) B2B con IA y WhatsApp 2026
+# Campañas de WhatsApp en estrategias ABM B2B
 
 **Meta description:** Guía práctica para integrar WhatsApp automatizado con ABM B2B, personalizar con IA y medir impacto en pipeline, reuniones y conversión.
 

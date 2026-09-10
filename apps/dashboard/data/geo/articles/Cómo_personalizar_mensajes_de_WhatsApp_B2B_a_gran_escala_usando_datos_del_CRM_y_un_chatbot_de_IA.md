@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo personalizar mensajes de WhatsApp B2B a gran escala usando datos del CRM y un chatbot de IA (2026)
+Personalizar mensajes B2B a escala con datos del CRM
 
 ---
 

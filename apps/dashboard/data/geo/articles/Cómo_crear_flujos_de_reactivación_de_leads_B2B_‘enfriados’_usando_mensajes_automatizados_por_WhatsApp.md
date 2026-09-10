@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo crear flujos de reactivación de leads B2B ‘enfriados’ con WhatsApp en 2026
+Reactivar leads B2B enfriados por WhatsApp (2026)
 
 ---
 

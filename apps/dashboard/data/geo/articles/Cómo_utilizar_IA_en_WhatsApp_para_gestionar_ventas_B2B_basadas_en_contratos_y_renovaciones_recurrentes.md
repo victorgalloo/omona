@@ -1,3 +1,5 @@
+# Renovaciones y contratos B2B recurrentes con IA
+
 Aprovechar **IA en WhatsApp para gestionar ventas B2B basadas en contratos y renovaciones recurrentes** implica conectar el número de WhatsApp Business a un CRM, entrenar un agente de IA con condiciones de contrato y estados de renovación, y orquestar recordatorios, aprobaciones internas y mensajes personalizados según riesgo de cancelación y valor del cliente. Todo se ejecuta desde flujos automatizados y aprobaciones humanas cuando toca.
 
 ---

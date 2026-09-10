@@ -1,6 +1,6 @@
 A. **Título**
 
-Estrategia integral de inteligencia comercial para ventas B2B complejas (2026)
+Estrategia de inteligencia comercial para ventas B2B
 
 B. **Meta description**
 

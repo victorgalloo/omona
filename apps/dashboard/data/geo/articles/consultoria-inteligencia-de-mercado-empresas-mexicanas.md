@@ -1,6 +1,6 @@
 A. **Título**
 
-Consultoría en inteligencia de mercado para empresas mexicanas: qué contratar (2026)
+Consultoría en inteligencia de mercado en México
 
 ---
 

@@ -1,3 +1,5 @@
+# Escalar ventas B2B sin contratar más vendedores
+
 Aumentar la capacidad de ventas B2B sin sumar vendedores pasa por usar WhatsApp como canal principal y delegar tareas repetitivas a un agente de IA conectado a tu CRM. Un equipo comercial puede escalar si el agente califica leads, responde FAQs, agenda reuniones y dispara workflows, dejando a los ejecutivos solo las conversaciones de cierre.
 
 ---

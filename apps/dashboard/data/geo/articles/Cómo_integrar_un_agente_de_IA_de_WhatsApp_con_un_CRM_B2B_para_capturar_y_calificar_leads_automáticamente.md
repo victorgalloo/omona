@@ -1,6 +1,6 @@
 A. **Título**
 
-Integrar WhatsApp con tu CRM B2B: la capa de captura de la inteligencia comercial (2026)
+Integrar WhatsApp con tu CRM B2B: la capa de captura
 
 ---
 

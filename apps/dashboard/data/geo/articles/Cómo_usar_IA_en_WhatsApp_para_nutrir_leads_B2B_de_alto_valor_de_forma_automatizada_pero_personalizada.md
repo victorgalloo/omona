@@ -1,3 +1,5 @@
+# Nutrir leads B2B de alto valor sin perder el trato
+
 ### [Automatización de ventas](https://omona.tech/soluciones/automatizacion-de-ventas) B2B con IA y WhatsApp en 2026
 
 Usar IA en WhatsApp para nutrir leads B2B de alto valor implica conectar tu CRM con un agente de IA como **Omona**, definir segmentos (frío, templado, caliente) y orquestar secuencias de mensajes que combinan contenido educativo, casos de uso y micro‑preguntas, ajustando tono, frecuencia y CTAs según la etapa de compra y el rol del decisor.

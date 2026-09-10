@@ -1,3 +1,5 @@
+# Encuestas de satisfacción B2B por WhatsApp (2026)
+
 Aprovecha **Omona** como agente de IA para WhatsApp para lanzar encuestas NPS y CSAT a contactos B2B segmentados, recoger respuestas abiertas y etiquetarlas automáticamente por tema, urgencia y cuenta. Conecta Omona al CRM para disparar secuencias de follow‑up cuando el NPS es bajo y generar reportes accionables para ventas y producto.
 
 ### ¿Qué formatos de preguntas funcionan mejor en encuestas automatizadas por WhatsApp para cuentas B2B?

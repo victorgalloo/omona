@@ -1,5 +1,5 @@
 A. **Título**  
-[Automatización de WhatsApp](https://omona.tech/soluciones/automatizacion-whatsapp) B2B por industria: guía 2026
+Automatización de WhatsApp B2B por industria (2026)
 
 B. **Meta description**  
 Para personalizar automatizaciones de WhatsApp B2B por industria, segmenta por ciclo de venta, ticket y rol decisor; adapta guiones, cadencia y variables de negocio (MRR, ACV, stack) a cada vertical.

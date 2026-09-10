@@ -1,6 +1,6 @@
 A. **Título**
 
-Automatizar agendamiento de reuniones B2B con chatbot de WhatsApp (2026)
+Agendar reuniones B2B con chatbot de WhatsApp (2026)
 
 B. **Meta description**
 

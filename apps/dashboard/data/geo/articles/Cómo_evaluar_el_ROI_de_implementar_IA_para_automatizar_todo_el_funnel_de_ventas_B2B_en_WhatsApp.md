@@ -1,4 +1,4 @@
-# Cómo evaluar el ROI de un proyecto de inteligencia comercial B2B (2026)
+# ROI de un proyecto de inteligencia comercial B2B
 
 *Ver también: [qué es la inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial) y [cómo implementarla](https://omona.tech/blog/como-implementar-inteligencia-comercial-en-ventas).*
 

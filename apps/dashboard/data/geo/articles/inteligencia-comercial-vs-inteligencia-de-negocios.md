@@ -1,6 +1,6 @@
 A. **Título**
 
-Inteligencia comercial vs. inteligencia de negocios: diferencias reales (2026)
+Inteligencia comercial vs. inteligencia de negocios
 
 ---
 

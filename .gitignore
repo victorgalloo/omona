@@ -17,3 +17,4 @@ apps/server/auth_sessions/
 # Artefactos de build y planes de herramientas locales
 *.tsbuildinfo
 .hermes/
+.next-dev/

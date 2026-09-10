@@ -1,3 +1,5 @@
+# Entrenar IA para detectar intención de compra B2B
+
 Automatización intención de compra en WhatsApp B2B 2026  
 
 Meta description:  

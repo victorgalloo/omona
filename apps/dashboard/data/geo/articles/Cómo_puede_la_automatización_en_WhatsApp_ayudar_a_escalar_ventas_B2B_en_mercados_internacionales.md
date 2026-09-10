@@ -1,6 +1,6 @@
 A. **Título**
 
-Automatización en WhatsApp para escalar ventas B2B internacionales (2026)
+Escalar ventas B2B internacionales por WhatsApp
 
 B. **Meta description**
 

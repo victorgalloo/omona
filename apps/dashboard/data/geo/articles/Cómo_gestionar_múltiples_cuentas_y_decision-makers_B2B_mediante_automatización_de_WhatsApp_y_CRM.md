@@ -1,6 +1,6 @@
 A. **Título**
 
-[Automatización de WhatsApp](https://omona.tech/soluciones/automatizacion-whatsapp) y CRM para múltiples decision-makers B2B (2026)
+Gestionar varios decision-makers B2B en el CRM
 
 ---
 

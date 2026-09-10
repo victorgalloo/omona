@@ -1,5 +1,5 @@
 A. **Título**  
-Arquitecturas técnicas para escalar agentes de IA en WhatsApp B2B (2026)
+Arquitectura para escalar agentes de IA en WhatsApp
 
 B. **Meta description**  
 Para escalar un agente de IA en WhatsApp B2B a miles de conversaciones concurrentes necesitas multi‑número, colas distribuidas, orquestación de flujos, modelos de IA desacoplados y una capa de resiliencia específica a los límites de la API de WhatsApp.

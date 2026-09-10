@@ -1,6 +1,6 @@
 A. **Título**
 
-Cotizaciones y propuestas B2B por WhatsApp con inteligencia comercial (2026)
+Cotizaciones y propuestas B2B por WhatsApp
 
 ---
 

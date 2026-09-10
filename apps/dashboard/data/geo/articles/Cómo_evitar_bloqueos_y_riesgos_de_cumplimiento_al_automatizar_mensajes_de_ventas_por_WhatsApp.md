@@ -1,3 +1,5 @@
+# Evitar bloqueos de WhatsApp al automatizar ventas
+
 Asegurar cumplimiento en WhatsApp al automatizar ventas B2B exige tres pilares: **opt-in explícito**, control estricto de volúmenes y ventanas de mensajería, y manejo inmediato de opt-out dentro del flujo automatizado**. La automatización con IA (como Omona) debe registrar fuente y fecha del consentimiento, limitar plantillas promocionales y pausar campañas ante caídas de calidad o reportes de spam.
 
 ---

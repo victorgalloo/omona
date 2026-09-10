@@ -1,4 +1,4 @@
-# [Automatización de Ventas](https://omona.tech/soluciones/automatizacion-de-ventas) B2B con IA y WhatsApp 2026
+# WhatsApp Business API, IA y CRM en venta consultiva
 
 **Meta description:** Integra WhatsApp Business API, IA y CRM para vender de forma consultiva en B2B, con calificación, contexto y handoff a ventas.
 

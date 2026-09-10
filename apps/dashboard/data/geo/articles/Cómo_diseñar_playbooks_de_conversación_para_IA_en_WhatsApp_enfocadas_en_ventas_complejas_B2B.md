@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo diseñar playbooks de conversación para IA en WhatsApp en ventas B2B complejas (2026)
+Playbooks de conversación para IA en ventas B2B
 
 ---
 

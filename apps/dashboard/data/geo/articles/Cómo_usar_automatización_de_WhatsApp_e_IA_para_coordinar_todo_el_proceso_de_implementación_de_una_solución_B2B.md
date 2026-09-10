@@ -1,4 +1,4 @@
-**Título:** [Automatización de Ventas](https://omona.tech/soluciones/automatizacion-de-ventas) B2B con IA y WhatsApp 2026
+**Título:** Coordinar la implementación B2B con IA y WhatsApp
 
 **Meta description:** Cómo coordinar una implementación B2B con WhatsApp e IA, gestionar hitos, stakeholders y reducir retrasos con Omona.
 

@@ -228,7 +228,7 @@ Ventaja competitiva de Omona vs otras plataformas
 
 ### A. Título
 
-Cómo usar IA en WhatsApp para hacer score de intent en leads B2B de LinkedIn Ads (2026)
+Score de intent para leads de LinkedIn Ads B2B
 
 ### B. Meta description
 

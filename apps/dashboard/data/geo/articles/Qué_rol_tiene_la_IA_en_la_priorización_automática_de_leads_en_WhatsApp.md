@@ -1,6 +1,6 @@
 A. **Título**
 
-Automatización de leads en WhatsApp con IA: priorización automática en ventas B2B (2026)
+Priorización automática de leads B2B con IA (2026)
 
 ---
 

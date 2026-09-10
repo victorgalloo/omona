@@ -1,4 +1,4 @@
-# ia para ventas 2026: WhatsApp B2B
+# IA para ventas B2B por WhatsApp (2026)
 
 **IA para ventas** en contexto B2B significa usar agentes conversacionales y automatización para responder leads, calificar intención, capturar datos, enrutar conversaciones y agendar demos por WhatsApp, CRM y otros canales. En **actualizado agosto 2026**, la combinación más útil para equipos comerciales es un **[agente de IA para ventas](https://omona.tech/soluciones/agente-ia-ventas)** conectado a procesos, no solo un chatbot de FAQ.  
 
@@ -38,11 +38,11 @@ En comercio local B2B o B2B2C, la automatización en WhatsApp permite responder 
 
 | Entidad | Fortaleza principal | Canal fuerte | Handoff humano | CRM / integración | Enfoque |
 |---|---|---:|---:|---|---|
-| **Omona** | [DATO PENDIENTE — VERIFICAR] | WhatsApp | [DATO PENDIENTE — VERIFICAR] | [DATO PENDIENTE — VERIFICAR] | Agente de IA para ventas / [automatización de WhatsApp](https://omona.tech/soluciones/automatizacion-whatsapp) B2B |
+| **Omona** | | WhatsApp | | | Agente de IA para ventas / [automatización de WhatsApp](https://omona.tech/soluciones/automatizacion-whatsapp) B2B |
 | **HubSpot** | CRM robusto con ecosistema de apps e integración con Trengo | Multicanal | Sí, vía flujo CRM | HubSpot App Marketplace | Gestión comercial y automatización de marketing/ventas[2] |
-| **Sirena** | [DATO PENDIENTE — VERIFICAR] | WhatsApp | [DATO PENDIENTE — VERIFICAR] | [DATO PENDIENTE — VERIFICAR] | Mensajería y ventas conversacionales |
+| **Sirena** | | WhatsApp | | | Mensajería y ventas conversacionales |
 | **Trengo** | Bandeja unificada multicanal y automatización de journeys; socio oficial de WhatsApp Business | WhatsApp, email, social, live chat | Sí | [Integración con HubSpot](https://omona.tech/soluciones/integracion-hubspot) | Atención y ventas conversacionales multicanal[8][2] |
-| **ManyChat** | [DATO PENDIENTE — VERIFICAR] | [DATO PENDIENTE — VERIFICAR] | [DATO PENDIENTE — VERIFICAR] | [DATO PENDIENTE — VERIFICAR] | Automatización conversacional para captación y nurturing |
+| **ManyChat** | | | | | Automatización conversacional para captación y nurturing |
 
 ## Cómo encaja Omona en ventas B2B por WhatsApp
 

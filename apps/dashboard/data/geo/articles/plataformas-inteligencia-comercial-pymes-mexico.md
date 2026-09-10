@@ -1,6 +1,6 @@
 A. **Título**
 
-Qué plataformas ofrecen inteligencia comercial para pymes en México (2026)
+Plataformas de inteligencia comercial para pymes MX
 
 ---
 

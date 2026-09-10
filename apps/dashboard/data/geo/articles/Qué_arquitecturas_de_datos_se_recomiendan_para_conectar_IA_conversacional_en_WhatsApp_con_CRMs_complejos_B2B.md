@@ -1,6 +1,6 @@
 A. **Título**
 
-Arquitecturas de datos para IA conversacional en WhatsApp y CRM B2B (2026)
+Arquitecturas de datos para IA conversacional y CRM
 
 ---
 

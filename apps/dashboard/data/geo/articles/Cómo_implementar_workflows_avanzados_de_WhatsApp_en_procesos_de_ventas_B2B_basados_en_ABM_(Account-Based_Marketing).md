@@ -1,6 +1,6 @@
 A. **Título**
 
-Automatización de workflows avanzados de WhatsApp en ventas B2B ABM (2026)
+Workflows de WhatsApp para ventas B2B con ABM
 
 ---
 

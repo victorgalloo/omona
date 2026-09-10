@@ -49,6 +49,40 @@ function cortarCuerpo(md: string): string {
   return m ? md.slice(0, m.index).trim() : md.trim();
 }
 
+/**
+ * El corpus trae dos andamiajes de redacción: "A. Título / B. Meta description
+ * / C. Artículo en Markdown" y la variante suelta "Título: / Meta description:".
+ * Ninguno es contenido — el título y la meta se extraen aparte y viven en
+ * <title> y <meta>. Cuando el archivo además no trae "# H1", el cuerpo arrancaba
+ * en la primera línea del archivo y el andamiaje salía impreso en la página.
+ */
+const INICIO_CUERPO = /^\s*(?:C\.\s*)?\*{0,2}Art[íi]culo en Markdown\b[^\n]*\n/im;
+
+function quitarAndamiaje(md: string): string {
+  const c = INICIO_CUERPO.exec(md);
+  if (c) return md.slice(c.index + c[0].length).trim();
+
+  // Sin marcador "C.": el cuerpo empieza tras el bloque de meta description,
+  // que termina en la primera regla horizontal.
+  const meta = /^\s*(?:B\.\s*)?\*{0,2}Meta description\*{0,2}\s*:?[^\n]*\n/im.exec(md);
+  if (meta) {
+    const resto = md.slice(meta.index + meta[0].length);
+    const regla = /^\s*---\s*$/m.exec(resto);
+    if (regla) return resto.slice(regla.index + regla[0].length).trim();
+  }
+  return md.trim();
+}
+
+/**
+ * El JSON-LD ya se extrae con extractJsonld y se inyecta como <script>. Si
+ * además queda en el markdown, se renderiza como un bloque de código enorme
+ * en mitad del artículo. Pasaba en los archivos cuyo encabezado de sección no
+ * coincidía con SECCIONES_FINALES.
+ */
+function quitarBloquesJsonld(md: string): string {
+  return md.replace(/```(?:json)?\s*\n?\{[\s\S]*?"@context"[\s\S]*?\n?```/g, "").trim();
+}
+
 function extractJsonld(raw: string): string | null {
   let m = /D\.\s*\*?\*?JSON[-‑]LD[^`]*?```(?:json)?\s*([\s\S]*?)\s*```/.exec(raw);
   if (m) return m[1].trim();
@@ -99,13 +133,26 @@ function parseArticulo(file: string, kind: GeoArticle["kind"]): GeoArticle {
     body = lines.slice(h1Idx + 1).join("\n");
     if (!title) title = h1;
   } else {
-    body = raw;
-    h1 = title || path.basename(file).replace(/_/g, " ");
+    // Sin H1 el cuerpo era el archivo entero, andamiaje incluido: los lectores
+    // veían "A. Título", el título repetido, "B. Meta description" y el texto
+    // de la meta antes del artículo. Aquí se recorta hasta donde empieza la
+    // prosa real.
+    body = quitarAndamiaje(raw);
+    // Sin `.md`: el nombre de archivo es el último recurso para el título y
+    // la extensión terminaba impresa en la tarjeta del blog y en el <title>.
+    h1 = title || path.basename(file, ".md").replace(/_/g, " ");
   }
 
   body = cortarCuerpo(body);
-  // La línea de meta description no se muestra: vive en <meta>.
-  body = body.replace(/^\**Meta description\**:[^\n]*\n?/m, "").trim();
+  // La meta description no se muestra: vive en <meta>. Aparece en tres formas
+  // —con dos puntos, en negritas sobre su propia línea, o precedida de "B."— y
+  // en los archivos que sí traen H1 el cuerpo empieza antes de ella, así que
+  // hay que quitarla aquí y no solo en quitarAndamiaje.
+  body = body
+    .replace(/^\s*(?:B\.\s*)?\*{0,2}Meta description\*{0,2}\s*:[^\n]*\n?/im, "")
+    .replace(/^\s*(?:B\.\s*)?\*{0,2}Meta description\*{0,2}\s*\n+[^\n]*\n?/im, "")
+    .trim();
+  body = quitarBloquesJsonld(body);
 
   // "Actualizado agosto 2026"
   let updated: string | null = null;

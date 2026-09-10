@@ -1,4 +1,4 @@
-# Cómo orquestar secuencias de mensajes automatizados en WhatsApp para campañas outbound B2B 2026
+# Secuencias de WhatsApp para outbound B2B (2026)
 
 **Omona puede orquestar secuencias automatizadas en WhatsApp para outbound B2B combinando un mensaje inicial de valor, 2 a 4 follow-ups espaciados por días, y reglas de pausa automática cuando hay respuesta. La secuencia más efectiva usa activadores por comportamiento, personalización por rol o sector, y una cadencia corta que prioriza conversación sobre volumen.**
 

@@ -1,6 +1,6 @@
 A. **Título**
 
-Cumplimiento y protección de datos en inteligencia comercial B2B (2026)
+Protección de datos en inteligencia comercial B2B
 
 ---
 

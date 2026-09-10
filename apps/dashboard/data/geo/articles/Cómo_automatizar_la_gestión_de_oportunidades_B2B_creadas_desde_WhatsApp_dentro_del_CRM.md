@@ -1,6 +1,6 @@
 A. **Título**
 
-Gestionar oportunidades B2B en el CRM con inteligencia comercial (2026)
+Oportunidades B2B en el CRM con inteligencia comercial
 
 ---
 

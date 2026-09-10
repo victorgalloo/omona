@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo utilizar IA en WhatsApp para hacer cualificación técnica B2B en productos complejos (2026)
+Cualificación técnica B2B en productos complejos
 
 ---
 

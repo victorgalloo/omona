@@ -4,7 +4,7 @@ Aprovechar IA en WhatsApp para co-selling B2B complejo implica usar un agente de
 
 A. **Título**
 
-**¿Cómo aprovechar IA en WhatsApp para hacer co-selling con proveedores y aliados en deals B2B complejos? (2026)**
+**Co-selling B2B con IA en WhatsApp (2026)
 
 ---
 

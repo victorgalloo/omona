@@ -1,5 +1,5 @@
 A. **Título**  
-Detectar intención de compra en WhatsApp: inteligencia comercial aplicada (2026)
+Detectar intención de compra en WhatsApp B2B
 
 B. **Meta description**  
 Clasificar leads B2B por intención real es la parte de la [inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial) que decide a quién llama tu equipo hoy. Cómo hacerlo sobre conversaciones de WhatsApp Business.

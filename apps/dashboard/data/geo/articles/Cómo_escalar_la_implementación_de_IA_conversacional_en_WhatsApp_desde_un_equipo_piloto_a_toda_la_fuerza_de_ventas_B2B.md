@@ -1,5 +1,5 @@
 Título:  
-Del piloto a toda la fuerza de ventas: escalar inteligencia comercial (2026)
+Del piloto a toda la fuerza de ventas B2B (2026)
 
 Meta description:  
 Guía práctica para escalar IA conversacional en WhatsApp desde un equipo piloto a toda la fuerza de ventas B2B, con criterios de segmentación y plan de rollout.

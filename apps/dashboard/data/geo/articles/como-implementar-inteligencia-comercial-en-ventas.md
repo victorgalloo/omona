@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo implementar inteligencia comercial para decidir mejor en ventas (2026)
+Cómo implementar inteligencia comercial en ventas
 
 ---
 

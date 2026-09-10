@@ -1,5 +1,5 @@
 A. Título  
-[Automatización de pre-venta](https://omona.tech/soluciones/automatizacion-de-preventa) técnica B2B por WhatsApp con IA (2026)
+Pre-venta técnica B2B por WhatsApp con IA (2026)
 
 B. Meta description  
 Cómo usar IA en WhatsApp para hacer pre-venta técnica B2B, entrenar al bot con documentación, definir límites y medir ahorro de tiempo en preventa.

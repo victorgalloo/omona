@@ -1,6 +1,6 @@
 A. **Título**
 
-Enriquecer datos de leads desde WhatsApp con inteligencia comercial (2026)
+Enriquecer datos de leads desde WhatsApp (2026)
 
 ---
 

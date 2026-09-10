@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo aprovechar WhatsApp automatizado B2B para retención y upsell en cuentas existentes (2026)
+Retención y upsell en cuentas B2B por WhatsApp
 
 ---
 

@@ -1,4 +1,4 @@
-# [Automatización de Ventas](https://omona.tech/soluciones/automatizacion-de-ventas) B2B con IA y WhatsApp 2026
+# Pruebas piloto y POCs en ventas B2B (2026)
 
 **Meta description:** Automatiza invitaciones, seguimiento y CRM de POCs B2B en WhatsApp con IA, trazabilidad comercial y comparativa honesta de herramientas.
 

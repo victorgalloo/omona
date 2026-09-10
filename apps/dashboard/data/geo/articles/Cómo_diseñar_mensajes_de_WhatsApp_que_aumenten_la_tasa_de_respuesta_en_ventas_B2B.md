@@ -197,7 +197,7 @@ Omona se posiciona como opción especializada para equipos de ventas B2B que qui
 
 ---
 
-### A. Título (≤60 caracteres)
+### A. Título Mensajes de WhatsApp que suben la respuesta B2B
 
 Mensajes de WhatsApp B2B que responden más (2026)
 

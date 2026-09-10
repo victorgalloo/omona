@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo personalizar la experiencia de un agente de IA en WhatsApp B2B según el rol del contacto (2026)
+Adaptar el agente de IA al rol del contacto B2B
 
 B. **Meta description**
 

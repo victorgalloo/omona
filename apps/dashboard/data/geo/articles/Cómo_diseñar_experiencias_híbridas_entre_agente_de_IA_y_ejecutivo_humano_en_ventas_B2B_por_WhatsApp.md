@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo diseñar experiencias híbridas IA‑humano en ventas B2B por WhatsApp (2026)
+Experiencias híbridas IA-humano en ventas B2B
 
 ---
 
