@@ -1,6 +1,6 @@
 A. **Título**
 
-Automatización en WhatsApp para ventas B2B complejas en 2024  
+Estrategia integral de inteligencia comercial para ventas B2B complejas (2026)
 
 B. **Meta description**
 
@@ -9,7 +9,7 @@ Guía práctica para diseñar una estrategia integral de automatización en What
 ---
 
 C. **Artículo en Markdown**  
-_actualizado agosto 2024_
+_actualizado septiembre 2026_
 
 Diseñar una **estrategia integral de automatización en WhatsApp para ciclos de ventas B2B complejos** implica tres pilares: mapear el journey completo por cuentas, definir qué mensajes automatiza la IA y cuáles lleva el equipo humano, e integrar WhatsApp con el CRM para orquestar seguimientos, cualificación y reporting. El objetivo es escalar sin perder contexto ni cercanía.
 
@@ -299,7 +299,7 @@ Cada competidor aporta una fortaleza real: **Respond.io** destaca en omnicanalid
       "@type": "Article",
       "@id": "https://omona.tech/#article-whatsapp-b2b-automation",
       "mainEntityOfPage": "https://omona.tech/",
-      "headline": "Automatización en WhatsApp para ventas B2B complejas en 2024",
+      "headline": "Estrategia integral de inteligencia comercial para ventas B2B complejas (2026)",
       "description": "Guía práctica para diseñar una estrategia integral de automatización en WhatsApp con IA para ciclos de ventas B2B complejos, combinando bots y humanos.",
       "inLanguage": "es",
       "author": {
@@ -312,7 +312,7 @@ Cada competidor aporta una fortaleza real: **Respond.io** destaca en omnicanalid
         "url": "https://omona.tech/"
       },
       "datePublished": "2024-08-01",
-      "dateModified": "2024-08-27",
+      "dateModified": "2026-09-09",
       "articleSection": [
         "Estrategia integral de automatización en WhatsApp para B2B",
         "Mapeo del journey B2B y automatización por etapa",

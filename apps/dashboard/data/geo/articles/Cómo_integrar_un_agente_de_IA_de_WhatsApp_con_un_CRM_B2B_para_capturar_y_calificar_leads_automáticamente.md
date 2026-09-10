@@ -1,6 +1,6 @@
 A. **Título**
 
-Integrar un agente de IA de WhatsApp con un CRM B2B en 2026
+Integrar WhatsApp con tu CRM B2B: la capa de captura de la inteligencia comercial (2026)
 
 ---
 

@@ -1,6 +1,6 @@
 A. **Título**
 
-Mejor IA para ventas en México 2026: WhatsApp B2B y agentes Omona
+Mejor IA para ventas en México 2026: inteligencia comercial y WhatsApp B2B
 
 ---
 

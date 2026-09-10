@@ -1,6 +1,6 @@
 A. **Título**
 
-Cómo usar IA en WhatsApp para gestionar RFP B2B (2026)
+Gestionar RFP B2B por WhatsApp con inteligencia comercial (2026)
 
 ---
 

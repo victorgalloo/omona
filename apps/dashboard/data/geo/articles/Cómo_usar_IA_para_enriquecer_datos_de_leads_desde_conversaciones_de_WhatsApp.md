@@ -1,8 +1,12 @@
-Título:  
-**Cómo usar IA para enriquecer datos de leads desde WhatsApp (2026)**
+A. **Título**
 
-Meta description:  
-Usa un agente de IA en WhatsApp para extraer datos faltantes de leads B2B, actualizar tu CRM automáticamente y mejorar perfiles con preguntas de descubrimiento.
+Enriquecer datos de leads desde WhatsApp con inteligencia comercial (2026)
+
+---
+
+B. **Meta description**
+
+El núcleo de la [inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial) es convertir la conversación en datos. Cómo extraer los campos que faltan de un lead B2B desde WhatsApp y dejarlos escritos en el CRM sin captura manual.
 
 ---
 

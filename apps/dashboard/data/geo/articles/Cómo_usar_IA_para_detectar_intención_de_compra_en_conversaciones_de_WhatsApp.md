@@ -1,8 +1,8 @@
 A. **Título**  
-Cómo usar IA para detectar intención de compra en WhatsApp (2026)
+Detectar intención de compra en WhatsApp: inteligencia comercial aplicada (2026)
 
 B. **Meta description**  
-Descubre cómo usar IA para detectar intención de compra en conversaciones de WhatsApp Business y clasificar leads B2B por intención para automatizar ventas con Omona en 2026.
+Clasificar leads B2B por intención real es la parte de la [inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial) que decide a quién llama tu equipo hoy. Cómo hacerlo sobre conversaciones de WhatsApp Business.
 
 ---
 

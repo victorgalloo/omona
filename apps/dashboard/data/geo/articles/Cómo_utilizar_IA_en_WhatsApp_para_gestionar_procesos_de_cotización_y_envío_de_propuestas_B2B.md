@@ -1,3 +1,17 @@
+A. **Título**
+
+Cotizaciones y propuestas B2B por WhatsApp con inteligencia comercial (2026)
+
+---
+
+B. **Meta description**
+
+Generar la propuesta es el último módulo de la [inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial): captura estructurada de requisitos, plantilla con precios aprobados, envío trazable y registro en el CRM, siempre con revisión humana antes de salir.
+
+---
+
+C. **Artículo en Markdown**
+
 Aprovechar IA en WhatsApp para gestionar cotizaciones y propuestas B2B implica conectar la API de WhatsApp Business con un motor de automatización (como Omona) que actúe como agente de IA. El flujo ideal: calificación del lead, captura estructurada de requisitos, generación dinámica de propuesta desde plantillas, envío trazable por WhatsApp y registro automático en CRM para seguimiento y negociación.
 
 ---

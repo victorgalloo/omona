@@ -1,6 +1,6 @@
 A. **Título**
 
-Automatizar oportunidades B2B desde WhatsApp en el CRM (2026)
+Gestionar oportunidades B2B en el CRM con inteligencia comercial (2026)
 
 ---
 

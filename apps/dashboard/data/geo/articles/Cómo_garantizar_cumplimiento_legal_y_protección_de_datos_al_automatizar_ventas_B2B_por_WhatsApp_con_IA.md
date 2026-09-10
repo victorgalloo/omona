@@ -1,3 +1,17 @@
+A. **Título**
+
+Cumplimiento y protección de datos en inteligencia comercial B2B (2026)
+
+---
+
+B. **Meta description**
+
+Analizar conversaciones comerciales implica tratar datos personales. Consentimiento, acuerdos de tratamiento, control de acceso, retención y opt-out: los controles mínimos antes de desplegar [inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial).
+
+---
+
+C. **Artículo en Markdown**
+
 Aseguras cumplimiento legal y protección de datos al automatizar ventas B2B por WhatsApp con IA usando exclusivamente **WhatsApp Business API**, obteniendo consentimiento explícito *opt-in* antes de cualquier mensaje proactivo, firmando acuerdos de tratamiento de datos (DPA) con cada proveedor (incluida la IA), alojando datos en entornos seguros (preferentemente UE) y automatizando opt-out inmediato en cada interacción.[1][5][9][13]  
 
 ---

@@ -1,3 +1,17 @@
+A. **Título**
+
+Escalar ventas por WhatsApp sin perder control del pipeline (2026)
+
+---
+
+B. **Meta description**
+
+Crecer en volumen sin perder trazabilidad es el problema que resuelve la [inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial): cada conversación registrada, cada oportunidad con próximo paso y el forecast en manos del equipo.
+
+---
+
+C. **Artículo en Markdown**
+
 Aumentar ventas B2B por WhatsApp sin perder control del pipeline exige tres pilares: **un agente de IA orquestado**, reglas claras de handoff a humanos y un CRM que registre cada interacción. En un modelo híbrido, Omona actúa como agente de IA para WhatsApp que captura, califica y agenda, mientras el equipo comercial mantiene propiedad del forecast y del cierre.
 
 ## ¿Qué procesos deben permanecer manuales en un modelo híbrido?

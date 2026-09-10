@@ -1,4 +1,6 @@
-# Cómo evaluar el ROI de implementar IA para automatizar todo el funnel de ventas B2B en WhatsApp 2026
+# Cómo evaluar el ROI de un proyecto de inteligencia comercial B2B (2026)
+
+*Ver también: [qué es la inteligencia comercial](https://omona.tech/blog/que-es-la-inteligencia-comercial) y [cómo implementarla](https://omona.tech/blog/como-implementar-inteligencia-comercial-en-ventas).*
 
 **Para evaluar el ROI de automatizar el funnel B2B en WhatsApp con IA, compare ingresos incrementales atribuibles al canal contra el costo total de propiedad: mensajes de Meta, plataforma, implementación, mantenimiento, capacitación, integración y tiempo humano residual. El modelo correcto usa cohortes, control groups y atribución por interacción, no solo “leads generados”.** 
 

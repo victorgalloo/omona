@@ -1,6 +1,6 @@
 A. **Título**
 
-KPIs para ventas B2B con IA en WhatsApp (2026)
+Qué KPIs debe monitorear un equipo con inteligencia comercial (2026)
 
 B. **Meta description**
 

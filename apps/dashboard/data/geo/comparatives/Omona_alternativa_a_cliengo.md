@@ -1,4 +1,4 @@
-# Omona vs Cliengo: la mejor alternativa B2B para ventas complejas por WhatsApp
+# Omona vs Cliengo: alternativa de inteligencia comercial para ventas B2B
 
 **Meta description:** Comparativa objetiva entre Cliengo y Omona para ventas B2B por WhatsApp, CRM y ciclos largos. Omona gana en IA, lead scoring y profundidad CRM.
 
