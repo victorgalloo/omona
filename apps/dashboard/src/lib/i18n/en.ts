@@ -3,27 +3,25 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'Features',
-    process: 'Process',
-    pricing: 'Pricing',
+    features: 'The system',
+    process: 'The 6 weeks',
+    pricing: 'How we work',
     blog: 'Blog',
     useCases: 'Use Cases',
     demo: 'Demo',
     login: 'Log in',
-    signup: 'Get started free',
+    signup: 'Book a diagnostic',
   },
   hero: {
-    // These four are no longer rendered: the hero was cut down to headline,
-    // subtitle and one CTA so the motion has room. `chat` is kept because it is
-    // the text baked into the ChatRespondiendo loop (apps/video); if it changes
-    // there, change it here.
-    badge: 'Available for Mexico & LATAM',
-    tagline: '11:40 p.m. Someone replies.',
-    subtagline: "And it isn't you. It's your agent, with your prices, closing the sale.",
-    cta: 'Get started free',
+    // `chat` is kept because it is the text baked into the ChatRespondiendo loop
+    // (apps/video); if it changes there, change it here.
+    badge: 'Commercial intelligence for B2B teams',
+    tagline: 'Month closed. Nobody filled the CRM.',
+    subtagline: 'Commercial intelligence for B2B teams selling on WhatsApp: every conversation lands in your CRM on its own, with its next task, its owner and its due date.',
+    cta: 'Book a diagnostic',
     whatsapp: 'WhatsApp',
-    whatsappLink: 'Or message us on WhatsApp',
-    setup: 'Connect your number by scanning a QR · No credit card',
+    whatsappLink: 'Or try it yourself in the demo',
+    setup: '30-minute diagnostic · No charge',
     companies: 'Your existing number. No Meta approval needed.',
     chatContext: 'Industrial hardware supplier · Monday 11:40 PM',
     chat: [
@@ -45,7 +43,7 @@ export const en: Translations = {
     subheading: 'It does not reply with canned phrases: it understands the question, checks your information and acts.',
     crm: {
       title: 'Your CRM, living inside Omona',
-      subtitle: "We embed Twenty — the #1 open-source CRM — directly into your dashboard. Every agent conversation feeds the pipeline in real time.",
+      subtitle: 'Every conversation the agent handles turns itself into a contact and an opportunity, with nobody typing anything in by hand.',
       bullet1: 'Visual pipeline: every lead the agent handles shows up as an opportunity on the board, with stage and value.',
       bullet2: 'Contacts enriched automatically: school, role, and contact details with zero manual entry.',
       bullet3: 'Your team takes over anytime: move stages, create tasks, and leave notes on the agent conversation.',
@@ -98,14 +96,59 @@ export const en: Translations = {
   },
   howItWorks: {
     sectionLabel: 'process_',
-    heading: 'From "hi" to booked demo',
-    subheading: 'Without touching your phone',
+    heading: 'Six weeks, three phases',
+    subheading: 'We measure your starting point before automating anything. Without a baseline there is no way to know whether it worked.',
     steps: [
-      { title: 'Lead writes', detail: '"I saw your ad, how much does it cost?"' },
-      { title: 'Omona responds', detail: '0.8s · qualifies · personalizes' },
-      { title: 'Books demo', detail: 'Automatic confirmation · no intervention' },
-      { title: 'You close', detail: 'Prepared lead · full context' },
+      { title: 'Week 1 · Diagnostic', detail: 'We map your process and measure the baseline' },
+      { title: 'Weeks 2-5 · Pilot', detail: 'One single flow live, with human review' },
+      { title: 'Week 6 · Checkpoint', detail: 'We compare against the week 1 baseline' },
+      { title: 'After · Operation', detail: 'It expands to more flows, or we refund the pilot' },
     ],
+  },
+  offerStack: {
+    sectionLabel: 'system_',
+    heading: 'What gets implemented',
+    subheading: 'Four modules that turn loose conversations into data, tasks and proposals.',
+    modules: [
+      {
+        title: 'Capture and classification',
+        detail: 'WhatsApp, email and calendar land in the same place. Every message is tied to its company, its contact and its opportunity.',
+      },
+      {
+        title: 'Conversation intelligence',
+        detail: 'Every conversation yields needs, budget, objections and next steps as structured fields, not as a loose paragraph.',
+      },
+      {
+        title: 'Follow-up that never slips',
+        detail: 'A task with an owner and a date, a reminder before it comes due, and escalation to leadership if the opportunity goes quiet.',
+      },
+      {
+        title: 'Proposal drafts',
+        detail: 'Built from your catalog, your prices and your approved terms. They always go through human review before they go out.',
+      },
+    ],
+    bonusLabel: 'And also included',
+    bonuses: [
+      'A map of your current sales process',
+      'A CRM field dictionary',
+      'A library of approved follow-up templates',
+      'A pipeline dashboard for leadership',
+      'A CRM data quality audit',
+      'Adoption coaching with your team',
+    ],
+  },
+  guarantee: {
+    sectionLabel: 'guarantee_',
+    heading: 'If it does not happen, we refund the full pilot',
+    body: 'In week 1 we measure your baseline. If at the end of the six weeks your CRM does not reflect 90% of your sales conversations, and every open opportunity does not have a next task with an owner and a date, we refund 100% of what you paid for the pilot.',
+    conditionsLabel: 'What we need from your side',
+    conditions: [
+      'A kickoff with whoever can approve processes',
+      'Access to WhatsApp, CRM and calendar in week 1',
+      'Templates reviewed and approved within 5 business days',
+      'One designated owner inside your team',
+    ],
+    note: 'This is not fine print: these are the four things without which the result does not happen.',
   },
   useCases: {
     sectionLabel: 'use_cases_',
@@ -148,10 +191,10 @@ export const en: Translations = {
     ],
   },
   cta: {
-    heading: 'Start selling more today',
-    subheading: 'No credit card. Cancel anytime.',
-    primary: 'Get started free',
-    secondary: 'WhatsApp',
+    heading: 'Start with the diagnostic',
+    subheading: 'Thirty minutes. You leave with your baseline measured and one prioritized flow, whether you work with us or not.',
+    primary: 'Book a diagnostic',
+    secondary: 'See the demo',
     trust: 'And if you would rather see it first, talk to the agent in the demo.',
   },
   footer: {
@@ -203,10 +246,10 @@ export const en: Translations = {
       { text: 'Priority WhatsApp support' },
     ],
     stats: [
-      { value: '200+', label: 'companies' },
+      { value: 'Unlimited', label: 'conversations' },
       { value: '14 days', label: 'free trial' },
       { value: '0.8s', label: 'response time' },
-      { value: '8x', label: 'avg ROI' },
+      { value: 'Cancel', label: 'anytime' },
     ],
     faqHeading: 'Frequently asked questions',
     faqs: [

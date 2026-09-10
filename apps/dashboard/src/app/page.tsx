@@ -8,8 +8,8 @@ import { LandingCrmEmbedded } from '@/components/landing/LandingCrmEmbedded';
 import { LandingBeforeAfter } from '@/components/landing/LandingBeforeAfter';
 import { LandingHowItWorks } from '@/components/landing/LandingHowItWorks';
 import { LandingStats } from '@/components/landing/LandingStats';
-import { LandingPriceAdvantage } from '@/components/landing/LandingPriceAdvantage';
-import { LandingPricing } from '@/components/landing/LandingPricing';
+import { LandingOfferStack } from '@/components/landing/LandingOfferStack';
+import { LandingGuarantee } from '@/components/landing/LandingGuarantee';
 import { LandingUseCases } from '@/components/landing/LandingUseCases';
 import { LandingFAQ } from '@/components/landing/LandingFAQ';
 import { LandingCTA } from '@/components/landing/LandingCTA';
@@ -19,22 +19,22 @@ import { es } from '@/lib/i18n';
 import { Logo } from '../components/shared/Logo';
 
 export const metadata: Metadata = {
-  title: 'Omona | Agente de Ventas IA para WhatsApp | Mexico y LATAM',
+  title: 'Omona | Inteligencia Comercial con IA para Equipos B2B | Mexico',
   description:
-    'Automatiza tus ventas por WhatsApp con inteligencia artificial. Omona responde clientes 24/7, califica leads y agenda citas. CRM integrado para pymes. Desde $499 MXN/mes. Prueba gratis 14 dias.',
+    'Inteligencia comercial para equipos B2B que venden por WhatsApp. Cada conversacion entra sola al CRM, con su proxima tarea, responsable y fecha. Implementacion en 6 semanas con piloto garantizado.',
   openGraph: {
-    title: 'Omona | Agente de Ventas IA para WhatsApp | Mexico y LATAM',
+    title: 'Omona | Inteligencia Comercial con IA para Equipos B2B | Mexico',
     description:
-      'Automatiza tus ventas por WhatsApp con IA. Omona responde 24/7, califica leads y agenda citas. CRM para pymes desde $499 MXN/mes.',
+      'Inteligencia comercial para equipos B2B que venden por WhatsApp. Cada conversacion entra sola al CRM, con su proxima tarea, responsable y fecha.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omona | Agente de Ventas IA para WhatsApp',
+    title: 'Omona | Inteligencia Comercial con IA para Equipos B2B',
     description:
-      'Automatiza tus ventas por WhatsApp con IA. Responde 24/7, califica leads y agenda citas. CRM para pymes en Mexico y LATAM.',
+      'Inteligencia comercial para equipos B2B que venden por WhatsApp. Cada conversacion entra sola al CRM, con tarea, responsable y fecha.',
   },
   alternates: {
     canonical: 'https://omona.tech',
@@ -56,7 +56,7 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       logo: 'https://omona.tech/icon.svg',
       description:
-        'Omona es un agente de ventas con inteligencia artificial para WhatsApp. Automatiza la atencion al cliente, califica leads y agenda citas 24/7 para pymes en Mexico y Latinoamerica.',
+        'Omona es una plataforma de inteligencia comercial con IA conversacional para equipos B2B. Convierte las conversaciones de WhatsApp en registros de CRM, tareas de seguimiento y borradores de propuesta para pymes en Mexico y Latinoamerica.',
       areaServed: [
         { '@type': 'Country', name: 'Mexico' },
         { '@type': 'Country', name: 'Colombia' },
@@ -79,37 +79,34 @@ const jsonLdGraph = {
       inLanguage: 'es-MX',
       softwareVersion: '1.0',
       description:
-        'Agente de ventas con IA para WhatsApp. Automatiza respuestas, califica leads y agenda citas. CRM integrado para pymes en Mexico y LATAM.',
+        'Plataforma de inteligencia comercial con IA conversacional. Extrae necesidades, presupuesto, objeciones y proximos pasos de cada conversacion, actualiza el CRM y genera tareas y borradores de propuesta.',
       featureList: [
-        'Respuesta automatica 24/7 por WhatsApp en segundos',
-        'Calificacion de leads con IA (score 0-100)',
-        'Agendamiento automatico de citas sin intervencion humana',
-        'CRM integrado con pipeline Kanban',
-        'Analytics de conversaciones y tasa de conversion',
-        'Follow-up automatizado de leads inactivos',
-        'Transferencia a agente humano (handoff) inteligente',
+        'Captura de conversaciones de WhatsApp, correo y calendario en un solo lugar',
+        'Extraccion estructurada de necesidades, presupuesto, objeciones y proximos pasos',
+        'Actualizacion automatica del CRM sin captura manual',
+        'Tareas de seguimiento con responsable y fecha',
+        'Escalamiento a direccion cuando la oportunidad se estanca',
+        'Borradores de propuesta con catalogo y precios aprobados',
+        'Tablero de pipeline para direccion comercial',
         'Transcripcion de mensajes de voz',
       ],
-      offers: [
-        {
-          '@type': 'Offer',
-          name: 'Starter',
-          price: '499',
-          priceCurrency: 'MXN',
-          priceValidUntil: '2026-12-31',
-          url: 'https://omona.tech/signup',
-        },
-        {
-          '@type': 'Offer',
-          name: 'Pro',
-          price: '1499',
-          priceCurrency: 'MXN',
-          priceValidUntil: '2026-12-31',
-          url: 'https://omona.tech/signup',
-        },
-      ],
-      // Sin `aggregateRating`: no hay reseñas verificables que lo respalden, y
-      // marcarlo de todas formas es justo lo que Google penaliza.
+      // Sin `offers`: la pagina ya no publica precio, y dejar las cifras aqui
+      // haria que buscadores y asistentes citaran un numero que el visitante no
+      // ve en ningun lado. Sin `aggregateRating` tampoco: no hay resenas
+      // verificables, y marcarlo de todas formas es lo que Google penaliza.
+    },
+    {
+      '@type': 'Service',
+      name: 'Inteligencia Comercial en 6 Semanas',
+      serviceType: 'Inteligencia comercial con IA conversacional',
+      provider: { '@type': 'Organization', name: 'Omona', url: 'https://omona.tech' },
+      areaServed: { '@type': 'Country', name: 'Mexico' },
+      audience: {
+        '@type': 'BusinessAudience',
+        name: 'Equipos comerciales B2B de 3 a 20 vendedores',
+      },
+      description:
+        'Implementacion de un sistema de inteligencia comercial en seis semanas: diagnostico y medicion de linea base, piloto de un flujo con revision humana, y corte contra la linea base. Si al terminar el CRM no refleja el 90% de las conversaciones comerciales y cada oportunidad abierta no tiene proxima tarea con responsable y fecha, se devuelve el 100% del piloto.',
     },
     {
       '@type': 'FAQPage',
@@ -121,7 +118,7 @@ const jsonLdGraph = {
     },
     {
       '@type': 'WebPage',
-      name: 'Omona - Agente de Ventas IA para WhatsApp',
+      name: 'Omona - Inteligencia Comercial con IA para Equipos B2B',
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       datePublished: '2025-01-01',
@@ -159,17 +156,24 @@ export default function LandingPage() {
 
       <LandingFeatures />
 
-      <LandingCrmEmbedded />
+      {/* Qué se implementa (núcleo + bonos) antes del CRM: primero la pieza que
+          no se puede comparar contra un chatbot, luego dónde aterriza. */}
+      <LandingOfferStack />
 
-      <LandingUseCases />
+      <LandingCrmEmbedded />
 
       <LandingHowItWorks />
 
-      {/* El precio se compara antes de mostrarse: así la cifra de $499 llega
-          con contexto en vez de sola. */}
-      <LandingPriceAdvantage />
+      {/* La garantía va justo después del proceso: es la respuesta inmediata a
+          "¿y si no funciona?", que es lo que uno se pregunta al terminar de leer
+          las seis semanas. Aquí vivían la comparativa de precios y los planes;
+          ambas se retiraron de la home a propósito. Poner la cifra al lado de
+          la de los competidores convertía la decisión en una de precio, que es
+          la única que no queremos que el prospecto tome. Los componentes siguen
+          en el repo por si se revierte. */}
+      <LandingGuarantee />
 
-      <LandingPricing />
+      <LandingUseCases />
 
       <LandingFAQ />
 

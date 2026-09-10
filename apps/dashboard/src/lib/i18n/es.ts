@@ -2,33 +2,34 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'Funciones',
-    process: 'Proceso',
-    pricing: 'Precios',
+    features: 'El sistema',
+    process: 'Las 6 semanas',
+    pricing: 'Cómo trabajamos',
     blog: 'Blog',
     useCases: 'Casos de uso',
     demo: 'Demo',
     login: 'Iniciar sesión',
-    signup: 'Empezar gratis',
+    signup: 'Agendar diagnóstico',
   },
   hero: {
     // Estas cuatro ya no se renderizan: el héroe se quedó con titular,
     // subtítulo y un CTA para que el movimiento tenga aire. `chat` se conserva
     // porque es el texto que está horneado en el loop ChatRespondiendo
     // (apps/video); si cambia allá, cambia aquí.
-    badge: 'Disponible para México y LATAM',
-    // Cuatro palabras y una hora concreta. La promesa de categoría ("contesta
-    // cada WhatsApp de tus clientes") la podía firmar cualquier competidor;
-    // esto no. La sorpresa está en que ese "alguien" no eres tú, y el subtítulo
-    // la remata en una línea. Lo demás que vivía aquí (badge de país, nota de
-    // setup) se quitó del héroe: era relleno que le estorbaba al movimiento.
-    tagline: '11:40 p.m. Alguien contesta.',
-    subtagline: 'Y no eres tú. Es tu agente, con tus precios, cerrando la venta.',
-    cta: 'Empezar gratis',
+    badge: 'Inteligencia comercial para equipos B2B',
+    // El titular apunta al final del mes, no al chat: lo que compra un director
+    // comercial no es que el bot conteste, es enterarse de lo que pasó sin
+    // perseguir a nadie. La frase carga las dos mitades de abajo de la ecuación
+    // de valor —resultado ya ocurrido (tiempo) y cero captura (esfuerzo)— que es
+    // donde se compite de verdad; prometer más arriba lo puede firmar cualquiera.
+    // El término "inteligencia comercial" vive en el subtítulo a propósito: es
+    // #hero-description, que es lo que leen los motores generativos.
+    tagline: 'Cerró el mes. Nadie llenó el CRM.',
+    subtagline: 'Inteligencia comercial para equipos B2B que venden por WhatsApp: cada conversación entra sola al CRM, con su próxima tarea, su responsable y su fecha.',
+    cta: 'Agendar diagnóstico',
     whatsapp: 'WhatsApp',
-    whatsappLink: 'O escríbenos por WhatsApp',
-    setup: 'Conectas tu número escaneando un QR · Sin tarjeta',
-    // Antes decía "200+ empresas confían en Omona", una cifra que no se sostiene.
+    whatsappLink: 'O pruébalo tú mismo en el demo',
+    setup: 'Diagnóstico de 30 minutos · Sin costo',
     companies: 'Tu número de siempre. Sin trámite con Meta.',
     // La conversación muestra a un NEGOCIO REAL atendiendo a su cliente.
     // Antes era Omona vendiéndose a sí misma, y por eso no se entendía qué hace.
@@ -105,14 +106,69 @@ export const es = {
   },
   howItWorks: {
     sectionLabel: 'proceso_',
-    heading: 'De "hola" a demo',
-    subheading: 'Sin que toques el teléfono',
+    heading: 'Seis semanas, tres fases',
+    subheading: 'Medimos tu punto de partida antes de automatizar nada. Sin línea base no hay forma de saber si funcionó.',
     steps: [
-      { title: 'Lead escribe', detail: '"Vi su anuncio, ¿cuánto cuesta?"' },
-      { title: 'Omona responde', detail: '0.8s · califica · personaliza' },
-      { title: 'Agenda demo', detail: 'Confirmación automática · sin intervención' },
-      { title: 'Tú cierras', detail: 'Lead preparado · contexto completo' },
+      { title: 'Semana 1 · Diagnóstico', detail: 'Mapeamos tu proceso y medimos la línea base' },
+      { title: 'Semanas 2-5 · Piloto', detail: 'Un solo flujo en vivo, con revisión humana' },
+      { title: 'Semana 6 · Corte', detail: 'Comparamos contra la línea base de la semana 1' },
+      { title: 'Después · Operación', detail: 'Se amplía a más flujos, o te devolvemos el piloto' },
     ],
+  },
+  /**
+   * El stack de la oferta: núcleo + bonos. Va junto porque el valor no está en
+   * ningún módulo suelto, sino en que los cuatro ocurran sobre la misma
+   * conversación — que es justo lo que no se puede comparar contra un chatbot.
+   */
+  offerStack: {
+    sectionLabel: 'sistema_',
+    heading: 'Qué se implementa',
+    subheading: 'Cuatro módulos que convierten conversaciones sueltas en datos, tareas y propuestas.',
+    modules: [
+      {
+        title: 'Captura y clasificación',
+        detail: 'WhatsApp, correo y calendario entran al mismo lugar. Cada mensaje queda ligado a su empresa, su contacto y su oportunidad.',
+      },
+      {
+        title: 'Inteligencia de conversaciones',
+        detail: 'De cada charla salen necesidades, presupuesto, objeciones y próximos pasos como campos estructurados, no como un párrafo suelto.',
+      },
+      {
+        title: 'Seguimiento que no se olvida',
+        detail: 'Tarea con responsable y fecha, recordatorio antes del vencimiento y escalamiento a dirección si la oportunidad se queda quieta.',
+      },
+      {
+        title: 'Borradores de propuesta',
+        detail: 'Con tu catálogo, tus precios y tus condiciones aprobadas. Siempre pasan por revisión humana antes de salir.',
+      },
+    ],
+    bonusLabel: 'Y además, incluido',
+    bonuses: [
+      'Mapa de tu proceso comercial actual',
+      'Diccionario de campos del CRM',
+      'Biblioteca de plantillas de seguimiento aprobadas',
+      'Tablero de pipeline para dirección',
+      'Auditoría de calidad de datos del CRM',
+      'Acompañamiento de adopción con tu equipo',
+    ],
+  },
+  /**
+   * Las condiciones están redactadas como lo que hace falta para que el
+   * resultado ocurra, no como excusas para no pagar. Es deliberado: si el
+   * cliente cumple las cuatro, la garantía casi nunca se ejerce.
+   */
+  guarantee: {
+    sectionLabel: 'garantía_',
+    heading: 'Si no se cumple, te devolvemos el piloto completo',
+    body: 'En la semana 1 medimos tu línea base. Si al terminar las seis semanas tu CRM no refleja el 90% de las conversaciones comerciales, y cada oportunidad abierta no tiene próxima tarea con responsable y fecha, te devolvemos el 100% de lo que pagaste por el piloto.',
+    conditionsLabel: 'Lo que necesitamos de tu lado',
+    conditions: [
+      'Kickoff con la persona que puede aprobar procesos',
+      'Accesos a WhatsApp, CRM y calendario en la semana 1',
+      'Plantillas revisadas y aprobadas en 5 días hábiles o menos',
+      'Un responsable designado dentro de tu equipo',
+    ],
+    note: 'No es letra chica: son las cuatro cosas sin las cuales el resultado no ocurre.',
   },
   useCases: {
     sectionLabel: 'use_cases_',
@@ -155,10 +211,10 @@ export const es = {
     ],
   },
   cta: {
-    heading: 'Empieza a vender más hoy',
-    subheading: 'Sin tarjeta de crédito. Cancela cuando quieras.',
-    primary: 'Empezar gratis',
-    secondary: 'WhatsApp',
+    heading: 'Empieza por el diagnóstico',
+    subheading: 'Treinta minutos. Sales con tu línea base medida y un flujo priorizado, trabajes con nosotros o no.',
+    primary: 'Agendar diagnóstico',
+    secondary: 'Ver el demo',
     trust: 'Y si prefieres verlo antes, habla con el agente en el demo.',
   },
   footer: {
@@ -210,10 +266,10 @@ export const es = {
       { text: 'Soporte prioritario por WhatsApp' },
     ],
     stats: [
-      { value: '200+', label: 'empresas' },
+      { value: 'Sin límite', label: 'de conversaciones' },
       { value: '14 días', label: 'gratis' },
       { value: '0.8s', label: 'respuesta' },
-      { value: '8x', label: 'ROI promedio' },
+      { value: 'Cancela', label: 'cuando quieras' },
     ],
     faqHeading: 'Preguntas frecuentes',
     faqs: [

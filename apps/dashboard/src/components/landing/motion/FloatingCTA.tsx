@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { CTA_DIAGNOSTICO } from '@/lib/cta';
 
 /**
  * ManyChat mantiene un "Get started free" fijo abajo a la derecha durante todo
@@ -30,13 +30,15 @@ export function FloatingCTA({ label }: { label: string }) {
           // bottom-20 deja libre la esquina que ocupa GlobalThemeToggle
           className="fixed bottom-20 right-4 z-40 hidden sm:block"
         >
-          <Link
-            href="/signup"
+          <a
+            href={CTA_DIAGNOSTICO}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background shadow-xl transition-opacity hover:opacity-90"
           >
             {label}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </a>
         </motion.div>
       )}
     </AnimatePresence>

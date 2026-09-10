@@ -23,6 +23,14 @@ const nextConfig = {
       { source: '/ingest/:path*', destination: 'https://us.i.posthog.com/:path*' },
     ];
   },
+  // /pricing existía cuando la oferta era autoservicio con dos planes visibles.
+  // La página ya no publica cifras, así que la URL mentía sobre su contenido.
+  // Redirección permanente para no perder lo que ya esté indexado o enlazado.
+  async redirects() {
+    return [
+      { source: '/pricing', destination: '/como-trabajamos', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

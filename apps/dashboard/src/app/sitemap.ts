@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${baseUrl}/demo`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/como-trabajamos`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/comparativas`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     // Páginas nombradas por problema: entran al sitemap porque son la superficie

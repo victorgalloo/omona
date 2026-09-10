@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, Menu, X, Wrench, Stethoscope, Building2, GraduationCap, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
+import { CTA_DIAGNOSTICO } from '@/lib/cta';
 import { Logo } from '../shared/Logo';
 import { BAND_TONES } from './motion/Band';
 import { useActiveBand } from '@/hooks/useActiveBand';
@@ -46,7 +47,7 @@ export function LandingNav() {
   const navLinks = [
     { href: '/#features', label: t.nav.features },
     { href: '/#proceso', label: t.nav.process },
-    { href: '/pricing', label: t.nav.pricing },
+    { href: '/como-trabajamos', label: t.nav.pricing },
     { href: '/blog', label: t.nav.blog },
   ];
 
@@ -151,12 +152,14 @@ export function LandingNav() {
               <MessageCircle className="w-4 h-4" />
               {t.nav.demo}
             </Link>
-            <Link
-              href="/signup"
+            <a
+              href={CTA_DIAGNOSTICO}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-lg bg-foreground px-5 py-2 text-sm font-medium text-background transition-all hover:opacity-90"
             >
               {t.nav.signup}
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -248,13 +251,15 @@ export function LandingNav() {
                   <MessageCircle className="w-4 h-4" />
                   {t.nav.demo}
                 </Link>
-                <Link
-                  href="/signup"
+                <a
+                  href={CTA_DIAGNOSTICO}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background hover:opacity-90 transition-all"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t.nav.signup}
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

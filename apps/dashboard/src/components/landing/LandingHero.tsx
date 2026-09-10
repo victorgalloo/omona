@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
+import { CTA_DIAGNOSTICO } from '@/lib/cta';
 import { Band } from './motion/Band';
 import { LoopVideo } from './motion/LoopVideo';
 import { Shimmer } from './motion/Shimmer';
@@ -106,24 +107,24 @@ export function LandingHero() {
             transition={{ delay: 0.65, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-start gap-4"
           >
-            <Link
-              href="/signup"
+            <a
+              href={CTA_DIAGNOSTICO}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-2.5 overflow-hidden bg-neon-lime px-9 py-4 text-base font-semibold text-ink"
             >
               <Shimmer />
               <span className="relative">{t.hero.cta}</span>
               <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </a>
 
-            <a
-              href="https://api.whatsapp.com/send?phone=529849800629"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/demo"
               className="inline-flex items-center gap-2 text-sm text-band-muted underline decoration-band-fg/30 underline-offset-4 transition-colors hover:text-band-fg"
             >
               <MessageCircle className="h-3.5 w-3.5" />
               {t.hero.whatsappLink}
-            </a>
+            </Link>
           </motion.div>
         </div>
 
