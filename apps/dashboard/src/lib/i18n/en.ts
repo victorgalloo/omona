@@ -3,8 +3,8 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'The system',
-    process: 'The 6 weeks',
+    features: 'System',
+    process: '6 weeks',
     pricing: 'How we work',
     blog: 'Blog',
     useCases: 'Use Cases',
@@ -487,7 +487,7 @@ export const en: Translations = {
   },
   faq: {
     sectionLabel: 'questions_',
-    heading: 'What everyone asks before paying',
+    heading: 'What everyone asks before starting',
     subheading: 'The honest answers, including the awkward ones.',
     items: [
       {
@@ -508,11 +508,19 @@ export const en: Translations = {
       },
       {
         q: 'How long until it is running?',
-        a: 'Connecting takes five minutes: you scan the QR and it is already receiving messages. What takes a while is loading your catalog, your prices and your FAQs properly, because that is where answer quality comes from. You can upload a PDF or give it your website address and it pulls out what it needs.',
+        a: 'Connecting your number takes five minutes: you scan a QR and it starts receiving messages. What takes six weeks is the rest: mapping your process, measuring your baseline, loading catalog and prices, and getting every conversation into the CRM with its task. Answering fast is easy; never losing an opportunity is the work.',
       },
       {
-        q: 'Do I need a card to try it?',
-        a: 'No. Fourteen days with everything included, no card. Just an email and a WhatsApp number. If you do not renew, it switches off: there is no surprise charge.',
+        q: 'How much does it cost?',
+        a: 'We do not publish a price because it depends on how many salespeople you have, how many conversations they handle, which channels they use, which CRM you already run and how complex your proposals are. Quoting before knowing that forces you to make a number up. The 30-minute diagnostic is free and the figure comes out of it.',
+      },
+      {
+        q: 'Do I have to switch CRM?',
+        a: 'No, and usually you should not. We work on the one you already use, even if it is badly configured. Switching CRM and fixing your sales process at the same time are two projects competing for the same team’s patience, and both tend to lose.',
+      },
+      {
+        q: 'What if it does not work?',
+        a: 'In week 1 we measure your baseline. If at the end of the six weeks your CRM does not reflect 90% of your sales conversations and every open opportunity does not have a next task with an owner and a date, we refund 100% of the pilot. The conditions are in plain sight in the guarantee section, not in fine print.',
       },
     ],
   },

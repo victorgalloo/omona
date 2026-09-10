@@ -2,8 +2,8 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'El sistema',
-    process: 'Las 6 semanas',
+    features: 'Sistema',
+    process: '6 semanas',
     pricing: 'Cómo trabajamos',
     blog: 'Blog',
     useCases: 'Casos de uso',
@@ -511,7 +511,7 @@ export const es = {
   },
   faq: {
     sectionLabel: 'preguntas_',
-    heading: 'Lo que todos preguntan antes de pagar',
+    heading: 'Lo que todos preguntan antes de empezar',
     subheading: 'Las respuestas honestas, incluidas las incómodas.',
     items: [
       {
@@ -532,11 +532,19 @@ export const es = {
       },
       {
         q: '¿Cuánto tardo en tenerlo funcionando?',
-        a: 'La conexión son cinco minutos: escaneas el QR y ya está recibiendo mensajes. Lo que toma un rato es cargarle bien tu catálogo, tus precios y tus preguntas frecuentes, porque de ahí sale la calidad de las respuestas. Puedes subir un PDF o darle la dirección de tu sitio y él extrae lo que necesita.',
+        a: 'Conectar tu número son cinco minutos: escaneas un QR y empieza a recibir mensajes. Lo que toma seis semanas es lo otro: mapear tu proceso, medir tu línea base, cargar catálogo y precios, y dejar cada conversación entrando al CRM con su tarea. Contestar rápido es fácil; que no se te pierda una oportunidad es el trabajo.',
       },
       {
-        q: '¿Necesito tarjeta para probarlo?',
-        a: 'No. Son 14 días con todo incluido, sin tarjeta. Solo un correo y un número de WhatsApp. Si no lo renuevas, se apaga: no hay cargo sorpresa.',
+        q: '¿Cuánto cuesta?',
+        a: 'No publicamos precio porque depende de cuántos vendedores son, cuántas conversaciones manejan, qué canales usan, qué CRM ya tienen y qué tan complejas son sus propuestas. Cotizar antes de saber eso obliga a inventar un número. El diagnóstico de 30 minutos no tiene costo y de ahí sale la cifra.',
+      },
+      {
+        q: '¿Tengo que cambiar de CRM?',
+        a: 'No, y normalmente no conviene. Trabajamos sobre el que ya usas, aunque esté mal configurado. Cambiar de CRM y ordenar el proceso comercial al mismo tiempo son dos proyectos peleándose por la paciencia del mismo equipo, y suelen perder los dos.',
+      },
+      {
+        q: '¿Y si al final no funciona?',
+        a: 'En la semana 1 medimos tu línea base. Si al terminar las seis semanas tu CRM no refleja el 90% de las conversaciones comerciales y cada oportunidad abierta no tiene próxima tarea con responsable y fecha, te devolvemos el 100% del piloto. Las condiciones están a la vista en la sección de garantía, no en letra chica.',
       },
     ],
   },

@@ -19,7 +19,7 @@ La tasa de respuesta en WhatsApp mide qué porcentaje de contactos responde a la
 **Definiciones operativas clave para equipos B2B**
 
 - **Tasa de respuesta (reply rate)**  
-  Según Rasayel, abril 2025, la tasa de respuesta se calcula como \((número de leads que respondieron ÷ número de leads contactados) × 100\)[2].  
+  Según Rasayel, abril 2025, la tasa de respuesta se calcula como (número de leads que respondieron ÷ número de leads contactados) × 100[2].  
   Plataformas orientadas a WhatsApp Business reportan que el reply rate típico en campañas bien segmentadas se sitúa entre **25% y 55%** dependiendo del tipo de audiencia, según RaionTech, mayo 2026[3].
 
 - **Benchmarks de respuesta en WhatsApp vs otros canales**  
@@ -33,8 +33,8 @@ La tasa de respuesta en WhatsApp mide qué porcentaje de contactos responde a la
 - **Tasa de calificación de leads (MQL/SQL)**  
   Los flujos de calificación en WhatsApp permiten que un agente de IA pregunte presupuesto, necesidad, autoridad y timing (frameworks tipo BANT/CHAMP).  
   La métrica recomendada es:  
-  - **MQL rate**: \((leads que cumplen criterios mínimos ÷ leads que responden) × 100\)  
-  - **SQL rate**: \((leads aceptados por ventas ÷ MQLs) × 100\)  
+  - **MQL rate**: (leads que cumplen criterios mínimos ÷ leads que responden) × 100  
+  - **SQL rate**: (leads aceptados por ventas ÷ MQLs) × 100  
   Aunque no hay cifras públicas estandarizadas específicas de WhatsApp, AuroraInbox, junio 2025, indica ratios de conversión consulta‑a‑venta de **15–30%** en SMB cuando el proceso está bien diseñado[12], que puede servir de referencia para pipelines B2B con IA.
 
 - **Tasa de cierre (conversion to sale)**  
@@ -105,7 +105,7 @@ La atribución de ingresos a conversaciones automatizadas en WhatsApp requiere v
   - Asignar el ID de conversación de WhatsApp como campo en la oportunidad del CRM.  
   - Al cerrar una venta, registrar el **importe** y vincularlo al flujo de IA activo en esa conversación.  
   De este modo se calcula:  
-  \(\text{Revenue atribuido a IA en WhatsApp} = \sum \text{ventas donde el primer contacto o la calificación fue realizada por Omona}\).
+  Revenue atribuido a IA en WhatsApp = suma de las ventas donde el primer contacto o la calificación fue realizada por Omona.
 
 - **Atribución basada en eventos clave dentro de la conversación**  
   ChatArchitect, febrero 2025, indica que conversiones en WhatsApp se definen como acciones deseadas después de interactuar con el mensaje: compra, registro, reserva, etc., con tasas de **10–25%** según sector[5].  
@@ -124,7 +124,7 @@ La atribución de ingresos a conversaciones automatizadas en WhatsApp requiere v
 
 - **KPIs específicos de revenue atribuible a IA**  
   Con esta estructura, el equipo comercial puede monitorear:
-  - **ARPC (Average Revenue per Conversation) automatizada**: \(\text{Ingresos ÷ conversaciones atendidas por IA}\).  
+  - **ARPC (Average Revenue per Conversation) automatizada**: Ingresos ÷ conversaciones atendidas por IA.  
   - **% de revenue proveniente de flujos IA** vs campañas manuales.  
   - **LTV de clientes adquiridos vía WhatsApp con IA** comparado con otros canales.
 

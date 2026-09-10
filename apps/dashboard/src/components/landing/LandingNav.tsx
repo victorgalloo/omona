@@ -74,12 +74,15 @@ export function LandingNav() {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative text-band-muted hover:text-band-fg transition-colors text-sm group"
+                // `whitespace-nowrap`: entre el breakpoint md y ~1100px los
+                // rótulos de dos palabras se partían en dos líneas y la barra
+                // quedaba con enlaces de doble alto, apretados contra el logo.
+                className="relative whitespace-nowrap text-band-muted hover:text-band-fg transition-colors text-sm group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-band-fg transition-all duration-300 group-hover:w-full" />
@@ -92,7 +95,7 @@ export function LandingNav() {
               onMouseEnter={() => setIsCasosOpen(true)}
               onMouseLeave={() => setIsCasosOpen(false)}
             >
-              <button className="relative flex items-center gap-1 text-band-muted hover:text-band-fg transition-colors text-sm group">
+              <button className="relative flex items-center gap-1 whitespace-nowrap text-band-muted hover:text-band-fg transition-colors text-sm group">
                 {t.nav.useCases}
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isCasosOpen ? 'rotate-180' : ''}`} />
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-band-fg transition-all duration-300 group-hover:w-full" />
@@ -137,11 +140,11 @@ export function LandingNav() {
           </div>
 
           {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
             <Link
               href="/login"
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className="whitespace-nowrap text-sm text-muted hover:text-foreground transition-colors"
             >
               {t.nav.login}
             </Link>
@@ -156,7 +159,7 @@ export function LandingNav() {
               href={CTA_DIAGNOSTICO}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-foreground px-5 py-2 text-sm font-medium text-background transition-all hover:opacity-90"
+              className="whitespace-nowrap rounded-lg bg-foreground px-5 py-2 text-sm font-medium text-background transition-all hover:opacity-90"
             >
               {t.nav.signup}
             </a>
@@ -164,7 +167,7 @@ export function LandingNav() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Menu"
           >
@@ -180,7 +183,7 @@ export function LandingNav() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-surface border-t border-border"
+            className="lg:hidden bg-surface border-t border-border"
           >
             <div className="px-4 py-4 space-y-2">
               {navLinks.map((link) => (
