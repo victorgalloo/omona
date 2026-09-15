@@ -380,6 +380,11 @@ article[id] {
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* El selector de revelar tiene que igualar la especificidad del de esconder.
+   `.js-reveal [data-reveal]` es (0,2,0) y un `[data-reveal='shown']` a secas
+   es (0,1,0): el ocultar ganaba, el observer marcaba "shown" y el elemento
+   se quedaba en opacity 0 igual. La portada entera salía en blanco. */
+.js-reveal [data-reveal='shown'],
 [data-reveal='shown'] {
   opacity: 1;
   transform: none;
@@ -431,4 +436,60 @@ article[id] {
 .rule-grid > * {
   border-right: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
+}
+
+/* ── Tabla que se apila en móvil ──────────────────────────────
+   La tabla de cohortes tiene cuatro columnas y en 390px sólo caben dos:
+   el scroll horizontal interno funcionaba, pero escondía justo "Reloj" y
+   "La meta", que son las dos que cargan el argumento — y nada en pantalla
+   avisaba de que se podía arrastrar.
+
+   Abajo de `sm` cada fila pasa a ser una tarjeta: el nombre del cohorte es
+   el título y cada celda lleva delante su encabezado, tomado de
+   `data-label`. Un solo DOM — nada de duplicar la tabla y esconder una
+   copia, que le da el contenido dos veces a un lector de pantalla. */
+
+@media (max-width: 639px) {
+  .table-stack {
+    min-width: 0;
+  }
+
+  /* El encabezado sigue existiendo para el lector de pantalla; lo que se ve
+     son los data-label de cada celda. */
+  .table-stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .table-stack tr {
+    display: block;
+    padding: 1.15rem 1rem;
+  }
+
+  .table-stack th[scope='row'] {
+    display: block;
+    padding: 0 0 0.75rem;
+    font-size: 15px;
+  }
+
+  .table-stack td {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.3rem 0;
+    align-items: baseline;
+  }
+
+  .table-stack td::before {
+    content: attr(data-label);
+    font-family: var(--font-mono), monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+  }
 }

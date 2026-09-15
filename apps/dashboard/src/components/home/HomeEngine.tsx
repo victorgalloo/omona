@@ -23,11 +23,15 @@ export function HomeEngine() {
       <SectionHeader label={e.label} title={e.title} subtitle={e.subtitle} />
 
       {/* Tabla de verdad, no una rejilla de tarjetas: son cinco filas con las
-          mismas cuatro columnas y compararlas es justo la gracia. El scroll
-          horizontal está acotado a este contenedor — el cuerpo de la página
+          mismas cuatro columnas y compararlas es justo la gracia.
+
+          Abajo de `sm` no caben cuatro columnas en 390px, así que `table-stack`
+          (globals.css) convierte cada fila en una tarjeta con los encabezados
+          delante de cada celda. El scroll horizontal se queda para el tramo
+          intermedio y está acotado a este contenedor — el cuerpo de la página
           nunca se desplaza de lado. */}
       <Reveal className="mt-12 overflow-x-auto rounded-xl border border-border">
-        <table className="w-full min-w-[42rem] border-collapse text-left">
+        <table className="table-stack w-full border-collapse text-left sm:min-w-[42rem]">
           <thead>
             <tr className="border-b border-border bg-surface">
               {[e.table.cohort, e.table.trigger, e.table.clock, e.table.goal].map((head) => (
@@ -59,13 +63,20 @@ export function HomeEngine() {
                   >
                     {cohort.name}
                   </th>
-                  <td className="px-4 py-4 text-[13.5px] text-muted-foreground sm:px-5">
+                  <td
+                    data-label={e.table.trigger}
+                    className="px-4 py-4 text-[13.5px] text-muted-foreground sm:px-5"
+                  >
                     {cohort.trigger}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-4 font-mono text-[12px] text-muted sm:px-5">
+                  <td
+                    data-label={e.table.clock}
+                    className="px-4 py-4 font-mono text-[12px] text-muted sm:whitespace-nowrap sm:px-5"
+                  >
                     {cohort.clock}
                   </td>
                   <td
+                    data-label={e.table.goal}
                     className={`px-4 py-4 text-[13.5px] sm:px-5 ${
                       isIgnored ? 'text-muted' : 'text-foreground'
                     }`}

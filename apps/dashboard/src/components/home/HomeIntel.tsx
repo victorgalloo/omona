@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, CornerDownRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
@@ -37,12 +37,12 @@ export function HomeIntel() {
           <p className="text-[14.5px] leading-relaxed text-muted-foreground">{i.source}</p>
         </Reveal>
 
-        {/* La flecha gira 90° en móvil porque ahí los paneles se apilan. */}
+        {/* Apunta hacia donde va el flujo: abajo cuando los paneles se apilan
+            en móvil, a la derecha cuando van lado a lado. Antes era un
+            CornerDownRight girado, y el resultado apuntaba arriba y a la
+            izquierda — justo al revés de la lectura. */}
         <Reveal className="flex justify-center py-1 lg:py-0 lg:pt-16">
-          <CornerDownRight
-            aria-hidden
-            className="h-5 w-5 text-muted lg:-rotate-90"
-          />
+          <ArrowRight aria-hidden className="h-5 w-5 rotate-90 text-muted lg:rotate-0" />
         </Reveal>
 
         {/* Lo que quedó guardado */}
