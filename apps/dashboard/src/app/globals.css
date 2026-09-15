@@ -163,6 +163,9 @@
     --border: rgba(10, 10, 10, 0.14);
     --border-hover: rgba(10, 10, 10, 0.28);
     --border-strong: #0A0A0A;
+    /* Más tenue que --border: es la línea de la rejilla de la home, que se
+       repite cada 64px. Al valor de --border la retícula compite con el texto. */
+    --hairline: rgba(10, 10, 10, 0.09);
 
     /* El acento semántico ("agente activo", éxito). En claro tiene que
        ser un verde legible sobre hueso; el lima solo vive sobre negro. */
@@ -171,7 +174,10 @@
 
     --info: #2B4BFF;
     --info-muted: #DDE2FF;
-    --warning: #B45309;
+    /* #B45309 daba 4.42:1 sobre --warning-muted: por debajo del piso de 4.5
+       para texto pequeño, y la insignia que lo usa es mono de 10px. #A34A08
+       sube a 5.22:1 ahí y a 5.34:1 sobre el hueso. */
+    --warning: #A34A08;
     --warning-muted: #FDF0C7;
     --success: #16704A;
     --success-muted: #D6F0E2;
@@ -198,6 +204,7 @@
     --border: rgba(245, 243, 236, 0.14);
     --border-hover: rgba(245, 243, 236, 0.30);
     --border-strong: #F5F3EC;
+    --hairline: rgba(245, 243, 236, 0.10);
 
     /* Sobre negro el acento sí puede ser fosforescente: 17.25:1 */
     --accent-green: #D8FF3E;
@@ -320,3 +327,108 @@
 .geo-prose td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .geo-prose tbody tr:last-child td { border-bottom: none; }
 .geo-prose tbody tr:hover { background: var(--surface-2); }
+
+/* ═════════════════════════════════════════════════════════════
+   HOME — SUPERFICIE TÉCNICA
+
+   La home se rehízo sobre una sola superficie con reglas de 1px, al
+   modo de Vercel / GitHub / Supabase, y con un presupuesto de
+   movimiento deliberadamente pobre. Lo que se quitó y por qué:
+
+   - Los <video> con autoplay. Eran seis loops de Remotion, ~18 MB, y
+     el navegador móvil decodificaba varios a la vez. Es la causa
+     principal del trabón que se sentía al hacer scroll.
+   - Los halos con blur(120px). Un desenfoque de ese radio sobre un
+     elemento de 46vw obliga a la GPU a recomponer una superficie
+     enorme en cada fotograma; en un teléfono de gama media eso solo
+     no deja presupuesto para nada más.
+   - El barrido de clip-path por sección, el marquee infinito, el
+     scrub ligado al scroll y la sonda elementsFromPoint del nav.
+     Cuatro fuentes de trabajo en el hilo principal durante el scroll.
+
+   Lo único que queda es una revelación de entrada, una sola vez por
+   elemento, con transición CSS disparada por un IntersectionObserver
+   compartido (ver components/landing/system/Reveal.tsx). El estado
+   inicial vive aquí y no en JS a propósito: si el observer nunca
+   corre —error, navegador viejo, JS apagado— el contenido tiene que
+   quedar visible, no invisible. Por eso el oculto se aplica sólo
+   cuando la clase `js-reveal` está presente en <html>, y esa clase la
+   pone el propio componente al montarse.
+   ═════════════════════════════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* El nav es fijo y mide 56px: sin esto un anclaje deja el título debajo.
+   Acotado a elementos seccionadores con id — un `[id]` a secas también
+   alcanzaba a los contenedores con scroll propio del dashboard. */
+section[id],
+header[id],
+article[id] {
+  scroll-margin-top: 5rem;
+}
+
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+[data-reveal] {
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js-reveal [data-reveal],
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Fondos de superficie ─────────────────────────────────────
+   Rejilla y puntos como gradientes repetidos: son una sola capa
+   pintada, sin nodos extra ni imágenes que descargar. El
+   `mask-image` los desvanece hacia abajo para que no compitan con
+   el texto. */
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--hairline) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.bg-dots {
+  background-image: radial-gradient(var(--hairline) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ── Rejilla con reglas compartidas ───────────────────────────
+   El patrón de tarjeta de Vercel: celdas separadas por una sola
+   línea, no por un borde por celda (que da líneas dobles al juntarse
+   y esquinas gruesas). El truco es el borde negativo del contenedor
+   más un borde por celda: cada línea se dibuja una vez. */
+
+.rule-grid {
+  border-left: 1px solid var(--hairline);
+  border-top: 1px solid var(--hairline);
+}
+
+.rule-grid > * {
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}

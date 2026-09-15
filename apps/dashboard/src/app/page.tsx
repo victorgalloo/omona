@@ -1,40 +1,37 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { LandingNav } from '@/components/landing/LandingNav';
-import { LandingHero } from '@/components/landing/LandingHero';
-import { LandingProof } from '@/components/landing/LandingProof';
-import { LandingFeatures } from '@/components/landing/LandingFeatures';
-import { LandingCrmEmbedded } from '@/components/landing/LandingCrmEmbedded';
-import { LandingBeforeAfter } from '@/components/landing/LandingBeforeAfter';
-import { LandingHowItWorks } from '@/components/landing/LandingHowItWorks';
-import { LandingStats } from '@/components/landing/LandingStats';
-import { LandingOfferStack } from '@/components/landing/LandingOfferStack';
-import { LandingGuarantee } from '@/components/landing/LandingGuarantee';
-import { LandingUseCases } from '@/components/landing/LandingUseCases';
-import { LandingFAQ } from '@/components/landing/LandingFAQ';
-import { LandingCTA } from '@/components/landing/LandingCTA';
-import { FloatingCTA } from '@/components/landing/motion/FloatingCTA';
+import { HomeHero } from '@/components/home/HomeHero';
+import { HomeLeak } from '@/components/home/HomeLeak';
+import { HomeCycle } from '@/components/home/HomeCycle';
+import { HomeEngine } from '@/components/home/HomeEngine';
+import { HomeIntel } from '@/components/home/HomeIntel';
+import { HomeMeasure } from '@/components/home/HomeMeasure';
+import { HomeScope } from '@/components/home/HomeScope';
+import { HomeProcess } from '@/components/home/HomeProcess';
+import { HomeGuarantee } from '@/components/home/HomeGuarantee';
+import { HomeFaq } from '@/components/home/HomeFaq';
+import { HomeCta } from '@/components/home/HomeCta';
+import { HomeFooter } from '@/components/home/HomeFooter';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { es } from '@/lib/i18n';
-import { Logo } from '../components/shared/Logo';
 
 export const metadata: Metadata = {
-  title: 'Omona | Inteligencia Comercial con IA para Equipos B2B | Mexico',
+  title: 'Omona | Inteligencia comercial para todo el ciclo de venta B2B',
   description:
-    'Inteligencia comercial para equipos B2B que venden por WhatsApp. Cada conversacion entra sola al CRM, con su proxima tarea, responsable y fecha. Implementacion en 6 semanas con piloto garantizado.',
+    'Prospeccion, seguimiento, cierre y propuestas sobre el mismo dato. Omona lee cada conversacion, llena tu CRM solo y entrega la siguiente jugada: a quien buscar hoy, con que mensaje y por que. Sobre el CRM que ya tienes.',
   openGraph: {
-    title: 'Omona | Inteligencia Comercial con IA para Equipos B2B | Mexico',
+    title: 'Omona | Inteligencia comercial para todo el ciclo de venta B2B',
     description:
-      'Inteligencia comercial para equipos B2B que venden por WhatsApp. Cada conversacion entra sola al CRM, con su proxima tarea, responsable y fecha.',
+      'Prospeccion, seguimiento, cierre y propuestas sobre el mismo dato. Cada conversacion entra sola al CRM y sale una jugada con mensaje, responsable y fecha.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omona | Inteligencia Comercial con IA para Equipos B2B',
+    title: 'Omona | Inteligencia comercial para el ciclo de venta B2B',
     description:
-      'Inteligencia comercial para equipos B2B que venden por WhatsApp. Cada conversacion entra sola al CRM, con tarea, responsable y fecha.',
+      'Prospeccion, seguimiento, cierre y propuestas sobre el mismo dato. El CRM se llena solo y el motor dice a quien buscar hoy.',
   },
   alternates: {
     canonical: 'https://omona.tech',
@@ -42,10 +39,15 @@ export const metadata: Metadata = {
 };
 
 /**
- * El FAQPage sale del mismo `es.faq.items` que renderiza LandingFAQ. Antes eran
+ * El FAQPage sale del mismo `es.faq.items` que renderiza HomeFaq. Antes eran
  * dos listas separadas y se contradecían: el JSON-LD seguía afirmando "más de
  * 200 empresas" y un ROI de 8x que el copy visible ya había retirado por no
  * poder sostenerlos. Con una sola fuente eso no puede volver a pasar.
+ *
+ * El `featureList` se reescribió con el ciclo completo. La versión anterior
+ * enumeraba funciones de chatbot —responde, transcribe, agenda— y era lo que
+ * los motores generativos citaban al describir el producto: literalmente
+ * estábamos pidiendo que nos clasificaran como chatbot.
  */
 const jsonLdGraph = {
   '@context': 'https://schema.org',
@@ -56,7 +58,7 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       logo: 'https://omona.tech/icon.svg',
       description:
-        'Omona es una plataforma de inteligencia comercial con IA conversacional para equipos B2B. Convierte las conversaciones de WhatsApp en registros de CRM, tareas de seguimiento y borradores de propuesta para pymes en Mexico y Latinoamerica.',
+        'Omona es una plataforma de inteligencia comercial para equipos B2B. Cubre el ciclo completo de venta —prospeccion, seguimiento, cierre y generacion de propuestas— leyendo las conversaciones del equipo y escribiendo de vuelta en el CRM que la empresa ya usa.',
       areaServed: [
         { '@type': 'Country', name: 'Mexico' },
         { '@type': 'Country', name: 'Colombia' },
@@ -79,16 +81,18 @@ const jsonLdGraph = {
       inLanguage: 'es-MX',
       softwareVersion: '1.0',
       description:
-        'Plataforma de inteligencia comercial con IA conversacional. Extrae necesidades, presupuesto, objeciones y proximos pasos de cada conversacion, actualiza el CRM y genera tareas y borradores de propuesta.',
+        'Plataforma de inteligencia comercial que cubre el ciclo de venta completo: investiga cuentas antes del primer contacto, calcula el estado real de cada oportunidad y entrega una jugada al dia con el mensaje redactado, detecta objeciones y senales de compra, y genera borradores de propuesta a partir de la conversacion.',
       featureList: [
-        'Captura de conversaciones de WhatsApp, correo y calendario en un solo lugar',
-        'Extraccion estructurada de necesidades, presupuesto, objeciones y proximos pasos',
-        'Actualizacion automatica del CRM sin captura manual',
-        'Tareas de seguimiento con responsable y fecha',
-        'Escalamiento a direccion cuando la oportunidad se estanca',
-        'Borradores de propuesta con catalogo y precios aprobados',
-        'Tablero de pipeline para direccion comercial',
-        'Transcripcion de mensajes de voz',
+        'Prospeccion con investigacion de cuenta y angulo de entrada',
+        'Motor de seguimiento por cohortes con reloj rapido y reloj lento',
+        'Una jugada al dia con mensaje redactado, responsable y fecha',
+        'Extraccion estructurada de necesidad, presupuesto, plazo, objecion y quien decide',
+        'Escritura automatica en el CRM existente sin captura manual',
+        'Deteccion de objeciones y senales de compra para el cierre',
+        'Escalamiento a direccion cuando una oportunidad se estanca',
+        'Generacion de borradores de propuesta y presentacion personalizados',
+        'Validacion de cada mensaje contra el manual de voz de la empresa',
+        'Medicion de tiempo al primer contacto, tasa de recuperacion y que guion convierte',
       ],
       // Sin `offers`: la pagina ya no publica precio, y dejar las cifras aqui
       // haria que buscadores y asistentes citaran un numero que el visitante no
@@ -98,7 +102,7 @@ const jsonLdGraph = {
     {
       '@type': 'Service',
       name: 'Inteligencia Comercial en 6 Semanas',
-      serviceType: 'Inteligencia comercial con IA conversacional',
+      serviceType: 'Inteligencia comercial para el ciclo de venta B2B',
       provider: { '@type': 'Organization', name: 'Omona', url: 'https://omona.tech' },
       areaServed: { '@type': 'Country', name: 'Mexico' },
       audience: {
@@ -118,11 +122,11 @@ const jsonLdGraph = {
     },
     {
       '@type': 'WebPage',
-      name: 'Omona - Inteligencia Comercial con IA para Equipos B2B',
+      name: 'Omona - Inteligencia comercial para todo el ciclo de venta B2B',
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       datePublished: '2025-01-01',
-      dateModified: '2026-09-01',
+      dateModified: '2026-09-15',
       isPartOf: {
         '@type': 'WebSite',
         name: 'Omona',
@@ -130,96 +134,62 @@ const jsonLdGraph = {
       },
       speakable: {
         '@type': 'SpeakableSpecification',
-        cssSelector: ['h1', '#hero-description', '#stats-section'],
+        cssSelector: ['h1', '#hero-description'],
       },
     },
   ],
 };
 
+/**
+ * ══ LA PORTADA ══════════════════════════════════════════════════
+ *
+ * Reordenada alrededor del ciclo de venta. El orden anterior dedicaba seis
+ * secciones seguidas —prueba, stats, antes/después, features, CRM embebido,
+ * casos de uso— a demostrar que el agente contesta bien, y dejaba la
+ * inteligencia comercial como una consecuencia. Es al revés: contestar es la
+ * entrada del sistema y lo que se vende es lo que pasa después.
+ *
+ * El orden de ahora sigue el argumento, no el catálogo:
+ *
+ *   1. héroe        qué es, con la tarjeta de jugada como cara del producto
+ *   2. diagnóstico  dónde se fuga el dinero, que es lo que el visitante vive
+ *   3. ciclo        las cuatro etapas — el corazón de la página
+ *   4. motor        el seguimiento abierto, que es donde está la diferencia
+ *   5. inteligencia de la conversación al dato (y aquí se menciona el chat)
+ *   6. medición     cómo se sabe si funcionó, y la fuga en pesos
+ *   7. alcance      lo que hace y, explícitamente, lo que no
+ *   8. proceso      seis semanas
+ *   9. garantía     la respuesta a "¿y si no funciona?"
+ *  10. preguntas
+ *  11. cierre
+ *
+ * Las secciones retiradas (LandingProof, LandingStats, LandingBeforeAfter,
+ * LandingFeatures, LandingOfferStack, LandingCrmEmbedded, LandingUseCases,
+ * LandingHowItWorks, LandingGuarantee, LandingFAQ, LandingCTA, FloatingCTA)
+ * siguen en el repo: las de casos de uso y problemas comparten piezas con
+ * ellas. Ya no se importan aquí.
+ */
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background font-sans text-foreground">
       <JsonLd data={jsonLdGraph} />
       <LandingNav />
 
-      <LandingHero />
+      <main>
+        <HomeHero />
+        <HomeLeak />
+        <HomeCycle />
+        <HomeEngine />
+        <HomeIntel />
+        <HomeMeasure />
+        <HomeScope />
+        <HomeProcess />
+        <HomeGuarantee />
+        <HomeFaq />
+        <HomeCta />
+      </main>
 
-      {/* La prueba va inmediatamente después del hero, donde ManyChat pone a
-          sus creadores: es el punto en que el visitante decide si sigue leyendo. */}
-      <LandingProof />
-
-      <LandingStats />
-
-      {/* Antes/después antes de las features: primero la transformación, luego
-          el detalle de cómo se logra. */}
-      <LandingBeforeAfter />
-
-      <LandingFeatures />
-
-      {/* Qué se implementa (núcleo + bonos) antes del CRM: primero la pieza que
-          no se puede comparar contra un chatbot, luego dónde aterriza. */}
-      <LandingOfferStack />
-
-      <LandingCrmEmbedded />
-
-      <LandingHowItWorks />
-
-      {/* La garantía va justo después del proceso: es la respuesta inmediata a
-          "¿y si no funciona?", que es lo que uno se pregunta al terminar de leer
-          las seis semanas. Aquí vivían la comparativa de precios y los planes;
-          ambas se retiraron de la home a propósito. Poner la cifra al lado de
-          la de los competidores convertía la decisión en una de precio, que es
-          la única que no queremos que el prospecto tome. Los componentes siguen
-          en el repo por si se revierte. */}
-      <LandingGuarantee />
-
-      <LandingUseCases />
-
-      <LandingFAQ />
-
-      <LandingCTA />
-
-      <FloatingCTA label={es.nav.signup} />
-
-      {/* ── FOOTER ───────────────────────────────────────── */}
-      <footer className="bg-ink py-16 text-bone">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-            <div className="flex items-center gap-1.5">
-              <Logo size={24} className="shrink-0 text-bone" />
-              <span className="font-mono font-semibold text-lg text-bone ml-2">omona_</span>
-            </div>
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-bone/70">
-              <Link href="/login" className="transition-colors hover:text-bone">Iniciar sesión</Link>
-              <Link href="/signup" className="transition-colors hover:text-bone">Registrarse</Link>
-              <Link href="/demo" className="transition-colors hover:text-bone">Demo</Link>
-              <Link href="/privacidad" className="transition-colors hover:text-bone">Privacidad</Link>
-              <Link href="/terminos" className="transition-colors hover:text-bone">Términos de uso</Link>
-            </div>
-          </div>
-
-          {/* Columna de problemas, el equivalente a la de ManyChat: páginas
-              nombradas con las palabras del cliente, no con las nuestras. */}
-          <div className="mt-12 border-t border-bone/20 pt-8">
-            <p className="mb-4 text-center font-mono text-xs text-bone/60">problemas_</p>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-bone/70">
-              {es.problems.items.map((problem) => (
-                <Link
-                  key={problem.slug}
-                  href={`/problemas/${problem.slug}`}
-                  className="transition-colors hover:text-bone"
-                >
-                  {problem.short}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-sm text-bone/60">© {new Date().getFullYear()} omona by anthana · made with ♥ in méxico</p>
-          </div>
-        </div>
-      </footer>
+      <HomeFooter />
     </div>
   );
 }

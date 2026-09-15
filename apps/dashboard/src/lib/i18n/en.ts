@@ -3,7 +3,8 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'System',
+    features: 'Cycle',
+    engine: 'Engine',
     process: '6 weeks',
     pricing: 'How we work',
     blog: 'Blog',
@@ -515,6 +516,14 @@ export const en: Translations = {
         a: 'We do not publish a price because it depends on how many salespeople you have, how many conversations they handle, which channels they use, which CRM you already run and how complex your proposals are. Quoting before knowing that forces you to make a number up. The 30-minute diagnostic is free and the figure comes out of it.',
       },
       {
+        q: 'Where does it get the information to prospect?',
+        a: 'From public sources: the company website, open job postings, press mentions, public registries, and what is already in your own CRM from previous contacts. We do not buy databases or scrape personal data, and when it cannot find something it leaves the field empty instead of filling it in. An entry angle built on an invented fact is worse than no angle at all.',
+      },
+      {
+        q: 'Does it send proposals on its own?',
+        a: 'No. It drafts using your catalog, your prices and your approved terms, and then it stops. Someone on your team reviews it and sends it. That is deliberate: a proposal is the part of the process where a mistake costs real money, and the system is not authorized to take that risk by itself.',
+      },
+      {
         q: 'Do I have to switch CRM?',
         a: 'No, and usually you should not. We work on the one you already use, even if it is badly configured. Switching CRM and fixing your sales process at the same time are two projects competing for the same team’s patience, and both tend to lose.',
       },
@@ -617,5 +626,302 @@ export const en: Translations = {
     ],
     source: 'Public pricing from each vendor, verified on September 1, 2026 and converted to Mexican pesos. Plans change often: if you see a different figure on their site, tell us and we will fix it.',
     cta: 'Start 14 days free',
+  },
+
+  /** See es.ts for why the home page was rebuilt around the full sales cycle. */
+  home: {
+    hero: {
+      eyebrow: 'revenue intelligence · b2b · latam',
+      title: 'The pipeline looks healthy.',
+      titleAccent: 'It almost never is.',
+      subtitle:
+        'Omona reads every conversation, fills the CRM on its own and hands you the next play: who to reach today, with what message, and why. Prospecting, follow-up, closing and proposals, on the same data.',
+      ctaPrimary: 'Book a diagnostic',
+      ctaSecondary: 'See how it works',
+      note: '30 minutes · no cost · on the CRM you already have',
+      card: {
+        label: 'play_of_the_day',
+        cohort: 'No-show',
+        elapsed: '14 min ago',
+        contact: 'Mariana Robles · Grupo Zenith',
+        why: 'Booked the 10:00 diagnostic and never showed. The first 30 minutes are the window where she actually answers.',
+        messageLabel: 'suggested message',
+        message:
+          'Mariana, good morning. I held the 10:00 and we missed each other — no problem, it happens. Does tomorrow at 11:00 work, or would Thursday at the same time be better?',
+        checksLabel: 'only you can confirm this',
+        checks: ['The number is hers', 'She is still the decision maker'],
+        valueLabel: 'deal value',
+        value: '$84,000',
+        timeLabel: 'takes',
+        time: '2 min',
+        actionPrimary: 'Done',
+        actionSecondary: 'Not now',
+      },
+    },
+
+    leak: {
+      label: 'diagnostic_',
+      title: 'Nobody loses the sale on the ad. They lose it afterwards.',
+      body:
+        'The prospect raised their hand, somebody answered, and somewhere between that conversation and the close it fell through. Not for lack of effort: because follow-up lives in one person’s memory, and memory breaks exactly when the workload peaks.',
+      items: [
+        {
+          title: 'Opportunities with no next step',
+          detail:
+            'They sit open on the board, but none has a what-next or a when. In many CRMs the field to store it does not even exist.',
+        },
+        {
+          title: 'Meetings with no logged outcome',
+          detail:
+            'Nobody marked whether the person showed up. Without that you cannot tell whether people are not showing or nobody is writing it down.',
+        },
+        {
+          title: 'Proposals with no decision date',
+          detail:
+            'It went out and became "we’ll let you know". A proposal with no date is not alive: it is waiting for someone to remember it.',
+        },
+        {
+          title: 'And it breaks in peak season',
+          detail:
+            'Exactly when there are more meetings and more pressure is when the least gets logged. The month with the most opportunities is the month with the worst data.',
+        },
+      ],
+      quote: 'An effort breaks in peak season. Always. A system does not.',
+    },
+
+    cycle: {
+      label: 'cycle_',
+      title: 'One sales cycle, four engines',
+      subtitle:
+        'This is not a chatbot with a CRM bolted on the back. It is the full cycle running on the same data: what prospecting learns feeds follow-up, and what follow-up learns writes the proposal.',
+      outputLabel: 'produces',
+      stages: [
+        {
+          id: 'prospeccion',
+          index: '01',
+          name: 'Prospecting',
+          kicker: 'market research',
+          headline: 'It knows who it is talking to before the first message.',
+          bullets: [
+            'Researches the company: what it does, how big it is, what moment it is in, and who signs.',
+            'Builds lists from signals, not hunches — they hired, they opened a location, they changed sales directors.',
+            'Hands over the entry angle already written, with the concrete reason it applies to that account and not another.',
+          ],
+          output: 'Researched account + entry angle',
+        },
+        {
+          id: 'seguimiento',
+          index: '02',
+          name: 'Follow-up',
+          kicker: 'the engine',
+          headline: 'The part that breaks on its own. This is where the engine lives.',
+          bullets: [
+            'Computes the real state of every opportunity: what happened, how long ago, and what is due now.',
+            'Turns every leak into a concrete play — who, today, with the message already drafted.',
+            'A fast clock for what goes cold in minutes; a slow clock for the pipeline queue.',
+          ],
+          output: 'One play a day, with message and date',
+        },
+        {
+          id: 'cierre',
+          index: '03',
+          name: 'Closing',
+          kicker: 'buying signal',
+          headline: 'The conversation reaches the close carrying everything it needs.',
+          bullets: [
+            'Detects the real objection and when it surfaced — which is rarely the one stated at the end.',
+            'Flags the buying signal: budget said out loud, timeline, and who has to authorize.',
+            'Alerts leadership when a large opportunity has been sitting still for too long.',
+          ],
+          output: 'Objections, decision criteria and a date',
+        },
+        {
+          id: 'propuestas',
+          index: '04',
+          name: 'Proposals',
+          kicker: 'and presentations',
+          headline: 'The document comes out of the conversation, not a blank template.',
+          bullets: [
+            'Takes what the client said — need, budget, timeline, who decides — and drafts from that.',
+            'With your catalog, your prices and your approved terms. Never with invented figures.',
+            'Proposal and deck come from the same source, and both go through human review before they go out.',
+          ],
+          output: 'A personalized draft, ready for review',
+        },
+      ],
+    },
+
+    engine: {
+      label: 'engine_',
+      title: 'Five cohorts, each with its own clock',
+      subtitle:
+        'You do not follow up the same way five minutes after a no-show as three weeks after a proposal. Each cohort has its own tempo, script and goal.',
+      table: {
+        cohort: 'Cohort',
+        trigger: 'Fires when',
+        clock: 'Clock',
+        goal: 'The goal',
+      },
+      cohorts: [
+        {
+          name: 'New prospect',
+          trigger: 'Fills a form or writes for the first time',
+          clock: 'Minutes',
+          goal: 'Human contact in under 20 minutes',
+        },
+        {
+          name: 'Meeting booked',
+          trigger: 'Takes a slot on the calendar',
+          clock: 'Minutes → days',
+          goal: 'That the meeting actually happens',
+        },
+        {
+          name: 'No-show',
+          trigger: 'The meeting passed and they did not come',
+          clock: 'Minutes → days',
+          goal: 'Rebook, or close it with dignity',
+        },
+        {
+          name: 'Proposal',
+          trigger: 'The proposal is delivered',
+          clock: 'Days',
+          goal: 'That it has a decision date',
+        },
+        {
+          name: 'Everything else',
+          trigger: '—',
+          clock: 'Weekly',
+          goal: 'Deliberately ignored',
+        },
+      ],
+      quote:
+        'A system that shows you the forty things you ought to be doing is not information: it is guilt. This engine is willing to hide work.',
+      clocks: {
+        label: 'two clocks, not one',
+        items: [
+          {
+            name: 'Fast clock',
+            unit: 'minutes',
+            detail:
+              'New prospect, meeting booked, no-show, inbound reply. It reacts per event. A no-show recovered in five minutes converts far better than one recovered tomorrow: the person is still at their desk and still feels bad about missing it.',
+          },
+          {
+            name: 'Slow clock',
+            unit: 'days',
+            detail:
+              'The pipeline queue, the weekly scoreboard, the leak measured in money. It runs on its own, early, every day. It answers "how are we doing", not "what do I do now".',
+          },
+        ],
+      },
+      play: {
+        label: 'one play at a time',
+        title: 'The system hands you one card. Never a list.',
+        detail:
+          'It arrives with the message already written, the phone number, the proposed date, what the deal is worth if it closes and how many minutes it takes. Two buttons: done, or not now — and "not now" asks for a reason, because without one it becomes a loop serving the same card all week.',
+        closing:
+          'Zero decisions to get started. Deciding what to do is the expensive part; the system solves that and the person executes.',
+      },
+      guardrails: {
+        label: 'the style guide is code',
+        title: 'A message that fails the style guide never shows up as a play.',
+        detail:
+          'Banned words, the emoji ceiling, one question per message, the sending window, and the rule that there is always a next step with a date do not live in a PDF nobody opens: they run as a function that validates every message before it is shown.',
+        checksTitle: 'And what the machine cannot judge, it asks',
+        checksDetail:
+          'Whether a compliment is true, whether the number is the client’s, whether that is still the person who decides. That shows up on the card as boxes only a human can tick. A validator that pretends it can judge those is lying.',
+      },
+    },
+
+    intel: {
+      label: 'intelligence_',
+      title: 'Every conversation leaves data, not a paragraph',
+      subtitle:
+        'WhatsApp, email, calendar and recorded calls land in the same place. What comes out is not a nice summary: it is fields the CRM can store and the engine can read.',
+      sourceLabel: 'what came in',
+      source:
+        'Look, I already went over it with the team. The budget is there for next quarter, not right now. And honestly what worries us is the migration, because it already went badly with our previous vendor. The one who decides this in the end is Rodrigo, our operations director.',
+      fieldsLabel: 'what got stored',
+      fields: [
+        { key: 'need', value: 'Migration with no service interruption' },
+        { key: 'budget', value: 'Exists, released next quarter' },
+        { key: 'timeline', value: 'Q+1 · not urgency, calendar' },
+        { key: 'objection', value: 'Bad prior experience with migration' },
+        { key: 'decision_maker', value: 'Rodrigo · operations director' },
+        { key: 'next_step', value: 'Migration case study + date with Rodrigo' },
+      ],
+      aside: {
+        title: 'And yes, it answers too.',
+        detail:
+          'The agent replies in seconds, at any hour, understands voice notes and books the meeting inside the same chat. But answering is the system’s input, not the product: if the message gets answered fast and still nobody knows what comes next, the sale falls through anyway.',
+        cta: 'Try it in the demo',
+      },
+    },
+
+    measure: {
+      label: 'measurement_',
+      title: 'It does not measure activity. It measures muscle.',
+      subtitle:
+        'Sending forty messages is not a result. These four are, and all four are compared against previous weeks — trend, not snapshot.',
+      metrics: [
+        {
+          name: 'Time to first contact',
+          detail:
+            'The median from a prospect raising their hand to a human speaking to them. It is the most honest number in the system because it is 100% under your control.',
+        },
+        {
+          name: 'Time to first touch after a no-show',
+          detail: 'Recovery intensity, turned into a number that goes up or down.',
+        },
+        {
+          name: 'Recovery rate',
+          detail: 'For no-shows and for proposals that were sitting without a decision date.',
+        },
+        {
+          name: 'Which script converts',
+          detail:
+            'Every play stores its outcome and where the text came from. In three months that answers which phrases work with evidence instead of opinion.',
+        },
+      ],
+      moneyLabel: 'and the figure that makes it a leadership conversation',
+      moneyFormula:
+        'no-shows this month × cost per meeting        = money that leaked\nrecovered           × ticket × margin × months = money you plugged',
+      moneyNote: 'That subtraction is the whole conversation. Nothing else needs explaining.',
+    },
+
+    scope: {
+      label: 'scope_',
+      title: 'It lives on top of the CRM you already have',
+      subtitle:
+        'We are not asking you to switch tools. We read the CRM, the calendar and recorded calls, and write back to them.',
+      doTitle: 'What it does',
+      does: [
+        'Writes into your current CRM: contacts, fields, tasks with an owner and a date.',
+        'Reads stages, calendar meetings and recorded calls as a single signal.',
+        'Adjusts scripts and timing without redeploying anything: the ladders are data, not code.',
+        'Adapts to your vocabulary and your voice guide, both loaded as configuration.',
+      ],
+      dontTitle: 'What it does not do',
+      donts: [
+        {
+          title: 'It is not a CRM',
+          detail: 'It lives on top of the one you have. If you want to replace yours, this is not that.',
+        },
+        {
+          title: 'It does not decide',
+          detail:
+            'It computes state and proposes plays. It does not move stages on its own, does not close deals, and does not send messages unapproved.',
+        },
+        {
+          title: 'It does not see every channel',
+          detail:
+            'Personal email and WhatsApp sent from someone’s phone are invisible. In Mexico that is a good chunk of the conversation, and it is written here as a known gap, not hidden.',
+        },
+        {
+          title: 'It is not a statistical model',
+          detail:
+            'The ladders are hand-written rules over your process. They work, but claiming a model is predicting the close would be making things up.',
+        },
+      ],
+    },
   },
 };

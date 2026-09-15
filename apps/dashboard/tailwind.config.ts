@@ -25,6 +25,9 @@ const config: Config = {
           DEFAULT: 'var(--border)',
           hover: 'var(--border-hover)',
         },
+        // La línea de 1px de la home. Más tenue que --border porque ahí se
+        // repite cada 64px; al valor de --border la retícula tapa el texto.
+        hairline: 'var(--hairline)',
         'accent-green': 'var(--accent-green)',
         'accent-link': 'var(--accent-link)',
         // Pigmento de marca. Los neones son color de FONDO (texto negro

@@ -2,7 +2,8 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'Sistema',
+    features: 'Ciclo',
+    engine: 'Motor',
     process: '6 semanas',
     pricing: 'Cómo trabajamos',
     blog: 'Blog',
@@ -539,6 +540,14 @@ export const es = {
         a: 'No publicamos precio porque depende de cuántos vendedores son, cuántas conversaciones manejan, qué canales usan, qué CRM ya tienen y qué tan complejas son sus propuestas. Cotizar antes de saber eso obliga a inventar un número. El diagnóstico de 30 minutos no tiene costo y de ahí sale la cifra.',
       },
       {
+        q: '¿De dónde saca la información para prospectar?',
+        a: 'De fuentes públicas: el sitio de la empresa, sus vacantes abiertas, notas de prensa, registros y lo que ya está en tu propio CRM de contactos anteriores. No compramos bases ni raspamos datos personales, y cuando no encuentra algo lo deja vacío en vez de rellenarlo. Un ángulo de entrada construido sobre un dato inventado es peor que no tener ángulo.',
+      },
+      {
+        q: '¿Las propuestas las manda solo?',
+        a: 'No. Genera el borrador con tu catálogo, tus precios y tus condiciones aprobadas, y ahí se detiene. Alguien de tu equipo lo revisa y lo manda. Es a propósito: una propuesta es la parte del proceso donde un error cuesta dinero de verdad, y el sistema no está autorizado a asumir ese riesgo por su cuenta.',
+      },
+      {
         q: '¿Tengo que cambiar de CRM?',
         a: 'No, y normalmente no conviene. Trabajamos sobre el que ya usas, aunque esté mal configurado. Cambiar de CRM y ordenar el proceso comercial al mismo tiempo son dos proyectos peleándose por la paciencia del mismo equipo, y suelen perder los dos.',
       },
@@ -643,6 +652,363 @@ export const es = {
     ],
     source: 'Precios públicos de cada proveedor, verificados el 1 de septiembre de 2026 y convertidos a pesos. Los planes cambian seguido: si ves otra cifra en su sitio, escríbenos y la corregimos.',
     cta: 'Empezar gratis 14 días',
+  },
+
+  /**
+   * ══ LA HOME ═════════════════════════════════════════════════
+   *
+   * Todo el copy de la portada vive aquí abajo. Los bloques de arriba
+   * (`hero`, `features`, `offerStack`, `stats`, `proof`, `beforeAfter`)
+   * siguen existiendo porque los consumen las páginas de problema, las
+   * de caso de uso y el blog — pero la portada ya no los usa.
+   *
+   * El giro que justifica el bloque nuevo: la versión anterior vendía
+   * que el agente CONTESTA. Contestar es la parte visible y es la que
+   * cualquier chatbot de $20 al mes también dice hacer, así que competir
+   * ahí es competir en precio. Lo que no tiene ninguno es lo que pasa
+   * DESPUÉS del mensaje: que el CRM se llene solo, que de cada charla
+   * salgan campos en vez de un párrafo, y que alguien decida a quién hay
+   * que buscar hoy y con qué decirle.
+   *
+   * Por eso la portada se reordenó alrededor del ciclo completo
+   * —prospección, seguimiento, cierre, propuestas— y la conversación
+   * bajó a lo que realmente es: la ENTRADA del sistema, no el producto.
+   */
+  home: {
+    hero: {
+      eyebrow: 'inteligencia comercial · b2b · latam',
+      // El titular no promete una función: nombra un síntoma que el
+      // director comercial reconoce sin que se lo expliquen. El pipeline
+      // lleno de oportunidades viejas se ve bien en el tablero y es
+      // exactamente donde está la fuga.
+      title: 'El pipeline se ve sano.',
+      titleAccent: 'Casi nunca lo está.',
+      subtitle:
+        'Omona lee cada conversación, llena el CRM solo y te entrega la siguiente jugada: a quién buscar hoy, con qué mensaje y por qué. Prospección, seguimiento, cierre y propuestas, sobre el mismo dato.',
+      ctaPrimary: 'Agendar diagnóstico',
+      ctaSecondary: 'Ver cómo funciona',
+      note: '30 minutos · sin costo · sobre el CRM que ya tienes',
+      // Rótulos de la tarjeta de jugada que se dibuja al lado. Es el
+      // producto real: una jugada, no una bandeja de chats.
+      card: {
+        label: 'jugada_del_día',
+        cohort: 'No-show',
+        elapsed: 'hace 14 min',
+        contact: 'Mariana Robles · Grupo Zenith',
+        why: 'Apartó el diagnóstico de las 10:00 y no llegó. Los primeros 30 minutos son la ventana donde sí contesta.',
+        messageLabel: 'mensaje propuesto',
+        message:
+          'Mariana, buen día. Te aparté las 10 y no nos cruzamos — sin problema, pasa. ¿Te queda mañana a las 11:00 o prefieres el jueves a la misma hora?',
+        checksLabel: 'lo que solo tú puedes confirmar',
+        checks: ['El teléfono es el suyo', 'Sigue siendo la persona que decide'],
+        valueLabel: 'valor del deal',
+        value: '$84,000',
+        timeLabel: 'toma',
+        time: '2 min',
+        actionPrimary: 'Hecho',
+        actionSecondary: 'No ahora',
+      },
+    },
+
+    /**
+     * El diagnóstico. Sin cifras a propósito: las que tenemos son de
+     * nuestro propio pipeline y publicarlas sería exponer la operación.
+     * Lo que sí se puede afirmar sin inventar nada es la MECÁNICA de la
+     * fuga, que es además lo que el visitante reconoce en el suyo.
+     */
+    leak: {
+      label: 'diagnóstico_',
+      title: 'Nadie pierde la venta en la publicidad. La pierde después.',
+      body:
+        'El prospecto levantó la mano, alguien lo atendió, y en algún punto entre esa conversación y el cierre se cayó. No por falta de ganas: porque el seguimiento vive en la memoria de una persona, y la memoria se rompe justo cuando hay más trabajo.',
+      items: [
+        {
+          title: 'Oportunidades sin siguiente paso',
+          detail:
+            'Están abiertas en el tablero, pero ninguna tiene qué sigue ni cuándo. En muchos CRM ni siquiera existe el campo para guardarlo.',
+        },
+        {
+          title: 'Citas sin resultado registrado',
+          detail:
+            'Nadie marcó si la persona llegó. Sin eso no se puede saber si el problema es que no llegan o que no se anota.',
+        },
+        {
+          title: 'Propuestas sin fecha de decisión',
+          detail:
+            'Se entregó y quedó en "me avisan". Una propuesta sin fecha no está viva: está esperando a que alguien se acuerde.',
+        },
+        {
+          title: 'Y se rompe en temporada alta',
+          detail:
+            'Justo cuando hay más citas y más presión es cuando menos se registra. El mes con más oportunidades es el mes con peor dato.',
+        },
+      ],
+      quote: 'Un esfuerzo se rompe en temporada alta. Siempre. Un sistema, no.',
+    },
+
+    /**
+     * ══ EL NÚCLEO ══════════════════════════════════════════════
+     * Los cuatro ciclos. Esta es la sección que carga la promesa de la
+     * página, y va arriba por eso. El orden es el del ciclo real, no el
+     * de la importancia: prospección primero porque es lo que ocurre
+     * antes del primer mensaje, y propuestas al final porque es lo que
+     * sale de todo lo anterior.
+     */
+    cycle: {
+      label: 'ciclo_',
+      title: 'Un ciclo de venta, cuatro motores',
+      subtitle:
+        'No es un chatbot con un CRM pegado atrás. Es el ciclo completo corriendo sobre el mismo dato: lo que se aprende prospectando alimenta el seguimiento, y lo que se aprende en el seguimiento escribe la propuesta.',
+      outputLabel: 'produce',
+      stages: [
+        {
+          id: 'prospeccion',
+          index: '01',
+          name: 'Prospección',
+          kicker: 'investigación de mercado',
+          headline: 'Antes del primer mensaje, ya sabe con quién habla.',
+          bullets: [
+            'Investiga la empresa: a qué se dedica, de qué tamaño es, en qué momento está y quién firma.',
+            'Arma listas por señal, no por corazonada — contrataron, abrieron sucursal, cambiaron de director comercial.',
+            'Entrega el ángulo de entrada ya escrito, con la razón concreta por la que aplica a esa cuenta y no a otra.',
+          ],
+          output: 'Cuenta investigada + ángulo de entrada',
+        },
+        {
+          id: 'seguimiento',
+          index: '02',
+          name: 'Seguimiento',
+          kicker: 'el motor',
+          headline: 'La parte que se rompe sola. Aquí vive el motor.',
+          bullets: [
+            'Calcula el estado real de cada oportunidad: qué pasó, hace cuánto, y qué toca hacer ahora.',
+            'Convierte cada fuga en una jugada concreta — a quién, hoy, con el mensaje ya redactado.',
+            'Reloj rápido para lo que se enfría en minutos; reloj lento para la cola del pipeline.',
+          ],
+          output: 'Una jugada al día, con mensaje y fecha',
+        },
+        {
+          id: 'cierre',
+          index: '03',
+          name: 'Cierre',
+          kicker: 'señal de compra',
+          headline: 'La conversación llega al cierre con todo lo que hace falta.',
+          bullets: [
+            'Detecta la objeción real y en qué momento apareció, que casi nunca es la que se dijo al final.',
+            'Marca la señal de compra: presupuesto dicho en voz alta, plazo, y quién tiene que autorizar.',
+            'Avisa a dirección cuando una oportunidad grande lleva demasiado tiempo quieta.',
+          ],
+          output: 'Objeciones, criterio de decisión y fecha',
+        },
+        {
+          id: 'propuestas',
+          index: '04',
+          name: 'Propuestas',
+          kicker: 'y presentaciones',
+          headline: 'El documento sale de la conversación, no de una plantilla en blanco.',
+          bullets: [
+            'Toma lo que el cliente dijo —necesidad, presupuesto, plazo, quién decide— y arma el borrador con eso.',
+            'Con tu catálogo, tus precios y tus condiciones aprobadas. Nunca con cifras inventadas.',
+            'Propuesta y presentación salen de la misma fuente, y las dos pasan por revisión humana antes de salir.',
+          ],
+          output: 'Borrador personalizado, listo para revisar',
+        },
+      ],
+    },
+
+    /**
+     * El motor de seguimiento, a detalle. Es el ciclo 02 abierto, y va
+     * inmediatamente después porque es el que sostiene la diferencia
+     * frente a cualquier otra herramienta: los otros tres se pueden
+     * imitar con prompts, este necesita relojes y estado.
+     */
+    engine: {
+      label: 'motor_',
+      title: 'Cinco cohortes, cada uno con su reloj',
+      subtitle:
+        'Una oportunidad no se sigue igual cinco minutos después de un no-show que tres semanas después de una propuesta. Cada cohorte tiene su ritmo, su guion y su meta.',
+      table: {
+        cohort: 'Cohorte',
+        trigger: 'Se dispara cuando',
+        clock: 'Reloj',
+        goal: 'La meta',
+      },
+      cohorts: [
+        {
+          name: 'Prospecto nuevo',
+          trigger: 'Llena un formulario o escribe por primera vez',
+          clock: 'Minutos',
+          goal: 'Contacto humano en menos de 20 minutos',
+        },
+        {
+          name: 'Cita agendada',
+          trigger: 'Aparta lugar en el calendario',
+          clock: 'Minutos → días',
+          goal: 'Que la cita efectivamente ocurra',
+        },
+        {
+          name: 'No-show',
+          trigger: 'La cita pasó y no llegó',
+          clock: 'Minutos → días',
+          goal: 'Reagendar, o cerrar con dignidad',
+        },
+        {
+          name: 'Propuesta',
+          trigger: 'Se entrega la propuesta',
+          clock: 'Días',
+          goal: 'Que tenga fecha de decisión',
+        },
+        {
+          name: 'El resto',
+          trigger: '—',
+          clock: 'Semanal',
+          goal: 'Se ignora a propósito',
+        },
+      ],
+      // Esta cita es la decisión de diseño más difícil de defender y la
+      // que más confianza gana cuando se dice en voz alta.
+      quote:
+        'Un sistema que te enseña las cuarenta cosas que deberías hacer no es información: es culpa. El motor está dispuesto a esconder trabajo.',
+      clocks: {
+        label: 'dos relojes, no uno',
+        items: [
+          {
+            name: 'Reloj rápido',
+            unit: 'minutos',
+            detail:
+              'Prospecto nuevo, cita agendada, no-show, respuesta entrante. Reacciona por evento. Un no-show recuperado a los cinco minutos convierte muchísimo mejor que uno recuperado mañana: la persona sigue en su escritorio y todavía se siente mal por no haber llegado.',
+          },
+          {
+            name: 'Reloj lento',
+            unit: 'días',
+            detail:
+              'La cola del pipeline, el marcador de la semana, la fuga medida en pesos. Corre solo, temprano, todos los días. Es el que contesta "cómo vamos", no "qué hago ahora".',
+          },
+        ],
+      },
+      play: {
+        label: 'una jugada a la vez',
+        title: 'El sistema entrega una tarjeta. Nunca una lista.',
+        detail:
+          'Llega con el mensaje ya escrito, el teléfono, la fecha propuesta, cuánto vale el deal si cierra y cuántos minutos toma. Dos botones: hecho, o no ahora — y "no ahora" pide razón, porque sin razón se vuelve un loop con la misma tarjeta el resto de la semana.',
+        closing:
+          'Cero decisiones para arrancar. Decidir qué hacer es la parte cara; el sistema la resuelve y la persona ejecuta.',
+      },
+      guardrails: {
+        label: 'el manual de estilo es código',
+        title: 'Un mensaje que no cumple el manual nunca aparece como jugada.',
+        detail:
+          'Las palabras prohibidas, el máximo de emojis, una sola pregunta por mensaje, la ventana horaria y la regla de que siempre haya un siguiente paso con fecha no viven en un PDF que nadie abre: corren como una función que valida cada mensaje antes de mostrarlo.',
+        checksTitle: 'Y lo que la máquina no puede juzgar, lo pregunta',
+        checksDetail:
+          'Si un elogio es cierto, si el número es el del cliente, si esa sigue siendo la persona que decide. Eso aparece en la tarjeta como casillas que solo una persona puede marcar. Un validador que finja poder juzgar eso, miente.',
+      },
+    },
+
+    /**
+     * Aquí es donde la conversación —que era TODA la portada anterior—
+     * queda puesta en su lugar: es la materia prima, no el producto.
+     * Se dice explícitamente en `aside`, porque el visitante que llegó
+     * buscando "chatbot para WhatsApp" necesita entender por qué esta
+     * página le está hablando de otra cosa.
+     */
+    intel: {
+      label: 'inteligencia_',
+      title: 'Cada conversación deja datos, no un párrafo',
+      subtitle:
+        'WhatsApp, correo, calendario y llamadas grabadas entran al mismo lugar. De ahí no sale un resumen bonito: salen campos que el CRM puede guardar y el motor puede leer.',
+      sourceLabel: 'lo que entró',
+      source:
+        'Fíjate, ya lo vi con el equipo. El presupuesto lo tenemos para el siguiente trimestre, no ahorita. Y la verdad lo que nos preocupa es la migración, porque ya nos pasó con el proveedor anterior. Quien decide esto al final es Rodrigo, el director de operaciones.',
+      fieldsLabel: 'lo que quedó guardado',
+      fields: [
+        { key: 'necesidad', value: 'Migración sin interrupción del servicio' },
+        { key: 'presupuesto', value: 'Existe, liberado el siguiente trimestre' },
+        { key: 'plazo', value: 'Q+1 · no es urgencia, es calendario' },
+        { key: 'objeción', value: 'Mala experiencia previa en la migración' },
+        { key: 'quién_decide', value: 'Rodrigo · dirección de operaciones' },
+        { key: 'siguiente_paso', value: 'Caso de migración + fecha con Rodrigo' },
+      ],
+      aside: {
+        title: 'Y sí, también contesta.',
+        detail:
+          'El agente responde en segundos, a cualquier hora, entiende notas de voz y agenda la cita dentro del mismo chat. Pero contestar es la entrada del sistema, no el producto: si el mensaje se contesta rápido y aun así nadie sabe qué sigue, la venta se cae igual.',
+        cta: 'Pruébalo en el demo',
+      },
+    },
+
+    measure: {
+      label: 'medición_',
+      title: 'No mide actividad. Mide músculo.',
+      subtitle:
+        'Mandar cuarenta mensajes no es un resultado. Estas cuatro sí, y las cuatro se comparan contra las semanas anteriores — tendencia, no foto.',
+      metrics: [
+        {
+          name: 'Tiempo al primer contacto',
+          detail:
+            'La mediana desde que un prospecto levanta la mano hasta que un humano le habla. Es el número más honesto del sistema porque está 100% bajo tu control.',
+        },
+        {
+          name: 'Tiempo al primer toque tras un no-show',
+          detail: 'La intensidad de recuperación, convertida en un número que sube o baja.',
+        },
+        {
+          name: 'Tasa de recuperación',
+          detail: 'De no-shows y de propuestas que estaban sin fecha de decisión.',
+        },
+        {
+          name: 'Qué guion convierte',
+          detail:
+            'Cada jugada guarda su resultado y de dónde salió el texto. En tres meses eso contesta con evidencia cuáles frases funcionan, en vez de con opinión.',
+        },
+      ],
+      moneyLabel: 'y la cifra que lo vuelve un tema de dirección',
+      moneyFormula:
+        'no-shows del mes   × costo por cita                = pesos que se fugaron\nrecuperados        × ticket × comisión × meses   = pesos que se taparon',
+      moneyNote: 'Esa resta es la conversación completa. No hace falta explicar nada más.',
+    },
+
+    /**
+     * Los límites, escritos como límites. Van en la portada y no
+     * escondidos en un FAQ porque el comprador B2B que vale la pena ya
+     * los va a descubrir en la semana 2 — y descubrirlos entonces, tras
+     * haberlos leído aquí, construye confianza en vez de quemarla.
+     */
+    scope: {
+      label: 'alcance_',
+      title: 'Vive encima del CRM que ya tienes',
+      subtitle:
+        'No te pedimos cambiar de herramienta. Leemos el CRM, el calendario y las llamadas grabadas, y le escribimos de vuelta.',
+      doTitle: 'Lo que sí hace',
+      does: [
+        'Escribe en tu CRM actual: contactos, campos, tareas con responsable y fecha.',
+        'Lee etapas, citas del calendario y llamadas grabadas como una sola señal.',
+        'Ajusta los guiones y los tiempos sin volver a desplegar nada: las escaleras son datos, no código.',
+        'Se adapta a tu léxico y a tu manual de voz, que se cargan como configuración.',
+      ],
+      dontTitle: 'Lo que no hace',
+      donts: [
+        {
+          title: 'No es un CRM',
+          detail: 'Vive encima del que ya existe. Si buscas reemplazar el tuyo, no somos eso.',
+        },
+        {
+          title: 'No decide',
+          detail:
+            'Calcula estado y propone jugadas. No mueve etapas solo, no cierra deals y no manda mensajes por su cuenta sin que alguien lo apruebe.',
+        },
+        {
+          title: 'No ve todos los canales',
+          detail:
+            'El correo personal y el WhatsApp saliente desde el teléfono son invisibles. En México eso es buena parte de la conversación, y está escrito aquí como hueco conocido, no disimulado.',
+        },
+        {
+          title: 'No es un modelo estadístico',
+          detail:
+            'Las escaleras son reglas escritas a mano sobre tu proceso. Funcionan, pero decir que hay un modelo prediciendo el cierre sería inventar.',
+        },
+      ],
+    },
   },
 };
 

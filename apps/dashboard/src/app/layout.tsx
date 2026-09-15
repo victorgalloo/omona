@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" data-theme="light" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="es" data-theme="dark" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
         <ThemeScript />
         <LanguageProvider>
@@ -99,19 +99,32 @@ export default function RootLayout({
 }
 
 function ThemeScript() {
+  // Oscuro por omisión. El sitio se rediseñó sobre negro (Vercel/Supabase), así
+  // que el claro pasó a ser la preferencia explícita del visitante y no el
+  // punto de partida: antes este script FORZABA 'light' y lo escribía en
+  // localStorage, de modo que ningún visitante nuevo podía ver el tema base.
   const script = `
     (function() {
+      var root = document.documentElement;
       try {
         var theme = localStorage.getItem('omona-theme');
-        if (theme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-          localStorage.setItem('omona-theme', 'light');
-        }
+        root.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
       } catch(e) {
-        document.documentElement.setAttribute('data-theme', 'light');
+        root.setAttribute('data-theme', 'dark');
       }
+      // Marca que hay JavaScript, y por tanto que el IntersectionObserver de
+      // components/home/Reveal.tsx va a poder revelar el contenido. Sólo con
+      // esta clase presente esconde CSS los bloques [data-reveal].
+      //
+      // Va aquí y no en el componente por el orden de pintado: puesto desde
+      // React, el contenido aparecería, se escondería y volvería a aparecer.
+      // Y puesto siempre, sin esta condición, un visitante sin JS se quedaría
+      // con la página en blanco — el fallo tiene que ser hacia visible.
+      try {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          root.classList.add('js-reveal');
+        }
+      } catch(e) {}
     })();
   `;
   return <script dangerouslySetInnerHTML={{ __html: script }} />;
