@@ -36,15 +36,22 @@ export function HomeHero() {
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <Reveal>
-          <p className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-border px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
+          {/* Era una pastilla con borde redondeado. En un archivo eso no
+              existe: es una linea de comentario. */}
+          <p className="mb-6 text-[11px] uppercase tracking-[0.14em] text-muted">
+            <span aria-hidden className="md-syntax">{'// '}</span>
             {h.eyebrow}
           </p>
 
-          <h1 className="text-[clamp(2.4rem,6.2vw,4.25rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-foreground">
+          <h1 className="text-[clamp(1.75rem,4.6vw,3rem)] font-semibold leading-[1.18] tracking-[-0.02em] text-foreground">
+            {/* El `# ` va en el marcado y no por ::before porque aqui hay dos
+                lineas y el pseudo-elemento solo puede preceder a la primera. */}
+            <span aria-hidden className="md-syntax">{'# '}</span>
             {h.title}
             <br />
+            <span aria-hidden className="md-syntax">{'# '}</span>
             <span className="text-muted">{h.titleAccent}</span>
+            <span aria-hidden className="md-caret" />
           </h1>
 
           <p
@@ -59,14 +66,14 @@ export function HomeHero() {
               href={CTA_PROYECTO}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2 bg-foreground px-6 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-90"
             >
               {h.ctaPrimary}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <Link
               href="#ciclo"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-6 py-3.5 text-[15px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+              className="inline-flex items-center justify-center gap-2 border border-border px-6 py-3.5 text-[15px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
             >
               {h.ctaSecondary}
             </Link>
@@ -93,7 +100,7 @@ function PlayCard() {
   const c = t.home.hero.card;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-elevated">
+    <div className="overflow-hidden border border-border bg-surface">
       <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5">
         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
           {c.label}
@@ -112,7 +119,7 @@ function PlayCard() {
           <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{c.why}</p>
         </div>
 
-        <div className="rounded-lg border border-hairline bg-background p-3.5 sm:p-4">
+        <div className="border border-hairline bg-background p-3.5 sm:p-4">
           <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
             {c.messageLabel}
           </p>
@@ -144,10 +151,10 @@ function PlayCard() {
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="rounded-md border border-border px-3 py-1.5 text-[12px] text-muted-foreground">
+          <span className="border border-border px-3 py-1.5 text-[12px] text-muted-foreground">
             {c.actionSecondary}
           </span>
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-[12px] font-medium text-background">
+          <span className="inline-flex items-center gap-1.5 bg-foreground px-3 py-1.5 text-[12px] font-medium text-background">
             <Check aria-hidden className="h-3.5 w-3.5" />
             {c.actionPrimary}
           </span>

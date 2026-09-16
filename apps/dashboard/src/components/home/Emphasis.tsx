@@ -25,8 +25,14 @@ export function Emphasis({ text, className }: { text: string; className?: string
     <span className={className}>
       {parts.map((part, i) =>
         part.startsWith('**') && part.endsWith('**') ? (
+          // Los asteriscos se quedan a la vista, en gris: es la pieza que hace
+          // que el bloque se lea como markdown crudo y no como texto con
+          // negritas. Van `aria-hidden` para que un lector de pantalla no diga
+          // "asterisco asterisco" antes y despues de cada enfasis.
           <strong key={i} className="font-medium text-foreground">
+            <span aria-hidden className="md-syntax">**</span>
             {part.slice(2, -2)}
+            <span aria-hidden className="md-syntax">**</span>
           </strong>
         ) : (
           part

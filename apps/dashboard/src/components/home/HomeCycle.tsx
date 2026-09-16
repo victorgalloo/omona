@@ -39,7 +39,7 @@ export function HomeCycle() {
           <span key={stage.id} className="flex items-center gap-3">
             <a
               href={`#${stage.id}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-border px-3.5 py-2 text-[13px] text-muted-foreground transition-colors hover:border-border-hover hover:text-foreground"
+              className="inline-flex items-center gap-2 border border-border px-3.5 py-2 text-[13px] text-muted-foreground transition-colors hover:border-border-hover hover:text-foreground"
             >
               <span className="font-mono text-[11px] text-accent-green">{stage.index}</span>
               {stage.name}
@@ -87,7 +87,7 @@ export function HomeCycle() {
                 ))}
               </ul>
 
-              <p className="mt-7 inline-flex flex-wrap items-center gap-2.5 rounded-lg border border-hairline bg-surface px-3.5 py-2">
+              <p className="mt-7 inline-flex flex-wrap items-center gap-2.5 border border-hairline bg-surface px-3.5 py-2">
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                   {c.outputLabel}
                 </span>

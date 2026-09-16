@@ -31,7 +31,7 @@ export function HomeIntel() {
 
       <div className="mt-12 grid items-start gap-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
         {/* Lo que entró */}
-        <Reveal className="rounded-xl border border-hairline bg-surface p-5 sm:p-6">
+        <Reveal className="border border-hairline bg-surface p-5 sm:p-6">
           <p className="mb-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
             {i.sourceLabel}
           </p>
@@ -47,7 +47,7 @@ export function HomeIntel() {
         </Reveal>
 
         {/* Lo que quedó guardado */}
-        <Reveal delay={80} className="overflow-hidden rounded-xl border border-border bg-background">
+        <Reveal delay={80} className="overflow-hidden border border-border bg-background">
           <p className="border-b border-hairline px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
             {i.fieldsLabel}
           </p>
@@ -71,7 +71,7 @@ export function HomeIntel() {
         </div>
         <Link
           href="/demo"
-          className="group inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-border px-5 py-3 text-[14px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+          className="group inline-flex shrink-0 items-center gap-2 self-start border border-border px-5 py-3 text-[14px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
         >
           {i.aside.cta}
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

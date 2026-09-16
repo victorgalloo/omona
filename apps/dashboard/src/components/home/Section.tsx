@@ -37,7 +37,11 @@ export function Section({
 /** Rótulo monoespaciado de sección. El acento de color de la página. */
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-accent-green">
+    <p className="mb-5 text-xs uppercase tracking-[0.14em] text-accent-green">
+      {/* El rotulo es el unico verde de la seccion, y el `//` lo ancla al
+          lenguaje del archivo. Aparte va aria-hidden: "barra barra" antes de
+          cada rotulo es ruido para quien escucha la pagina. */}
+      <span aria-hidden className="md-syntax">// </span>
       {children}
     </p>
   );
@@ -57,11 +61,11 @@ export function SectionHeader({
   return (
     <Reveal as="header" className={`max-w-3xl ${className}`}>
       <SectionLabel>{label}</SectionLabel>
-      <h2 className="text-[clamp(1.9rem,4.4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-foreground">
+      <h2 className="text-[clamp(1.5rem,3.4vw,2.2rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-5 max-w-[62ch] text-[17px] leading-relaxed text-muted-foreground">
+        <p className="md-measure mt-5 text-[15px] leading-[1.75] text-muted-foreground sm:text-[16px]">
           <Emphasis text={subtitle} />
         </p>
       )}
@@ -75,10 +79,14 @@ export function SectionHeader({
  */
 export function PullQuote({ children }: { children: React.ReactNode }) {
   return (
-    <Reveal className="mt-14 border-l-2 border-accent-green pl-6 sm:pl-8">
-      <p className="max-w-3xl text-[clamp(1.15rem,2.4vw,1.6rem)] font-medium leading-snug tracking-[-0.02em] text-foreground">
-        {children}
-      </p>
+    <Reveal className="mt-14">
+      {/* <blockquote> de verdad, no un div con borde: asi hereda el `> ` que
+          .md blockquote::before dibuja, y ademas lo anuncia como cita. */}
+      <blockquote className="border-l border-accent-green pl-5">
+        <p className="max-w-[60ch] text-[clamp(1rem,2vw,1.3rem)] font-medium leading-snug text-foreground">
+          {children}
+        </p>
+      </blockquote>
     </Reveal>
   );
 }

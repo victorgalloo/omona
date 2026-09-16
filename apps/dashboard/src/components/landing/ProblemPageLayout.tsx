@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Check, X } from 'lucide-react';
 import { LandingNav } from './LandingNav';
-import { Band } from './motion/Band';
+import { Section } from '@/components/home/Section';
 import { LoopVideo } from './motion/LoopVideo';
 import { RevealBlock, RevealText } from './motion/RevealText';
 import { useT } from '@/contexts/LanguageContext';
@@ -25,14 +25,14 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
   const others = t.problems.items.filter((p) => p.slug !== slug);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="md crt min-h-screen bg-background text-foreground">
       <LandingNav />
 
       {/* ── HERO ─────────────────────────────────────────── */}
-      <Band tone="contrast" wipe={false} className="pt-32 pb-20">
+      <Section rule={false} className="pt-32 pb-20">
           <Link
             href="/"
-            className="mb-10 inline-flex items-center gap-2 font-mono text-sm text-band-muted transition-colors hover:text-band-fg"
+            className="mb-10 inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.problems.backHome}
@@ -40,13 +40,13 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
 
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">{t.problems.sectionLabel}</p>
+              <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-muted-foreground">{t.problems.sectionLabel}</p>
               <RevealText
                 as="h1"
                 lines={[problem.title, problem.titleBreak]}
                 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
               />
-              <p className="mb-10 max-w-xl text-lg leading-relaxed text-band-muted lg:text-xl">
+              <p className="mb-10 max-w-xl text-lg leading-relaxed text-muted-foreground lg:text-xl">
                 {problem.subtitle}
               </p>
               <Link
@@ -58,7 +58,7 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
               </Link>
             </div>
 
-            <RevealBlock className="overflow-hidden border-2 border-band-fg">
+            <RevealBlock className="overflow-hidden border-2 border-hairline">
               <LoopVideo
                 name={problem.video}
                 alt={problem.videoAlt}
@@ -67,44 +67,44 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
               />
             </RevealBlock>
         </div>
-      </Band>
+      </Section>
 
       {/* ── DOLORES ──────────────────────────────────────── */}
-      <Band tone="lime" width="narrow" className="py-20 sm:py-24">
-        <h2 className="mb-10 text-display-sm font-bold text-band-fg">{t.problems.painsTitle}</h2>
-        <ul className="border-t-2 border-band-fg">
+      <Section className="py-20 sm:py-24">
+        <h2 className="mb-10 text-display-sm font-bold text-foreground">{t.problems.painsTitle}</h2>
+        <ul className="border-t-2 border-hairline">
           {problem.pains.map((pain) => (
-            <li key={pain} className="flex items-start gap-4 border-b border-band-fg/25 py-5">
-              <X className="mt-1 h-5 w-5 shrink-0 text-band-fg" aria-hidden />
-              <span className="text-lg leading-relaxed text-band-fg">{pain}</span>
+            <li key={pain} className="flex items-start gap-4 border-b border-hairline/25 py-5">
+              <X className="mt-1 h-5 w-5 shrink-0 text-foreground" aria-hidden />
+              <span className="text-lg leading-relaxed text-foreground">{pain}</span>
             </li>
           ))}
         </ul>
-      </Band>
+      </Section>
 
       {/* ── RESPUESTAS ───────────────────────────────────── */}
-      <Band tone="neutral" className="py-20 sm:py-24">
+      <Section className="py-20 sm:py-24">
         <RevealText
           as="h2"
           lines={[t.problems.answersTitle]}
-          className="mb-14 text-display-sm font-bold text-band-fg"
+          className="mb-14 text-display-sm font-bold text-foreground"
         />
         <div className="grid gap-x-10 md:grid-cols-3">
           {problem.answers.map((answer, i) => (
-            <RevealBlock key={answer.title} delay={i * 0.08} className="border-t-2 border-band-fg py-7">
-              <Check className="mb-5 h-6 w-6 text-band-fg" aria-hidden />
-              <h3 className="mb-3 text-xl font-semibold text-band-fg">{answer.title}</h3>
-              <p className="text-base leading-relaxed text-band-muted">{answer.body}</p>
+            <RevealBlock key={answer.title} delay={i * 0.08} className="border-t-2 border-hairline py-7">
+              <Check className="mb-5 h-6 w-6 text-foreground" aria-hidden />
+              <h3 className="mb-3 text-xl font-semibold text-foreground">{answer.title}</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">{answer.body}</p>
             </RevealBlock>
           ))}
         </div>
-      </Band>
+      </Section>
 
       {/* ── CTA ──────────────────────────────────────────── */}
-      <Band tone="orange" className="py-24 sm:py-32">
+      <Section className="py-24 sm:py-32">
         <div className="max-w-3xl">
-          <h2 className="mb-4 text-display-sm font-bold text-band-fg">{t.problems.ctaTitle}</h2>
-          <p className="mb-10 max-w-lg text-lg text-band-muted">{t.problems.ctaBody}</p>
+          <h2 className="mb-4 text-display-sm font-bold text-foreground">{t.problems.ctaTitle}</h2>
+          <p className="mb-10 max-w-lg text-lg text-muted-foreground">{t.problems.ctaBody}</p>
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link
               href="/signup"
@@ -115,17 +115,17 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 border border-band-fg px-8 py-4 text-base font-medium text-band-fg transition-colors hover:bg-band-fg hover:text-band-bg"
+              className="inline-flex items-center gap-2 border border-hairline px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
             >
               {t.problems.ctaDemo}
             </Link>
           </div>
         </div>
-      </Band>
+      </Section>
 
       {/* ── OTROS PROBLEMAS ──────────────────────────────── */}
-      <Band tone="neutral" className="py-20">
-        <p className="mb-8 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">
+      <Section className="py-20">
+        <p className="mb-8 font-mono text-sm uppercase tracking-[0.16em] text-muted-foreground">
           {t.problems.otherTitle}
         </p>
         <div className="grid gap-x-10 sm:grid-cols-3">
@@ -133,17 +133,17 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
               <Link
                 key={other.slug}
                 href={`/problemas/${other.slug}`}
-                className="group block border-t-2 border-band-fg py-6 transition-opacity hover:opacity-70"
+                className="group block border-t-2 border-hairline py-6 transition-opacity hover:opacity-70"
               >
-                <p className="mb-2 text-lg font-semibold text-band-fg">{other.short}</p>
+                <p className="mb-2 text-lg font-semibold text-foreground">{other.short}</p>
                 <ArrowRight
-                  className="h-4 w-4 text-band-fg transition-transform group-hover:translate-x-1"
+                  className="h-4 w-4 text-foreground transition-transform group-hover:translate-x-1"
                   aria-hidden
                 />
               </Link>
             ))}
         </div>
-      </Band>
+      </Section>
 
       <footer className="bg-ink py-12 text-bone">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 sm:px-6">

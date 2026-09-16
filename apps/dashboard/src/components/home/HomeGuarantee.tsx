@@ -20,7 +20,7 @@ export function HomeGuarantee() {
 
   return (
     <Section id="garantia">
-      <Reveal className="overflow-hidden rounded-2xl bg-foreground text-background">
+      <Reveal className="overflow-hidden bg-foreground text-background">
         <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:p-14">
           <div>
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-background/60">
@@ -34,7 +34,7 @@ export function HomeGuarantee() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-background/20 p-6 sm:p-7">
+          <div className="border border-background/20 p-6 sm:p-7">
             <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.16em] text-background/60">
               {g.conditionsLabel}
             </p>

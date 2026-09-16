@@ -31,7 +31,7 @@ export function HomeEngine() {
           delante de cada celda. El scroll horizontal se queda para el tramo
           intermedio y está acotado a este contenedor — el cuerpo de la página
           nunca se desplaza de lado. */}
-      <Reveal className="mt-12 overflow-x-auto rounded-xl border border-border">
+      <Reveal className="mt-12 overflow-x-auto border border-border">
         <table className="table-stack w-full border-collapse text-left sm:min-w-[42rem]">
           <thead>
             <tr className="border-b border-border bg-surface">
@@ -140,7 +140,7 @@ export function HomeEngine() {
           <p className="mb-8 text-[14.5px] leading-relaxed text-muted-foreground">
             <Emphasis text={e.guardrails.detail} />
           </p>
-          <div className="rounded-xl border border-hairline bg-surface p-5 sm:p-6">
+          <div className="border border-hairline bg-surface p-5 sm:p-6">
             <h4 className="mb-2.5 text-[15px] font-medium text-foreground">
               {e.guardrails.checksTitle}
             </h4>

@@ -60,7 +60,16 @@ export function HomeFooter() {
           </div>
         </div>
 
-        <p className="mt-10 font-mono text-xs text-muted">
+        {/* El hueco final de vi: la columna de virgulillas y el EOF. Es lo que
+            cierra la metafora del archivo sin necesidad de explicarla. */}
+        <div aria-hidden className="md-eof mt-12 select-none text-xs leading-[1.6]">
+          {['~', '~', '~'].map((t, i) => (
+            <p key={i}>{t}</p>
+          ))}
+          <p className="mt-1">{'~'} EOF</p>
+        </div>
+
+        <p className="mt-6 text-xs text-muted">
           © {new Date().getFullYear()} {t.footer.copyright}
         </p>
       </div>

@@ -36,7 +36,7 @@ export function HomeMeasure() {
         <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-muted">
           {m.moneyLabel}
         </p>
-        <div className="overflow-x-auto rounded-xl border border-border bg-surface">
+        <div className="overflow-x-auto border border-border bg-surface">
           <pre className="px-5 py-5 font-mono text-[12px] leading-[1.9] text-foreground sm:px-6 sm:text-[13px]">
             {m.moneyFormula}
           </pre>

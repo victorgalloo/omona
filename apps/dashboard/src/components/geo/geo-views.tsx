@@ -75,7 +75,7 @@ export function BlogIndex({ kind }: { kind: GeoKind }) {
   const items = getGeo(kind);
   const { crumb, eyebrow, h1, desc } = INDICE[kind];
   return (
-    <main className="min-h-screen bg-background">
+    <main className="md crt min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 pt-16 pb-24">
         <Crumbs items={[{ label: "Inicio", href: "/" }, { label: crumb }]} />
         <p className="font-mono text-xs uppercase tracking-widest text-accent-green mb-3">{eyebrow}</p>
@@ -110,7 +110,7 @@ function ArticleView({ a }: { a: GeoArticle }) {
   const indice = INDICE[a.kind];
   const indiceHref = `/${GEO_KINDS[a.kind].segment}`;
   return (
-    <main className="min-h-screen bg-background">
+    <main className="md crt min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 pt-16 pb-24">
         <Crumbs items={[
           { label: "Inicio", href: "/" },

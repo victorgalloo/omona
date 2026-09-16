@@ -145,7 +145,7 @@ export function UseCasePageLayout({
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="md crt min-h-screen bg-background text-foreground">
       <LandingNav />
 
       {/* ── HERO ───────────────────────────────────────── */}

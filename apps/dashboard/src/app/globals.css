@@ -166,6 +166,10 @@
     /* Más tenue que --border: es la línea de la rejilla de la home, que se
        repite cada 64px. Al valor de --border la retícula compite con el texto. */
     --hairline: rgba(10, 10, 10, 0.09);
+    /* Los signos de markdown (##, -, **). Decorativo a proposito: se pintan
+       con ::before y quedan fuera del arbol de accesibilidad, asi que no les
+       aplica el minimo de 4.5:1 que si aplica al texto. */
+    --md-syntax: #9A9A9A;
 
     /* El acento semántico ("agente activo", éxito). En claro tiene que
        ser un verde legible sobre hueso; el lima solo vive sobre negro. */
@@ -205,6 +209,7 @@
     --border-hover: rgba(245, 243, 236, 0.30);
     --border-strong: #F5F3EC;
     --hairline: rgba(245, 243, 236, 0.10);
+    --md-syntax: #5A5A5A;
 
     /* Sobre negro el acento sí puede ser fosforescente: 17.25:1 */
     --accent-green: #D8FF3E;
@@ -492,4 +497,134 @@ article[id] {
     letter-spacing: 0.14em;
     color: var(--muted);
   }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   PIEL DE ARCHIVO DE TEXTO
+
+   El marketing se lee como un .md abierto, no como una pagina web:
+   monoespaciado, los signos de markdown a la vista pero tenues, y
+   monocromo con verde solo en cinco lugares.
+
+   Lo que NO se hizo, y es deliberado: nada de digitos cayendo al modo
+   Matrix. Eso es una animacion por fotograma en el hilo principal, que
+   es exactamente lo que ya rompio este sitio una vez. La referencia es
+   el aire, no el movimiento.
+   ═════════════════════════════════════════════════════════════ */
+
+/* ── Los signos ───────────────────────────────────────────────
+   La barra `/ ""` fija el texto alternativo en vacio. Sin ella un
+   lector de pantalla lee "almohadilla almohadilla Cuatro cosas te
+   cuestan dinero". Con ella lee solo el titulo. */
+
+/* El H1 NO lleva ::before: el hero tiene titular de dos lineas y se pinta su
+   propio `# ` en cada una (HomeHero.tsx). Con la regla aqui salia `# #`. */
+.md h2::before { content: '## ' / ''; }
+.md h3::before { content: '### ' / ''; }
+.md h4::before { content: '#### ' / ''; }
+
+.md h2::before,
+.md h3::before,
+.md h4::before {
+  color: var(--md-syntax);
+  font-weight: 400;
+}
+
+/* Las vinetas se dibujan como el guion del markdown, no como disco.
+   `list-style: none` es obligatorio: sin el salen el punto Y el guion. */
+.md ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.md ul > li::before {
+  content: '- ' / '';
+  color: var(--md-syntax);
+}
+
+.md blockquote::before {
+  content: '> ' / '';
+  color: var(--md-syntax);
+}
+
+/* El span que emite Emphasis.tsx a cada lado de una negrita. */
+.md-syntax {
+  color: var(--md-syntax);
+  font-weight: 400;
+}
+
+/* ── Cursor de bloque ─────────────────────────────────────────
+   Va tras el H1. Un solo elemento parpadeando reusando el keyframe
+   `blink` que ya existia arriba: coste nulo, y se apaga solo con
+   prefers-reduced-motion porque ahi no hay animacion que correr. */
+
+.md-caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.95em;
+  margin-left: 0.12em;
+  vertical-align: text-bottom;
+  background: var(--accent-green);
+  animation: blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-caret { animation: none; }
+}
+
+/* ── Medida y quiebre ─────────────────────────────────────────
+   JetBrains Mono ocupa ~12% mas por caracter que Inter. En 390px con
+   palabras largas en espanol eso es desbordamiento horizontal, que es
+   el fallo mas probable de todo este cambio. De ahi las tres reglas:
+   medida de 68 caracteres (no 62), quiebre agresivo, y cuerpo mas
+   pequeno en movil. */
+
+.md {
+  font-family: var(--font-mono), 'SF Mono', Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .md { font-size: 15px; }
+}
+
+.md p,
+.md li,
+.md dd,
+.md td,
+.md th {
+  overflow-wrap: anywhere;
+}
+
+.md-measure {
+  max-width: 68ch;
+}
+
+/* ── Textura CRT ──────────────────────────────────────────────
+   Una sola capa pintada con un gradiente repetido. Sin animacion y sin
+   nodos: es el unico adorno que se permite. Si a 390px produce muare al
+   hacer scroll, se quita la clase del layout y se acabo. */
+
+.crt::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(var(--foreground-rgb) / 0.022) 0px,
+    rgb(var(--foreground-rgb) / 0.022) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── Fin de archivo ───────────────────────────────────────────
+   La columna de virgulillas del hueco final de vi. */
+
+.md-eof {
+  color: var(--md-syntax);
+  user-select: none;
 }

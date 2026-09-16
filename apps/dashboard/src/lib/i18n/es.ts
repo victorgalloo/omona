@@ -2,8 +2,8 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'Qué construyo',
-    engine: 'Cuánto tarda',
+    features: 'Qué hago',
+    engine: 'Tiempos',
     process: 'Preguntas',
     pricing: 'Cómo trabajo',
     blog: 'Blog',

@@ -86,7 +86,7 @@ const comoTrabajamosSchema = {
 
 export default function ComoTrabajamosPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="md crt min-h-screen bg-background text-foreground">
       <JsonLd data={comoTrabajamosSchema} />
       <LandingNav />
       <LandingHowItWorks />

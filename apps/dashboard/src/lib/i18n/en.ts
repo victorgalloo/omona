@@ -3,8 +3,8 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'What I build',
-    engine: 'How long',
+    features: 'What I do',
+    engine: 'Timing',
     process: 'Questions',
     pricing: 'How I work',
     blog: 'Blog',

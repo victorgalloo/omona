@@ -189,7 +189,10 @@ const jsonLdGraph = {
  */
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
+    // `md` enciende el monoespaciado y los signos de markdown; `crt` pinta la
+    // unica textura del sitio. Van aqui y no en <body> porque el dashboard
+    // comparte el layout raiz y ahi el monoespaciado estorba.
+    <div className="md crt min-h-screen bg-background text-foreground">
       <JsonLd data={jsonLdGraph} />
       <LandingNav />
 
