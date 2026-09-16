@@ -4,25 +4,24 @@ import { ArrowRight } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
-import { Emphasis } from './Emphasis';
+import { Mas } from './Mas';
 
 /**
  * ══ LA SECCIÓN QUE CARGA LA PÁGINA ══════════════════════════════
  *
- * La portada anterior dedicaba seis bloques —features, CRM embebido,
- * antes/después, stats, casos de uso— a una sola idea: que el agente
- * contesta. Contestar es la parte visible del producto y es la que dice
- * hacer cualquier chatbot de suscripción, así que insistir ahí obligaba a
- * competir en precio contra herramientas que cuestan veinte dólares.
+ * Es la tesis entera: prospectar, seguir y cerrar sobre el mismo dato. Por eso
+ * va arriba y ocupa el espacio que antes ocupaba el chat.
  *
- * El ciclo completo no lo tiene ninguna de esas: prospección con
- * investigación real, seguimiento con reloj, cierre con la objeción
- * identificada, y propuestas que salen de la conversación. Por eso esta
- * sección va arriba y ocupa el espacio que ocupaba el chat.
+ * Cada etapa dice UNA frase. La versión anterior daba tres viñetas por etapa
+ * y cuatro etapas: 201 palabras y doce elementos de lista, casi todo visible
+ * sin tocar nada. Quien escanea no leía ninguna, y quien quería el detalle lo
+ * tenía mezclado con el titular. Ahora el detalle vive en <Mas>, que lo
+ * colapsa y anuncia cuánto tarda leerlo — así la decisión de profundizar la
+ * toma el visitante y no la página.
  *
- * El riel de etapas de arriba existe para que la palabra "ciclo" se entienda
- * en un vistazo, antes de leer nada. Es marcado estático — ni carrusel ni
- * pestañas — porque las cuatro etapas se leen, no se navegan.
+ * El riel de arriba existe para que las tres etapas se entiendan en un
+ * vistazo, antes de leer nada. Es marcado estático — ni carrusel ni pestañas —
+ * porque las etapas se leen, no se navegan.
  */
 export function HomeCycle() {
   const t = useT();
@@ -72,27 +71,14 @@ export function HomeCycle() {
                 {stage.headline}
               </p>
 
-              <ul className="mt-6 space-y-3.5">
-                {stage.bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    className="flex gap-3.5 text-[14.5px] leading-relaxed text-muted-foreground"
-                  >
-                    <span
-                      aria-hidden
-                      className="mt-[0.62em] h-px w-4 shrink-0 bg-border-hover"
-                    />
-                    <Emphasis text={bullet} className="max-w-2xl" />
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-7 inline-flex flex-wrap items-center gap-2.5 border border-hairline bg-surface px-3.5 py-2">
+              <p className="mt-5 inline-flex flex-wrap items-center gap-2.5 border border-hairline bg-surface px-3.5 py-2">
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
                   {c.outputLabel}
                 </span>
                 <span className="text-[13px] font-medium text-foreground">{stage.output}</span>
               </p>
+
+              <Mas resumen={c.masLabel} parrafos={stage.detalle} />
             </div>
           </Reveal>
         ))}

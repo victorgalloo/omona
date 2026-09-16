@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { MessageCircle, Menu, X, Wrench, Stethoscope, Building2, GraduationCap, ChevronDown } from 'lucide-react';
+import { MessageCircle, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 import { CTA_PROYECTO } from '@/lib/cta';
@@ -27,33 +27,17 @@ import { Logo } from '../shared/Logo';
  *     Animar `height: auto` obliga al navegador a medir el contenido en cada
  *     fotograma, y era lo primero que tocaba un visitante de teléfono.
  *
- * El desplegable de casos de uso ya no lleva estado: se abre con `group-hover`
- * y `focus-within`, así que también funciona con teclado y no re-renderiza.
+ * Ya no hay desplegable de casos de uso. Las cuatro verticales que listaba
+ * —clínicas, bienes raíces, escuelas, servicios— nombraban giros concretos, y
+ * la oferta dejó de venderse por vertical: lo que se vende es el proceso
+ * comercial, y el giro se define en la aplicación. Las páginas siguen en el
+ * sitio para las búsquedas que ya las encuentran; simplemente no las anuncia
+ * la barra.
  */
 
-type LucideIcon = React.ComponentType<{ className?: string }>;
-
-const USE_CASE_ICONS: LucideIcon[] = [Wrench, Stethoscope, Building2, GraduationCap];
-
-const USE_CASE_DESCRIPTIONS: Record<'es' | 'en', string[]> = {
-  es: [
-    'Agencias, consultoras, freelancers',
-    'Dentistas, psicólogos, veterinarias',
-    'Desarrolladoras, corredores, inmobiliarias',
-    'Universidades, bootcamps, academias',
-  ],
-  en: [
-    'Agencies, consultants, freelancers',
-    'Dentists, psychologists, vets',
-    'Developers, brokers, real estate agencies',
-    'Universities, bootcamps, academies',
-  ],
-};
-
 export function LandingNav() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobileCasosOpen, setIsMobileCasosOpen] = useState(false);
   const pathname = usePathname();
 
   // `/` es index.md; el resto toma su ultimo segmento. Las rutas anidadas se
@@ -67,7 +51,7 @@ export function LandingNav() {
   // que es donde el espacio no aprieta.
   const navLinks = [
     { href: '/#ciclo', label: t.nav.features },
-    { href: '/#motor', label: t.nav.engine },
+    { href: '/#medicion', label: t.nav.engine },
     { href: '/como-trabajamos', label: t.nav.pricing },
     { href: '/blog', label: t.nav.blog },
   ];
@@ -106,42 +90,6 @@ export function LandingNav() {
               </Link>
             ))}
 
-            {/* Desplegable sin estado: hover o foco de teclado. El `pt-3` del
-                panel mantiene el puntero dentro del grupo al bajar del botón;
-                sin ese puente el menú se cierra en el hueco. */}
-            <div className="group relative">
-              <button className="flex items-center gap-1 whitespace-nowrap text-[12px] text-muted-foreground transition-colors hover:text-foreground group-focus-within:text-foreground">
-                {t.nav.useCases}
-                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
-              </button>
-
-              <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                <div className="w-[320px] overflow-hidden border border-border bg-surface">
-                  {t.useCases.items.map((useCase, i) => {
-                    const Icon = USE_CASE_ICONS[i];
-                    return (
-                      <Link
-                        key={useCase.href}
-                        href={useCase.href}
-                        className="flex items-start gap-3 border-b border-hairline px-4 py-3 transition-colors last:border-b-0 hover:bg-surface-2"
-                      >
-                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center border border-border bg-background">
-                          <Icon className="h-3.5 w-3.5 text-foreground" />
-                        </span>
-                        <span>
-                          <span className="block text-[13.5px] font-medium text-foreground">
-                            {useCase.title}
-                          </span>
-                          <span className="mt-0.5 block text-[12px] text-muted">
-                            {USE_CASE_DESCRIPTIONS[lang][i]}
-                          </span>
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Acciones de escritorio */}
@@ -190,42 +138,6 @@ export function LandingNav() {
                 {link.label}
               </Link>
             ))}
-
-            <div>
-              <button
-                className="flex w-full items-center justify-between py-2 text-[15px] text-muted-foreground"
-                onClick={() => setIsMobileCasosOpen((open) => !open)}
-                aria-expanded={isMobileCasosOpen}
-              >
-                {t.nav.useCases}
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    isMobileCasosOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-              {isMobileCasosOpen && (
-                <div className="space-y-1 border-l border-hairline pb-2 pl-4">
-                  {t.useCases.items.map((useCase, i) => {
-                    const Icon = USE_CASE_ICONS[i];
-                    return (
-                      <Link
-                        key={useCase.href}
-                        href={useCase.href}
-                        className="flex items-center gap-3 py-2 text-[14px] text-muted-foreground transition-colors hover:text-foreground"
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          setIsMobileCasosOpen(false);
-                        }}
-                      >
-                        <Icon className="h-3.5 w-3.5 shrink-0" />
-                        {useCase.title}
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
 
             <div className="space-y-2 border-t border-hairline pt-4">
               <div className="flex justify-center pb-1">

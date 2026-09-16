@@ -3,12 +3,8 @@ import { LandingNav } from '@/components/landing/LandingNav';
 import { HomeHero } from '@/components/home/HomeHero';
 import { HomeLeak } from '@/components/home/HomeLeak';
 import { HomeCycle } from '@/components/home/HomeCycle';
-import { HomeEngine } from '@/components/home/HomeEngine';
-import { HomeIntel } from '@/components/home/HomeIntel';
 import { HomeMeasure } from '@/components/home/HomeMeasure';
 import { HomeScope } from '@/components/home/HomeScope';
-import { HomeProcess } from '@/components/home/HomeProcess';
-import { HomeGuarantee } from '@/components/home/HomeGuarantee';
 import { HomeFaq } from '@/components/home/HomeFaq';
 import { HomeCta } from '@/components/home/HomeCta';
 import { HomeFooter } from '@/components/home/HomeFooter';
@@ -16,22 +12,22 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { es } from '@/lib/i18n';
 
 export const metadata: Metadata = {
-  title: 'Omona | Sistemas a la medida para negocios que venden por WhatsApp',
+  title: 'Omona | Prospectar, seguir y cerrar sin capturar nada',
   description:
-    'Te construyo el sistema que contesta, da seguimiento, captura solo y te dice como vas. Hecho para tu negocio, no una app que rentas. Cuentame tu caso sin costo.',
+    'Agentes que corren tu operacion comercial: arman la lista, extraen lo que se dijo en cada llamada y lo escriben en tu CRM, y preparan la propuesta. Se prueban antes de hablar con un cliente.',
   openGraph: {
-    title: 'Omona | Sistemas a la medida para negocios que venden por WhatsApp',
+    title: 'Omona | Prospectar, seguir y cerrar sin capturar nada',
     description:
-      'Vendes por WhatsApp y ahi se te pierde. Te construyo el sistema que lo arregla, a la medida de tu negocio.',
+      'El pipeline no se cae, se olvida. Agentes que prospectan, dan seguimiento y preparan el cierre, probados antes de hablar con un cliente.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omona | Sistemas a la medida para negocios que venden por WhatsApp',
+    title: 'Omona | Prospectar, seguir y cerrar sin capturar nada',
     description:
-      'Vendes por WhatsApp y ahi se te pierde. Te construyo el sistema que lo arregla.',
+      'El pipeline no se cae, se olvida. Agentes que prospectan, dan seguimiento y preparan el cierre, probados antes de hablar con un cliente.',
   },
   alternates: {
     canonical: 'https://omona.tech',
@@ -58,7 +54,7 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       logo: 'https://omona.tech/icon.svg',
       description:
-        'Omona construye sistemas a la medida para negocios pequenos y medianos que venden por WhatsApp: respuesta automatica, seguimiento, captura de datos sin trabajo manual y tablero de resultados.',
+        'Omona construye sistemas comerciales a la medida: prospeccion con listas enriquecidas, seguimiento que extrae lo dicho en cada llamada y lo escribe en el CRM del cliente, y preparacion de propuestas. Cada agente se evalua con casos reales antes de exponerlo a un cliente.',
       // Sin `sameAs`: los perfiles que se declaraban devuelven 404, y un
       // sameAs roto le dice a los motores que la entidad no esta verificada.
       areaServed: [
@@ -83,11 +79,11 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       description:
-        'Implementacion a la medida sobre el WhatsApp que el negocio ya usa. Se empieza por el problema que mas cuesta y se entrega funcionando, con las cuentas a nombre del cliente.',
-      serviceType: 'Automatizacion de ventas por WhatsApp',
+        'Implementacion a la medida sobre los sistemas que la empresa ya usa. Se empieza por la etapa que mas cuesta, se entrega funcionando y las cuentas quedan a nombre del cliente.',
+      serviceType: 'Automatizacion del proceso comercial con agentes de IA',
       audience: {
         '@type': 'BusinessAudience',
-        name: 'Negocios de 2 a 20 personas que venden por WhatsApp',
+        name: 'Equipos comerciales con venta consultiva y ciclo largo',
       },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
@@ -97,36 +93,36 @@ const jsonLdGraph = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Respuesta automatica',
+              name: 'Prospeccion',
               description:
-                'Contesta en segundos a cualquier hora, con el catalogo y los precios del negocio. Entiende notas de voz y escala a una persona cuando hace falta.',
+                'La lista se arma con Clay, Apollo y LinkedIn Sales Navigator, se cruza con el CRM para no repetir contactos, y el primer mensaje se escribe con una razon real para escribir.',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Seguimiento que no se olvida',
+              name: 'Seguimiento',
               description:
-                'Retoma al cliente que dejo de contestar, avisa a quien hay que buscar hoy y agenda la cita dentro del mismo chat.',
+                'Las llamadas se transcriben y el sistema extrae que se acordo, quien decide, que falta y para cuando. Lo escribe en el CRM existente y deja la tarea con responsable y fecha.',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Captura automatica de datos',
+              name: 'Cierre',
               description:
-                'Nombre, empresa, necesidad y presupuesto salen de la conversacion y entran al sistema del negocio sin que nadie los teclee.',
+                'La propuesta se arma con lo que el cliente pidio, contra el catalogo y los precios aprobados. Sale como borrador para que una persona lo revise antes de enviarlo.',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Tablero de resultados',
+              name: 'Evaluacion de agentes',
               description:
-                'Cuantos mensajes llegaron, cuantos se contestaron y en que punto se pierden los clientes, sin pedirle reportes a nadie.',
+                'Se construye un set de prueba con conversaciones reales, el criterio de aceptacion se escribe antes de la prueba y cada cambio vuelve a correr el set completo.',
             },
           },
         ],
@@ -200,12 +196,8 @@ export default function LandingPage() {
         <HomeHero />
         <HomeLeak />
         <HomeCycle />
-        <HomeEngine />
-        <HomeIntel />
         <HomeMeasure />
         <HomeScope />
-        <HomeProcess />
-        <HomeGuarantee />
         <HomeFaq />
         <HomeCta />
       </main>

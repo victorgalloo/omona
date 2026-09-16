@@ -4,12 +4,15 @@ import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
 import { Emphasis } from './Emphasis';
+import { Mas } from './Mas';
 
 /**
- * Qué mide. La fórmula va como bloque de código monoespaciado a propósito:
- * es una resta de dos renglones y verla escrita como cálculo —y no como
- * párrafo— es lo que la vuelve un argumento de dirección en vez de una
- * promesa de marketing.
+ * Lo que separa esto de un chatbot: las evaluaciones.
+ *
+ * La fórmula de "terminado" va como bloque de código monoespaciado a
+ * propósito: verla escrita como cálculo —y no como párrafo— es lo que la
+ * vuelve un criterio y no una promesa de marketing. Va dentro de <Mas> porque
+ * es la pregunta de quien ya está negociando.
  */
 export function HomeMeasure() {
   const t = useT();
@@ -32,19 +35,18 @@ export function HomeMeasure() {
         ))}
       </div>
 
-      <Reveal className="mt-14">
-        <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-          {m.moneyLabel}
-        </p>
+      {/* La definición de "terminado" va colapsada: es la pregunta de quien ya
+          está negociando, no la de quien está decidiendo si sigue leyendo. El
+          `contar` le pasa el texto de la fórmula al cálculo del tiempo, porque
+          la fórmula se renderiza aquí y no dentro de <Mas>. */}
+      <Mas resumen={m.moneyLabel} contar={[m.moneyFormula, m.moneyNote]}>
         <div className="overflow-x-auto border border-border bg-surface">
           <pre className="px-5 py-5 font-mono text-[12px] leading-[1.9] text-foreground sm:px-6 sm:text-[13px]">
             {m.moneyFormula}
           </pre>
         </div>
-        <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          {m.moneyNote}
-        </p>
-      </Reveal>
+        <p className="mt-5 max-w-2xl">{m.moneyNote}</p>
+      </Mas>
     </Section>
   );
 }

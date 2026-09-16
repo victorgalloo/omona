@@ -3,16 +3,17 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'What I do',
-    engine: 'Timing',
+    features: 'Engine',
+    engine: 'Testing',
     process: 'Questions',
     pricing: 'How I work',
     blog: 'Blog',
-    useCases: 'Use Cases',
+    useCases: 'Use cases',
     demo: 'Demo',
-    login: 'Log in',
-    signup: 'Tell me your case',
+    login: 'Sign in',
+    signup: 'Apply',
   },
+
   hero: {
     // `chat` is kept because it is the text baked into the ChatRespondiendo loop
     // (apps/video); if it changes there, change it here.
@@ -193,13 +194,14 @@ export const en: Translations = {
     ],
   },
   cta: {
-    heading: 'Tell me what is falling through',
+    heading: 'You do not book. You apply.',
     subheading:
-      'How you sell today and what you are losing. **I reply with what I would do and how long it would take.**',
-    primary: 'Message me on WhatsApp',
-    secondary: 'Try the system',
-    trust: 'if I cannot solve it for you, I say so right away',
+      'Tell me how you sell today and what is slipping. **I review it and tell you if I can help.**',
+    primary: 'Apply',
+    secondary: 'See the engine',
+    trust: 'five questions · I answer every one, in or out',
   },
+
   footer: {
     login: 'Log in',
     signup: 'Sign up',
@@ -494,35 +496,28 @@ export const en: Translations = {
     subheading: 'Short, honest answers.',
     items: [
       {
-        q: 'Will my number get blocked?',
-        a: 'No, as long as you use it to answer people who wrote you. It connects with a QR code, just like WhatsApp Web: your same number, no paperwork with Meta. What WhatsApp does block is mass messaging to people who never contacted you, and I do not do that.',
+        q: 'Is this a chatbot?',
+        a: 'No. A chatbot answers messages. This builds the list of who to go after, extracts what was said on every call and writes it into your CRM, and prepares the proposal from what the customer asked for. Answering is one piece, not the product.',
       },
       {
-        q: 'Will it sound like a robot?',
-        a: 'Judge it yourself. Go to the demo and throw whatever questions you want at it before giving me a single detail. If it sounds like a robot there, it will sound like a robot to your customers.',
+        q: 'Do I have to switch CRMs?',
+        a: 'No. The system writes into the one you already use. If you do not use one, that is the first problem, and it gets solved before automating anything: with nowhere to write, there is no trail to leave.',
       },
       {
-        q: 'Can I answer myself whenever I want?',
-        a: 'Yes, chat by chat. You take the conversation and the system goes quiet in that one while it keeps handling the rest. Your number never stops being yours.',
+        q: 'What happens when it gets something wrong?',
+        a: 'It gets things wrong, like any system. That is why nothing touching money or reputation ships without a person approving it, and why the test set exists: so the error shows up in evaluation and not in front of your customer.',
       },
       {
         q: 'What does it cost?',
-        a: 'It depends on how much has to be built and what it connects to. Giving you a number before knowing that would mean inventing it. Tell me your case and I will tell you what I would do and what it costs, at no charge.',
+        a: 'It depends on how many systems it has to connect to and how complex your proposals are. Quoting before knowing that means inventing a number. Applying costs nothing, and the figure comes out of that.',
       },
       {
-        q: 'How long does it take?',
-        a: 'Between one and four weeks, depending on what gets built. Connecting your number takes five minutes; what takes time is teaching it your catalog, your prices and how you sell.',
-      },
-      {
-        q: 'Do I have to change systems?',
-        a: 'No. I work on top of what you already use, even if it is half set up. Switching tools and fixing how you sell at the same time are two fights over the same patience, and usually both lose.',
-      },
-      {
-        q: 'What if I change my mind or want out?',
-        a: 'Everything is in your name: your number, your accounts, your data. You can take it whenever you want. Nothing switches off because I stop being around.',
+        q: 'Why apply instead of booking a call?',
+        a: 'Because I take few projects at a time and not all of them are mine to solve. Five questions tell me whether talking makes sense. If it does not, I say so in the reply instead of spending an hour of yours finding out.',
       },
     ],
   },
+
   proof: {
     sectionLabel: 'proof_',
     heading: 'We are not asking you to take our word for it',
@@ -621,274 +616,193 @@ export const en: Translations = {
   /** See es.ts: third version, first one written about the real business. */
   home: {
     hero: {
-      eyebrow: 'for businesses that sell over whatsapp',
-      title: 'You sell over WhatsApp.',
-      titleAccent: 'And that is where you lose it.',
+      eyebrow: 'prospect · follow up · close',
+      title: 'Prospect, follow up, close.',
+      titleAccent: 'Nobody types a thing.',
       subtitle:
-        'I build the system that fixes it. **Made for your business**, not an app you rent.',
-      ctaPrimary: 'Tell me your case',
-      ctaSecondary: 'See what I build',
-      note: 'message me on WhatsApp · I tell you if it can be fixed',
+        'Agents that run your sales motion. **Tested before they talk to a customer.**',
+      ctaPrimary: 'Apply',
+      ctaSecondary: 'See the engine',
+      note: 'few projects at a time · you apply, I review',
       card: {
-        label: 'any_given_tuesday',
-        cohort: 'New customer',
-        elapsed: '11:40 p.m.',
-        contact: 'Hardware supplier · business WhatsApp',
-        why: '"Do you carry 5 HP compressors? I need them by Thursday."',
-        messageLabel: 'answered on its own',
-        message:
-          'Yes, the 5 HP three-phase is $18,400 plus tax. Delivery in 48 hours. Is it for continuous use or occasional?',
-        checksLabel: 'and this got saved',
-        checks: ['Wants a compressor · needs it Thursday', 'Next step: send the quote'],
-        valueLabel: 'took',
-        value: '8 seconds',
-        timeLabel: 'you were',
-        time: 'asleep',
+        label: 'from_one_call',
+        cohort: '32-minute call',
+        elapsed: '4 min ago',
+        contact: 'Automatic transcript',
+        why: '"We will look at it in January, once budget opens. My partner decides."',
+        messageLabel: 'written down',
+        message: 'Budget: January. Decides: the partner. Risk: bad experience with previous vendor.',
+        checksLabel: 'and the task',
+        checks: ['Call on January 8', 'Owner: Ana'],
+        valueLabel: 'typed by',
+        value: 'nobody',
+        timeLabel: 'took',
+        time: '9 seconds',
         actionPrimary: 'Done',
-        actionSecondary: 'Open chat',
+        actionSecondary: 'Open call',
       },
     },
 
     leak: {
       label: 'the problem_',
-      title: 'Four things are costing you money',
-      body: 'None of them is anyone’s fault. **They happen because there is no system, only memory.**',
+      title: 'Pipeline does not collapse. It gets forgotten.',
+      body: 'Four leaks, and none of them show up in the report.',
       items: [
         {
-          title: 'You cannot keep up',
-          detail: 'Twenty messages land at once. You answer what you can. **The rest go elsewhere.**',
+          title: 'You do not know who to go after',
+          detail: 'By hand. **Or not at all.**',
         },
         {
-          title: 'Follow-up gets lost',
-          detail: 'You quoted and nobody called back. **The sale did not fall through: it was forgotten.**',
+          title: 'What was said gets lost',
+          detail: 'You hung up and nobody wrote it down.',
         },
         {
-          title: 'Everything is typed by hand',
-          detail: 'Someone spends hours copying data between systems. **That is not work, it is wear.**',
+          title: 'Follow-up lives in someone head',
+          detail: '**Whenever someone remembers.**',
         },
         {
-          title: 'You cannot see how it is going',
-          detail: 'You ask how the month looks and nobody has the number. **Someone has to go dig it up.**',
+          title: 'Proposals take days',
+          detail: 'From scratch. Again.',
         },
       ],
-      quote: 'Your business does not fail from lack of effort. It fails because everything lives in one person’s head.',
+      quote: 'It is not effort that is missing. It is a system.',
     },
 
     cycle: {
-      label: 'what i build_',
-      title: 'One answer for each',
-      subtitle: 'It is not a package. **It gets built around what your business needs.**',
-      outputLabel: 'result',
+      label: 'the engine_',
+      title: 'Three stages, one set of data',
+      subtitle: 'What you learn prospecting **ends up writing the proposal.**',
+      outputLabel: 'output',
+      masLabel: 'how it works',
       stages: [
         {
-          id: 'contesta',
+          id: 'prospectar',
           index: '01',
-          name: 'It answers',
-          kicker: 'at any hour',
-          headline: 'Nobody is left waiting.',
-          bullets: [
-            'Replies in seconds, with your prices and your information.',
-            'Understands voice notes. **You do not lose the sale for lack of headphones.**',
-            'When it gets tricky, it hands the chat to you.',
+          name: 'Prospect',
+          kicker: 'before the first message',
+          headline: 'Know who to go after before going after them.',
+          detalle: [
+            'The list is built with **Clay, Apollo and LinkedIn Sales Navigator**. It is cross-checked against your CRM so nobody who said no gets touched again.',
+            'The first message carries a real reason to write. Something that happened at that company, not a field swapped into a template.',
           ],
-          output: 'No message left unanswered',
+          output: 'List with a reason to reach out',
         },
         {
-          id: 'sigue',
+          id: 'seguir',
           index: '02',
-          name: 'It follows up',
-          kicker: 'without you remembering',
-          headline: 'The quote does not sit there going cold.',
-          bullets: [
-            'Reopens the conversation with whoever went quiet.',
-            'Tells you who to call today. **And why.**',
-            'Books the meeting inside the same chat.',
+          name: 'Follow up',
+          kicker: 'without anyone remembering',
+          headline: 'What was said on the call does not stay on the call.',
+          detalle: [
+            '**Granola transcribes and the system extracts**: what was agreed, who decides, what is missing and by when. It writes that into the CRM you already use.',
+            'Same with WhatsApp and email. What comes out is a task with an owner and a date, not a loose reminder nobody opens.',
           ],
-          output: 'Nothing left half-done',
+          output: 'Task with owner and date',
         },
         {
-          id: 'captura',
+          id: 'cerrar',
           index: '03',
-          name: 'It types for you',
-          kicker: 'no more copy and paste',
-          headline: 'The data lands where it belongs.',
-          bullets: [
-            'Name, company, what they want and how much: taken from the conversation.',
-            'It reaches your system without anyone keying it in.',
-            '**Hours of data entry turn into hours of selling.**',
+          name: 'Close',
+          kicker: 'from what the customer said',
+          headline: 'The proposal comes from the conversation, not a template.',
+          detalle: [
+            'The document is built from what the customer asked for, against your catalog and approved pricing. It does not invent a number to fill a gap.',
+            '**It comes out as a draft.** A person reads it and sends it. The system does not send proposals on its own, and that is a design decision, not a limitation.',
           ],
-          output: 'Zero manual entry',
-        },
-        {
-          id: 'reporta',
-          index: '04',
-          name: 'It tells you how it is going',
-          kicker: 'without asking anyone for a report',
-          headline: 'You open it and the number is there.',
-          bullets: [
-            'How many arrived, how many you answered, how many closed.',
-            'Where you are losing them. **With names.**',
-            'No spreadsheets and no meetings to find out.',
-          ],
-          output: 'The number, on hand',
+          output: 'Draft ready for review',
         },
       ],
-    },
-
-    engine: {
-      label: 'how long_',
-      title: 'We start with whatever hurts most',
-      subtitle: 'It does not all get built at once. **First whatever pays you back fastest.**',
-      table: {
-        cohort: 'If your problem is',
-        trigger: 'What gets built',
-        clock: 'Takes',
-        goal: 'You notice it in',
-      },
-      cohorts: [
-        {
-          name: 'Not keeping up',
-          trigger: 'Automatic replies using your catalog',
-          clock: '1 to 2 weeks',
-          goal: 'The first week',
-        },
-        {
-          name: 'Losing follow-up',
-          trigger: 'Reminders and reopening conversations',
-          clock: '2 to 3 weeks',
-          goal: 'The first month',
-        },
-        {
-          name: 'Typing by hand',
-          trigger: 'A connection to the system you already use',
-          clock: '2 to 4 weeks',
-          goal: 'Immediately',
-        },
-        {
-          name: 'Not knowing how it is going',
-          trigger: 'A dashboard with your numbers',
-          clock: '1 to 2 weeks',
-          goal: 'The first close',
-        },
-      ],
-      quote: 'I would rather hand you one thing working in three weeks than four half-built in three months.',
-      clocks: {
-        label: 'how it gets built',
-        items: [
-          {
-            name: 'One thing first',
-            unit: 'the one that hurts',
-            detail:
-              'We pick the problem costing you most today. That gets built and switched on. **You see it working before deciding whether to continue.**',
-          },
-          {
-            name: 'The rest after',
-            unit: 'if you want',
-            detail:
-              'With the first one already paying off, we add the next. **No long contract and no buying everything up front.**',
-          },
-        ],
-      },
-      play: {
-        label: 'how it starts',
-        title: 'First I tell you whether it can be fixed.',
-        detail:
-          'You tell me how you sell today and what falls through. **I reply with what I would do and how long it would take** — not with a slide deck.',
-        closing: 'If yours is not something I can solve, I say so right there. I do not charge you to find out.',
-      },
-      guardrails: {
-        label: 'no surprises',
-        title: 'Nothing goes out without your approval.',
-        detail:
-          'We go through the messages together before switching anything on. **You decide what it answers alone and what it hands to you.**',
-        checksTitle: 'Your number stays yours',
-        checksDetail:
-          'It connects to the WhatsApp you already use. **You can take over any chat whenever you want** and the system goes quiet in that one.',
-      },
     },
 
     intel: {
       label: 'what it looks like_',
-      title: 'One conversation turns into your information',
-      subtitle: 'Nobody types anything. **What the customer said is already saved.**',
-      sourceLabel: 'what the customer wrote',
+      title: 'A conversation turns into data',
+      subtitle: 'Nobody types anything. **It is already written.**',
+      sourceLabel: 'what the customer said',
       source:
-        'Look, I went over it with my partner. The budget is there in January, not right now. What worries us is the installation, because it went badly with our last supplier. My father is the one who decides in the end.',
+        'I already went over it with my partner. Budget opens in January. We are worried about installation. My father decides.',
       fieldsLabel: 'what got saved',
       fields: [
-        { key: 'what they want', value: 'Installation without stopping operations' },
-        { key: 'money', value: 'Yes · available in January' },
-        { key: 'when', value: 'January · not urgency, calendar' },
-        { key: 'what worries them', value: 'Bad experience with the last supplier' },
+        { key: 'what they want', value: 'Install without stopping operations' },
+        { key: 'money', value: 'Yes · January' },
+        { key: 'when', value: 'January · calendar, not urgency' },
+        { key: 'their concern', value: 'Bad experience with previous vendor' },
         { key: 'who decides', value: 'The father' },
-        { key: 'what is next', value: 'Send a similar case · call in January' },
+        { key: 'what is next', value: 'Call on January 8' },
       ],
       aside: {
-        title: 'This is already running.',
-        detail:
-          'It is not an idea: it is the system I built and operate every day. **You can go try it right now** and throw whatever questions you want at it.',
+        title: 'This already runs.',
+        detail: 'It is not an idea. **It is the system I operate every day.**',
         cta: 'Try it',
       },
     },
 
     measure: {
-      label: 'what you keep_',
-      title: 'When I am done, this is yours',
-      subtitle: 'You are not renting anything. **It stays in your house, in your name.**',
+      label: 'before turning it on_',
+      title: 'Tested before it talks to a customer',
+      subtitle: 'An agent nobody evaluated is a bet. **Here it gets measured.**',
       metrics: [
         {
-          name: 'Your WhatsApp number',
-          detail: 'The same one. No paperwork with Meta and no changing lines.',
+          name: 'Real cases, not examples',
+          detail: 'Your conversations, **including the ones that went badly.**',
         },
         {
-          name: 'Your accounts and access',
-          detail: 'All in your name. **If I leave, nothing switches off.**',
+          name: 'Criteria written first',
+          detail: 'What counts as a good answer is defined first.',
         },
         {
-          name: 'Your data, exportable',
-          detail: 'Customers, conversations and history. You take it whenever you want.',
+          name: 'Every change reruns the set',
+          detail: 'If a tweak broke another case, **you see it.**',
         },
         {
-          name: 'Someone on your team trained',
-          detail: 'I teach one of your people to work it. Recorded, so they can watch it again.',
+          name: 'Sensitive calls go to a person',
+          detail: 'Nothing touching money ships without approval.',
         },
       ],
       moneyLabel: 'when I call it done',
       moneyFormula:
-        'it answers on its own   + you can change things\n+ failures are visible   + your people can use it\n= done',
-      moneyNote: 'If one of the four is missing, it is not done. Even if it is already switched on.',
+        'passes the test set    + your team can run it\n+ failures are visible  + you can change things\n= done',
+      moneyNote: 'If one of the four is missing, it is not done. Even if it is already running.',
     },
 
     scope: {
       label: 'who this is for_',
-      title: 'Who I work with and who I do not',
-      subtitle: 'There are few of us. **Saying no early saves us both time.**',
+      title: 'Who I work with, and who I do not',
+      subtitle: 'I take few at a time. **Saying no early saves us both the time.**',
       doTitle: 'Yes',
       does: [
-        'Businesses already selling over WhatsApp, getting more messages than they can handle.',
-        'Teams of 2 to 20 people, where the owner still sells.',
-        'Anyone with customers already, tired of losing them to slowness or forgetfulness.',
-        'Anyone willing to show me how they really sell, not how they should.',
+        'Consultative sales, long cycles, several decision makers.',
+        'You lose to forgetting, not to lack of demand.',
+        'You will show me how you actually sell.',
+        'Someone there can make decisions.',
       ],
       dontTitle: 'No',
       donts: [
         {
           title: 'Mass messaging',
-          detail: 'I do not send blasts to people who never wrote you. That is how numbers get blocked.',
+          detail: 'Not to people who never wrote you. That is how numbers get blocked.',
         },
         {
           title: 'Businesses with no customers yet',
-          detail: 'If messages are not arriving, this will not help. First you need traffic.',
+          detail: 'No conversations means no data to work from.',
         },
         {
           title: 'Replacing your team',
-          detail: 'This answers and organizes. Closing and showing your face is still a person’s job.',
+          detail: 'It preps the work. Closing is still a person.',
         },
         {
           title: 'Projects with nobody deciding',
-          detail: 'I need someone who can say how it should work. Without that, everything stalls.',
+          detail: 'With nobody to define the process, it stalls.',
         },
       ],
+      mas: {
+        resumen: 'how it starts and how long it takes',
+        parrafos: [
+          'Nothing gets built all at once. **We pick whatever costs you most today** and put it into production. You see it working before deciding whether to continue.',
+          'The first piece takes two to four weeks, depending on how many systems it has to connect to. The next one builds on what is already there, with no long contract and nothing paid upfront.',
+          'If your problem is not one I can solve, I say so in the first reply. **I do not charge to find that out.**',
+        ],
+      },
     },
   },
 };

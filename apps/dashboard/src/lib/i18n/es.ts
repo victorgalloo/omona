@@ -2,16 +2,17 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'Qué hago',
-    engine: 'Tiempos',
+    features: 'El motor',
+    engine: 'Se prueba',
     process: 'Preguntas',
     pricing: 'Cómo trabajo',
     blog: 'Blog',
     useCases: 'Casos de uso',
     demo: 'Demo',
     login: 'Iniciar sesión',
-    signup: 'Cuéntame tu caso',
+    signup: 'Aplicar',
   },
+
   hero: {
     // Estas cuatro ya no se renderizan: el héroe se quedó con titular,
     // subtítulo y un CTA para que el movimiento tenga aire. `chat` se conserva
@@ -223,13 +224,14 @@ export const es = {
     ],
   },
   cta: {
-    heading: 'Cuéntame qué se te está cayendo',
+    heading: 'No se agenda. Se aplica.',
     subheading:
-      'Cómo vendes hoy y qué se te pierde. **Te contesto con qué haría yo y cuánto tardaría.**',
-    primary: 'Escríbeme por WhatsApp',
-    secondary: 'Probar el sistema',
-    trust: 'si no te lo puedo resolver, te lo digo de una vez',
+      'Cuéntame cómo vendes hoy y qué se te cae. **Lo reviso y te digo si puedo.**',
+    primary: 'Aplicar',
+    secondary: 'Ver el motor',
+    trust: 'son cinco preguntas · contesto todas, entren o no',
   },
+
   footer: {
     login: 'Iniciar sesión',
     signup: 'Registrarse',
@@ -522,41 +524,40 @@ export const es = {
     ctaSignup: 'Evaluar un proyecto',
     backHome: 'Volver al inicio',
   },
+  /**
+   * Cinco, no ocho. Eran 267 palabras: la sección más pesada de la portada,
+   * aunque estuviera colapsada. Las que salieron preguntaban por el bloqueo
+   * del número y por si suena a robot — dudas del producto anterior, cuando
+   * lo que se vendía era contestar WhatsApp.
+   */
   faq: {
     sectionLabel: 'preguntas_',
     heading: 'Lo que todos preguntan',
     subheading: 'Respuestas cortas y honestas.',
     items: [
       {
-        q: '¿Me van a bloquear el número?',
-        a: 'No, si lo usas para contestar a quien te escribe. Se conecta con un código QR, igual que WhatsApp Web: tu mismo número, sin trámites con Meta. Lo que sí bloquea WhatsApp es mandar mensajes masivos a gente que no te buscó, y eso no lo hago.',
+        q: '¿Esto es un chatbot?',
+        a: 'No. Un chatbot contesta mensajes. Esto arma la lista de a quién buscar, extrae lo que se dijo en cada llamada y lo escribe en tu CRM, y prepara la propuesta con lo que el cliente pidió. Contestar es una de las piezas, no el producto.',
       },
       {
-        q: '¿Va a sonar a robot?',
-        a: 'Júzgalo tú. Ve al demo y ponle las preguntas que quieras antes de darme un solo dato. Si ahí te suena a robot, te va a sonar a robot con tus clientes.',
+        q: '¿Tengo que cambiar de CRM?',
+        a: 'No. El sistema escribe en el que ya usas. Si no usas ninguno, ese es el primer problema y se resuelve antes de automatizar nada: sin un lugar donde escribir, no hay dónde dejar el rastro.',
       },
       {
-        q: '¿Puedo contestar yo cuando quiera?',
-        a: 'Sí, chat por chat. Tomas la conversación y el sistema se calla en esa, y sigue atendiendo las demás. Tu número nunca deja de ser tuyo.',
+        q: '¿Qué pasa cuando se equivoca?',
+        a: 'Se equivoca, como cualquier sistema. Por eso nada que comprometa dinero o reputación sale sin que una persona lo apruebe, y por eso existe el set de prueba: para que el error aparezca en la evaluación y no frente a tu cliente.',
       },
       {
         q: '¿Cuánto cuesta?',
-        a: 'Depende de qué tanto hay que construir y con qué sistemas conectarlo. Darte un número antes de saberlo sería inventarlo. Cuéntame tu caso y te digo qué haría y cuánto sale, sin costo.',
+        a: 'Depende de a cuántos sistemas hay que conectarse y de qué tan complejas son tus propuestas. Cotizar antes de saber eso obliga a inventar un número. La aplicación no cuesta nada, y de ahí sale la cifra.',
       },
       {
-        q: '¿Cuánto tarda?',
-        a: 'Entre una y cuatro semanas, según qué se construya. Conectar tu número son cinco minutos; lo que toma tiempo es enseñarle tu catálogo, tus precios y cómo vendes tú.',
-      },
-      {
-        q: '¿Tengo que cambiar de sistema?',
-        a: 'No. Trabajo sobre lo que ya usas, aunque esté a medias. Cambiar de herramienta y ordenar la venta al mismo tiempo son dos broncas peleándose, y normalmente pierden las dos.',
-      },
-      {
-        q: '¿Y si me arrepiento o me quiero ir?',
-        a: 'Todo queda a tu nombre: tu número, tus cuentas, tu información. Te la puedes llevar cuando quieras. No hay nada que se apague porque yo deje de estar.',
+        q: '¿Por qué se aplica en vez de agendar?',
+        a: 'Porque tomo pocos proyectos a la vez y no todos los puedo resolver yo. Cinco preguntas me dicen si tiene caso que hablemos. Si no lo tiene, te lo digo en la respuesta y no te gasto una hora para averiguarlo.',
       },
     ],
   },
+
   proof: {
     sectionLabel: 'prueba_',
     heading: 'No te pedimos que nos creas',
@@ -657,307 +658,252 @@ export const es = {
   /**
    * ══ LA HOME ═════════════════════════════════════════════════
    *
-   * Tercera versión, y la primera escrita sobre el negocio real.
+   * Cuarta versión. Las tres anteriores le hablaban a un cliente equivocado:
+   * una plataforma por suscripción, luego delivery técnico para consultoras
+   * que subcontratan, luego pymes que venden por WhatsApp.
    *
-   * Las dos anteriores fallaron por el mismo motivo: describían a un cliente
-   * que no existe. La primera vendía una plataforma por suscripción; la
-   * segunda, delivery técnico para consultoras que subcontratan. El negocio de
-   * verdad es más simple: **le construyo sistemas a pymes que venden por
-   * WhatsApp, directo y a la medida.**
+   * Esta parte de la tesis real del negocio, que es más ancha que un canal:
+   * **prospectar, seguir y cerrar**, con agentes que corren esa operación y
+   * con evaluaciones que prueban que sirven antes de dejarlos hablar con un
+   * cliente. WhatsApp sigue estando — es de donde entra buena parte de la
+   * señal — pero es una pieza, no el producto.
    *
-   * Cuatro reglas de escritura, y son duras:
+   * Cuatro reglas de escritura:
    *
-   *  1. CERO inglés. Ni "workflow", ni "handoff", ni "human-in-the-loop". La
-   *     versión anterior tenía 52 términos de jerga en 2,025 palabras —uno
-   *     cada 39— y el propio dueño del negocio no la entendía.
+   *  1. Inglés solo para nombres propios de herramientas: Clay, Apollo,
+   *     LinkedIn Sales Navigator, Granola. Cero jerga de consultoría. La
+   *     versión que tenía 52 términos en 2,025 palabras no la entendía ni el
+   *     dueño del negocio.
    *  2. Frases de menos de 12 palabras.
    *  3. Un ancla en negrita por bloque, para poder escanear sin leer.
-   *  4. Si una frase no la diría el dueño de una ferretería, no va.
+   *  4. Una idea visible por sección. Lo demás va dentro de <Mas>, que lo
+   *     colapsa y anuncia cuánto tarda leerlo.
    *
-   * Y el tono lo decide un dato: hoy no llega nadie por el sitio. Así que no
-   * le habla a alguien que ya nos conoce y viene a confirmar. Le habla a un
-   * desconocido que tiene diez segundos.
+   * El presupuesto, y es duro: **320 palabras visibles sin abrir nada.** Eran
+   * 1,384, siete minutos de lectura antes de entender qué se vende. El tono lo
+   * decide el mismo dato de siempre: le habla a un desconocido que tiene diez
+   * segundos, no a alguien que viene a confirmar lo que ya sabe.
    */
   home: {
     hero: {
-      eyebrow: 'para negocios que venden por whatsapp',
-      title: 'Vendes por WhatsApp.',
-      titleAccent: 'Y ahí se te pierde.',
+      eyebrow: 'prospectar · seguir · cerrar',
+      title: 'Prospectar, seguir y cerrar.',
+      titleAccent: 'Sin que nadie capture nada.',
       subtitle:
-        'Te construyo el sistema que lo arregla. **Hecho para tu negocio**, no una app que rentas.',
-      ctaPrimary: 'Cuéntame tu caso',
-      ctaSecondary: 'Ver qué construyo',
-      note: 'me escribes por WhatsApp · te digo si tiene arreglo',
+        'Agentes que corren tu operación comercial. **Se prueban antes de hablar con un cliente.**',
+      ctaPrimary: 'Aplicar',
+      ctaSecondary: 'Ver el motor',
+      note: 'trabajo con pocos a la vez · se aplica y reviso',
       /**
-       * La tarjeta muestra una conversación real y lo que el sistema hizo
-       * con ella. Nada de diagramas: es lo que le pasa a su negocio, escrito
-       * como se lo contaría a un amigo.
+       * La tarjeta muestra el mecanismo, no una industria. La versión anterior
+       * era una ferretería pidiendo un compresor: concreta, pero fijaba al
+       * lector en un giro que este negocio ya no persigue. Aquí el ejemplo es
+       * el propio sistema trabajando — una llamada entra, un dato sale — y
+       * sirve igual para cualquier empresa que venda hablando.
        */
       card: {
-        label: 'un_martes_cualquiera',
-        cohort: 'Cliente nuevo',
-        elapsed: '11:40 p.m.',
-        contact: 'Ferretería · WhatsApp del negocio',
-        why: '"¿Tienen compresores de 5 HP? Los necesito para el jueves."',
-        messageLabel: 'contestó solo',
-        message:
-          'Sí, el de 5 HP trifásico está en $18,400 + IVA. Entrega en 48 horas. ¿Es para uso continuo o de rato?',
-        checksLabel: 'y esto quedó guardado',
-        checks: ['Quiere compresor · lo necesita el jueves', 'Siguiente paso: pasar cotización'],
-        valueLabel: 'tardó',
-        value: '8 segundos',
-        timeLabel: 'tú',
-        time: 'dormido',
+        label: 'de_una_llamada',
+        cohort: 'Llamada de 32 min',
+        elapsed: 'hace 4 min',
+        contact: 'Transcripción automática',
+        why: '"Lo vemos en enero, cuando entre el presupuesto. Decide mi socio."',
+        messageLabel: 'quedó escrito',
+        message: 'Presupuesto: enero. Decide: el socio. Riesgo: le fue mal con el proveedor anterior.',
+        checksLabel: 'y la tarea',
+        checks: ['Marcar el 8 de enero', 'Responsable: Ana'],
+        valueLabel: 'capturó',
+        value: 'nadie',
+        timeLabel: 'tardó',
+        time: '9 segundos',
         actionPrimary: 'Listo',
-        actionSecondary: 'Ver chat',
+        actionSecondary: 'Ver llamada',
       },
     },
 
-    /** Los cuatro problemas, en las palabras del dueño. Nada más. */
+    /** Las cuatro fugas. Titular y una línea. Nada más. */
     leak: {
       label: 'el problema_',
-      title: 'Cuatro cosas te están costando dinero',
-      body: 'Ninguna es culpa de nadie. **Pasan porque no hay sistema, solo memoria.**',
+      title: 'El pipeline no se cae. Se olvida.',
+      body: 'Cuatro fugas, y ninguna aparece en el reporte.',
       items: [
         {
-          title: 'No das abasto',
-          detail: 'Llegan veinte mensajes juntos. Contestas los que alcanzas. **El resto se va con otro.**',
+          title: 'No sabes a quién buscar',
+          detail: 'A mano. **O no se arma.**',
         },
         {
-          title: 'Se pierde el seguimiento',
-          detail: 'Cotizaste y nadie volvió a marcar. **La venta no se cayó: se olvidó.**',
+          title: 'Lo que se dijo se pierde',
+          detail: 'Colgaste y nadie escribió nada.',
         },
         {
-          title: 'Capturas todo a mano',
-          detail: 'Alguien pasa horas copiando datos de un lado a otro. **Eso no es trabajo, es desgaste.**',
+          title: 'El seguimiento vive en la memoria',
+          detail: '**Cuando alguien se acuerda.**',
         },
         {
-          title: 'No sabes qué está pasando',
-          detail: 'Preguntas cómo vamos y nadie tiene el número. **Hay que buscarlo.**',
+          title: 'La propuesta tarda días',
+          detail: 'Desde cero. Otra vez.',
         },
       ],
-      quote: 'Tu negocio no falla por falta de ganas. Falla porque todo vive en la cabeza de alguien.',
+      quote: 'No falta esfuerzo. Falta sistema.',
     },
 
-    /** Lo que construyo, una respuesta por problema. */
+    /**
+     * El motor. Tres etapas, una línea visible cada una.
+     *
+     * La versión anterior eran cuatro etapas con tres viñetas cada una: 201
+     * palabras y doce elementos de lista, la segunda sección más pesada de la
+     * página. Lo que se leía sin abrir nada era casi todo. Ahora cada etapa
+     * dice una frase y el resto vive en <Mas>, que además anuncia cuánto
+     * tarda leerlo.
+     */
     cycle: {
-      label: 'qué construyo_',
-      title: 'Una solución para cada una',
-      subtitle: 'No es un paquete. **Se arma con lo que tu negocio necesita.**',
+      label: 'el motor_',
+      title: 'Tres etapas, un solo dato',
+      subtitle: 'Lo que se aprende prospectando **termina escribiendo la propuesta.**',
       outputLabel: 'resultado',
+      masLabel: 'cómo funciona',
       stages: [
         {
-          id: 'contesta',
+          id: 'prospectar',
           index: '01',
-          name: 'Que conteste',
-          kicker: 'a cualquier hora',
-          headline: 'Nadie se queda esperando.',
-          bullets: [
-            'Responde en segundos, con tus precios y tu información.',
-            'Entiende notas de voz. **No pierdes la venta por no traer audífonos.**',
-            'Cuando se pone difícil, te lo pasa a ti.',
+          name: 'Prospectar',
+          kicker: 'antes del primer mensaje',
+          headline: 'Saber a quién buscar antes de buscarlo.',
+          detalle: [
+            'La lista se arma con **Clay, Apollo y LinkedIn Sales Navigator**. Se cruza con tu CRM para no volver a tocar a quien ya dijo que no.',
+            'El primer mensaje lleva una razón real para escribir. Algo que pasó en esa empresa, no un campo en una plantilla.',
           ],
-          output: 'Cero mensajes sin contestar',
+          output: 'Lista con razón de contacto',
         },
         {
-          id: 'sigue',
+          id: 'seguir',
           index: '02',
-          name: 'Que dé seguimiento',
-          kicker: 'sin que te acuerdes',
-          headline: 'La cotización no se queda enfriando.',
-          bullets: [
-            'Retoma solo al que dejó de contestar.',
-            'Te avisa a quién hay que marcarle hoy. **Y por qué.**',
-            'Agenda la cita dentro del mismo chat.',
+          name: 'Seguir',
+          kicker: 'sin que nadie se acuerde',
+          headline: 'Lo que se dijo en la llamada no se queda en la llamada.',
+          detalle: [
+            '**Granola transcribe y el sistema extrae**: qué se acordó, quién decide, qué falta y para cuándo. Lo escribe en el CRM que ya usas.',
+            'Lo mismo con WhatsApp y con el correo. Sale una tarea con responsable y fecha, no un recordatorio suelto que nadie abre.',
           ],
-          output: 'Nada se queda a medias',
+          output: 'Tarea con responsable y fecha',
         },
         {
-          id: 'captura',
+          id: 'cerrar',
           index: '03',
-          name: 'Que capture solo',
-          kicker: 'se acabó el copiar y pegar',
-          headline: 'Los datos se guardan donde van.',
-          bullets: [
-            'Nombre, empresa, qué quiere y cuánto: sale de la conversación.',
-            'Entra a tu sistema sin que nadie lo teclee.',
-            '**Las horas de captura se vuelven horas de vender.**',
+          name: 'Cerrar',
+          kicker: 'con lo que el cliente dijo',
+          headline: 'La propuesta sale de la conversación, no de una plantilla.',
+          detalle: [
+            'El documento se arma con lo que el cliente pidió, contra tu catálogo y tus precios aprobados. No inventa una cifra para salir del paso.',
+            '**Sale como borrador.** Alguien lo lee y lo manda. El sistema no manda propuestas solo, y esa es una decisión de diseño, no una limitación.',
           ],
-          output: 'Cero captura manual',
-        },
-        {
-          id: 'reporta',
-          index: '04',
-          name: 'Que te diga cómo vas',
-          kicker: 'sin pedirle reportes a nadie',
-          headline: 'Abres y ves el número.',
-          bullets: [
-            'Cuántos llegaron, cuántos contestaste, cuántos cerraron.',
-            'En qué punto se te están cayendo. **Con nombre y apellido.**',
-            'Sin hojas de cálculo ni juntas para averiguarlo.',
-          ],
-          output: 'El número, a la mano',
+          output: 'Borrador listo para revisar',
         },
       ],
     },
 
-    /** Qué se instala y cuánto tarda. Tabla porque se compara. */
-    engine: {
-      label: 'cuánto tarda_',
-      title: 'Empezamos por lo que más te duele',
-      subtitle: 'No se construye todo de golpe. **Primero lo que te devuelve dinero más rápido.**',
-      table: {
-        cohort: 'Si lo tuyo es',
-        trigger: 'Se instala',
-        clock: 'Tarda',
-        goal: 'Lo notas en',
-      },
-      cohorts: [
-        {
-          name: 'No dar abasto',
-          trigger: 'Respuesta automática con tu catálogo',
-          clock: '1 a 2 semanas',
-          goal: 'La primera semana',
-        },
-        {
-          name: 'Perder el seguimiento',
-          trigger: 'Recordatorios y retomar conversaciones',
-          clock: '2 a 3 semanas',
-          goal: 'El primer mes',
-        },
-        {
-          name: 'Capturar a mano',
-          trigger: 'Conexión con tu sistema actual',
-          clock: '2 a 4 semanas',
-          goal: 'De inmediato',
-        },
-        {
-          name: 'No saber cómo vas',
-          trigger: 'Tablero con tus números',
-          clock: '1 a 2 semanas',
-          goal: 'El primer corte',
-        },
-      ],
-      quote: 'Prefiero entregarte una cosa funcionando en tres semanas que cuatro a medias en tres meses.',
-      clocks: {
-        label: 'cómo se arma',
-        items: [
-          {
-            name: 'Primero una',
-            unit: 'la que más duele',
-            detail:
-              'Elegimos el problema que más te cuesta hoy. Eso se construye y se echa a andar. **Lo ves funcionando antes de decidir si sigues.**',
-          },
-          {
-            name: 'Después lo demás',
-            unit: 'si quieres',
-            detail:
-              'Con lo primero ya dando resultado, se agrega lo siguiente. **Sin contrato largo ni comprarlo todo por adelantado.**',
-          },
-        ],
-      },
-      play: {
-        label: 'cómo empieza',
-        title: 'Primero te digo si tiene arreglo.',
-        detail:
-          'Me cuentas cómo vendes hoy y qué se te cae. **Te contesto con qué haría yo y cuánto tardaría** — no con una presentación.',
-        closing: 'Si lo tuyo no lo resuelvo yo, te lo digo ahí. No te cobro por averiguarlo.',
-      },
-      guardrails: {
-        label: 'sin sorpresas',
-        title: 'Nada se manda sin que tú lo apruebes.',
-        detail:
-          'Los mensajes se revisan contigo antes de encender nada. **Tú decides qué contesta solo y qué te pasa a ti.**',
-        checksTitle: 'Tu número sigue siendo tuyo',
-        checksDetail:
-          'Se conecta a tu WhatsApp de siempre. **Puedes tomar cualquier chat cuando quieras** y el sistema se calla en ese.',
-      },
-    },
-
-    /** Muy concreto: un mensaje, y qué quedó guardado. */
+    /** El único visual concreto del sitio: entra una frase, salen campos. */
     intel: {
       label: 'cómo se ve_',
-      title: 'De una conversación sale tu información',
-      subtitle: 'Nadie captura nada. **Lo que el cliente dijo, ya está guardado.**',
-      sourceLabel: 'lo que escribió el cliente',
+      title: 'De una conversación salen datos',
+      subtitle: 'Nadie captura nada. **Ya está escrito.**',
+      sourceLabel: 'lo que dijo el cliente',
       source:
-        'Fíjate, ya lo vi con mi socio. El presupuesto lo tenemos hasta enero, ahorita no. Lo que nos preocupa es la instalación, porque con el proveedor anterior nos fue mal. Al final quien decide es mi papá.',
+        'Ya lo vi con mi socio. Presupuesto hasta enero. Nos preocupa la instalación. Decide mi papá.',
       fieldsLabel: 'lo que quedó guardado',
       fields: [
-        { key: 'qué quiere', value: 'Instalación sin que le paren la operación' },
-        { key: 'dinero', value: 'Sí hay · disponible en enero' },
-        { key: 'cuándo', value: 'Enero · no es urgencia, es calendario' },
-        { key: 'qué le preocupa', value: 'Le fue mal con el proveedor anterior' },
+        { key: 'qué quiere', value: 'Instalar sin parar la operación' },
+        { key: 'dinero', value: 'Sí hay · enero' },
+        { key: 'cuándo', value: 'Enero · calendario, no urgencia' },
+        { key: 'qué le preocupa', value: 'Le fue mal con el anterior' },
         { key: 'quién decide', value: 'El papá' },
-        { key: 'qué sigue', value: 'Mandarle un caso parecido · marcar en enero' },
+        { key: 'qué sigue', value: 'Marcar el 8 de enero' },
       ],
       aside: {
         title: 'Esto ya está funcionando.',
-        detail:
-          'No es una idea: es el sistema que construí y opero todos los días. **Puedes ir a probarlo ahora mismo** y ponerle las preguntas que quieras.',
+        detail: 'No es una idea. **Es el sistema que opero todos los días.**',
         cta: 'Probarlo',
       },
     },
 
-    /** Qué te queda. Sin promesas de resultado. */
+    /**
+     * La sección que separa esto de un chatbot.
+     *
+     * Reemplaza a la de "qué te queda". El contenido viene de la mitad menos
+     * comentada de la vacante de Anthropic: la otra parte del trabajo es
+     * construir las evaluaciones que prueban que el agente sirve antes de
+     * dejarlo hablar con un cliente. Dicho sin la palabra "eval".
+     */
     measure: {
-      label: 'qué te queda_',
-      title: 'Cuando termino, esto es tuyo',
-      subtitle: 'No rentas nada. **Se queda en tu casa, a tu nombre.**',
+      label: 'antes de encenderlo_',
+      title: 'Se prueba antes de hablar con un cliente',
+      subtitle: 'Un agente que nadie evaluó es una apuesta. **Aquí se mide.**',
       metrics: [
         {
-          name: 'Tu número de WhatsApp',
-          detail: 'El de siempre. Sin trámites con Meta y sin cambiar de línea.',
+          name: 'Casos reales, no ejemplos',
+          detail: 'Tus conversaciones, **incluidas las que salieron mal.**',
         },
         {
-          name: 'Tus cuentas y tus accesos',
-          detail: 'Todo a tu nombre. **Si me voy, no se apaga nada.**',
+          name: 'El criterio se escribe antes',
+          detail: 'Qué es una buena respuesta se define antes.',
         },
         {
-          name: 'Tu información, exportable',
-          detail: 'Clientes, conversaciones e historial. Te los llevas cuando quieras.',
+          name: 'Cada cambio se vuelve a correr',
+          detail: 'Si un ajuste rompió otro caso, **se ve.**',
         },
         {
-          name: 'Alguien de tu equipo entrenado',
-          detail: 'Le enseño a una persona tuya a moverle. Grabado, para que lo vuelva a ver.',
+          name: 'Lo sensible pasa por una persona',
+          detail: 'Nada que comprometa dinero sale sin aprobación.',
         },
       ],
       moneyLabel: 'cuándo digo que ya quedó',
       moneyFormula:
-        'contesta solo          + tú puedes cambiarle cosas\n+ los errores se ven    + tu gente sabe usarlo\n= terminado',
+        'pasa el set de prueba   + tu gente sabe operarlo\n+ los errores se ven     + tú puedes cambiarle cosas\n= terminado',
       moneyNote: 'Si falta una de las cuatro, no está terminado. Aunque ya esté prendido.',
     },
 
     scope: {
       label: 'para quién sí_',
       title: 'Con quién trabajo y con quién no',
-      subtitle: 'Somos pocos. **Decir que no a tiempo nos ahorra tiempo a los dos.**',
+      subtitle: 'Tomo pocos a la vez. **Decir que no a tiempo nos ahorra el tiempo a los dos.**',
       doTitle: 'Sí',
       does: [
-        'Negocios que ya venden por WhatsApp y les llegan más mensajes de los que alcanzan.',
-        'Equipos de 2 a 20 personas, donde el dueño todavía se mete a vender.',
-        'Quien ya tiene clientes y quiere dejar de perderlos por lento o por olvido.',
-        'Quien está dispuesto a enseñarme cómo vende de verdad, no cómo debería.',
+        'Venta consultiva, ciclo largo, varios decisores.',
+        'Pierdes por olvido, no por falta de demanda.',
+        'Me dejas ver cómo vendes de verdad.',
+        'Hay alguien que puede decidir.',
       ],
       dontTitle: 'No',
       donts: [
         {
-          title: 'Mandar mensajes masivos',
-          detail: 'No hago envíos a gente que no te escribió. Es como te bloquean el número.',
+          title: 'Mensajes masivos',
+          detail: 'A quien no te escribió. Así bloquean números.',
         },
         {
-          title: 'Negocios sin clientes todavía',
-          detail: 'Si aún no llegan mensajes, esto no te sirve. Primero hay que traer gente.',
+          title: 'Negocios sin clientes',
+          detail: 'Sin conversaciones no hay de dónde sacar datos.',
         },
         {
           title: 'Reemplazar a tu equipo',
-          detail: 'Esto contesta y ordena. Cerrar y dar la cara sigue siendo de una persona.',
+          detail: 'Prepara el trabajo. Cerrar sigue siendo de una persona.',
         },
         {
-          title: 'Proyectos sin quién decida',
-          detail: 'Necesito a alguien que pueda decir cómo se hace. Si no, se atora todo.',
+          title: 'Proyectos sin quien decida',
+          detail: 'Sin quien defina el proceso, se atora.',
         },
       ],
+      /**
+       * Lo rescatable de la sección "cuánto tarda", que salió de la portada
+       * por pesar 265 palabras en cinco bloques distintos. Aquí vive colapsado:
+       * es la pregunta que hace quien ya se convenció, no quien está llegando.
+       */
+      mas: {
+        resumen: 'cómo empieza y cuánto tarda',
+        parrafos: [
+          'No se construye todo de golpe. **Elegimos lo que más te cuesta hoy** y eso se echa a andar. Lo ves funcionando antes de decidir si sigues.',
+          'La primera pieza tarda entre dos y cuatro semanas, según a cuántos sistemas haya que conectarse. Lo siguiente se agrega sobre lo que ya quedó, sin contrato largo ni comprarlo todo por adelantado.',
+          'Si lo tuyo no lo resuelvo yo, te lo digo en la primera respuesta. **No cobro por averiguarlo.**',
+        ],
+      },
     },
   },
 };

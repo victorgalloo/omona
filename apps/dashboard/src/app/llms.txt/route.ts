@@ -19,7 +19,7 @@ export async function GET() {
   // Esta línea decía "agente de IA para ventas B2B por WhatsApp" y contradecía
   // el bloque de entidad de arriba: el producto de WhatsApp es evidencia, no la
   // oferta. Era además lo primero que leía un motor generativo del sitio.
-  lines.push(`- [Inicio](${BASE}/): socio técnico de delivery de automatizaciones con Claude.`);
+  lines.push(`- [Inicio](${BASE}/): prospectar, seguir y cerrar sin capturar nada a mano.`);
   lines.push(`- [Cómo trabajamos](${BASE}/como-trabajamos): proceso, alcance y qué queda instalado.`);
   lines.push('');
   lines.push(`- [Demo](${BASE}/demo): el sistema funcionando, para probarlo sin registro.`);

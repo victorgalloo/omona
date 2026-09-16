@@ -5,6 +5,7 @@ import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
 import { Emphasis } from './Emphasis';
+import { Mas } from './Mas';
 
 /**
  * Los límites, en la portada y no escondidos en un FAQ.
@@ -56,6 +57,14 @@ export function HomeScope() {
             ))}
           </ul>
         </Reveal>
+      </div>
+
+      {/* Lo rescatable de la sección "cuánto tarda", que salió de la portada
+          por pesar 265 palabras repartidas en cinco bloques. Va colapsado y va
+          aquí porque es la pregunta de quien ya se convenció, no la de quien
+          está llegando. */}
+      <div className="mx-auto max-w-3xl">
+        <Mas resumen={s.mas.resumen} parrafos={s.mas.parrafos} />
       </div>
     </Section>
   );

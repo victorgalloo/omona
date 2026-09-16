@@ -42,3 +42,21 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) return str;
   return str.slice(0, maxLength) + '...';
 }
+
+/**
+ * Tiempo de lectura de un bloque, a 200 palabras por minuto.
+ *
+ * Se calcula y no se teclea por la misma razón por la que este sitio acabó de
+ * retirar las cifras inventadas del corpus: un "2 min" escrito a mano se
+ * desincroniza en la primera edición y se queda anunciando algo falso. Aquí el
+ * número sale del texto que el visitante va a leer, así que no puede mentir.
+ *
+ * Bajo el minuto se redondea a decenas de segundo. Decir "37 s" finge una
+ * precisión que la medida no tiene.
+ */
+export function tiempoDeLectura(...textos: string[]): string {
+  const palabras = textos.join(' ').trim().split(/\s+/).filter(Boolean).length;
+  const segundos = (palabras / 200) * 60;
+  if (segundos < 60) return `${Math.max(10, Math.round(segundos / 10) * 10)} s`;
+  return `${Math.round(segundos / 60)} min`;
+}
