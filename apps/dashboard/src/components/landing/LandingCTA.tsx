@@ -29,9 +29,9 @@ export function LandingCTA() {
             href={CTA_DIAGNOSTICO}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-2.5 overflow-hidden bg-ink px-9 py-4 text-base font-semibold text-bone transition-transform hover:-translate-y-0.5"
+            className="group relative inline-flex items-center gap-2.5 overflow-hidden bg-band-fg px-9 py-4 text-base font-semibold text-band-bg transition-transform hover:-translate-y-0.5"
           >
-            <Shimmer className="bg-bone/15" />
+            <Shimmer className="bg-band-bg/15" />
             <span className="relative">{t.cta.primary}</span>
             <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>

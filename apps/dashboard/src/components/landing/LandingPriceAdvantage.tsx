@@ -95,7 +95,7 @@ export function LandingPriceAdvantage() {
       <div className="mt-12">
         <Link
           href="/signup"
-          className="group inline-flex items-center gap-2.5 bg-ink px-8 py-4 text-base font-semibold text-bone transition-transform hover:-translate-y-0.5"
+          className="group inline-flex items-center gap-2.5 bg-band-fg px-8 py-4 text-base font-semibold text-band-bg transition-transform hover:-translate-y-0.5"
         >
           {copy.cta}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

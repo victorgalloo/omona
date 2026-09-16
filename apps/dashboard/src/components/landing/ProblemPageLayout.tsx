@@ -108,7 +108,7 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link
               href="/signup"
-              className="group inline-flex items-center gap-2.5 bg-ink px-8 py-4 text-base font-semibold text-bone transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2.5 bg-foreground px-8 py-4 text-base font-semibold text-background transition-transform hover:-translate-y-0.5"
             >
               {t.problems.ctaSignup}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -145,13 +145,13 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
         </div>
       </Section>
 
-      <footer className="bg-ink py-12 text-bone">
+      <footer className="bg-ink py-12 text-white">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-4 sm:px-6">
           <div className="flex items-center gap-1.5">
-            <Logo size={22} className="shrink-0 text-bone" />
-            <span className="ml-2 font-mono text-base font-semibold text-bone">omona_</span>
+            <Logo size={22} className="shrink-0 text-white" />
+            <span className="ml-2 font-mono text-base font-semibold text-white">omona_</span>
           </div>
-          <p className="text-sm text-bone/60">
+          <p className="text-sm text-white/60">
             © {new Date().getFullYear()} omona by anthana · made with ♥ in méxico
           </p>
         </div>
