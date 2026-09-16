@@ -687,89 +687,157 @@ export const es = {
   /**
    * ══ EL RECORRIDO ════════════════════════════════════════════
    *
-   * Cuatro pantallas de la plataforma con datos SEMBRADOS. No es el dashboard
-   * real y es deliberado: el real manda mensajes por WhatsApp, corre
-   * broadcasts y borra leads, y meter visitantes anónimos ahí exigiría
-   * bloquear escrituras en el servidor —no esconder botones— sembrar y
-   * resembrar datos, y expirar sesiones.
+   * No enseña el sistema: hace que el visitante intente el trabajo PRIMERO y
+   * después le muestra qué se le fue. Esa diferencia es todo el diseño.
    *
-   * Con datos fijos el recorrido además es determinista: nunca cae en un
-   * estado vacío ni depende de que el server esté arriba.
+   * Un recorrido que solo muestra pantallas se lee como folleto. Uno donde
+   * eliges la cuenta equivocada, o marcas tres de seis campos, produce el
+   * único argumento que no se puede discutir: te pasó a ti, hace diez
+   * segundos, con el ejemplo más fácil posible.
    *
-   * Los nombres de empresa son inventados a propósito y así se rotula. Poner
-   * clientes reales sin permiso escrito es la regla que este proyecto ya
-   * corrigió dos veces.
+   * La gamificación es seca a propósito. Nada de confeti ni de puntos
+   * inventados: el marcador cuenta CAMPOS CAPTURADOS y segundos reales
+   * medidos en el navegador. Un marcador honesto pega más fuerte que uno
+   * generoso, y además encaja con el resto del sitio.
+   *
+   * Datos sembrados y empresas inventadas, rotulado en pantalla. El dashboard
+   * real manda WhatsApps y borra leads; no se le abre a un anónimo.
    */
   recorrido: {
-    etiqueta: 'recorrido guiado',
-    salir: 'Volver al inicio',
-    anterior: 'Atrás',
-    siguiente: 'Siguiente',
-    ultimo: 'Terminar recorrido',
+    etiqueta: 'recorrido',
+    salir: 'Salir',
     aviso: 'datos de ejemplo · empresas inventadas',
+    responder: 'Ver qué hizo el sistema',
+    siguiente: 'Siguiente',
+    ultimo: 'Ver mi marcador',
+    tuTiempo: 'te tomó',
+    sistemaTiempo: 'el sistema',
+    elegiste: 'elegiste',
     pasos: [
       {
         id: 'prospectar',
         indice: '01',
-        titulo: 'Prospectar',
-        resumen: 'La lista no es un volcado del CRM. Cada cuenta trae por qué vale la pena hoy.',
-        pantalla: 'cuentas',
-        columnas: ['Cuenta', 'Señal', 'Por qué ahora'],
-        filas: [
-          ['Grupo Zenith', 'Abrió planta nueva', 'Contrataron 40 personas en operaciones este trimestre'],
-          ['Delta Industrial', 'Cambio de director comercial', 'El anterior nos dijo que no. El nuevo viene de un cliente parecido'],
-          ['Norte Logística', 'Vence contrato en marzo', 'Ya preguntaron precios una vez, hace ocho meses'],
+        titulo: '¿A quién le marcas hoy?',
+        instruccion: 'Tienes cinco minutos antes de tu siguiente junta. Una sola llamada. **Elige una.**',
+        tipo: 'una',
+        opciones: [
+          {
+            id: 'zenith',
+            texto: 'Grupo Zenith',
+            detalle: 'Último contacto: hace 3 meses · cotización enviada',
+            acierto: true,
+          },
+          {
+            id: 'delta',
+            texto: 'Delta Industrial',
+            detalle: 'Último contacto: hace 2 semanas · dijeron que no',
+            acierto: false,
+          },
+          {
+            id: 'norte',
+            texto: 'Norte Logística',
+            detalle: 'Último contacto: hace 8 meses · pidió precios',
+            acierto: false,
+          },
+          {
+            id: 'sur',
+            texto: 'Aceros del Sur',
+            detalle: 'Último contacto: ayer · todo en orden',
+            acierto: false,
+          },
         ],
+        revelacion: {
+          titulo: 'El sistema marcó Grupo Zenith.',
+          cuerpo: 'No por la fecha del último contacto, que es lo único que te daba el CRM. **Abrieron planta nueva y contrataron cuarenta personas en operaciones este trimestre.** Esa señal no estaba en tu lista.',
+          puntos: [
+            'Delta dijo que no hace dos semanas, pero cambió de director comercial. Vuelve a la lista en marzo, no hoy.',
+            'Norte pidió precios hace ocho meses y su contrato vence en marzo. Es la siguiente, no la de hoy.',
+            'Aceros del Sur está atendido. Marcarle hoy gasta tu única llamada.',
+          ],
+        },
       },
       {
         id: 'seguir',
         indice: '02',
-        titulo: 'Seguir',
-        resumen: 'Terminó la llamada. Esto quedó escrito sin que nadie abriera el CRM.',
-        pantalla: 'extraccion',
-        fuenteEtiqueta: 'de la transcripción',
-        fuente: 'Ya lo vi con mi socio. Presupuesto hasta enero. Nos preocupa la instalación. Decide mi papá.',
-        camposEtiqueta: 'campos escritos en el CRM',
-        campos: [
-          ['qué quiere', 'Instalar sin parar la operación'],
-          ['dinero', 'Sí hay · enero'],
-          ['cuándo', 'Enero · calendario, no urgencia'],
-          ['qué le preocupa', 'Le fue mal con el proveedor anterior'],
-          ['quién decide', 'El papá'],
+        titulo: '¿Qué te llevas de esta llamada?',
+        instruccion: 'Colgaste hace un minuto. **Marca todo lo que deba quedar registrado.** Hay seis cosas.',
+        cita: 'Ya lo vi con mi socio y nos interesa, pero el presupuesto lo tenemos hasta enero. Lo que nos preocupa es la instalación, porque con el proveedor anterior nos pararon la línea tres días. Al final quien decide es mi papá, y él quiere ver un caso parecido antes de firmar.',
+        tipo: 'varias',
+        opciones: [
+          { id: 'necesidad', texto: 'Qué quiere: instalar sin parar la operación', acierto: true },
+          { id: 'dinero', texto: 'Presupuesto: sí hay, disponible en enero', acierto: true },
+          { id: 'plazo', texto: 'Plazo: enero — es calendario, no urgencia', acierto: true },
+          { id: 'objecion', texto: 'Objeción: le pararon la línea tres días', acierto: true },
+          { id: 'decisor', texto: 'Quién decide: el papá', acierto: true },
+          { id: 'siguiente', texto: 'Siguiente paso: mandarle un caso parecido', acierto: true },
+          { id: 'socio', texto: 'Tiene un socio', acierto: false },
+          { id: 'amable', texto: 'Sonó interesado', acierto: false },
         ],
-        tareaEtiqueta: 'y la tarea',
-        tarea: 'Marcar el 8 de enero · responsable: Ana',
+        revelacion: {
+          titulo: 'El sistema sacó las seis sin que nadie abriera el CRM.',
+          cuerpo: 'Y creó la tarea: **marcar el 8 de enero, responsable Ana.** No un recordatorio suelto — una tarea con fecha, dueño y todo el contexto de arriba pegado.',
+          puntos: [
+            '"Tiene un socio" y "sonó interesado" no son campos: no cambian qué haces mañana.',
+            'La objeción importa más que el presupuesto. Sin ella, la propuesta no menciona la contingencia y el papá no firma.',
+            'Lo que se te fue no se pierde por descuido. Se pierde porque nadie transcribe una llamada de 32 minutos.',
+          ],
+        },
       },
       {
         id: 'cerrar',
         indice: '03',
-        titulo: 'Cerrar',
-        resumen: 'El borrador parte de lo que el cliente pidió. Nadie lo reconstruye desde cero.',
-        pantalla: 'propuesta',
-        documentoEtiqueta: 'borrador · sin enviar',
-        documento: [
-          ['Alcance', 'Instalación por etapas, sin parar la línea de producción'],
-          ['Plazo', 'Arranque en enero, según lo que pidieron'],
-          ['Riesgo atendido', 'Plan de contingencia por lo que pasó con el proveedor anterior'],
-          ['Precio', 'Tomado del catálogo aprobado, no inventado por el sistema'],
+        titulo: '¿Cuánto tardas en armar esa propuesta?',
+        instruccion: 'Con lo que acabas de escuchar. Catálogo, precios, el caso parecido que pidió el papá. **Sé honesto.**',
+        tipo: 'una',
+        opciones: [
+          { id: 'veinte', texto: '20 minutos', detalle: 'Si tengo la plantilla a la mano', acierto: false },
+          { id: 'hora', texto: 'Una hora', detalle: 'Buscando precios y el caso parecido', acierto: true },
+          { id: 'medio', texto: 'Media tarde', detalle: 'Y la mando mañana', acierto: true },
+          { id: 'semana', texto: 'Se queda pendiente', detalle: 'Y a los tres días ya no es urgente', acierto: true },
         ],
-        nota: 'Una persona lo lee y lo manda. El sistema no envía propuestas solo.',
+        revelacion: {
+          titulo: 'El borrador ya estaba hecho cuando colgaste.',
+          cuerpo: 'Con el alcance por etapas que pidió, el arranque en enero, **la contingencia por lo que le pasó con el proveedor anterior** y el precio del catálogo aprobado. No inventa cifras.',
+          puntos: [
+            'Sale como borrador, sin enviar. Una persona lo lee y lo manda.',
+            'La parte cara de una propuesta no es escribirla: es acordarse de lo que dijo el cliente tres semanas después.',
+            'Si la respuesta honesta fue "se queda pendiente", ahí está la venta que se cae. No en la llamada.',
+          ],
+        },
       },
       {
         id: 'prueba',
         indice: '04',
-        titulo: 'Se prueba',
-        resumen: 'Antes de que hable con un cliente, se corre el set de prueba. Incluido el caso que falla.',
-        pantalla: 'evaluacion',
+        titulo: '¿Lo dejas hablar con tu cliente?',
+        instruccion: 'Corriste el set de prueba. Treinta y tres de treinta y cuatro casos pasaron. **Tú decides.**',
+        tipo: 'una',
+        opciones: [
+          { id: 'enciende', texto: 'Enciéndelo', detalle: '97% está bien para empezar', acierto: false },
+          { id: 'revisa', texto: 'Revisa el caso que falló primero', detalle: 'Aunque sea uno', acierto: true },
+        ],
+        revelacion: {
+          titulo: 'Se revisa. Siempre.',
+          cuerpo: 'El caso que falló es "pregunta fuera de catálogo". Si sale así a producción, **el agente inventa una respuesta delante de tu cliente** — y ese es exactamente el error que hace que la gente no vuelva a confiar en un sistema.',
+          puntos: [
+            'El set se arma con conversaciones reales, incluidas las que salieron mal.',
+            'El criterio de qué cuenta como buena respuesta se escribe antes de la prueba, no después.',
+            'Cada cambio vuelve a correr el set completo: si un ajuste arregla un caso y rompe otro, se ve el mismo día.',
+          ],
+        },
       },
     ],
-    cierre: {
-      etiqueta: 'hasta aquí llega el recorrido',
-      titulo: 'Lo demás depende de tu proceso.',
-      cuerpo: 'Lo que viste son datos de ejemplo. Lo que se construye sale de cómo vendes tú: qué sistemas usas, dónde se te cae y quién decide. Eso se revisa en una llamada.',
+    marcador: {
+      etiqueta: 'tu marcador',
+      titulo: 'Esto fue con el ejemplo fácil.',
+      cuerpo: 'Una llamada, un cliente, sin teléfono sonando. **Tu operación real tiene más ruido que esto.**',
+      camposLinea: 'campos capturados',
+      tiempoLinea: 'te tomó',
+      sistemaLinea: 'sin que nadie abriera el CRM',
+      cierreTitulo: 'Lo que viste son datos de ejemplo.',
+      cierreCuerpo: 'Lo que se construye sale de cómo vendes tú: qué sistemas usas, dónde se te cae y quién decide. Eso se revisa en una llamada de treinta minutos.',
       cta: 'Agendar una llamada',
       salir: 'Volver al inicio',
-      nota: 'treinta minutos · si no hay encaje te lo digo ahí',
+      nota: 'si no hay encaje te lo digo ahí mismo',
     },
   },
   home: {

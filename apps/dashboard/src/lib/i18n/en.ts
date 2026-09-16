@@ -614,76 +614,160 @@ export const en: Translations = {
   },
 
   /** See es.ts: third version, first one written about the real business. */
+  /**
+   * ══ EL RECORRIDO ════════════════════════════════════════════
+   *
+   * No enseña el sistema: hace que el visitante intente el trabajo PRIMERO y
+   * después le muestra qué se le fue. Esa diferencia es todo el diseño.
+   *
+   * Un recorrido que solo muestra pantallas se lee como folleto. Uno donde
+   * eliges la cuenta equivocada, o marcas tres de seis campos, produce el
+   * único argumento que no se puede discutir: te pasó a ti, hace diez
+   * segundos, con el ejemplo más fácil posible.
+   *
+   * La gamificación es seca a propósito. Nada de confeti ni de puntos
+   * inventados: el marcador cuenta CAMPOS CAPTURADOS y segundos reales
+   * medidos en el navegador. Un marcador honesto pega más fuerte que uno
+   * generoso, y además encaja con el resto del sitio.
+   *
+   * Datos sembrados y empresas inventadas, rotulado en pantalla. El dashboard
+   * real manda WhatsApps y borra leads; no se le abre a un anónimo.
+   */
   recorrido: {
-    etiqueta: 'guided tour',
-    salir: 'Back to home',
-    anterior: 'Back',
-    siguiente: 'Next',
-    ultimo: 'Finish tour',
+    etiqueta: 'tour',
+    salir: 'Exit',
     aviso: 'sample data · fictional companies',
+    responder: 'See what the system did',
+    siguiente: 'Next',
+    ultimo: 'See my scorecard',
+    tuTiempo: 'took you',
+    sistemaTiempo: 'the system',
+    elegiste: 'you picked',
     pasos: [
       {
         id: 'prospectar',
         indice: '01',
-        titulo: 'Prospect',
-        resumen: 'The list is not a CRM dump. Every account carries why it is worth a call today.',
-        pantalla: 'cuentas',
-        columnas: ['Account', 'Signal', 'Why now'],
-        filas: [
-          ['Grupo Zenith', 'Opened a new plant', 'Hired 40 people in operations this quarter'],
-          ['Delta Industrial', 'New head of sales', 'The last one said no. This one comes from a similar customer'],
-          ['Norte Logistica', 'Contract ends in March', 'They asked for pricing once, eight months ago'],
+        titulo: 'Who do you call today?',
+        instruccion: 'Tienes cinco minutos antes de tu siguiente junta. Una sola llamada. **Elige una.**',
+        tipo: 'una',
+        opciones: [
+          {
+            id: 'zenith',
+            texto: 'Grupo Zenith',
+            detalle: 'Último contacto: hace 3 meses · cotización enviada',
+            acierto: true,
+          },
+          {
+            id: 'delta',
+            texto: 'Delta Industrial',
+            detalle: 'Último contacto: hace 2 semanas · dijeron que no',
+            acierto: false,
+          },
+          {
+            id: 'norte',
+            texto: 'Norte Logística',
+            detalle: 'Último contacto: hace 8 meses · pidió precios',
+            acierto: false,
+          },
+          {
+            id: 'sur',
+            texto: 'Aceros del Sur',
+            detalle: 'Último contacto: ayer · todo en orden',
+            acierto: false,
+          },
         ],
+        revelacion: {
+          titulo: 'El sistema marcó Grupo Zenith.',
+          cuerpo: 'No por la fecha del último contacto, que es lo único que te daba el CRM. **Abrieron planta nueva y contrataron cuarenta personas en operaciones este trimestre.** Esa señal no estaba en tu lista.',
+          puntos: [
+            'Delta dijo que no hace dos semanas, pero cambió de director comercial. Vuelve a la lista en marzo, no hoy.',
+            'Norte pidió precios hace ocho meses y su contrato vence en marzo. Es la siguiente, no la de hoy.',
+            'Aceros del Sur está atendido. Marcarle hoy gasta tu única llamada.',
+          ],
+        },
       },
       {
         id: 'seguir',
         indice: '02',
-        titulo: 'Follow up',
-        resumen: 'The call ended. This got written down without anyone opening the CRM.',
-        pantalla: 'extraccion',
-        fuenteEtiqueta: 'from the transcript',
-        fuente: 'I already went over it with my partner. Budget opens in January. We are worried about installation. My father decides.',
-        camposEtiqueta: 'fields written to the CRM',
-        campos: [
-          ['what they want', 'Install without stopping operations'],
-          ['money', 'Yes · January'],
-          ['when', 'January · calendar, not urgency'],
-          ['their concern', 'Bad experience with previous vendor'],
-          ['who decides', 'The father'],
+        titulo: 'What do you take from this call?',
+        instruccion: 'Colgaste hace un minuto. **Marca todo lo que deba quedar registrado.** Hay seis cosas.',
+        cita: 'Ya lo vi con mi socio y nos interesa, pero el presupuesto lo tenemos hasta enero. Lo que nos preocupa es la instalación, porque con el proveedor anterior nos pararon la línea tres días. Al final quien decide es mi papá, y él quiere ver un caso parecido antes de firmar.',
+        tipo: 'varias',
+        opciones: [
+          { id: 'necesidad', texto: 'Qué quiere: instalar sin parar la operación', acierto: true },
+          { id: 'dinero', texto: 'Presupuesto: sí hay, disponible en enero', acierto: true },
+          { id: 'plazo', texto: 'Plazo: enero — es calendario, no urgencia', acierto: true },
+          { id: 'objecion', texto: 'Objeción: le pararon la línea tres días', acierto: true },
+          { id: 'decisor', texto: 'Quién decide: el papá', acierto: true },
+          { id: 'siguiente', texto: 'Siguiente paso: mandarle un caso parecido', acierto: true },
+          { id: 'socio', texto: 'Tiene un socio', acierto: false },
+          { id: 'amable', texto: 'Sonó interesado', acierto: false },
         ],
-        tareaEtiqueta: 'and the task',
-        tarea: 'Call on January 8 · owner: Ana',
+        revelacion: {
+          titulo: 'El sistema sacó las seis sin que nadie abriera el CRM.',
+          cuerpo: 'Y creó la tarea: **marcar el 8 de enero, responsable Ana.** No un recordatorio suelto — una tarea con fecha, dueño y todo el contexto de arriba pegado.',
+          puntos: [
+            '"Tiene un socio" y "sonó interesado" no son campos: no cambian qué haces mañana.',
+            'La objeción importa más que el presupuesto. Sin ella, la propuesta no menciona la contingencia y el papá no firma.',
+            'Lo que se te fue no se pierde por descuido. Se pierde porque nadie transcribe una llamada de 32 minutos.',
+          ],
+        },
       },
       {
         id: 'cerrar',
         indice: '03',
-        titulo: 'Close',
-        resumen: 'The draft starts from what the customer asked for. Nobody rebuilds it from scratch.',
-        pantalla: 'propuesta',
-        documentoEtiqueta: 'draft · not sent',
-        documento: [
-          ['Scope', 'Phased installation, without stopping the production line'],
-          ['Timeline', 'Start in January, as they asked'],
-          ['Risk addressed', 'Contingency plan for what happened with the previous vendor'],
-          ['Pricing', 'Taken from the approved catalog, not invented by the system'],
+        titulo: 'How long to build that proposal?',
+        instruccion: 'Con lo que acabas de escuchar. Catálogo, precios, el caso parecido que pidió el papá. **Sé honesto.**',
+        tipo: 'una',
+        opciones: [
+          { id: 'veinte', texto: '20 minutos', detalle: 'Si tengo la plantilla a la mano', acierto: false },
+          { id: 'hora', texto: 'Una hora', detalle: 'Buscando precios y el caso parecido', acierto: true },
+          { id: 'medio', texto: 'Media tarde', detalle: 'Y la mando mañana', acierto: true },
+          { id: 'semana', texto: 'Se queda pendiente', detalle: 'Y a los tres días ya no es urgente', acierto: true },
         ],
-        nota: 'A person reads it and sends it. The system does not send proposals on its own.',
+        revelacion: {
+          titulo: 'El borrador ya estaba hecho cuando colgaste.',
+          cuerpo: 'Con el alcance por etapas que pidió, el arranque en enero, **la contingencia por lo que le pasó con el proveedor anterior** y el precio del catálogo aprobado. No inventa cifras.',
+          puntos: [
+            'Sale como borrador, sin enviar. Una persona lo lee y lo manda.',
+            'La parte cara de una propuesta no es escribirla: es acordarse de lo que dijo el cliente tres semanas después.',
+            'Si la respuesta honesta fue "se queda pendiente", ahí está la venta que se cae. No en la llamada.',
+          ],
+        },
       },
       {
         id: 'prueba',
         indice: '04',
-        titulo: 'Tested',
-        resumen: 'Before it talks to a customer, the test set runs. Including the case that fails.',
-        pantalla: 'evaluacion',
+        titulo: 'Do you let it talk to your customer?',
+        instruccion: 'Corriste el set de prueba. Treinta y tres de treinta y cuatro casos pasaron. **Tú decides.**',
+        tipo: 'una',
+        opciones: [
+          { id: 'enciende', texto: 'Enciéndelo', detalle: '97% está bien para empezar', acierto: false },
+          { id: 'revisa', texto: 'Revisa el caso que falló primero', detalle: 'Aunque sea uno', acierto: true },
+        ],
+        revelacion: {
+          titulo: 'Se revisa. Siempre.',
+          cuerpo: 'El caso que falló es "pregunta fuera de catálogo". Si sale así a producción, **el agente inventa una respuesta delante de tu cliente** — y ese es exactamente el error que hace que la gente no vuelva a confiar en un sistema.',
+          puntos: [
+            'El set se arma con conversaciones reales, incluidas las que salieron mal.',
+            'El criterio de qué cuenta como buena respuesta se escribe antes de la prueba, no después.',
+            'Cada cambio vuelve a correr el set completo: si un ajuste arregla un caso y rompe otro, se ve el mismo día.',
+          ],
+        },
       },
     ],
-    cierre: {
-      etiqueta: 'this is where the tour ends',
-      titulo: 'The rest depends on your process.',
-      cuerpo: 'What you saw is sample data. What gets built comes from how you sell: which systems you use, where you lose deals and who decides. That gets reviewed on a call.',
+    marcador: {
+      etiqueta: 'your scorecard',
+      titulo: 'Esto fue con el ejemplo fácil.',
+      cuerpo: 'Una llamada, un cliente, sin teléfono sonando. **Tu operación real tiene más ruido que esto.**',
+      camposLinea: 'fields captured',
+      tiempoLinea: 'took you',
+      sistemaLinea: 'without anyone opening the CRM',
+      cierreTitulo: 'Lo que viste son datos de ejemplo.',
+      cierreCuerpo: 'Lo que se construye sale de cómo vendes tú: qué sistemas usas, dónde se te cae y quién decide. Eso se revisa en una llamada de treinta minutos.',
       cta: 'Book a call',
       salir: 'Back to home',
-      nota: 'thirty minutes · if there is no fit I tell you there',
+      nota: 'si no hay encaje te lo digo ahí mismo',
     },
   },
   home: {
