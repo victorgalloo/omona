@@ -694,30 +694,6 @@ export const es = {
       ctaPrimary: 'Aplicar',
       ctaSecondary: 'Ver el motor',
       note: 'trabajo con pocos a la vez · se aplica y reviso',
-      /**
-       * La tarjeta muestra el mecanismo, no una industria. La versión anterior
-       * era una ferretería pidiendo un compresor: concreta, pero fijaba al
-       * lector en un giro que este negocio ya no persigue. Aquí el ejemplo es
-       * el propio sistema trabajando — una llamada entra, un dato sale — y
-       * sirve igual para cualquier empresa que venda hablando.
-       */
-      card: {
-        label: 'de_una_llamada',
-        cohort: 'Llamada de 32 min',
-        elapsed: 'hace 4 min',
-        contact: 'Transcripción automática',
-        why: '"Lo vemos en enero, cuando entre el presupuesto. Decide mi socio."',
-        messageLabel: 'quedó escrito',
-        message: 'Presupuesto: enero. Decide: el socio. Riesgo: le fue mal con el proveedor anterior.',
-        checksLabel: 'y la tarea',
-        checks: ['Marcar el 8 de enero', 'Responsable: Ana'],
-        valueLabel: 'capturó',
-        value: 'nadie',
-        timeLabel: 'tardó',
-        time: '9 segundos',
-        actionPrimary: 'Listo',
-        actionSecondary: 'Ver llamada',
-      },
     },
 
     /** Las cuatro fugas. Titular y una línea. Nada más. */

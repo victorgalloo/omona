@@ -624,23 +624,6 @@ export const en: Translations = {
       ctaPrimary: 'Apply',
       ctaSecondary: 'See the engine',
       note: 'few projects at a time · you apply, I review',
-      card: {
-        label: 'from_one_call',
-        cohort: '32-minute call',
-        elapsed: '4 min ago',
-        contact: 'Automatic transcript',
-        why: '"We will look at it in January, once budget opens. My partner decides."',
-        messageLabel: 'written down',
-        message: 'Budget: January. Decides: the partner. Risk: bad experience with previous vendor.',
-        checksLabel: 'and the task',
-        checks: ['Call on January 8', 'Owner: Ana'],
-        valueLabel: 'typed by',
-        value: 'nobody',
-        timeLabel: 'took',
-        time: '9 seconds',
-        actionPrimary: 'Done',
-        actionSecondary: 'Open call',
-      },
     },
 
     leak: {

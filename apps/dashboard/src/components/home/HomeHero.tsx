@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Check, Square } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { CTA_PROYECTO } from '@/lib/cta';
 import { Reveal } from './Reveal';
@@ -21,10 +21,11 @@ import { Emphasis } from './Emphasis';
  * nodos ni descargas— y contenido estático. El movimiento se limita a la
  * revelación de entrada.
  *
- * Y el cambio de fondo: la ilustración ya no es un chat. Es la tarjeta de
- * jugada, que es el producto real. Un chat contestando lo enseña cualquiera;
- * una tarjeta que dice a quién buscar hoy, con el mensaje escrito y el valor
- * del deal al lado, no.
+ * Y ya no lleva ilustración. Pasó por un chat, luego por una tarjeta de
+ * jugada, y las dos tenían el mismo defecto: explicaban el mecanismo en el
+ * sitio donde el visitante todavía no sabe si le interesa. El mecanismo ya se
+ * enseña abajo, en la corrida de evaluaciones. Aquí pesan el titular y el
+ * botón.
  */
 export function HomeHero() {
   const t = useT();
@@ -34,7 +35,12 @@ export function HomeHero() {
     <header className="relative overflow-hidden border-b border-hairline px-5 pb-20 pt-28 sm:px-8 sm:pb-28 sm:pt-36">
       <div aria-hidden className="bg-grid pointer-events-none absolute inset-0 -z-10" />
 
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      {/* Una sola columna. La tarjeta que iba a la derecha se retiro: decia
+          lo mismo que la seccion de evaluaciones —una conversacion entra, un
+          dato sale— y el heroe es el peor sitio para explicar el mecanismo.
+          Aqui se decide si vale la pena seguir leyendo, y para eso pesan el
+          titular y el boton, no una maqueta de producto. */}
+      <div className="mx-auto w-full max-w-3xl">
         <Reveal>
           {/* Era una pastilla con borde redondeado. En un archivo eso no
               existe: es una linea de comentario. */}
@@ -82,84 +88,7 @@ export function HomeHero() {
           <p className="mt-6 font-mono text-xs text-muted">{h.note}</p>
         </Reveal>
 
-        <Reveal delay={120}>
-          <PlayCard />
-        </Reveal>
       </div>
     </header>
-  );
-}
-
-/**
- * La tarjeta de jugada. Es marcado estático, no una captura: pesa cero, se
- * lee con lector de pantalla, y cuando cambia el tema cambia con él — cosa
- * que una imagen no hace. Los datos son de ejemplo y están en i18n.
- */
-function PlayCard() {
-  const t = useT();
-  const c = t.home.hero.card;
-
-  return (
-    <div className="overflow-hidden border border-border bg-surface">
-      <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5">
-        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-          {c.label}
-        </span>
-        <span className="flex items-center gap-2.5">
-          <span className="rounded border border-warning/40 bg-warning-muted px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-warning">
-            {c.cohort}
-          </span>
-          <span className="font-mono text-[11px] text-muted">{c.elapsed}</span>
-        </span>
-      </div>
-
-      <div className="space-y-5 p-4 sm:p-5">
-        <div>
-          <p className="font-medium text-foreground">{c.contact}</p>
-          <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{c.why}</p>
-        </div>
-
-        <div className="border border-hairline bg-background p-3.5 sm:p-4">
-          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            {c.messageLabel}
-          </p>
-          <p className="text-[13.5px] leading-relaxed text-foreground">{c.message}</p>
-        </div>
-
-        <div>
-          <p className="mb-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            {c.checksLabel}
-          </p>
-          <ul className="space-y-2">
-            {c.checks.map((check) => (
-              <li key={check} className="flex items-center gap-2.5 text-[13px] text-muted-foreground">
-                <Square aria-hidden className="h-3.5 w-3.5 shrink-0 text-muted" />
-                {check}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border px-4 py-3.5 sm:px-5">
-        <div className="flex items-center gap-4 font-mono text-[11px] text-muted">
-          <span>
-            {c.valueLabel} <span className="text-foreground">{c.value}</span>
-          </span>
-          <span>
-            {c.timeLabel} <span className="text-foreground">{c.time}</span>
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="border border-border px-3 py-1.5 text-[12px] text-muted-foreground">
-            {c.actionSecondary}
-          </span>
-          <span className="inline-flex items-center gap-1.5 bg-foreground px-3 py-1.5 text-[12px] font-medium text-background">
-            <Check aria-hidden className="h-3.5 w-3.5" />
-            {c.actionPrimary}
-          </span>
-        </div>
-      </div>
-    </div>
   );
 }
