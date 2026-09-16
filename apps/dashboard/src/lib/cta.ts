@@ -33,6 +33,16 @@ export const CTA_PROYECTO = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUME
 )}`;
 
 /**
+ * ⚠️ PLACEHOLDER — sustituir por tu enlace real de agenda (Cal.com, Calendly,
+ * Google Calendar appointments) antes de publicar el recorrido.
+ *
+ * Es el destino del pop-up que cierra /demo. Mientras sea este valor, el
+ * botón "Agendar una llamada" no lleva a ningún lado — igual que pasó con
+ * TYPEFORM_URL, y por eso vive aquí arriba y no escondido en un componente.
+ */
+export const AGENDA_URL = 'https://cal.com/REEMPLAZAR';
+
+/**
  * El nombre anterior, cuando la oferta era un diagnóstico de 30 minutos.
  * Se conserva como alias para no romper los componentes retirados que siguen
  * en el repo (LandingHero, LandingCTA, FloatingCTA).

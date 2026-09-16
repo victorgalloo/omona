@@ -684,6 +684,94 @@ export const es = {
    * decide el mismo dato de siempre: le habla a un desconocido que tiene diez
    * segundos, no a alguien que viene a confirmar lo que ya sabe.
    */
+  /**
+   * ══ EL RECORRIDO ════════════════════════════════════════════
+   *
+   * Cuatro pantallas de la plataforma con datos SEMBRADOS. No es el dashboard
+   * real y es deliberado: el real manda mensajes por WhatsApp, corre
+   * broadcasts y borra leads, y meter visitantes anónimos ahí exigiría
+   * bloquear escrituras en el servidor —no esconder botones— sembrar y
+   * resembrar datos, y expirar sesiones.
+   *
+   * Con datos fijos el recorrido además es determinista: nunca cae en un
+   * estado vacío ni depende de que el server esté arriba.
+   *
+   * Los nombres de empresa son inventados a propósito y así se rotula. Poner
+   * clientes reales sin permiso escrito es la regla que este proyecto ya
+   * corrigió dos veces.
+   */
+  recorrido: {
+    etiqueta: 'recorrido guiado',
+    salir: 'Volver al inicio',
+    anterior: 'Atrás',
+    siguiente: 'Siguiente',
+    ultimo: 'Terminar recorrido',
+    aviso: 'datos de ejemplo · empresas inventadas',
+    pasos: [
+      {
+        id: 'prospectar',
+        indice: '01',
+        titulo: 'Prospectar',
+        resumen: 'La lista no es un volcado del CRM. Cada cuenta trae por qué vale la pena hoy.',
+        pantalla: 'cuentas',
+        columnas: ['Cuenta', 'Señal', 'Por qué ahora'],
+        filas: [
+          ['Grupo Zenith', 'Abrió planta nueva', 'Contrataron 40 personas en operaciones este trimestre'],
+          ['Delta Industrial', 'Cambio de director comercial', 'El anterior nos dijo que no. El nuevo viene de un cliente parecido'],
+          ['Norte Logística', 'Vence contrato en marzo', 'Ya preguntaron precios una vez, hace ocho meses'],
+        ],
+      },
+      {
+        id: 'seguir',
+        indice: '02',
+        titulo: 'Seguir',
+        resumen: 'Terminó la llamada. Esto quedó escrito sin que nadie abriera el CRM.',
+        pantalla: 'extraccion',
+        fuenteEtiqueta: 'de la transcripción',
+        fuente: 'Ya lo vi con mi socio. Presupuesto hasta enero. Nos preocupa la instalación. Decide mi papá.',
+        camposEtiqueta: 'campos escritos en el CRM',
+        campos: [
+          ['qué quiere', 'Instalar sin parar la operación'],
+          ['dinero', 'Sí hay · enero'],
+          ['cuándo', 'Enero · calendario, no urgencia'],
+          ['qué le preocupa', 'Le fue mal con el proveedor anterior'],
+          ['quién decide', 'El papá'],
+        ],
+        tareaEtiqueta: 'y la tarea',
+        tarea: 'Marcar el 8 de enero · responsable: Ana',
+      },
+      {
+        id: 'cerrar',
+        indice: '03',
+        titulo: 'Cerrar',
+        resumen: 'El borrador parte de lo que el cliente pidió. Nadie lo reconstruye desde cero.',
+        pantalla: 'propuesta',
+        documentoEtiqueta: 'borrador · sin enviar',
+        documento: [
+          ['Alcance', 'Instalación por etapas, sin parar la línea de producción'],
+          ['Plazo', 'Arranque en enero, según lo que pidieron'],
+          ['Riesgo atendido', 'Plan de contingencia por lo que pasó con el proveedor anterior'],
+          ['Precio', 'Tomado del catálogo aprobado, no inventado por el sistema'],
+        ],
+        nota: 'Una persona lo lee y lo manda. El sistema no envía propuestas solo.',
+      },
+      {
+        id: 'prueba',
+        indice: '04',
+        titulo: 'Se prueba',
+        resumen: 'Antes de que hable con un cliente, se corre el set de prueba. Incluido el caso que falla.',
+        pantalla: 'evaluacion',
+      },
+    ],
+    cierre: {
+      etiqueta: 'hasta aquí llega el recorrido',
+      titulo: 'Lo demás depende de tu proceso.',
+      cuerpo: 'Lo que viste son datos de ejemplo. Lo que se construye sale de cómo vendes tú: qué sistemas usas, dónde se te cae y quién decide. Eso se revisa en una llamada.',
+      cta: 'Agendar una llamada',
+      salir: 'Volver al inicio',
+      nota: 'treinta minutos · si no hay encaje te lo digo ahí',
+    },
+  },
   home: {
     hero: {
       eyebrow: 'prospectar · seguir · cerrar',

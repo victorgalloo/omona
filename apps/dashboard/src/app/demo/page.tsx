@@ -1,29 +1,27 @@
 import type { Metadata } from 'next';
-import { DemoPageContent } from '@/components/demo/DemoPageContent';
+import { TourDemo } from '@/components/demo/TourDemo';
 
 export const metadata: Metadata = {
-  title: 'Demo Interactivo | Omona - Prueba el Agente de Ventas IA',
+  title: 'Recorrido | Omona - Prospectar, seguir y cerrar',
   description:
-    'Prueba gratis el agente de ventas IA de Omona. Chatea en tiempo real y ve como responde, califica leads y agenda citas por WhatsApp automaticamente.',
+    'Recorrido guiado por el sistema: como se prioriza una cuenta, como una llamada se vuelve campos y tarea en el CRM, como sale el borrador de propuesta y como se evalua antes de operar.',
   openGraph: {
-    title: 'Demo Interactivo | Omona - Prueba el Agente de Ventas IA',
+    title: 'Recorrido | Omona',
     description:
-      'Prueba el sistema sin registrarte. Chatea con el agente, ponle las preguntas que quieras y ve como contesta, guarda los datos y agenda. Es lo mismo que se construye para cada negocio.',
+      'Cuatro pantallas con datos de ejemplo: prospectar, seguir, cerrar y la corrida de evaluaciones que corre antes de que el agente hable con un cliente.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech/demo',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Demo Interactivo | Omona - Prueba el Agente de Ventas IA',
+    title: 'Recorrido | Omona',
     description:
-      'Prueba gratis el agente de ventas IA de Omona. Chatea en tiempo real y ve como responde, califica leads y agenda citas.',
+      'Prospectar, seguir, cerrar y la evaluacion previa, en cuatro pantallas con datos de ejemplo.',
   },
-  alternates: {
-    canonical: 'https://omona.tech/demo',
-  },
+  alternates: { canonical: 'https://omona.tech/demo' },
 };
 
 export default function DemoPage() {
-  return <DemoPageContent />;
+  return <TourDemo />;
 }

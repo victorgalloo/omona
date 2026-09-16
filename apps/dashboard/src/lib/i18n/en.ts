@@ -614,6 +614,78 @@ export const en: Translations = {
   },
 
   /** See es.ts: third version, first one written about the real business. */
+  recorrido: {
+    etiqueta: 'guided tour',
+    salir: 'Back to home',
+    anterior: 'Back',
+    siguiente: 'Next',
+    ultimo: 'Finish tour',
+    aviso: 'sample data · fictional companies',
+    pasos: [
+      {
+        id: 'prospectar',
+        indice: '01',
+        titulo: 'Prospect',
+        resumen: 'The list is not a CRM dump. Every account carries why it is worth a call today.',
+        pantalla: 'cuentas',
+        columnas: ['Account', 'Signal', 'Why now'],
+        filas: [
+          ['Grupo Zenith', 'Opened a new plant', 'Hired 40 people in operations this quarter'],
+          ['Delta Industrial', 'New head of sales', 'The last one said no. This one comes from a similar customer'],
+          ['Norte Logistica', 'Contract ends in March', 'They asked for pricing once, eight months ago'],
+        ],
+      },
+      {
+        id: 'seguir',
+        indice: '02',
+        titulo: 'Follow up',
+        resumen: 'The call ended. This got written down without anyone opening the CRM.',
+        pantalla: 'extraccion',
+        fuenteEtiqueta: 'from the transcript',
+        fuente: 'I already went over it with my partner. Budget opens in January. We are worried about installation. My father decides.',
+        camposEtiqueta: 'fields written to the CRM',
+        campos: [
+          ['what they want', 'Install without stopping operations'],
+          ['money', 'Yes · January'],
+          ['when', 'January · calendar, not urgency'],
+          ['their concern', 'Bad experience with previous vendor'],
+          ['who decides', 'The father'],
+        ],
+        tareaEtiqueta: 'and the task',
+        tarea: 'Call on January 8 · owner: Ana',
+      },
+      {
+        id: 'cerrar',
+        indice: '03',
+        titulo: 'Close',
+        resumen: 'The draft starts from what the customer asked for. Nobody rebuilds it from scratch.',
+        pantalla: 'propuesta',
+        documentoEtiqueta: 'draft · not sent',
+        documento: [
+          ['Scope', 'Phased installation, without stopping the production line'],
+          ['Timeline', 'Start in January, as they asked'],
+          ['Risk addressed', 'Contingency plan for what happened with the previous vendor'],
+          ['Pricing', 'Taken from the approved catalog, not invented by the system'],
+        ],
+        nota: 'A person reads it and sends it. The system does not send proposals on its own.',
+      },
+      {
+        id: 'prueba',
+        indice: '04',
+        titulo: 'Tested',
+        resumen: 'Before it talks to a customer, the test set runs. Including the case that fails.',
+        pantalla: 'evaluacion',
+      },
+    ],
+    cierre: {
+      etiqueta: 'this is where the tour ends',
+      titulo: 'The rest depends on your process.',
+      cuerpo: 'What you saw is sample data. What gets built comes from how you sell: which systems you use, where you lose deals and who decides. That gets reviewed on a call.',
+      cta: 'Book a call',
+      salir: 'Back to home',
+      nota: 'thirty minutes · if there is no fit I tell you there',
+    },
+  },
   home: {
     hero: {
       eyebrow: 'prospect · follow up · close',
