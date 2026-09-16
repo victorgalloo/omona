@@ -23,9 +23,24 @@ export function HomeLeak() {
     <Section id="diagnostico" rule={false}>
       <SectionHeader label={l.label} title={l.title} subtitle={l.body} />
 
-      <div className="rule-grid mt-14 grid sm:grid-cols-2">
+      {/* Bento. La idea viene de "Feature Bento" de 21st.dev; el skin no: aquel
+          trae rounded-3xl, gradientes, blur-3xl, animate-ping y tres cifras
+          inventadas (2,847 cumbres, 18.2k comunidad, 94% satisfacción). Aquí
+          son las mismas reglas de 1px del resto de la pagina.
+
+          Las cuatro fugas ya no miden lo mismo: la primera y la ultima ocupan
+          dos columnas y las dos de en medio una. No es capricho de maqueta —
+          esas dos de en medio son las del seguimiento, que es donde de verdad
+          se cae el pipeline, y ponerlas juntas y estrechas las lee como un
+          par. Antes eran cuatro cajas identicas y la seccion se escaneaba
+          como una lista. */}
+      <div className="rule-grid mt-14 grid sm:grid-cols-2 lg:grid-cols-4">
         {l.items.map((item, i) => (
-          <Reveal key={item.title} delay={i * 60} className="p-6 sm:p-8">
+          <Reveal
+            key={item.title}
+            delay={i * 60}
+            className={`p-6 sm:p-8 ${i === 0 || i === 3 ? 'lg:col-span-2' : ''}`}
+          >
             <span className="mb-4 block font-mono text-xs text-muted">
               {String(i + 1).padStart(2, '0')}
             </span>

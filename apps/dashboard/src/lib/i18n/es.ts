@@ -855,6 +855,23 @@ export const es = {
           detail: 'Nada que comprometa dinero sale sin aprobación.',
         },
       ],
+      /**
+       * La corrida de evaluaciones que dibuja <Terminal>. Los conteos son de
+       * un SET DE PRUEBA, no resultados de negocio: dicen cuántos casos pasó
+       * el agente, no cuánto vendió nadie. El caso que falla va a propósito —
+       * una corrida donde todo pasa no la cree nadie, y el punto de la
+       * sección es justamente que los errores se vean antes de producción.
+       */
+      terminal: {
+        comando: 'omona eval --set ventas --casos 34',
+        casos: [
+          { nombre: 'pide precio sin dar contexto', marca: '✓', conteo: '12/12', ok: true },
+          { nombre: 'objeción: ya tenemos proveedor', marca: '✓', conteo: '9/9', ok: true },
+          { nombre: 'pregunta fuera de catálogo', marca: '!', conteo: '7/8', ok: false },
+          { nombre: 'cliente molesto → escala a una persona', marca: '✓', conteo: '5/5', ok: true },
+        ],
+        resumen: '33 de 34. **El que falló se revisa antes de encender nada.**',
+      },
       moneyLabel: 'cuándo digo que ya quedó',
       moneyFormula:
         'pasa el set de prueba   + tu gente sabe operarlo\n+ los errores se ven     + tú puedes cambiarle cosas\n= terminado',

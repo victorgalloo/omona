@@ -5,6 +5,7 @@ import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
 import { Emphasis } from './Emphasis';
 import { Mas } from './Mas';
+import { Terminal } from './Terminal';
 
 /**
  * Lo que separa esto de un chatbot: las evaluaciones.
@@ -21,6 +22,18 @@ export function HomeMeasure() {
   return (
     <Section id="medicion">
       <SectionHeader label={m.label} title={m.title} subtitle={m.subtitle} />
+
+      {/* La corrida de prueba va ANTES de las cuatro tarjetas: enseña el
+          argumento y después lo explica, no al revés. Era la sección más
+          abstracta de la página —cuatro bloques de texto afirmando que se
+          evalúa— y sin nada que mirar. */}
+      <Reveal className="mt-12">
+        <Terminal
+          comando={m.terminal.comando}
+          casos={m.terminal.casos}
+          resumen={m.terminal.resumen}
+        />
+      </Reveal>
 
       <div className="rule-grid mt-12 grid sm:grid-cols-2">
         {m.metrics.map((metric, i) => (

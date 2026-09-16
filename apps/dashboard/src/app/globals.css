@@ -433,6 +433,42 @@ article[id] {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
 }
 
+/* ── Barrido sobre la retícula ─────────────────────────────────
+   La idea viene de "Animated Grid Pattern" de 21st.dev, que anima decenas
+   de rectángulos SVG apareciendo y desapareciendo. Aquí es UN elemento
+   moviéndose con `transform`, que es la única propiedad que mueve el
+   compositor sin repintar: el mismo efecto de retícula viva por una
+   fracción del costo, y sin agregar nodos al DOM.
+
+   Va solo en el cierre, donde el texto son dos frases. Sobre un párrafo
+   largo un fondo en movimiento es exactamente lo que este sitio acaba de
+   terminar de quitar. */
+
+.grid-sweep::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 45%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--foreground-rgb) / 0.05),
+    transparent
+  );
+  animation: barrido 9s ease-in-out infinite;
+}
+
+@keyframes barrido {
+  0%, 100% { transform: translate3d(0, -60%, 0); }
+  50%      { transform: translate3d(0, 220%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-sweep::after { animation: none; opacity: 0; }
+}
+
 .bg-dots {
   background-image: radial-gradient(var(--hairline) 1px, transparent 1px);
   background-size: 22px 22px;

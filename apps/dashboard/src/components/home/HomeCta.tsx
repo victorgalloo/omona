@@ -15,7 +15,7 @@ export function HomeCta() {
 
   return (
     <Section className="relative overflow-hidden">
-      <div aria-hidden className="bg-dots pointer-events-none absolute inset-0 -z-10 opacity-60" />
+      <div aria-hidden className="bg-dots grid-sweep pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-60" />
 
       <Reveal className="mx-auto max-w-3xl text-center">
         <h2 className="text-[clamp(2rem,5vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-foreground">

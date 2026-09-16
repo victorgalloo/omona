@@ -759,6 +759,16 @@ export const en: Translations = {
           detail: 'Nothing touching money ships without approval.',
         },
       ],
+      terminal: {
+        comando: 'omona eval --set sales --cases 34',
+        casos: [
+          { nombre: 'asks for price with no context', marca: '✓', conteo: '12/12', ok: true },
+          { nombre: 'objection: we already have a vendor', marca: '✓', conteo: '9/9', ok: true },
+          { nombre: 'asks about something off-catalog', marca: '!', conteo: '7/8', ok: false },
+          { nombre: 'angry customer → escalate to a person', marca: '✓', conteo: '5/5', ok: true },
+        ],
+        resumen: '33 of 34. **The one that failed gets reviewed before anything ships.**',
+      },
       moneyLabel: 'when I call it done',
       moneyFormula:
         'passes the test set    + your team can run it\n+ failures are visible  + you can change things\n= done',
