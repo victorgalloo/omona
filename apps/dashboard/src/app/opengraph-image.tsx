@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'Omona - Agente de Ventas IA para WhatsApp';
+export const alt = 'Omona - Socio tecnico de delivery para automatizaciones Claude';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -42,7 +42,7 @@ export default async function Image() {
             maxWidth: '900px',
           }}
         >
-          Agente de Ventas IA
+          De piloto de IA
         </div>
         <div
           style={{
@@ -54,7 +54,7 @@ export default async function Image() {
             marginTop: 8,
           }}
         >
-          para WhatsApp
+          a operacion real
         </div>
 
         {/* Subtitle */}
@@ -66,7 +66,7 @@ export default async function Image() {
             textAlign: 'center',
           }}
         >
-          Responde, califica leads y agenda citas 24/7
+          Integraciones, controles y evaluaciones para agentes Claude
         </div>
 
         {/* Bottom bar */}

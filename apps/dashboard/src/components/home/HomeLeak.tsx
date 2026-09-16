@@ -3,6 +3,7 @@
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader, PullQuote } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * El diagnóstico, sin cifras.
@@ -31,7 +32,9 @@ export function HomeLeak() {
             <h3 className="mb-2.5 text-[17px] font-medium tracking-[-0.01em] text-foreground">
               {item.title}
             </h3>
-            <p className="text-[14px] leading-relaxed text-muted-foreground">{item.detail}</p>
+            <p className="text-[14px] leading-relaxed text-muted-foreground">
+              <Emphasis text={item.detail} />
+            </p>
           </Reveal>
         ))}
       </div>

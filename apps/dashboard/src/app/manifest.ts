@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Omona - Agente de Ventas IA para WhatsApp',
+    name: 'Omona - Socio tecnico de delivery para automatizaciones Claude',
     short_name: 'Omona',
-    description: 'Automatiza tus ventas por WhatsApp con inteligencia artificial. CRM integrado para pymes en Mexico y LATAM.',
+    description: 'Construimos, endurecemos y transferimos automatizaciones basadas en Claude. De prototipo a produccion.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0C0C0C',

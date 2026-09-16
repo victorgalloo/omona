@@ -7,7 +7,7 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://omona.tech';
-  const { articulos, comparativas } = getAllGeo();
+  const { articulos, comparativas, servicios } = getAllGeo();
   const soluciones = getAllSoluciones();
   const now = new Date();
 
@@ -15,6 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${baseUrl}/demo`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/como-trabajamos`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    // Las paginas de servicio son la oferta. Prioridad por encima del corpus.
+    { url: `${baseUrl}/servicios`, lastModified: now, changeFrequency: 'monthly', priority: 1.0 },
+    { url: `${baseUrl}/privacidad`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${baseUrl}/terminos`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/comparativas`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     // Páginas nombradas por problema: entran al sitemap porque son la superficie
@@ -43,5 +47,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
+    ...servicios.map((s) => ({
+      url: `${baseUrl}/servicios/${s.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.95,
+    })),
+    // `delivery` NO entra todavia: data/geo/delivery/ esta vacio, y anunciar
+    // en el sitemap URLs que devuelven 404 es peor que no anunciarlas. Se
+    // agrega en cuanto haya markdown, con el mismo patron de arriba.
   ];
 }

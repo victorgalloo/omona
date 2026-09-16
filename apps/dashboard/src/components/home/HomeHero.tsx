@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { ArrowRight, Check, Square } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
-import { CTA_DIAGNOSTICO } from '@/lib/cta';
+import { CTA_PROYECTO } from '@/lib/cta';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * El héroe.
@@ -50,12 +51,12 @@ export function HomeHero() {
             id="hero-description"
             className="mt-7 max-w-xl text-[17px] leading-relaxed text-muted-foreground sm:text-lg"
           >
-            {h.subtitle}
+            <Emphasis text={h.subtitle} />
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
-              href={CTA_DIAGNOSTICO}
+              href={CTA_PROYECTO}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-90"

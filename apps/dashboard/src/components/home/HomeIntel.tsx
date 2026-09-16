@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * Aquí la conversación queda puesta en su lugar.
@@ -64,7 +65,9 @@ export function HomeIntel() {
       <Reveal className="mt-14 flex flex-col gap-5 border-t border-hairline pt-10 sm:flex-row sm:items-start sm:justify-between sm:gap-12">
         <div className="max-w-2xl">
           <h3 className="mb-2.5 text-[17px] font-medium text-foreground">{i.aside.title}</h3>
-          <p className="text-[14px] leading-relaxed text-muted-foreground">{i.aside.detail}</p>
+          <p className="text-[14px] leading-relaxed text-muted-foreground">
+            <Emphasis text={i.aside.detail} />
+          </p>
         </div>
         <Link
           href="/demo"

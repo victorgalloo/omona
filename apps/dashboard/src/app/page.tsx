@@ -16,22 +16,22 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { es } from '@/lib/i18n';
 
 export const metadata: Metadata = {
-  title: 'Omona | Inteligencia comercial para todo el ciclo de venta B2B',
+  title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
   description:
-    'Prospeccion, seguimiento, cierre y propuestas sobre el mismo dato. Omona lee cada conversacion, llena tu CRM solo y entrega la siguiente jugada: a quien buscar hoy, con que mensaje y por que. Sobre el CRM que ya tienes.',
+    'Llevamos automatizaciones Claude de prototipo a produccion: integraciones, permisos, aprobaciones, evaluaciones y transferencia a tu equipo. Para consultoras, agencias e integradores que ya vendieron el proyecto.',
   openGraph: {
-    title: 'Omona | Inteligencia comercial para todo el ciclo de venta B2B',
+    title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
     description:
-      'Prospeccion, seguimiento, cierre y propuestas sobre el mismo dato. Cada conversacion entra sola al CRM y sale una jugada con mensaje, responsable y fecha.',
+      'De piloto a operacion real. Integraciones, controles y evaluaciones para agentes Claude, bajo tu marca o junto a tu equipo.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omona | Inteligencia comercial para el ciclo de venta B2B',
+    title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
     description:
-      'Prospeccion, seguimiento, cierre y propuestas sobre el mismo dato. El CRM se llena solo y el motor dice a quien buscar hoy.',
+      'De piloto a operacion real. Integraciones, controles y evaluaciones para agentes Claude, bajo tu marca o junto a tu equipo.',
   },
   alternates: {
     canonical: 'https://omona.tech',
@@ -58,12 +58,18 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       logo: 'https://omona.tech/icon.svg',
       description:
-        'Omona es una plataforma de inteligencia comercial para equipos B2B. Cubre el ciclo completo de venta —prospeccion, seguimiento, cierre y generacion de propuestas— leyendo las conversaciones del equipo y escribiendo de vuelta en el CRM que la empresa ya usa.',
+        'Omona es un socio tecnico de delivery para consultoras, agencias e integradores que necesitan construir, endurecer y operar automatizaciones basadas en Claude para clientes de habla hispana.',
+      // Sin `sameAs`: los siete perfiles que se declaraban (LinkedIn, GitHub,
+      // G2, Capterra, Crunchbase, Product Hunt, AlternativeTo) devuelven 404.
+      // Un sameAs a una pagina inexistente le dice a los motores que la entidad
+      // no esta verificada, que es peor que no declarar ninguno. Se reponen
+      // cuando existan las URLs reales.
       areaServed: [
         { '@type': 'Country', name: 'Mexico' },
+        { '@type': 'Country', name: 'Espana' },
         { '@type': 'Country', name: 'Colombia' },
-        { '@type': 'Country', name: 'Argentina' },
         { '@type': 'Country', name: 'Chile' },
+        { '@type': 'Country', name: 'Argentina' },
         { '@type': 'Country', name: 'Peru' },
       ],
       contactPoint: {
@@ -74,43 +80,73 @@ const jsonLdGraph = {
       },
     },
     {
-      '@type': 'SoftwareApplication',
+      // Era `SoftwareApplication`: describia el producto de WhatsApp como la
+      // oferta. Ahora la oferta es el servicio, y el producto es evidencia.
+      '@type': 'ProfessionalService',
       name: 'Omona',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web',
+      url: 'https://omona.tech',
       inLanguage: 'es-MX',
-      softwareVersion: '1.0',
       description:
-        'Plataforma de inteligencia comercial que cubre el ciclo de venta completo: investiga cuentas antes del primer contacto, calcula el estado real de cada oportunidad y entrega una jugada al dia con el mensaje redactado, detecta objeciones y senales de compra, y genera borradores de propuesta a partir de la conversacion.',
-      featureList: [
-        'Prospeccion con investigacion de cuenta y angulo de entrada',
-        'Motor de seguimiento por cohortes con reloj rapido y reloj lento',
-        'Una jugada al dia con mensaje redactado, responsable y fecha',
-        'Extraccion estructurada de necesidad, presupuesto, plazo, objecion y quien decide',
-        'Escritura automatica en el CRM existente sin captura manual',
-        'Deteccion de objeciones y senales de compra para el cierre',
-        'Escalamiento a direccion cuando una oportunidad se estanca',
-        'Generacion de borradores de propuesta y presentacion personalizados',
-        'Validacion de cada mensaje contra el manual de voz de la empresa',
-        'Medicion de tiempo al primer contacto, tasa de recuperacion y que guion convierte',
-      ],
-      // Sin `offers`: la pagina ya no publica precio, y dejar las cifras aqui
-      // haria que buscadores y asistentes citaran un numero que el visitante no
-      // ve en ningun lado. Sin `aggregateRating` tampoco: no hay resenas
-      // verificables, y marcarlo de todas formas es lo que Google penaliza.
-    },
-    {
-      '@type': 'Service',
-      name: 'Inteligencia Comercial en 6 Semanas',
-      serviceType: 'Inteligencia comercial para el ciclo de venta B2B',
-      provider: { '@type': 'Organization', name: 'Omona', url: 'https://omona.tech' },
-      areaServed: { '@type': 'Country', name: 'Mexico' },
+        'Delivery tecnico de automatizaciones con Claude: descubrimiento del proceso, integraciones con CRM, ERP y SaaS, permisos y tool use, aprobaciones humanas, evaluaciones con datos reales, observabilidad y transferencia operativa al equipo del cliente.',
+      serviceType: 'Implementacion de agentes y automatizaciones con IA',
       audience: {
         '@type': 'BusinessAudience',
-        name: 'Equipos comerciales B2B de 3 a 20 vendedores',
+        name: 'Consultoras de IA, agencias de automatizacion, software factories e integradores',
       },
-      description:
-        'Implementacion de un sistema de inteligencia comercial en seis semanas: diagnostico y medicion de linea base, piloto de un flujo con revision humana, y corte contra la linea base. Si al terminar el CRM no refleja el 90% de las conversaciones comerciales y cada oportunidad abierta no tiene proxima tarea con responsable y fecha, se devuelve el 100% del piloto.',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Servicios de delivery',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Pilot-to-Production Sprint',
+              description:
+                'Un prototipo ya comprometido con un cliente se vuelve operable: manejo de errores, aprobaciones, permisos, logs, pruebas y documentacion.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'White-label Delivery Partner',
+              description:
+                'La consultora conserva la relacion comercial; Omona aporta arquitectura, construccion y hardening sin aparecer frente al cliente final.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Production Readiness Audit',
+              description:
+                'Diagnostico de riesgos de arquitectura, permisos, datos, evaluaciones y costo. Entregable: plan priorizado para llegar a produccion.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Claude Workflow Build',
+              description:
+                'Del proceso de negocio real a la operacion: descubrir, disenar, integrar, construir, probar y transferir.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Rescue & Hardening',
+              description:
+                'Estabilizacion de automatizaciones que ya fallan en produccion: respuestas inconsistentes, costos descontrolados e integraciones fragiles.',
+            },
+          },
+        ],
+      },
+      // Sin `aggregateRating` ni `review`: no hay resenas verificables, y
+      // marcarlas de todas formas es lo que Google penaliza. Sin `offers` con
+      // precio: el alcance define la cifra y publicar una obligaria a inventarla.
     },
     {
       '@type': 'FAQPage',
@@ -122,7 +158,7 @@ const jsonLdGraph = {
     },
     {
       '@type': 'WebPage',
-      name: 'Omona - Inteligencia comercial para todo el ciclo de venta B2B',
+      name: 'Omona - Socio tecnico de delivery para automatizaciones Claude',
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       datePublished: '2025-01-01',

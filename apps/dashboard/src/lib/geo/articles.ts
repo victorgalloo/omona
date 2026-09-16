@@ -19,8 +19,28 @@ export interface GeoArticle {
   jsonld: string | null;
   claims: string[];
   updated: string | null;
-  /** comparativa | articulo */
-  kind: "articulo" | "comparativa";
+  kind: GeoKind;
+}
+
+/**
+ * Cada tipo de contenido es un directorio bajo data/geo y un segmento de URL.
+ * El mapa vive aquí y no en las rutas porque el sitemap, el llms.txt, el
+ * canonical y el índice necesitan el mismo dato: mientras estuvo escrito como
+ * el ternario `kind === "articulo" ? "blog" : "comparativas"` repetido en
+ * cuatro archivos, añadir un tipo significaba encontrarlos todos.
+ */
+export const GEO_KINDS = {
+  articulo: { dir: "articles", segment: "blog" },
+  comparativa: { dir: "comparatives", segment: "comparativas" },
+  servicio: { dir: "servicios", segment: "servicios" },
+  delivery: { dir: "delivery", segment: "delivery" },
+} as const;
+
+export type GeoKind = keyof typeof GEO_KINDS;
+
+/** Ruta pública de un documento. Sin slash final: next.config fija trailingSlash: false. */
+export function geoUrl(a: Pick<GeoArticle, "kind" | "slug">): string {
+  return `/${GEO_KINDS[a.kind].segment}/${a.slug}`;
 }
 
 const GEO_DIR = path.join(process.cwd(), "data", "geo");
@@ -154,9 +174,12 @@ function parseArticulo(file: string, kind: GeoArticle["kind"]): GeoArticle {
     .trim();
   body = quitarBloquesJsonld(body);
 
-  // "Actualizado agosto 2026"
+  // "Actualizado agosto 2026". Se busca en el archivo completo y no en el
+  // cuerpo: la línea va antes del H1 en casi todo el corpus, y el cuerpo
+  // empieza después del H1, así que buscarla ahí devolvía null y la fecha
+  // nunca se mostraba.
   let updated: string | null = null;
-  const u = /Actualizado\s+(\w+)\s+(\d{4})/.exec(body);
+  const u = /Actualizado\s+(\w+)\s+(\d{4})/.exec(raw);
   if (u) updated = `${u[1].charAt(0).toUpperCase()}${u[1].slice(1)} ${u[2]}`;
 
   if (!meta) {
@@ -177,33 +200,44 @@ function parseArticulo(file: string, kind: GeoArticle["kind"]): GeoArticle {
   };
 }
 
-let cache: { articulos: GeoArticle[]; comparativas: GeoArticle[] } | null = null;
+const cache: Partial<Record<GeoKind, GeoArticle[]>> = {};
 
-export function getAllGeo(): { articulos: GeoArticle[]; comparativas: GeoArticle[] } {
-  if (cache) return cache;
-  const articulos: GeoArticle[] = [];
-  const comparativas: GeoArticle[] = [];
-
-  const artsDir = path.join(GEO_DIR, "articles");
-  if (fs.existsSync(artsDir)) {
-    for (const f of fs.readdirSync(artsDir).filter((f) => f.endsWith(".md")).sort()) {
-      articulos.push(parseArticulo(path.join(artsDir, f), "articulo"));
+export function getGeo(kind: GeoKind): GeoArticle[] {
+  const hit = cache[kind];
+  if (hit) return hit;
+  const dir = path.join(GEO_DIR, GEO_KINDS[kind].dir);
+  const items: GeoArticle[] = [];
+  if (fs.existsSync(dir)) {
+    for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".md")).sort()) {
+      items.push(parseArticulo(path.join(dir, f), kind));
     }
   }
-  const compDir = path.join(GEO_DIR, "comparatives");
-  if (fs.existsSync(compDir)) {
-    for (const f of fs.readdirSync(compDir).filter((f) => f.endsWith(".md")).sort()) {
-      comparativas.push(parseArticulo(path.join(compDir, f), "comparativa"));
-    }
-  }
-  cache = { articulos, comparativas };
-  return cache;
+  cache[kind] = items;
+  return items;
+}
+
+export function getAllGeo(): {
+  articulos: GeoArticle[];
+  comparativas: GeoArticle[];
+  servicios: GeoArticle[];
+  delivery: GeoArticle[];
+} {
+  return {
+    articulos: getGeo("articulo"),
+    comparativas: getGeo("comparativa"),
+    servicios: getGeo("servicio"),
+    delivery: getGeo("delivery"),
+  };
+}
+
+export function getGeoBySlug(kind: GeoKind, slug: string): GeoArticle | undefined {
+  return getGeo(kind).find((a) => a.slug === slug);
 }
 
 export function getArticulo(slug: string): GeoArticle | undefined {
-  return getAllGeo().articulos.find((a) => a.slug === slug);
+  return getGeoBySlug("articulo", slug);
 }
 
 export function getComparativa(slug: string): GeoArticle | undefined {
-  return getAllGeo().comparativas.find((c) => c.slug === slug);
+  return getGeoBySlug("comparativa", slug);
 }

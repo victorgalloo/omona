@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * ══ LA SECCIÓN QUE CARGA LA PÁGINA ══════════════════════════════
@@ -81,7 +82,7 @@ export function HomeCycle() {
                       aria-hidden
                       className="mt-[0.62em] h-px w-4 shrink-0 bg-border-hover"
                     />
-                    <span className="max-w-2xl">{bullet}</span>
+                    <Emphasis text={bullet} className="max-w-2xl" />
                   </li>
                 ))}
               </ul>

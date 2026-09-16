@@ -4,6 +4,7 @@ import { Zap, CalendarClock } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader, PullQuote } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * El ciclo 02 abierto a detalle.
@@ -46,20 +47,16 @@ export function HomeEngine() {
             </tr>
           </thead>
           <tbody>
-            {e.cohorts.map((cohort, i) => {
-              // El último renglón es la decisión de diseño, no un caso más:
-              // se atenúa a propósito para que se lea como lo que es.
-              const isIgnored = i === e.cohorts.length - 1;
+            {e.cohorts.map((cohort) => {
+              // Aquí vivía un `isIgnored` que atenuaba la última fila: en el
+              // posicionamiento anterior esa fila era "el resto — se ignora a
+              // propósito", y el gris era la idea. Ahora las cinco filas son
+              // servicios reales y atenuar la última la hacía parecer retirada.
               return (
-                <tr
-                  key={cohort.name}
-                  className={`border-b border-hairline last:border-b-0 ${isIgnored ? 'text-muted' : ''}`}
-                >
+                <tr key={cohort.name} className="border-b border-hairline last:border-b-0">
                   <th
                     scope="row"
-                    className={`px-4 py-4 text-[14px] font-medium sm:px-5 ${
-                      isIgnored ? 'text-muted' : 'text-foreground'
-                    }`}
+                    className="px-4 py-4 text-[14px] font-medium text-foreground sm:px-5"
                   >
                     {cohort.name}
                   </th>
@@ -77,9 +74,7 @@ export function HomeEngine() {
                   </td>
                   <td
                     data-label={e.table.goal}
-                    className={`px-4 py-4 text-[13.5px] sm:px-5 ${
-                      isIgnored ? 'text-muted' : 'text-foreground'
-                    }`}
+                    className="px-4 py-4 text-[13.5px] text-foreground sm:px-5"
                   >
                     {cohort.goal}
                   </td>
@@ -110,7 +105,9 @@ export function HomeEngine() {
                   {clock.unit}
                 </span>
               </div>
-              <p className="text-[14px] leading-relaxed text-muted-foreground">{clock.detail}</p>
+              <p className="text-[14px] leading-relaxed text-muted-foreground">
+                <Emphasis text={clock.detail} />
+              </p>
             </Reveal>
           );
         })}
@@ -126,7 +123,7 @@ export function HomeEngine() {
             {e.play.title}
           </h3>
           <p className="mb-5 text-[14.5px] leading-relaxed text-muted-foreground">
-            {e.play.detail}
+            <Emphasis text={e.play.detail} />
           </p>
           <p className="border-t border-hairline pt-5 text-[14.5px] leading-relaxed text-foreground">
             {e.play.closing}
@@ -141,14 +138,14 @@ export function HomeEngine() {
             {e.guardrails.title}
           </h3>
           <p className="mb-8 text-[14.5px] leading-relaxed text-muted-foreground">
-            {e.guardrails.detail}
+            <Emphasis text={e.guardrails.detail} />
           </p>
           <div className="rounded-xl border border-hairline bg-surface p-5 sm:p-6">
             <h4 className="mb-2.5 text-[15px] font-medium text-foreground">
               {e.guardrails.checksTitle}
             </h4>
             <p className="text-[13.5px] leading-relaxed text-muted-foreground">
-              {e.guardrails.checksDetail}
+              <Emphasis text={e.guardrails.checksDetail} />
             </p>
           </div>
         </Reveal>

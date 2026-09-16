@@ -3,6 +3,7 @@
 import { useT } from '@/contexts/LanguageContext';
 import { Section } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * La garantía. Antes era una banda de neón lima a sangre — la interrupción
@@ -28,7 +29,9 @@ export function HomeGuarantee() {
             <h2 className="mb-6 text-[clamp(1.7rem,3.6vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
               {g.heading}
             </h2>
-            <p className="max-w-xl text-[15.5px] leading-relaxed text-background/75">{g.body}</p>
+            <p className="max-w-[62ch] text-[15.5px] leading-relaxed text-background/75">
+              <Emphasis text={g.body} />
+            </p>
           </div>
 
           <div className="rounded-xl border border-background/20 p-6 sm:p-7">

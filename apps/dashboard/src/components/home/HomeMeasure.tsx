@@ -3,6 +3,7 @@
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * Qué mide. La fórmula va como bloque de código monoespaciado a propósito:
@@ -24,7 +25,9 @@ export function HomeMeasure() {
             <h3 className="mb-2.5 text-[16px] font-medium tracking-[-0.01em] text-foreground">
               {metric.name}
             </h3>
-            <p className="text-[14px] leading-relaxed text-muted-foreground">{metric.detail}</p>
+            <p className="text-[14px] leading-relaxed text-muted-foreground">
+              <Emphasis text={metric.detail} />
+            </p>
           </Reveal>
         ))}
       </div>

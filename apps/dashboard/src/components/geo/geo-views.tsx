@@ -1,14 +1,53 @@
 /**
- * Blog GEO — /blog (artículos) y /comparativas.
+ * Contenido GEO en markdown — /blog, /comparativas, /servicios y /delivery.
  * Server components: leen data/geo con el parser, cero cliente JS.
  * Estilo: mismo sistema terminal macOS + tokens del proyecto.
  */
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllGeo, getArticulo, getComparativa, type GeoArticle } from "@/lib/geo/articles";
+import {
+  GEO_KINDS,
+  getGeo,
+  getGeoBySlug,
+  geoUrl,
+  type GeoArticle,
+  type GeoKind,
+} from "@/lib/geo/articles";
 import { markdownToHtml } from "@/lib/geo/markdown";
 
 const BASE = "https://omona.tech";
+
+/**
+ * Encabezado de cada índice. Está aquí y no en las rutas para que el <h1>, el
+ * breadcrumb y la meta description de /blog, /comparativas, /servicios y
+ * /delivery salgan del mismo sitio y no se contradigan.
+ */
+const INDICE: Record<GeoKind, { crumb: string; eyebrow: string; h1: string; desc: string }> = {
+  articulo: {
+    crumb: "Blog",
+    eyebrow: "Blog",
+    h1: "Blog de Omona",
+    desc: "Guías de IA para ventas B2B por WhatsApp, actualizadas y con fuentes.",
+  },
+  comparativa: {
+    crumb: "Comparativas",
+    eyebrow: "Comparativas",
+    h1: "Omona vs la competencia",
+    desc: "Omona frente a las alternativas, con honestidad competitiva.",
+  },
+  servicio: {
+    crumb: "Servicios",
+    eyebrow: "Servicios",
+    h1: "Cómo trabajamos con consultoras e integradores",
+    desc: "Cinco formas de incorporar capacidad técnica de delivery: auditoría, sprint a producción, construcción completa, white-label y rescate.",
+  },
+  delivery: {
+    crumb: "Delivery",
+    eyebrow: "Delivery",
+    h1: "Llevar automatizaciones Claude a producción",
+    desc: "Arquitectura, permisos, evaluaciones, revisión humana, observabilidad y transferencia operativa. Lo que separa un piloto de un sistema que opera.",
+  },
+};
 
 function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
   return (
@@ -31,27 +70,21 @@ function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
 
 // ── Índices ──
 
-export function BlogIndex({ kind }: { kind: "articulo" | "comparativa" }) {
-  const { articulos, comparativas } = getAllGeo();
-  const items = kind === "articulo" ? articulos : comparativas;
-  const titulo = kind === "articulo" ? "Blog" : "Comparativas";
-  const desc = kind === "articulo"
-    ? "Guías de IA para ventas B2B por WhatsApp, actualizadas y con fuentes."
-    : "Omona frente a las alternativas, con honestidad competitiva.";
+export function BlogIndex({ kind }: { kind: GeoKind }) {
+  const items = getGeo(kind);
+  const { crumb, eyebrow, h1, desc } = INDICE[kind];
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 pt-16 pb-24">
-        <Crumbs items={[{ label: "Inicio", href: "/" }, { label: titulo }]} />
-        <p className="font-mono text-xs uppercase tracking-widest text-accent-green mb-3">{titulo}</p>
-        <h1 className="text-4xl font-semibold tracking-tight mb-3">
-          {kind === "articulo" ? "Blog de Omona" : "Omona vs la competencia"}
-        </h1>
+        <Crumbs items={[{ label: "Inicio", href: "/" }, { label: crumb }]} />
+        <p className="font-mono text-xs uppercase tracking-widest text-accent-green mb-3">{eyebrow}</p>
+        <h1 className="text-4xl font-semibold tracking-tight mb-3">{h1}</h1>
         <p className="text-muted-foreground mb-10 max-w-2xl">{desc}</p>
         <div className="grid gap-px bg-border rounded-lg overflow-hidden sm:grid-cols-2">
           {items.map((a) => (
             <Link
               key={a.slug}
-              href={kind === "articulo" ? `/blog/${a.slug}` : `/comparativas/${a.slug}`}
+              href={geoUrl(a)}
               className="group bg-background p-6 hover:bg-surface transition-colors"
             >
               <h2 className="font-medium text-foreground group-hover:text-accent-green transition-colors mb-2 leading-snug">
@@ -69,17 +102,18 @@ export function BlogIndex({ kind }: { kind: "articulo" | "comparativa" }) {
   );
 }
 
-// ── Artículo / comparativa ──
+// ── Documento individual ──
 
 function ArticleView({ a }: { a: GeoArticle }) {
   const html = markdownToHtml(a.body);
-  const isComp = a.kind === "comparativa";
+  const indice = INDICE[a.kind];
+  const indiceHref = `/${GEO_KINDS[a.kind].segment}`;
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 pt-16 pb-24">
         <Crumbs items={[
           { label: "Inicio", href: "/" },
-          { label: isComp ? "Comparativas" : "Blog", href: isComp ? "/comparativas" : "/blog" },
+          { label: indice.crumb, href: indiceHref },
           { label: a.title.slice(0, 48) },
         ]} />
         <article>
@@ -106,9 +140,9 @@ function ArticleView({ a }: { a: GeoArticle }) {
           )}
         </article>
         <div className="mt-16 pt-8 border-t border-dashed border-border">
-          <Link href={isComp ? "/comparativas" : "/blog"}
+          <Link href={indiceHref}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            ← Volver a {isComp ? "comparativas" : "blog"}
+            ← Volver a {indice.crumb.toLowerCase()}
           </Link>
         </div>
       </div>
@@ -116,31 +150,34 @@ function ArticleView({ a }: { a: GeoArticle }) {
   );
 }
 
-export function ArticuloPage({ slug }: { slug: string }) {
-  const a = getArticulo(slug);
+export function GeoPage({ kind, slug }: { kind: GeoKind; slug: string }) {
+  const a = getGeoBySlug(kind, slug);
   if (!a) return null;
   return <ArticleView a={a} />;
 }
 
+export function ArticuloPage({ slug }: { slug: string }) {
+  return <GeoPage kind="articulo" slug={slug} />;
+}
+
 export function ComparativaPage({ slug }: { slug: string }) {
-  const c = getComparativa(slug);
-  if (!c) return null;
-  return <ArticleView a={c} />;
+  return <GeoPage kind="comparativa" slug={slug} />;
 }
 
 // ── Metadata + JSON-LD helpers para las rutas ──
 
 export function geoMetadata(a: GeoArticle): Metadata {
+  // Sin slash final: next.config.js fija trailingSlash: false, así que el
+  // canonical con slash apuntaba a una URL que respondía 308 hacia sí misma.
+  const url = `${BASE}${geoUrl(a)}`;
   return {
     title: a.title,
     description: a.meta,
-    alternates: {
-      canonical: `${BASE}/${a.kind === "articulo" ? "blog" : "comparativas"}/${a.slug}/`,
-    },
+    alternates: { canonical: url },
     openGraph: {
       title: a.title,
       description: a.meta,
-      url: `${BASE}/${a.kind === "articulo" ? "blog" : "comparativas"}/${a.slug}/`,
+      url,
       siteName: "Omona",
       type: "article",
     },
@@ -154,7 +191,7 @@ export function articleJsonLd(a: GeoArticle): string {
     "@type": "Article",
     headline: a.title,
     description: a.meta,
-    url: `${BASE}/${a.kind === "articulo" ? "blog" : "comparativas"}/${a.slug}/`,
+    url: `${BASE}${geoUrl(a)}`,
     inLanguage: "es-MX",
     author: { "@type": "Organization", name: "Omona", url: BASE },
     publisher: { "@type": "Organization", name: "Omona", url: BASE },

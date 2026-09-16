@@ -4,6 +4,7 @@ import { Check, Minus } from 'lucide-react';
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * Los límites, en la portada y no escondidos en un FAQ.
@@ -47,7 +48,9 @@ export function HomeScope() {
                 <Minus aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-muted" />
                 <div>
                   <h3 className="mb-1 text-[14.5px] font-medium text-foreground">{item.title}</h3>
-                  <p className="text-[14px] leading-relaxed text-muted-foreground">{item.detail}</p>
+                  <p className="text-[14px] leading-relaxed text-muted-foreground">
+                    <Emphasis text={item.detail} />
+                  </p>
                 </div>
               </li>
             ))}

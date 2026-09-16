@@ -3,15 +3,15 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'Cycle',
-    engine: 'Engine',
-    process: '6 weeks',
+    features: 'What we build',
+    engine: 'Services',
+    process: 'Process',
     pricing: 'How we work',
     blog: 'Blog',
     useCases: 'Use Cases',
     demo: 'Demo',
     login: 'Log in',
-    signup: 'Book a diagnostic',
+    signup: 'Evaluate a project',
   },
   hero: {
     // `chat` is kept because it is the text baked into the ChatRespondiendo loop
@@ -97,13 +97,14 @@ export const en: Translations = {
   },
   howItWorks: {
     sectionLabel: 'process_',
-    heading: 'Six weeks, three phases',
-    subheading: 'We measure your starting point before automating anything. Without a baseline there is no way to know whether it worked.',
+    heading: 'Four phases, and the last one is leaving',
+    subheading:
+      'The goal is not to stay running your project. **It is to leave it working in your team’s hands.**',
     steps: [
-      { title: 'Week 1 · Diagnostic', detail: 'We map your process and measure the baseline' },
-      { title: 'Weeks 2-5 · Pilot', detail: 'One single flow live, with human review' },
-      { title: 'Week 6 · Checkpoint', detail: 'We compare against the week 1 baseline' },
-      { title: 'After · Operation', detail: 'It expands to more flows, or we refund the pilot' },
+      { title: 'Discover', detail: 'The real process, with its exceptions. What gets automated and what does not.' },
+      { title: 'Build', detail: 'Integrations, permissions, approvals and error handling.' },
+      { title: 'Evaluate', detail: 'Real cases and edge cases, before the client ever sees it.' },
+      { title: 'Hand off', detail: 'Documentation, access and someone on your side who can maintain it.' },
     ],
   },
   offerStack: {
@@ -139,17 +140,18 @@ export const en: Translations = {
     ],
   },
   guarantee: {
-    sectionLabel: 'guarantee_',
-    heading: 'If it does not happen, we refund the full pilot',
-    body: 'In week 1 we measure your baseline. If at the end of the six weeks your CRM does not reflect 90% of your sales conversations, and every open opportunity does not have a next task with an owner and a date, we refund 100% of what you paid for the pilot.',
-    conditionsLabel: 'What we need from your side',
+    sectionLabel: 'how we evaluate_',
+    heading: 'Before we start, we decide whether we can deliver it',
+    body:
+      'We do not accept every project. We review scope, systems and who decides on the client side. **If we see we cannot deliver it well, we say so in the first conversation** — not in week four.',
+    conditionsLabel: 'What we look at',
     conditions: [
-      'A kickoff with whoever can approve processes',
-      'Access to WhatsApp, CRM and calendar in week 1',
-      'Templates reviewed and approved within 5 business days',
-      'One designated owner inside your team',
+      'That a real process exists, with someone who can decide how it runs',
+      'That the systems to integrate have an API, access or a viable path',
+      'That there is a deadline and a scope, not an open-ended exploration',
+      'That your team can take the handoff at close',
     ],
-    note: 'This is not fine print: these are the four things without which the result does not happen.',
+    note: 'All four are conditions for the project to go well, not fine print.',
   },
   useCases: {
     sectionLabel: 'use_cases_',
@@ -192,11 +194,12 @@ export const en: Translations = {
     ],
   },
   cta: {
-    heading: 'Start with the diagnostic',
-    subheading: 'Thirty minutes. You leave with your baseline measured and one prioritized flow, whether you work with us or not.',
-    primary: 'Book a diagnostic',
-    secondary: 'See the demo',
-    trust: 'And if you would rather see it first, talk to the agent in the demo.',
+    heading: 'Tell us about the project',
+    subheading:
+      'The workflow, the systems involved and what state it is in. **We reply with a recommended next step, not a generic demo.**',
+    primary: 'Evaluate a project',
+    secondary: 'See the services',
+    trust: 'if it is not for us, we tell you in the first reply',
   },
   footer: {
     login: 'Log in',
@@ -306,7 +309,7 @@ export const en: Translations = {
     demoTitle: "See it in action",
     demoSubtitle: 'A real conversation between a prospect and Omona.',
     idealTitle: 'Ideal for',
-    ctaSubtitle: '14 days free · No credit card · Set up in 5 minutes',
+    ctaSubtitle: 'Tell us the workflow and the systems · We reply with a next step',
     ctaPrimary: 'Get started free',
     ctaSecondary: 'Talk to sales',
     inputPlaceholder: 'Write a message...',
@@ -483,53 +486,41 @@ export const en: Translations = {
     ctaTitle: 'Try it before giving us anything',
     ctaBody: 'Talk to the agent in the demo. No signup, no email, no card.',
     ctaDemo: 'Open the demo',
-    ctaSignup: 'Start 14 days free',
+    ctaSignup: 'Evaluate a project',
     backHome: 'Back to home',
   },
   faq: {
     sectionLabel: 'questions_',
-    heading: 'What everyone asks before starting',
-    subheading: 'The honest answers, including the awkward ones.',
+    heading: 'What people ask before the first call',
+    subheading: 'The honest answers, including the uncomfortable ones.',
     items: [
       {
-        q: 'Will my WhatsApp number get blocked?',
-        a: 'Omona connects by scanning a QR code, the same way you open WhatsApp Web: you keep your own number and you file nothing with Meta. That also means WhatsApp usage rules apply. If you blast messages at people who never wrote to you, the risk of a block is the same as if you sent them by hand. Omona is built to answer whoever writes to you first, and there that risk does not exist.',
+        q: 'Do you work under my brand, in front of my client?',
+        a: 'Yes, and it is the most requested arrangement. You keep the commercial relationship and the credit; we do not appear. We sign whatever is needed for that. We also work alongside your team under our own name if you prefer to present it as a partnership.',
       },
       {
-        q: 'Will it sound like a robot?',
-        a: 'It does not reply with canned phrases: it reads the whole message and answers with your catalog information, in the tone you configure. Before connecting your number you can talk to the agent in the demo and judge it yourself. If it sounds robotic there, it will sound robotic to your customers.',
+        q: 'Do you have case studies or clients I can look at?',
+        a: 'None we can publish. The firm is new, and presenting testimonials, logos or metrics we cannot back would mean inventing them. What is verifiable: Omona built and operates its own Claude system in production — multi-tenant with per-organization isolation, audio transcription, human escalation, signed webhooks and continuous deployment. This entire site documents it. It is evidence that we know how to take an agent from prototype to operation.',
       },
       {
-        q: 'What happens when it does not know something?',
-        a: 'It escalates. When the customer asks something out of scope, requests a discount nobody approved, or gets annoyed, the agent hands the conversation to your team and flags it. Whoever steps in sees the full history, what the customer said and why it was escalated. It does not make up an answer to get by.',
+        q: 'What if the project is already failing in production?',
+        a: 'That is Rescue & Hardening. Stabilize first: understand why it fails, contain the damage and make errors visible. Hardening comes after. We do not rewrite from scratch unless that is cheaper than fixing it, and we argue that case with reasons, not preference.',
       },
       {
-        q: 'Can I turn it off and reply myself?',
-        a: 'Yes, any time and per conversation. When you take a chat from the dashboard, the agent goes quiet in that chat and keeps handling the rest. Your number never stops being yours.',
+        q: 'What does it cost?',
+        a: 'We do not publish rates because they depend on scope, how many systems need integrating and what state the existing work is in. Quoting before knowing that forces us to invent a number. Tell us the workflow and the state of the project and we reply with a recommended next step and a range.',
       },
       {
-        q: 'How long until it is running?',
-        a: 'Connecting your number takes five minutes: you scan a QR and it starts receiving messages. What takes six weeks is the rest: mapping your process, measuring your baseline, loading catalog and prices, and getting every conversation into the CRM with its task. Answering fast is easy; never losing an opportunity is the work.',
+        q: 'Do we end up dependent on you?',
+        a: 'No, and it is designed so that cannot happen. Access and credentials stay in your name or your client’s, never in our accounts. At close we hand over documentation, runnable tests and a handoff session with someone on your team. If we leave, nothing switches off.',
       },
       {
-        q: 'How much does it cost?',
-        a: 'We do not publish a price because it depends on how many salespeople you have, how many conversations they handle, which channels they use, which CRM you already run and how complex your proposals are. Quoting before knowing that forces you to make a number up. The 30-minute diagnostic is free and the figure comes out of it.',
+        q: 'Do you only work with Claude?',
+        a: 'It is where we are good and where we have our own product in production, so it is what we offer. If your project is tied to another provider, the honest answer is to point you at someone specialized in it. We do not bill for learning on your budget.',
       },
       {
-        q: 'Where does it get the information to prospect?',
-        a: 'From public sources: the company website, open job postings, press mentions, public registries, and what is already in your own CRM from previous contacts. We do not buy databases or scrape personal data, and when it cannot find something it leaves the field empty instead of filling it in. An entry angle built on an invented fact is worse than no angle at all.',
-      },
-      {
-        q: 'Does it send proposals on its own?',
-        a: 'No. It drafts using your catalog, your prices and your approved terms, and then it stops. Someone on your team reviews it and sends it. That is deliberate: a proposal is the part of the process where a mistake costs real money, and the system is not authorized to take that risk by itself.',
-      },
-      {
-        q: 'Do I have to switch CRM?',
-        a: 'No, and usually you should not. We work on the one you already use, even if it is badly configured. Switching CRM and fixing your sales process at the same time are two projects competing for the same team’s patience, and both tend to lose.',
-      },
-      {
-        q: 'What if it does not work?',
-        a: 'In week 1 we measure your baseline. If at the end of the six weeks your CRM does not reflect 90% of your sales conversations and every open opportunity does not have a next task with an owner and a date, we refund 100% of the pilot. The conditions are in plain sight in the guarantee section, not in fine print.',
+        q: 'What do you need from us to start?',
+        a: 'A person who can decide how the process works, access to the systems to integrate, and a real deadline. Without the first, the project stalls on questions nobody answers; without the second there is no way to build; without the third it is not a project, it is an exploration.',
       },
     ],
   },
@@ -628,298 +619,302 @@ export const en: Translations = {
     cta: 'Start 14 days free',
   },
 
-  /** See es.ts for why the home page was rebuilt around the full sales cycle. */
+  /** See es.ts for why the site was repositioned from product to service. */
   home: {
     hero: {
-      eyebrow: 'revenue intelligence · b2b · latam',
-      title: 'The pipeline looks healthy.',
-      titleAccent: 'It almost never is.',
+      eyebrow: 'technical delivery partner · claude · latam',
+      title: 'Selling the pilot was the easy part.',
+      titleAccent: 'Running it is another thing.',
       subtitle:
-        'Omona reads every conversation, fills the CRM on its own and hands you the next play: who to reach today, with what message, and why. Prospecting, follow-up, closing and proposals, on the same data.',
-      ctaPrimary: 'Book a diagnostic',
-      ctaSecondary: 'See how it works',
-      note: '30 minutes · no cost · on the CRM you already have',
+        'We take Claude automations from prototype to production. Integrations, permissions, evaluations, error handling and handoff to your team. Under your brand, or alongside it.',
+      ctaPrimary: 'Evaluate a project',
+      ctaSecondary: 'See how we work',
+      note: 'tell us the workflow and the systems · we reply with a next step',
       card: {
-        label: 'play_of_the_day',
-        cohort: 'No-show',
-        elapsed: '14 min ago',
-        contact: 'Mariana Robles · Grupo Zenith',
-        why: 'Booked the 10:00 diagnostic and never showed. The first 30 minutes are the window where she actually answers.',
-        messageLabel: 'suggested message',
+        label: 'production_review',
+        cohort: 'Blocker',
+        elapsed: 'finding 3 of 11',
+        contact: 'Quoting agent · ERP integration',
+        why: 'The agent writes to the ERP with no confirmation. One extraction error creates a real order, and today there is no way to reverse it.',
+        messageLabel: 'recommendation',
         message:
-          'Mariana, good morning. I held the 10:00 and we missed each other — no problem, it happens. Does tomorrow at 11:00 work, or would Thursday at the same time be better?',
-        checksLabel: 'only you can confirm this',
-        checks: ['The number is hers', 'She is still the decision maker'],
-        valueLabel: 'deal value',
-        value: '$84,000',
-        timeLabel: 'takes',
-        time: '2 min',
-        actionPrimary: 'Done',
-        actionSecondary: 'Not now',
+          'Add human approval before any write. The agent proposes the order, a person confirms it. We log who approved and on what data.',
+        checksLabel: 'your team confirms this',
+        checks: ['Who has authority to approve', 'What amount can skip review'],
+        valueLabel: 'risk',
+        value: 'High',
+        timeLabel: 'effort',
+        time: '2 days',
+        actionPrimary: 'Accepted',
+        actionSecondary: 'Defer',
       },
     },
 
     leak: {
-      label: 'diagnostic_',
-      title: 'Nobody loses the sale on the ad. They lose it afterwards.',
+      label: 'the problem_',
+      title: 'The demo worked. Operating it is a different system.',
       body:
-        'The prospect raised their hand, somebody answered, and somewhere between that conversation and the close it fell through. Not for lack of effort: because follow-up lives in one person’s memory, and memory breaks exactly when the workload peaks.',
+        'A prototype handles the happy path well. That is enough to close the sale. **What breaks the project is everything else**, and it is almost never budgeted.',
       items: [
         {
-          title: 'Opportunities with no next step',
+          title: 'It fails and nobody notices',
           detail:
-            'They sit open on the board, but none has a what-next or a when. In many CRMs the field to store it does not even exist.',
+            'With no logs or alerts, the client reports the error. By then it has been happening for days.',
         },
         {
-          title: 'Meetings with no logged outcome',
+          title: 'It acts without permission',
           detail:
-            'Nobody marked whether the person showed up. Without that you cannot tell whether people are not showing or nobody is writing it down.',
+            'The agent writes to real systems. **Nobody defined what it can do alone and what needs approval.**',
         },
         {
-          title: 'Proposals with no decision date',
+          title: 'Nobody knows if it improved',
           detail:
-            'It went out and became "we’ll let you know". A proposal with no date is not alive: it is waiting for someone to remember it.',
+            'No evaluations on real data. Every change is a bet, and the team checks it by eye.',
         },
         {
-          title: 'And it breaks in peak season',
+          title: 'Cost runs away',
           detail:
-            'Exactly when there are more meetings and more pressure is when the least gets logged. The month with the most opportunities is the month with the worst data.',
+            'It works with ten cases. At a thousand, the bill and the latency stop making sense.',
         },
       ],
-      quote: 'An effort breaks in peak season. Always. A system does not.',
+      quote: 'A prototype proves it can be done. An operation survives being used.',
     },
 
     cycle: {
-      label: 'cycle_',
-      title: 'One sales cycle, four engines',
+      label: 'what we build_',
+      title: 'Four things separate a prototype from an operation',
       subtitle:
-        'This is not a chatbot with a CRM bolted on the back. It is the full cycle running on the same data: what prospecting learns feeds follow-up, and what follow-up learns writes the proposal.',
-      outputLabel: 'produces',
+        'None of them is exotic. **All of them get skipped when there is a rush to show something**, and all of them get charged later, in production, with the client watching.',
+      outputLabel: 'you get',
       stages: [
         {
-          id: 'prospeccion',
+          id: 'workflow',
           index: '01',
-          name: 'Prospecting',
-          kicker: 'market research',
-          headline: 'It knows who it is talking to before the first message.',
+          name: 'Workflow',
+          kicker: 'the real process',
+          headline: 'Process first. Agent second.',
           bullets: [
-            'Researches the company: what it does, how big it is, what moment it is in, and who signs.',
-            'Builds lists from signals, not hunches — they hired, they opened a location, they changed sales directors.',
-            'Hands over the entry angle already written, with the concrete reason it applies to that account and not another.',
+            'We map how the work is done today, by whom, and with what exceptions.',
+            'We mark what is worth automating and **what is better left to a person**.',
+            'The design comes from the process, not from what the model happens to be good at.',
           ],
-          output: 'Researched account + entry angle',
+          output: 'Mapped process and agreed scope',
         },
         {
-          id: 'seguimiento',
+          id: 'integracion',
           index: '02',
-          name: 'Follow-up',
-          kicker: 'the engine',
-          headline: 'The part that breaks on its own. This is where the engine lives.',
+          name: 'Integration',
+          kicker: 'with the systems you already run',
+          headline: 'An agent earns its keep when it touches business systems.',
           bullets: [
-            'Computes the real state of every opportunity: what happened, how long ago, and what is due now.',
-            'Turns every leak into a concrete play — who, today, with the message already drafted.',
-            'A fast clock for what goes cold in minutes; a slow clock for the pipeline queue.',
+            'CRM, ERP, databases and SaaS, over API, webhooks or MCP.',
+            'Authentication, permissions and scope for every tool the agent can reach.',
+            '**An agent that only chats changes nothing.** The value shows up when it writes where it matters.',
           ],
-          output: 'One play a day, with message and date',
+          output: 'Systems connected, with scoped permissions',
         },
         {
-          id: 'cierre',
+          id: 'controles',
           index: '03',
-          name: 'Closing',
-          kicker: 'buying signal',
-          headline: 'The conversation reaches the close carrying everything it needs.',
+          name: 'Controls',
+          kicker: 'so it can run unattended',
+          headline: 'What happens when something goes wrong.',
           bullets: [
-            'Detects the real objection and when it surfaced — which is rarely the one stated at the end.',
-            'Flags the buying signal: budget said out loud, timeline, and who has to authorize.',
-            'Alerts leadership when a large opportunity has been sitting still for too long.',
+            'Human approval on decisions that cost money or are hard to reverse.',
+            'Logs, retries, error handling and a clear escalation path.',
+            '**Without this the project ships and nobody dares leave it alone.**',
           ],
-          output: 'Objections, decision criteria and a date',
+          output: 'Approvals, logs and escalation',
         },
         {
-          id: 'propuestas',
+          id: 'evaluacion',
           index: '04',
-          name: 'Proposals',
-          kicker: 'and presentations',
-          headline: 'The document comes out of the conversation, not a blank template.',
+          name: 'Evaluation',
+          kicker: 'on real data',
+          headline: 'Knowing it works, not believing it works.',
           bullets: [
-            'Takes what the client said — need, budget, timeline, who decides — and drafts from that.',
-            'With your catalog, your prices and your approved terms. Never with invented figures.',
-            'Proposal and deck come from the same source, and both go through human review before they go out.',
+            'Real cases and edge cases, taken from the client’s own process.',
+            'A prompt or model change gets measured before it reaches production.',
+            '**Without evals, every adjustment is a bet** and nobody can say whether it improved.',
           ],
-          output: 'A personalized draft, ready for review',
+          output: 'Eval suite and acceptance criteria',
         },
       ],
     },
 
     engine: {
-      label: 'engine_',
-      title: 'Five cohorts, each with its own clock',
+      label: 'services_',
+      title: 'Five ways in, depending on where you are',
       subtitle:
-        'You do not follow up the same way five minutes after a no-show as three weeks after a proposal. Each cohort has its own tempo, script and goal.',
+        'Named by outcome, not by technology. **The first two are where almost everyone starts.**',
       table: {
-        cohort: 'Cohort',
-        trigger: 'Fires when',
-        clock: 'Clock',
-        goal: 'The goal',
+        cohort: 'Service',
+        trigger: 'When it applies',
+        clock: 'Format',
+        goal: 'Outcome',
       },
       cohorts: [
         {
-          name: 'New prospect',
-          trigger: 'Fills a form or writes for the first time',
-          clock: 'Minutes',
-          goal: 'Human contact in under 20 minutes',
+          name: 'Pilot-to-Production Sprint',
+          trigger: 'Project sold, prototype half-built',
+          clock: 'Sprint',
+          goal: 'An operable, documented automation',
         },
         {
-          name: 'Meeting booked',
-          trigger: 'Takes a slot on the calendar',
-          clock: 'Minutes → days',
-          goal: 'That the meeting actually happens',
+          name: 'White-label Delivery Partner',
+          trigger: 'You have the relationship, not the capacity',
+          clock: 'Ongoing',
+          goal: 'Delivery under your brand or with your team',
         },
         {
-          name: 'No-show',
-          trigger: 'The meeting passed and they did not come',
-          clock: 'Minutes → days',
-          goal: 'Rebook, or close it with dignity',
+          name: 'Production Readiness Audit',
+          trigger: 'An agent exists and nobody knows if it holds',
+          clock: 'Assessment',
+          goal: 'Prioritized plan to reach production',
         },
         {
-          name: 'Proposal',
-          trigger: 'The proposal is delivered',
-          clock: 'Days',
-          goal: 'That it has a decision date',
+          name: 'Claude Workflow Build',
+          trigger: 'There is a business process and no system',
+          clock: 'Project',
+          goal: 'Workflow integrated, tested and operable',
         },
         {
-          name: 'Everything else',
-          trigger: '—',
-          clock: 'Weekly',
-          goal: 'Deliberately ignored',
+          name: 'Rescue & Hardening',
+          trigger: 'The automation is already failing in production',
+          clock: 'Intervention',
+          goal: 'Stabilized system with real controls',
         },
       ],
       quote:
-        'A system that shows you the forty things you ought to be doing is not information: it is guilt. This engine is willing to hide work.',
+        'We do not build flashy demos that break on the first real case. We build what your client will use on Monday.',
       clocks: {
-        label: 'two clocks, not one',
+        label: 'two ways to work',
         items: [
           {
-            name: 'Fast clock',
-            unit: 'minutes',
+            name: 'Under your brand',
+            unit: 'white-label',
             detail:
-              'New prospect, meeting booked, no-show, inbound reply. It reacts per event. A no-show recovered in five minutes converts far better than one recovered tomorrow: the person is still at their desk and still feels bad about missing it.',
+              'Your firm keeps the relationship and the credit. **We never appear in front of your client.** We deliver architecture, build and hardening, and you present it as yours.',
           },
           {
-            name: 'Slow clock',
-            unit: 'days',
+            name: 'Alongside your team',
+            unit: 'together',
             detail:
-              'The pipeline queue, the weekly scoreboard, the leak measured in money. It runs on its own, early, every day. It answers "how are we doing", not "what do I do now".',
+              'We work with your developers, not instead of them. **When we close, your team can maintain it without us.** That includes documentation, handoff and training.',
           },
         ],
       },
       play: {
-        label: 'one play at a time',
-        title: 'The system hands you one card. Never a list.',
+        label: 'how it starts',
+        title: 'First we understand the project. Then we say whether we take it.',
         detail:
-          'It arrives with the message already written, the phone number, the proposed date, what the deal is worth if it closes and how many minutes it takes. Two buttons: done, or not now — and "not now" asks for a reason, because without one it becomes a loop serving the same card all week.',
+          'You tell us the workflow, the systems involved and what state it is in. We reply with a recommended next step — **not a generic demo and not a template proposal.**',
         closing:
-          'Zero decisions to get started. Deciding what to do is the expensive part; the system solves that and the person executes.',
+          'If the project is not for us, we say so right there. That is cheaper for both of us than finding out in week four.',
       },
       guardrails: {
-        label: 'the style guide is code',
-        title: 'A message that fails the style guide never shows up as a play.',
+        label: 'what stays installed',
+        title: 'A project ends when your team can run it without us.',
         detail:
-          'Banned words, the emoji ceiling, one question per message, the sending window, and the rule that there is always a next step with a date do not live in a PDF nobody opens: they run as a function that validates every message before it is shown.',
-        checksTitle: 'And what the machine cannot judge, it asks',
+          'Not when the code works on our machine. **At close there is documentation, access, tests and a person on your side who can maintain it.**',
+        checksTitle: 'And what we cannot promise, we do not promise',
         checksDetail:
-          'Whether a compliment is true, whether the number is the client’s, whether that is still the person who decides. That shows up on the card as boxes only a human can tick. A validator that pretends it can judge those is lying.',
+          'There are no testimonials, logos or publishable metrics: the firm is new and presenting them would mean inventing them. **What is verifiable is our own product in production**, and this site documents all of it.',
       },
     },
 
     intel: {
-      label: 'intelligence_',
-      title: 'Every conversation leaves data, not a paragraph',
+      label: 'capabilities_',
+      title: 'What the business asks for, translated into what has to be built',
       subtitle:
-        'WhatsApp, email, calendar and recorded calls land in the same place. What comes out is not a nice summary: it is fields the CRM can store and the engine can read.',
-      sourceLabel: 'what came in',
+        'Clients do not ask for MCP or human-in-the-loop. **They ask to stop losing paperwork.** Our job is that translation, and then building it.',
+      sourceLabel: 'what the client asks for',
       source:
-        'Look, I already went over it with the team. The budget is there for next quarter, not right now. And honestly what worries us is the migration, because it already went badly with our previous vendor. The one who decides this in the end is Rodrigo, our operations director.',
-      fieldsLabel: 'what got stored',
+        'We want invoices that arrive by email to be captured into the ERP on their own. But if the vendor is new or the amount is large, someone should see it first. And we need to know what happened to each one.',
+      fieldsLabel: 'what has to be built',
       fields: [
-        { key: 'need', value: 'Migration with no service interruption' },
-        { key: 'budget', value: 'Exists, released next quarter' },
-        { key: 'timeline', value: 'Q+1 · not urgency, calendar' },
-        { key: 'objection', value: 'Bad prior experience with migration' },
-        { key: 'decision_maker', value: 'Rodrigo · operations director' },
-        { key: 'next_step', value: 'Migration case study + date with Rodrigo' },
+        { key: 'workflow', value: 'Document extraction and ERP entry' },
+        { key: 'integration', value: 'Email, storage and the ERP API' },
+        { key: 'tool_use', value: 'Scoped writes: create only, never delete' },
+        { key: 'approval', value: 'New vendor or amount above threshold' },
+        { key: 'evaluation', value: 'Real invoices, odd formats included' },
+        { key: 'observability', value: 'Per-invoice trace, retries and escalation' },
       ],
       aside: {
-        title: 'And yes, it answers too.',
+        title: 'And yes, we run one ourselves.',
         detail:
-          'The agent replies in seconds, at any hour, understands voice notes and books the meeting inside the same chat. But answering is the system’s input, not the product: if the message gets answered fast and still nobody knows what comes next, the sale falls through anyway.',
-        cta: 'Try it in the demo',
+          'Omona built and operates its own Claude system over WhatsApp: multi-tenant with per-organization isolation, audio transcription, human escalation, signed webhooks and continuous deployment. **It is production evidence, not the service offering** — and this site’s corpus documents it.',
+        cta: 'See the system running',
       },
     },
 
     measure: {
-      label: 'measurement_',
-      title: 'It does not measure activity. It measures muscle.',
+      label: 'delivery standards_',
+      title: 'What is left when we leave',
       subtitle:
-        'Sending forty messages is not a result. These four are, and all four are compared against previous weeks — trend, not snapshot.',
+        'This is not a promise of results: it is the list of what we always hand over. **If any of it is missing, the project is not closed.**',
       metrics: [
         {
-          name: 'Time to first contact',
+          name: 'Documentation your team can follow',
           detail:
-            'The median from a prospect raising their hand to a human speaking to them. It is the most honest number in the system because it is 100% under your control.',
+            'Architecture, decisions and how to operate it. Written for whoever maintains it, not for whoever sold it.',
         },
         {
-          name: 'Time to first touch after a no-show',
-          detail: 'Recovery intensity, turned into a number that goes up or down.',
-        },
-        {
-          name: 'Recovery rate',
-          detail: 'For no-shows and for proposals that were sitting without a decision date.',
-        },
-        {
-          name: 'Which script converts',
+          name: 'Access and credentials in your name',
           detail:
-            'Every play stores its outcome and where the text came from. In three months that answers which phrases work with evidence instead of opinion.',
+            'Everything lives in your accounts or your client’s. **Never in ours.** Us leaving cannot switch anything off.',
+        },
+        {
+          name: 'Runnable tests and evaluations',
+          detail:
+            'They run without us. A future change can be validated without guessing whether it broke something.',
+        },
+        {
+          name: 'Handoff with a trained person',
+          detail:
+            'Someone on your side who understood the system and can change it. Session recorded, questions answered.',
         },
       ],
-      moneyLabel: 'and the figure that makes it a leadership conversation',
+      moneyLabel: 'the definition of done',
       moneyFormula:
-        'no-shows this month × cost per meeting        = money that leaked\nrecovered           × ticket × margin × months = money you plugged',
-      moneyNote: 'That subtraction is the whole conversation. Nothing else needs explaining.',
+        'runs in production      + your team can operate it\n+ failures are visible   + changes can be tested\n= project closed',
+      moneyNote:
+        'Anything that misses one of the four is still a prototype, even if it is live.',
     },
 
     scope: {
       label: 'scope_',
-      title: 'It lives on top of the CRM you already have',
+      title: 'What we take and what we do not',
       subtitle:
-        'We are not asking you to switch tools. We read the CRM, the calendar and recorded calls, and write back to them.',
-      doTitle: 'What it does',
+        'We are a small, specialized firm. **Saying no early is part of the job.**',
+      doTitle: 'What we take',
       does: [
-        'Writes into your current CRM: contacts, fields, tasks with an owner and a date.',
-        'Reads stages, calendar meetings and recorded calls as a single signal.',
-        'Adjusts scripts and timing without redeploying anything: the ladders are data, not code.',
-        'Adapts to your vocabulary and your voice guide, both loaded as configuration.',
+        'Claude projects already sold or committed, with a real deadline.',
+        'Automations that touch business systems: CRM, ERP, databases, SaaS.',
+        'Work under a consultancy’s brand, without appearing in front of their client.',
+        'Rescues of automations already failing in production.',
       ],
-      dontTitle: 'What it does not do',
+      dontTitle: 'What we do not take',
       donts: [
         {
-          title: 'It is not a CRM',
-          detail: 'It lives on top of the one you have. If you want to replace yours, this is not that.',
+          title: 'Demos and proofs of concept',
+          detail:
+            'If the goal is to show something in a meeting, we are not the firm. We build what will be operated.',
         },
         {
-          title: 'It does not decide',
+          title: 'Projects with no process owner',
           detail:
-            'It computes state and proposes plays. It does not move stages on its own, does not close deals, and does not send messages unapproved.',
+            'Someone on the client side has to be able to decide how the work gets done. Without that person, the project stalls.',
         },
         {
-          title: 'It does not see every channel',
+          title: 'Training or fine-tuning models',
           detail:
-            'Personal email and WhatsApp sent from someone’s phone are invisible. In Mexico that is a good chunk of the conversation, and it is written here as a known gap, not hidden.',
+            'We work on existing models. ML research and fine-tuning are not our thing, and saying so saves time.',
         },
         {
-          title: 'It is not a statistical model',
+          title: 'Bodies by the hour with no scope',
           detail:
-            'The ladders are hand-written rules over your process. They work, but claiming a model is predicting the close would be making things up.',
+            'We do not rent out developers against a bucket of hours. We come in with an agreed outcome and a definition of done.',
         },
       ],
     },

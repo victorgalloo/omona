@@ -1,4 +1,5 @@
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * El contenedor de sección de la portada.
@@ -60,7 +61,9 @@ export function SectionHeader({
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-5 text-[17px] leading-relaxed text-muted-foreground">{subtitle}</p>
+        <p className="mt-5 max-w-[62ch] text-[17px] leading-relaxed text-muted-foreground">
+          <Emphasis text={subtitle} />
+        </p>
       )}
     </Reveal>
   );

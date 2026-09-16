@@ -24,26 +24,26 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://omona.tech';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Omona | Agente de Ventas IA para WhatsApp',
+    default: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
     template: '%s | Omona',
   },
   description:
-    'Omona es el agente de ventas con IA para WhatsApp. Responde, califica leads y agenda citas 24/7. CRM integrado para pymes en Mexico y LATAM. Prueba gratis 14 dias.',
+    'Omona construye, endurece y transfiere automatizaciones basadas en Claude para consultoras, agencias e integradores con clientes de habla hispana. De prototipo a produccion.',
   keywords: [
-    'agente de ventas IA WhatsApp',
-    'chatbot ventas WhatsApp Mexico',
-    'automatizacion ventas WhatsApp',
-    'CRM WhatsApp IA',
-    'bot ventas WhatsApp',
-    'asistente virtual ventas',
-    'WhatsApp CRM pymes Mexico',
-    'chatbot WhatsApp para empresas',
+    'socio tecnico de delivery IA',
+    'llevar piloto de IA a produccion',
+    'partner white label automatizaciones IA',
+    'implementacion de agentes Claude',
+    'auditoria de agente IA en produccion',
+    'integracion de Claude con CRM y ERP',
+    'evaluaciones de agentes LLM',
+    'human in the loop agentes IA',
   ],
   authors: [{ name: 'Omona' }],
   openGraph: {
-    title: 'Omona | Agente de Ventas IA para WhatsApp',
+    title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
     description:
-      'Automatiza tus ventas por WhatsApp con inteligencia artificial. Responde clientes 24/7, califica leads y agenda citas. CRM integrado para pymes.',
+      'De piloto a operacion real. Integraciones, permisos, aprobaciones, evaluaciones y transferencia a tu equipo. Bajo tu marca o junto a el.',
     siteName: 'Omona',
     locale: 'es_MX',
     type: 'website',
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@omona_lat',
-    title: 'Omona | Agente de Ventas IA para WhatsApp',
+    title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
     description:
-      'Automatiza tus ventas por WhatsApp con IA. Responde 24/7, califica leads y agenda citas. CRM para pymes en Mexico y LATAM.',
+      'De piloto a operacion real. Integraciones, permisos, aprobaciones, evaluaciones y transferencia a tu equipo.',
   },
   alternates: {
     canonical: '/',

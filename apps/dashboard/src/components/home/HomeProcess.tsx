@@ -3,6 +3,7 @@
 import { useT } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from './Section';
 import { Reveal } from './Reveal';
+import { Emphasis } from './Emphasis';
 
 /**
  * Las seis semanas. Mismo copy que antes (`t.howItWorks`), otra forma: la
@@ -28,7 +29,7 @@ export function HomeProcess() {
               {step.title}
             </h3>
             <p className="pr-4 text-[13.5px] leading-relaxed text-muted-foreground">
-              {step.detail}
+              <Emphasis text={step.detail} />
             </p>
           </Reveal>
         ))}
