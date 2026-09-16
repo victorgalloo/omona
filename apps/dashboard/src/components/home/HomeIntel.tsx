@@ -35,7 +35,7 @@ export function HomeIntel() {
           <p className="mb-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
             {i.sourceLabel}
           </p>
-          <p className="text-[14.5px] leading-relaxed text-muted-foreground">{i.source}</p>
+          <p className="leading-relaxed text-muted-foreground">{i.source}</p>
         </Reveal>
 
         {/* Apunta hacia donde va el flujo: abajo cuando los paneles se apilan
@@ -65,13 +65,13 @@ export function HomeIntel() {
       <Reveal className="mt-14 flex flex-col gap-5 border-t border-hairline pt-10 sm:flex-row sm:items-start sm:justify-between sm:gap-12">
         <div className="max-w-2xl">
           <h3 className="mb-2.5 text-[17px] font-medium text-foreground">{i.aside.title}</h3>
-          <p className="text-[14px] leading-relaxed text-muted-foreground">
+          <p className="text-[15px] leading-relaxed text-muted-foreground">
             <Emphasis text={i.aside.detail} />
           </p>
         </div>
         <Link
           href="/demo"
-          className="group inline-flex shrink-0 items-center gap-2 self-start border border-border px-5 py-3 text-[14px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+          className="group inline-flex shrink-0 items-center gap-2 self-start border border-border px-5 py-3 text-[15px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
         >
           {i.aside.cta}
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

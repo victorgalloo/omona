@@ -25,7 +25,7 @@ export function HomeProcess() {
             <span className="mb-4 block font-mono text-xs text-accent-green">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <h3 className="mb-2 pr-4 text-[15.5px] font-medium leading-snug text-foreground">
+            <h3 className="mb-2 pr-4 font-medium leading-snug text-foreground">
               {step.title}
             </h3>
             <p className="pr-4 text-[13.5px] leading-relaxed text-muted-foreground">

@@ -25,10 +25,10 @@ export function HomeMeasure() {
       <div className="rule-grid mt-12 grid sm:grid-cols-2">
         {m.metrics.map((metric, i) => (
           <Reveal key={metric.name} delay={i * 60} className="p-6 sm:p-8">
-            <h3 className="mb-2.5 text-[16px] font-medium tracking-[-0.01em] text-foreground">
+            <h3 className="mb-2.5 text-[17px] font-medium tracking-[-0.01em] text-foreground">
               {metric.name}
             </h3>
-            <p className="text-[14px] leading-relaxed text-muted-foreground">
+            <p className="text-[15px] leading-relaxed text-muted-foreground">
               <Emphasis text={metric.detail} />
             </p>
           </Reveal>

@@ -21,7 +21,7 @@ export function HomeFooter() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <Link href="/" className="flex items-center gap-2" aria-label="Omona - Inicio">
             <Logo size={20} className="shrink-0 text-foreground" />
-            <span className="font-mono text-[15px] font-semibold text-foreground">omona_</span>
+            <span className="font-mono font-semibold text-foreground">omona_</span>
           </Link>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-3 text-[13.5px] text-muted-foreground">

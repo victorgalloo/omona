@@ -115,7 +115,7 @@ const config: Config = {
       },
       fontSize: {
         label: ['13px', { lineHeight: '1.4' }],
-        body: ['15px', { lineHeight: '1.7' }],
+        body: ['17px', { lineHeight: '1.6' }],
         // Display fluido con interlineado cerrado (Gumroad usa 96px/96px).
         // Sin cajas ni bordes, es el tamaño del titular lo que separa
         // una sección de la siguiente.

@@ -40,7 +40,7 @@ export function Mas({
 
   return (
     <details className="group mt-6 border-t border-hairline">
-      <summary className="flex cursor-pointer list-none items-center gap-2 py-4 text-[14px] text-muted-foreground transition-colors hover:text-foreground [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center gap-2 py-4 text-[15px] text-muted-foreground transition-colors hover:text-foreground [&::-webkit-details-marker]:hidden">
         {/* El triangulo es decorativo: <details> ya anuncia el estado. */}
         <span aria-hidden className="md-syntax transition-transform group-open:rotate-90">
           &rsaquo;
@@ -49,7 +49,7 @@ export function Mas({
         <span aria-hidden className="md-syntax">·</span>
         <span className="tabular-nums">{tiempo}</span>
       </summary>
-      <div className="md-measure pb-6 text-[14.5px] leading-[1.75] text-muted-foreground">
+      <div className="md-measure pb-6 leading-[1.75] text-muted-foreground">
         {parrafos.map((p, i) => (
           <p key={i} className={i > 0 ? 'mt-4' : undefined}>
             <Emphasis text={p} />

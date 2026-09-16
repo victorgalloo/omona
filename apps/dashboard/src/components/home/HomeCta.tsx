@@ -30,14 +30,14 @@ export function HomeCta() {
             href={CTA_PROYECTO}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-2 bg-foreground px-7 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-90"
+            className="group inline-flex items-center justify-center gap-2 bg-foreground px-7 py-3.5 font-medium text-background transition-opacity hover:opacity-90"
           >
             {c.primary}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
           <Link
             href="/demo"
-            className="inline-flex items-center justify-center border border-border px-7 py-3.5 text-[15px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+            className="inline-flex items-center justify-center border border-border px-7 py-3.5 font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
           >
             {c.secondary}
           </Link>

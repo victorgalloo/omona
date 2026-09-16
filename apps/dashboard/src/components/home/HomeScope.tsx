@@ -33,7 +33,7 @@ export function HomeScope() {
             {s.does.map((item) => (
               <li key={item} className="flex gap-3.5 border-t border-hairline pt-4">
                 <Check aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-accent-green" />
-                <span className="text-[14.5px] leading-relaxed text-foreground">{item}</span>
+                <span className="leading-relaxed text-foreground">{item}</span>
               </li>
             ))}
           </ul>
@@ -48,8 +48,8 @@ export function HomeScope() {
               <li key={item.title} className="flex gap-3.5 border-t border-hairline pt-4">
                 <Minus aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-muted" />
                 <div>
-                  <h3 className="mb-1 text-[14.5px] font-medium text-foreground">{item.title}</h3>
-                  <p className="text-[14px] leading-relaxed text-muted-foreground">
+                  <h3 className="mb-1 font-medium text-foreground">{item.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-muted-foreground">
                     <Emphasis text={item.detail} />
                   </p>
                 </div>

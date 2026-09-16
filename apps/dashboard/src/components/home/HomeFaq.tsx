@@ -28,14 +28,14 @@ export function HomeFaq() {
           {f.items.map((item) => (
             <li key={item.q} className="border-b border-hairline">
               <details className="group">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[15.5px] font-medium text-foreground transition-colors hover:text-accent-green [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-medium text-foreground transition-colors hover:text-accent-green [&::-webkit-details-marker]:hidden">
                   {item.q}
                   <Plus
                     aria-hidden
                     className="mt-0.5 h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-open:rotate-45"
                   />
                 </summary>
-                <p className="pb-6 pr-8 text-[14.5px] leading-relaxed text-muted-foreground">
+                <p className="pb-6 pr-8 leading-relaxed text-muted-foreground">
                   {item.a}
                 </p>
               </details>

@@ -25,14 +25,13 @@ export function Emphasis({ text, className }: { text: string; className?: string
     <span className={className}>
       {parts.map((part, i) =>
         part.startsWith('**') && part.endsWith('**') ? (
-          // Los asteriscos se quedan a la vista, en gris: es la pieza que hace
-          // que el bloque se lea como markdown crudo y no como texto con
-          // negritas. Van `aria-hidden` para que un lector de pantalla no diga
-          // "asterisco asterisco" antes y despues de cada enfasis.
+          // Los asteriscos ya no se pintan. Estaban a la vista en gris para que
+          // el bloque se leyera como markdown crudo, pero eran cuatro glifos
+          // decorativos alrededor de cada enfasis, dentro de una frase, en un
+          // gris por debajo de AA. El ancla funciona igual con el peso: eso es
+          // lo que el ojo busca al escanear, no el simbolo.
           <strong key={i} className="font-medium text-foreground">
-            <span aria-hidden className="md-syntax">**</span>
             {part.slice(2, -2)}
-            <span aria-hidden className="md-syntax">**</span>
           </strong>
         ) : (
           part

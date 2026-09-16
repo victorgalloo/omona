@@ -32,7 +32,7 @@ export function HomeLeak() {
             <h3 className="mb-2.5 text-[17px] font-medium tracking-[-0.01em] text-foreground">
               {item.title}
             </h3>
-            <p className="text-[14px] leading-relaxed text-muted-foreground">
+            <p className="text-[15px] leading-relaxed text-muted-foreground">
               <Emphasis text={item.detail} />
             </p>
           </Reveal>

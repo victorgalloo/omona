@@ -69,7 +69,7 @@ export function LandingNav() {
               adorno: es la promesa que cumple el resto de la pagina. */}
           <Link href="/" className="flex shrink-0 items-center gap-2" aria-label="Omona - Inicio">
             <Logo size={16} className="shrink-0 text-foreground" />
-            <span className="text-[13px] text-muted">
+            <span className="font-mono text-[13px] text-muted">
               <span aria-hidden className="md-syntax hidden sm:inline">~/</span>
               <span className="hidden text-foreground sm:inline">omona.tech</span>
               <span aria-hidden className="md-syntax hidden sm:inline">/</span>

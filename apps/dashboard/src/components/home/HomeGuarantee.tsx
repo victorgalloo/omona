@@ -29,7 +29,7 @@ export function HomeGuarantee() {
             <h2 className="mb-6 text-[clamp(1.7rem,3.6vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
               {g.heading}
             </h2>
-            <p className="max-w-[62ch] text-[15.5px] leading-relaxed text-background/75">
+            <p className="max-w-[62ch] leading-relaxed text-background/75">
               <Emphasis text={g.body} />
             </p>
           </div>
@@ -40,7 +40,7 @@ export function HomeGuarantee() {
             </p>
             <ol className="space-y-3.5">
               {g.conditions.map((condition, i) => (
-                <li key={condition} className="flex gap-3.5 text-[14px] leading-relaxed">
+                <li key={condition} className="flex gap-3.5 text-[15px] leading-relaxed">
                   <span className="font-mono text-[12px] text-background/50">
                     {String(i + 1).padStart(2, '0')}
                   </span>

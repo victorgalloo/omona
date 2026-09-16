@@ -24,7 +24,15 @@ function tokensOf(selector) {
   if (start === -1) throw new Error(`No encontré el bloque ${selector} en globals.css`);
   const open = css.indexOf('{', start);
   const close = css.indexOf('\n  }', open);
-  const body = css.slice(open, close);
+  // Los comentarios se quitan ANTES de buscar tokens. Si no, una mención
+  // dentro de un comentario cuenta como declaración: el comentario que explica
+  // por qué --warning cambió de valor menciona `--warning-muted:`, el `[^;]+`
+  // se tragaba todo hasta el siguiente `;` —que era la declaración real de
+  // --warning— y el token quedaba undefined. El script reventaba con un
+  // TypeError en luminance(). Lo mismo le pasaba en silencio a --border y a
+  // --hairline en el tema claro, así que los dos últimos pares de la tabla
+  // nunca se llegaron a verificar.
+  const body = css.slice(open, close).replace(/\/\*[\s\S]*?\*\//g, '');
   const out = {};
   for (const [, name, value] of body.matchAll(/(--[\w-]+):\s*([^;]+);/g)) {
     out[name] = value.trim();

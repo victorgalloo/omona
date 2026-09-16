@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* JetBrains Mono la sirve next/font desde layout.tsx, ya self-hosted. El
+   @import que estaba aqui la volvia a pedir a Google Fonts y ademas bloqueaba
+   el render: un @import en CSS no se descarga en paralelo con la hoja. */
 
 @tailwind base;
 @tailwind components;
@@ -166,9 +168,10 @@
     /* Más tenue que --border: es la línea de la rejilla de la home, que se
        repite cada 64px. Al valor de --border la retícula compite con el texto. */
     --hairline: rgba(10, 10, 10, 0.09);
-    /* Los signos de markdown (##, -, **). Decorativo a proposito: se pintan
-       con ::before y quedan fuera del arbol de accesibilidad, asi que no les
-       aplica el minimo de 4.5:1 que si aplica al texto. */
+    /* Los dos signos que quedan: el `// ` de los rotulos y el `~/` del nav.
+       Los `##`, `-` y `**` del texto corrido se retiraron. Decorativo a
+       proposito: se pintan con ::before o van aria-hidden, o sea fuera del
+       arbol de accesibilidad, asi que no les aplica el minimo de 4.5:1. */
     --md-syntax: #9A9A9A;
 
     /* El acento semántico ("agente activo", éxito). En claro tiene que
@@ -284,10 +287,12 @@
 /* ── Blog GEO (prosa de artículos) ── */
 .geo-prose { max-width: 68ch; }
 .geo-prose h2 {
-  font-size: 24px; font-weight: 600; letter-spacing: -0.02em;
+  font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2;
   margin: 40px 0 14px; color: var(--foreground);
 }
-.geo-prose h3 { font-size: 16px; font-weight: 600; margin: 28px 0 10px; }
+/* 21px y no 16px: con el cuerpo en 17px un h3 de 16 era MAS PEQUENO que el
+   parrafo que encabezaba, y la jerarquia del articulo se leia al reves. */
+.geo-prose h3 { font-size: 21px; font-weight: 600; margin: 32px 0 10px; line-height: 1.3; }
 .geo-prose p { margin-bottom: 16px; color: var(--foreground); line-height: 1.7; }
 .geo-prose ul, .geo-prose ol { margin: 0 0 16px 24px; color: var(--foreground); }
 .geo-prose li { margin-bottom: 8px; line-height: 1.7; }
@@ -305,8 +310,14 @@
 .geo-prose blockquote p { margin: 0; color: inherit; }
 .geo-prose hr { border: none; border-top: 1px dashed var(--border); margin: 32px 0; }
 .geo-prose code {
-  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-  font-size: 12px; background: var(--surface-2);
+  /* `var(--font-mono)` y no el nombre de familia: next/font genera un nombre
+     con hash y solo lo expone por esa variable. Mientras existio el @import a
+     Google Fonts, 'JetBrains Mono' resolvia por casualidad; al quitarlo caia a
+     Menlo sin avisar.
+     Y em en vez de px: el cuerpo ahora es 17px y un 12px fijo se veia diminuto
+     dentro del parrafo. */
+  font-family: var(--font-mono), 'SF Mono', Menlo, monospace;
+  font-size: 0.875em; background: var(--surface-2);
   border: 1px solid var(--border);
   padding: 1px 6px; border-radius: 4px;
 }
@@ -322,10 +333,10 @@
   border: 1px solid var(--border); border-radius: 8px;
   background: var(--surface);
 }
-.geo-prose table { border-collapse: collapse; width: 100%; font-size: 13px; }
+.geo-prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
 .geo-prose th {
   text-align: left; font-weight: 600; color: var(--muted-foreground);
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
   padding: 10px 14px; border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
@@ -513,41 +524,37 @@ article[id] {
    ═════════════════════════════════════════════════════════════ */
 
 /* ── Los signos ───────────────────────────────────────────────
-   La barra `/ ""` fija el texto alternativo en vacio. Sin ella un
-   lector de pantalla lee "almohadilla almohadilla Cuatro cosas te
-   cuestan dinero". Con ella lee solo el titulo. */
+   Antes se inyectaban `## ` antes de cada h2, `### ` antes de cada h3,
+   `- ` antes de cada vineta y `> ` antes de cada cita, y Emphasis.tsx
+   pintaba los `**` a los lados de cada negrita. Entre seis y diez glifos
+   decorativos por parrafo compitiendo con las palabras, en gris por
+   debajo de AA.
 
-/* El H1 NO lleva ::before: el hero tiene titular de dos lineas y se pinta su
-   propio `# ` en cada una (HomeHero.tsx). Con la regla aqui salia `# #`. */
-.md h2::before { content: '## ' / ''; }
-.md h3::before { content: '### ' / ''; }
-.md h4::before { content: '#### ' / ''; }
+   Se fueron del TEXTO CORRIDO. Se quedan donde el signo es la etiqueta y
+   no ruido dentro de una frase: el `// ` de los rotulos de seccion y el
+   `~/` de la ruta del nav. Ahi es donde vive la identidad, y ninguno de
+   los dos esta dentro de algo que se lea de corrido.
 
-.md h2::before,
-.md h3::before,
-.md h4::before {
-  color: var(--md-syntax);
-  font-weight: 400;
-}
+   `.md-syntax` sobrevive porque es la clase que pinta esos dos. La barra
+   `/ ""` en el `content` fija el texto alternativo en vacio: sin ella un
+   lector de pantalla lee "barra barra" antes de cada rotulo. */
 
-/* Las vinetas se dibujan como el guion del markdown, no como disco.
-   `list-style: none` es obligatorio: sin el salen el punto Y el guion. */
+/* Las listas de los componentes de la portada dibujan su propio marcador
+   —un icono, una regla de 1px— asi que no quieren disco. */
 .md ul {
   list-style: none;
   padding-left: 0;
 }
 
-.md ul > li::before {
-  content: '- ' / '';
-  color: var(--md-syntax);
-}
+/* Pero el cuerpo de los 74 articulos si. `.geo-prose ul` ya pedia `disc` mas
+   arriba y perdia contra `.md ul` por orden, no por especificidad: mientras
+   existio `.md ul > li::before` no se notaba, porque el guion del markdown
+   hacia de marcador. Al quitarlo, las listas del corpus se quedaban sin nada. */
+.md .geo-prose ul { list-style: disc; }
+.md .geo-prose ol { list-style: decimal; }
+.md .geo-prose ul,
+.md .geo-prose ol { padding-left: 0; }
 
-.md blockquote::before {
-  content: '> ' / '';
-  color: var(--md-syntax);
-}
-
-/* El span que emite Emphasis.tsx a cada lado de una negrita. */
 .md-syntax {
   color: var(--md-syntax);
   font-weight: 400;
@@ -580,13 +587,21 @@ article[id] {
    pequeno en movil. */
 
 .md {
-  font-family: var(--font-mono), 'SF Mono', Menlo, monospace;
-  font-size: 13px;
-  line-height: 1.75;
+  /* Inter, que ya viene del <body>. Antes esta regla ponia TODO el marketing
+     en monoespaciado: portada, blog, problemas, soluciones y los 74 articulos
+     del corpus. El monoespaciado no varia de ancho, asi que la silueta de la
+     palabra desaparece y el ojo descodifica letra por letra. Es la razon por
+     la que el sitio costaba leerse, y por la que hacia falta partir palabras.
+
+     El mono no se fue del sitio: se fue del texto corrido. Sigue en la ruta
+     del nav, los rotulos //, las pastillas de resultado, la formula y el EOF,
+     que ahora lo declaran explicitamente en su marcado. */
+  font-size: 16px;
+  line-height: 1.65;
 }
 
 @media (min-width: 640px) {
-  .md { font-size: 15px; }
+  .md { font-size: 17px; }
 }
 
 .md p,
@@ -594,11 +609,16 @@ article[id] {
 .md dd,
 .md td,
 .md th {
-  overflow-wrap: anywhere;
+  /* `anywhere` partia palabras a media silaba. Hacia falta porque el mono
+     ocupa ~12% mas por caracter y en 390px se desbordaba; con Inter ya no.
+     `break-word` solo parte cuando la palabra de verdad no cabe. */
+  overflow-wrap: break-word;
 }
 
 .md-measure {
-  max-width: 68ch;
+  /* 68ch de monoespaciado eran ~41em: quince caracteres mas anchos que el
+     rango comodo de lectura. En Inter el ch es mas estrecho y 66 caen dentro. */
+  max-width: 66ch;
 }
 
 /* ── Textura CRT ──────────────────────────────────────────────
@@ -614,8 +634,8 @@ article[id] {
   pointer-events: none;
   background: repeating-linear-gradient(
     to bottom,
-    rgb(var(--foreground-rgb) / 0.022) 0px,
-    rgb(var(--foreground-rgb) / 0.022) 1px,
+    rgb(var(--foreground-rgb) / 0.012) 0px,
+    rgb(var(--foreground-rgb) / 0.012) 1px,
     transparent 1px,
     transparent 3px
   );
@@ -625,6 +645,9 @@ article[id] {
    La columna de virgulillas del hueco final de vi. */
 
 .md-eof {
+  /* Mono explicito: antes lo heredaba de `.md`. Es uno de los cinco
+     sitios donde el monoespaciado se queda, y ninguno es texto corrido. */
+  font-family: var(--font-mono), 'SF Mono', Menlo, monospace;
   color: var(--md-syntax);
   user-select: none;
 }

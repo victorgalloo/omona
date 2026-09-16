@@ -38,25 +38,25 @@ export function HomeHero() {
         <Reveal>
           {/* Era una pastilla con borde redondeado. En un archivo eso no
               existe: es una linea de comentario. */}
-          <p className="mb-6 text-[11px] uppercase tracking-[0.14em] text-muted">
+          <p className="mb-6 font-mono text-label uppercase tracking-[0.14em] text-muted">
             <span aria-hidden className="md-syntax">{'// '}</span>
             {h.eyebrow}
           </p>
 
-          <h1 className="text-[clamp(1.75rem,4.6vw,3rem)] font-semibold leading-[1.18] tracking-[-0.02em] text-foreground">
-            {/* El `# ` va en el marcado y no por ::before porque aqui hay dos
-                lineas y el pseudo-elemento solo puede preceder a la primera. */}
-            <span aria-hidden className="md-syntax">{'# '}</span>
+          {/* Los dos `# ` se retiraron con el resto de los signos del texto
+              corrido. El titular es lo primero que se lee y arrancaba con dos
+              glifos grises que no son la frase. `display-hero` sube el tope de
+              48px a 72px: el salto contra el cuerpo es lo que da jerarquia. */}
+          <h1 className="text-display-hero font-semibold text-foreground">
             {h.title}
             <br />
-            <span aria-hidden className="md-syntax">{'# '}</span>
             <span className="text-muted">{h.titleAccent}</span>
             <span aria-hidden className="md-caret" />
           </h1>
 
           <p
             id="hero-description"
-            className="mt-7 max-w-xl text-[17px] leading-relaxed text-muted-foreground sm:text-lg"
+            className="mt-7 max-w-xl text-[19px] leading-[1.6] text-muted-foreground sm:text-[21px]"
           >
             <Emphasis text={h.subtitle} />
           </p>
@@ -66,14 +66,14 @@ export function HomeHero() {
               href={CTA_PROYECTO}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 bg-foreground px-6 py-3.5 text-[15px] font-medium text-background transition-opacity hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2 bg-foreground px-6 py-3.5 font-medium text-background transition-opacity hover:opacity-90"
             >
               {h.ctaPrimary}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <Link
               href="#ciclo"
-              className="inline-flex items-center justify-center gap-2 border border-border px-6 py-3.5 text-[15px] font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+              className="inline-flex items-center justify-center gap-2 border border-border px-6 py-3.5 font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
             >
               {h.ctaSecondary}
             </Link>
@@ -115,7 +115,7 @@ function PlayCard() {
 
       <div className="space-y-5 p-4 sm:p-5">
         <div>
-          <p className="text-[15px] font-medium text-foreground">{c.contact}</p>
+          <p className="font-medium text-foreground">{c.contact}</p>
           <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{c.why}</p>
         </div>
 
