@@ -62,7 +62,7 @@ export function FlowField({ className = '' }: { className?: string }) {
     <svg
       aria-hidden
       viewBox={`0 0 ${ANCHO} ${ALTO}`}
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="none"
       className={`pointer-events-none ${className}`}
     >
       <g className="text-foreground">
@@ -72,17 +72,17 @@ export function FlowField({ className = '' }: { className?: string }) {
             d={t.d}
             fill="none"
             stroke="currentColor"
-            strokeWidth={1}
-            strokeDasharray="1 5"
-            opacity={0.22}
+            strokeWidth={1.2}
+            strokeDasharray="2 7"
+            opacity={0.45}
           />
         ))}
         {TRAZOS.map((t) => (
           <circle
             key={`p-${t.id}`}
-            r={1.8}
+            r={2.6}
             fill="currentColor"
-            opacity={0.65}
+            opacity={0.9}
             className="flow-particle"
             style={{
               offsetPath: `path("${t.d}")`,

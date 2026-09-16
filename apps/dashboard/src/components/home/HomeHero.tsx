@@ -40,7 +40,7 @@ export function HomeHero() {
           terminan en el mismo dato. Enmascarado hacia abajo para que no
           compita con el titular. */}
       <div aria-hidden className="bg-grid pointer-events-none absolute inset-0 -z-10" />
-      <FlowField className="absolute inset-0 -z-10 h-full w-full [mask-image:radial-gradient(ellipse_75%_65%_at_50%_45%,#000_20%,transparent_100%)]" />
+      <FlowField className="flow-mask absolute inset-0 -z-10 h-full w-full" />
 
       {/* Una sola columna. La tarjeta que iba a la derecha se retiro: decia
           lo mismo que la seccion de evaluaciones —una conversacion entra, un

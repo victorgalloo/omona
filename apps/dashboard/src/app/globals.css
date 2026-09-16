@@ -451,6 +451,15 @@ article[id] {
    la tangente de la curva, y un círculo girando no se ve rotar — se ve
    temblar. */
 
+/* La máscara vive aquí y no como clase arbitraria de Tailwind por la misma
+   razón que .bg-grid: hay que declarar `-webkit-mask-image` a la par, y
+   Tailwind no lo agrega. Es suave a propósito — atenúa hacia los bordes sin
+   apagar el centro. */
+.flow-mask {
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 100%);
+}
+
 .flow-particle {
   offset-rotate: 0deg;
   animation-name: recorrer;
@@ -466,7 +475,16 @@ article[id] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow-particle { animation: none; opacity: 0; }
+  /* La máscara vive aquí y no como clase arbitraria de Tailwind por la misma
+   razón que .bg-grid: hay que declarar `-webkit-mask-image` a la par, y
+   Tailwind no lo agrega. Es suave a propósito — atenúa hacia los bordes sin
+   apagar el centro. */
+.flow-mask {
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 100%);
+}
+
+.flow-particle { animation: none; opacity: 0; }
 }
 
 /* ── Barrido sobre la retícula ─────────────────────────────────
