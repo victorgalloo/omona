@@ -27,8 +27,8 @@
  * extra: blanco sobre negro, tinta sobre blanco.
  */
 
-const ANCHO = 1200;
-const ALTO = 600;
+const ANCHO = 1600;
+const ALTO = 560;
 const CENTRO = { x: ANCHO / 2, y: ALTO / 2 };
 
 /** Una curva desde el borde hasta el centro. `lado` es -1 izquierda, 1 derecha. */
@@ -46,7 +46,7 @@ function trazo(lado: -1 | 1, y: number) {
 const TRAZOS = Array.from({ length: 14 }, (_, i) => {
   const lado: -1 | 1 = i % 2 === 0 ? -1 : 1;
   const fila = Math.floor(i / 2);
-  const y = -90 + fila * ((ALTO + 180) / 6);
+  const y = -60 + fila * ((ALTO + 120) / 6);
   return {
     id: i,
     d: trazo(lado, y),
@@ -62,7 +62,7 @@ export function FlowField({ className = '' }: { className?: string }) {
     <svg
       aria-hidden
       viewBox={`0 0 ${ANCHO} ${ALTO}`}
-      preserveAspectRatio="none"
+      preserveAspectRatio="xMidYMid slice"
       className={`pointer-events-none ${className}`}
     >
       <g className="text-foreground">
