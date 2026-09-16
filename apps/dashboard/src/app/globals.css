@@ -97,7 +97,7 @@
 
 @layer base {
   /* ─────────────────────────────────────────────────────────────
-     PALETA FOSFORESCENTE + NEGRO BRILLOSO
+     PALETA MONOCROMA: NEGRO BRILLOSO + BLANCO
 
      Cada valor de aquí está verificado con WCAG por
      scripts/check-contrast.mjs, que falla el build si algún par
@@ -150,24 +150,24 @@
   /* ── Modo claro ─────────────────────────────────────────────── */
   :root,
   [data-theme='light'] {
-    --background: #F5F3EC;
+    --background: #FFFFFF;
     --foreground: #0A0A0A;
-    --background-rgb: 245 243 236;
+    --background-rgb: 255 255 255;
     --foreground-rgb: 10 10 10;
-    --surface: #EDEBE1;
-    --surface-2: #E4E1D5;
-    --surface-elevated: #FBFAF6;
-    --muted: #6B675C;
-    --muted-foreground: #4A4740;
+    --surface: #F6F6F6;
+    --surface-2: #EDEDED;
+    --surface-elevated: #FFFFFF;
+    --muted: #6B6B6B;
+    --muted-foreground: #464646;
 
     /* Hairline suave para UI densa (tablas, inputs del dashboard).
        Las reglas duras de marketing usan --border-strong. */
-    --border: rgba(10, 10, 10, 0.14);
-    --border-hover: rgba(10, 10, 10, 0.28);
+    --border: rgba(10, 10, 10, 0.16);
+    --border-hover: rgba(10, 10, 10, 0.32);
     --border-strong: #0A0A0A;
     /* Más tenue que --border: es la línea de la rejilla de la home, que se
        repite cada 64px. Al valor de --border la retícula compite con el texto. */
-    --hairline: rgba(10, 10, 10, 0.09);
+    --hairline: rgba(10, 10, 10, 0.10);
     /* Los dos signos que quedan: el `// ` de los rotulos y el `~/` del nav.
        Los `##`, `-` y `**` del texto corrido se retiraron. Decorativo a
        proposito: se pintan con ::before o van aria-hidden, o sea fuera del
@@ -176,8 +176,8 @@
 
     /* El acento semántico ("agente activo", éxito). En claro tiene que
        ser un verde legible sobre hueso; el lima solo vive sobre negro. */
-    --accent-green: #16704A;
-    --accent-link: #2B4BFF;
+    --accent-green: #0A0A0A;
+    --accent-link: #0A0A0A;
 
     --info: #2B4BFF;
     --info-muted: #DDE2FF;
@@ -199,24 +199,24 @@
   /* ── Modo oscuro ────────────────────────────────────────────── */
   [data-theme='dark'] {
     --background: #0A0A0A;
-    --foreground: #F5F3EC;
+    --foreground: #FFFFFF;
     --background-rgb: 10 10 10;
-    --foreground-rgb: 245 243 236;
+    --foreground-rgb: 255 255 255;
     --surface: #141414;
     --surface-2: #1C1C1C;
     --surface-elevated: #161616;
-    --muted: #8F8B80;
-    --muted-foreground: #B0ACA1;
+    --muted: #8C8C8C;
+    --muted-foreground: #B4B4B4;
 
-    --border: rgba(245, 243, 236, 0.14);
-    --border-hover: rgba(245, 243, 236, 0.30);
-    --border-strong: #F5F3EC;
-    --hairline: rgba(245, 243, 236, 0.10);
+    --border: rgba(255, 255, 255, 0.16);
+    --border-hover: rgba(255, 255, 255, 0.32);
+    --border-strong: #FFFFFF;
+    --hairline: rgba(255, 255, 255, 0.11);
     --md-syntax: #5A5A5A;
 
-    /* Sobre negro el acento sí puede ser fosforescente: 17.25:1 */
-    --accent-green: #D8FF3E;
-    --accent-link: #7C9BFF;
+    /* El acento ya no es color: es la tinta del tema. */
+    --accent-green: #FFFFFF;
+    --accent-link: #FFFFFF;
 
     --info: #7C9BFF;
     --info-muted: #101838;
@@ -298,8 +298,16 @@
 .geo-prose li { margin-bottom: 8px; line-height: 1.7; }
 .geo-prose ul { list-style: disc; }
 .geo-prose ol { list-style: decimal; }
-.geo-prose a { color: var(--accent-green); text-underline-offset: 3px; }
-.geo-prose a:hover { text-decoration: underline; }
+/* El enlace ya no se distingue por color —la paleta es monocroma— asi que
+   el subrayado deja de ser un efecto de hover y pasa a ser permanente. Sin
+   el, dentro de un parrafo un enlace era indistinguible del texto. */
+.geo-prose a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--border-hover);
+  text-underline-offset: 3px;
+}
+.geo-prose a:hover { text-decoration-color: currentColor; }
 .geo-prose strong { font-weight: 600; color: var(--foreground); }
 .geo-prose blockquote {
   border-left: 2px solid var(--terminal-green);

@@ -13,7 +13,7 @@ export function LandingCTA() {
   const t = useT();
 
   return (
-    <Band tone="orange" className="py-28 sm:py-40">
+    <Band tone="neutral" className="py-28 sm:py-40">
       <div className="max-w-4xl">
         <RevealText
           as="h2"

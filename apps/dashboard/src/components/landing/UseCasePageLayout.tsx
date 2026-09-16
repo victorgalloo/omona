@@ -214,7 +214,7 @@ export function UseCasePageLayout({
           >
             <Link
               href="/signup"
-              className="group inline-flex items-center justify-center gap-2.5 bg-neon-lime px-8 py-4 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center justify-center gap-2.5 bg-foreground px-8 py-4 text-base font-semibold text-background transition-transform hover:-translate-y-0.5"
             >
               <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               {t.useCaseLayout.heroCta}
@@ -351,7 +351,7 @@ export function UseCasePageLayout({
                 <div className="flex-1 border border-foreground/30 px-4 py-2.5">
                   <span className="text-sm text-muted">{t.useCaseLayout.inputPlaceholder}</span>
                 </div>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-neon-lime">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-foreground">
                   <ArrowRight className="w-4 h-4 text-background" />
                 </div>
               </div>
@@ -431,14 +431,14 @@ export function UseCasePageLayout({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/signup"
-                  className="group inline-flex items-center justify-center gap-2.5 bg-neon-lime px-8 py-4 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
+                  className="group inline-flex items-center justify-center gap-2.5 bg-foreground px-8 py-4 text-base font-semibold text-background transition-transform hover:-translate-y-0.5"
                 >
                   <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                   {t.useCaseLayout.ctaPrimary}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <a
-                  href="https://api.whatsapp.com/send?phone=529849800629"
+                  href="https://api.whatsapp.com/send?phone=524779083304"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 border border-foreground px-8 py-4 text-base font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"

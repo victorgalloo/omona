@@ -67,7 +67,7 @@ const jsonLdGraph = {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'sales',
-        url: 'https://api.whatsapp.com/send?phone=529849800629',
+        url: 'https://api.whatsapp.com/send?phone=524779083304',
         availableLanguage: ['Spanish'],
       },
     },

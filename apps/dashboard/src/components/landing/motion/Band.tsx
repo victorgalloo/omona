@@ -13,20 +13,21 @@ import { motion, useInView, useReducedMotion } from 'motion/react';
  * Cada tono trae su color de texto obligatorio y lo publica como variables CSS
  * (`--band-fg`, `--band-muted`, `--band-accent`) en su propio envoltorio. Los
  * hijos escriben `text-band`, `border-band` o `text-band-muted` y heredan el par
- * correcto: no hay forma de poner lima sobre hueso por accidente, que es
- * exactamente el error que la paleta fosforescente invita a cometer.
+ * correcto: no hay forma de poner un texto sobre un fondo que no le
+ * corresponde.
  *
- * `neutral` y `contrast` siguen al tema; los tonos de neón son pigmento fijo.
+ * Los dos siguen al tema: `neutral` es el tema tal cual y `contrast` su inverso.
  */
-export type BandTone =
-  | 'neutral'
-  | 'contrast'
-  | 'lime'
-  | 'yellow'
-  | 'cyan'
-  | 'magenta'
-  | 'orange'
-  | 'blue';
+/**
+ * Dos tonos, y a propósito no hay más.
+ *
+ * Hubo seis de neón —lima, amarillo, cyan, magenta, naranja, azul— y cinco
+ * secciones los usaban a sangre completa. Se retiraron: la identidad es negro
+ * brilloso y blanco, y el ritmo lo da la ALTERNANCIA entre los dos, no el
+ * color. Estrechar el tipo es lo que impide que vuelvan por accidente; si
+ * alguien escribe tone="lime" ahora no compila.
+ */
+export type BandTone = 'neutral' | 'contrast';
 
 /**
  * Cada tono publica el color en dos formas:
@@ -61,35 +62,10 @@ export const BAND_TONES: Record<BandTone, BandVars> = {
     '--band-bg-rgb': 'var(--foreground-rgb)',
     '--band-fg-rgb': 'var(--background-rgb)',
     '--band-muted': 'rgb(var(--background-rgb) / 0.62)',
-    '--band-accent': 'var(--neon-lime)',
-  },
-  // Pigmento fijo. Texto negro en todos: verificado en check-contrast.mjs.
-  lime: neon('--neon-lime'),
-  yellow: neon('--neon-yellow'),
-  cyan: neon('--neon-cyan'),
-  magenta: neon('--neon-magenta'),
-  orange: neon('--neon-orange'),
-  // La única banda de neón con texto blanco (5.91:1).
-  blue: {
-    '--band-bg': 'var(--electric-blue)',
-    '--band-fg': '#FFFFFF',
-    '--band-bg-rgb': 'var(--electric-blue-rgb)',
-    '--band-fg-rgb': '255 255 255',
-    '--band-muted': 'rgb(255 255 255 / 0.74)',
-    '--band-accent': 'var(--neon-lime)',
+    '--band-accent': 'var(--background)',
   },
 };
 
-function neon(token: string): BandVars {
-  return {
-    '--band-bg': `var(${token})`,
-    '--band-fg': 'var(--ink)',
-    '--band-bg-rgb': `var(${token}-rgb)`,
-    '--band-fg-rgb': 'var(--ink-rgb)',
-    '--band-muted': 'rgb(var(--ink-rgb) / 0.66)',
-    '--band-accent': 'var(--ink)',
-  };
-}
 
 export function Band({
   tone = 'neutral',

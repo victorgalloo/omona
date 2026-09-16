@@ -70,7 +70,7 @@ No tomamos proyectos que dependan de scraping no autorizado, de acceso a cuentas
 
 Cuéntanos el workflow, los sistemas involucrados y el estado del proyecto. Respondemos con una recomendación de siguiente paso, no con una demo genérica.
 
-[Incorporar capacidad de delivery](https://api.whatsapp.com/send?phone=529849800629&text=Hola.%20Somos%20una%20consultora%20y%20queremos%20incorporar%20capacidad%20de%20delivery.%0A%0AProyecto%3A%0ASistemas%20involucrados%3A%0AEstado%20del%20proyecto%3A%0AFecha%20objetivo%3A)
+[Incorporar capacidad de delivery](https://api.whatsapp.com/send?phone=524779083304&text=Hola.%20Somos%20una%20consultora%20y%20queremos%20incorporar%20capacidad%20de%20delivery.%0A%0AProyecto%3A%0ASistemas%20involucrados%3A%0AEstado%20del%20proyecto%3A%0AFecha%20objetivo%3A)
 
 ## D. **JSON-LD**
 

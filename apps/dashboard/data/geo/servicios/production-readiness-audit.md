@@ -62,7 +62,7 @@ Sin acceso al código ni a ejemplos reales, la auditoría se convierte en opini�
 
 Cuéntanos el workflow, los sistemas involucrados y el estado del proyecto. Respondemos con una recomendación de siguiente paso, no con una demo genérica.
 
-[Evaluar un proyecto](https://api.whatsapp.com/send?phone=529849800629&text=Hola.%20Quiero%20una%20auditoria%20de%20production%20readiness.%0A%0AWorkflow%3A%0ASistemas%20involucrados%3A%0AEstado%20del%20proyecto%3A%0AFecha%20objetivo%3A)
+[Evaluar un proyecto](https://api.whatsapp.com/send?phone=524779083304&text=Hola.%20Quiero%20una%20auditoria%20de%20production%20readiness.%0A%0AWorkflow%3A%0ASistemas%20involucrados%3A%0AEstado%20del%20proyecto%3A%0AFecha%20objetivo%3A)
 
 ## D. **JSON-LD**
 

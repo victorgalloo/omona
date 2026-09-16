@@ -51,7 +51,7 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
               </p>
               <Link
                 href="/signup"
-                className="group inline-flex items-center gap-2.5 bg-neon-lime px-8 py-4 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2.5 bg-foreground px-8 py-4 text-base font-semibold text-background transition-transform hover:-translate-y-0.5"
               >
                 {t.problems.ctaSignup}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

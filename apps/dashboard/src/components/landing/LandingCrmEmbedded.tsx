@@ -46,7 +46,7 @@ export function LandingCrmEmbedded() {
   const [active, setActive] = useState(0);
 
   return (
-    <Band tone="cyan" id="crm" className="py-24 sm:py-32">
+    <Band tone="neutral" id="crm" className="py-24 sm:py-32">
       {/* Header */}
       <div className="mb-14 max-w-3xl">
         <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">

@@ -25,7 +25,7 @@ export function LandingPriceAdvantage() {
   const { rows, ...copy } = t.priceAdvantage;
 
   return (
-    <Band tone="yellow" id="comparativa" className="py-24 sm:py-32">
+    <Band tone="contrast" id="comparativa" className="py-24 sm:py-32">
       <div className="mb-14 max-w-3xl">
         <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">
           {copy.sectionLabel}

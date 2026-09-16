@@ -22,7 +22,7 @@ export function LandingProof() {
   const testimonials = t.proof.testimonials;
 
   return (
-    <Band tone="lime" id="prueba" className="py-24 sm:py-32">
+    <Band tone="contrast" id="prueba" className="py-24 sm:py-32">
       <div className="max-w-3xl">
         <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">
           {t.proof.sectionLabel}

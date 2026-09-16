@@ -17,7 +17,7 @@ export function LandingGuarantee() {
   const reduced = useReducedMotion();
 
   return (
-    <Band tone="lime" id="garantia" className="py-28 sm:py-36">
+    <Band tone="contrast" id="garantia" className="py-28 sm:py-36">
       <p className="mb-4 font-mono text-sm uppercase tracking-[0.16em] text-band-muted">
         {t.guarantee.sectionLabel}
       </p>

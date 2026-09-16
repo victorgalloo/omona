@@ -34,10 +34,13 @@ export function Terminal({
       {/* La barra de titulo del terminal. Los tres puntos son los de macOS y
           ya existen como tokens; van aria-hidden porque no dicen nada. */}
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+        {/* Los tres puntos del semaforo de macOS iban en rojo, amarillo y
+            verde. La identidad es monocroma, asi que van en contorno: la forma
+            los sigue leyendo como ventana de terminal sin meter color. */}
         <span aria-hidden className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-terminal-red" />
-          <span className="h-2.5 w-2.5 rounded-full bg-terminal-yellow" />
-          <span className="h-2.5 w-2.5 rounded-full bg-terminal-green" />
+          <span className="h-2.5 w-2.5 rounded-full border border-border" />
+          <span className="h-2.5 w-2.5 rounded-full border border-border" />
+          <span className="h-2.5 w-2.5 rounded-full border border-border" />
         </span>
         <span className="ml-1 font-mono text-[11px] text-muted">evaluación</span>
       </div>
@@ -53,14 +56,14 @@ export function Terminal({
             <li key={caso.nombre} className="flex items-baseline gap-3">
               <span
                 aria-hidden
-                className={caso.ok ? 'text-accent-green' : 'text-warning'}
+                className={caso.ok ? 'text-foreground' : 'text-muted'}
               >
                 {caso.marca}
               </span>
               <span className="min-w-0 flex-1 truncate text-muted-foreground">
                 {caso.nombre}
               </span>
-              <span className={`tabular-nums ${caso.ok ? 'text-muted' : 'text-warning'}`}>
+              <span className={`tabular-nums ${caso.ok ? 'text-muted' : 'font-medium text-foreground'}`}>
                 {caso.conteo}
               </span>
             </li>
