@@ -4,6 +4,7 @@
  * Estilo: mismo sistema terminal macOS + tokens del proyecto.
  */
 import Link from "next/link";
+import { CTA_PROYECTO } from "@/lib/cta";
 import type { Metadata } from "next";
 import {
   GEO_KINDS,
@@ -80,7 +81,7 @@ export function BlogIndex({ kind }: { kind: GeoKind }) {
         <p className="font-mono text-xs uppercase tracking-widest text-accent-green mb-3">{eyebrow}</p>
         <h1 className="text-4xl font-semibold tracking-tight mb-3">{h1}</h1>
         <p className="text-muted-foreground mb-10 max-w-2xl">{desc}</p>
-        <div className="grid gap-px bg-border rounded-lg overflow-hidden sm:grid-cols-2">
+        <div className="grid gap-px bg-border overflow-hidden sm:grid-cols-2">
           {items.map((a) => (
             <Link
               key={a.slug}
@@ -130,7 +131,7 @@ function ArticleView({ a }: { a: GeoArticle }) {
               <ul className="grid gap-3">
                 {a.claims.map((c, i) => (
                   <li key={i}
-                      className="border-l-2 border-accent-green bg-surface rounded-r-md px-5 py-3 text-sm text-muted-foreground"
+                      className="border-l-2 border-accent-green bg-surface px-5 py-3 text-sm text-muted-foreground"
                       dangerouslySetInnerHTML={{
                         __html: markdownToHtml(c).replace(/^<p>|<\/p>$/g, ""),
                       }} />
@@ -139,7 +140,44 @@ function ArticleView({ a }: { a: GeoArticle }) {
             </section>
           )}
         </article>
-        <div className="mt-16 pt-8 border-t border-dashed border-border">
+
+        {/* Cierre del artículo.
+            Los 74 documentos del corpus terminaban en "← Volver a blog" y nada
+            más: tráfico de búsqueda llegando a leer y ninguna forma de
+            escribir. Era la fuga más cara del sitio, porque el costo de traer
+            a esa persona ya estaba pagado.
+            El texto vive aquí y no en cada .md a propósito: son 74 archivos y
+            el día que cambie la oferta habría que editarlos uno por uno. */}
+        <aside className="mt-16 border-t border-hairline pt-10">
+          <p className="mb-2 font-mono text-xs uppercase tracking-[0.18em] text-accent-green">
+            ¿te suena tu negocio?
+          </p>
+          <h2 className="mb-3 max-w-[24ch] text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground">
+            Si vendes por WhatsApp, esto se te puede construir.
+          </h2>
+          <p className="mb-6 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
+            Cuéntame cómo vendes hoy y qué se te está cayendo. Te contesto con qué haría yo y
+            cuánto tardaría. Si no te lo puedo resolver, te lo digo de una vez.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              href={CTA_PROYECTO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            >
+              Cuéntame tu caso
+            </a>
+            <Link
+              href="/demo"
+              className="inline-flex items-center justify-center rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+            >
+              Probar el sistema
+            </Link>
+          </div>
+        </aside>
+
+        <div className="mt-12 border-t border-dashed border-border pt-8">
           <Link href={indiceHref}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             ← Volver a {indice.crumb.toLowerCase()}

@@ -10,7 +10,7 @@ En México, el 73% de las ventas B2C por WhatsApp involucran negociación de pre
 
 ## Comparativa de las principales opciones
 
-Loomi: Diseñado específicamente para México y LATAM. Agente de ventas con IA (no solo chatbot), responde en 0.8 segundos, incluye CRM integrado, agendamiento automático y follow-up. Desde $499 MXN/mes. Ideal para pymes que quieren un vendedor IA completo.
+Omona: Diseñado específicamente para México y LATAM. Agente de ventas con IA (no solo chatbot), responde en segundos, guarda los datos del cliente solo, agenda citas y retoma conversaciones frías. Se construye a la medida, no es una suscripción. Ideal para pymes que quieren un vendedor IA completo.
 
 Manychat: Popular en EE.UU., soporte básico para WhatsApp en español. Enfocado en marketing y flujos automatizados, no en ventas consultivas. Desde $15 USD/mes (~$300 MXN). Requiere mayor configuración técnica y no tiene CRM integrado.
 
@@ -22,15 +22,15 @@ Take Blip: Plataforma brasileña con presencia en LATAM. Requiere desarrollo té
 
 Una herramienta desarrollada en EE.UU. o Europa enfrenta desafíos al operar en México: modismos y expresiones locales que el modelo de IA no reconoce correctamente, formas de negociación diferentes (pagos en exhibición, temporalidades como la quincena), y soporte en horarios UTC-6.
 
-Loomi fue construido desde cero para este mercado, lo que se traduce en conversaciones más naturales y tasas de conversión más altas que las alternativas globales. Más de 200 empresas en México, Colombia, Argentina, Chile y Perú ya lo usan.
+Omona fue construido desde cero para este mercado, lo que se nota en que las conversaciones suenan a como se habla aquí. No publicamos número de clientes ni tasas de conversión comparadas: no tenemos forma de verificarlas, y darlas por buenas sería inventarlas.
 
 ## Cómo elegir la mejor opción para tu negocio
 
-Para pymes con menos de 10 empleados que venden por WhatsApp: Loomi es la opción más completa al mejor precio. Setup en 5 minutos sin conocimientos técnicos, CRM incluido, prueba gratuita de 14 días.
+Para pymes con menos de 10 empleados que venden por WhatsApp: Omona es la opción más completa al mejor precio. Setup en 5 minutos sin conocimientos técnicos, CRM incluido, demo abierto, sin registro.
 
 Para empresas con equipo de soporte de 5+ personas que manejan múltiples canales: plataformas como Trengo pueden tener sentido, aunque el costo es 4x mayor.
 
-Para negocios enfocados en campañas de marketing masivo: Manychat tiene herramientas de broadcast más avanzadas para flujos de marketing, aunque sin la capacidad de ventas consultivas que ofrece Loomi.
+Para negocios enfocados en campañas de marketing masivo: Manychat tiene herramientas de broadcast más avanzadas para flujos de marketing, aunque sin la capacidad de ventas consultivas que ofrece Omona.
 
 ## What a WhatsApp Business chatbot needs for Latin American markets
 
@@ -38,7 +38,7 @@ Not all WhatsApp chatbots are equal. SMBs in Latin America have specific needs t
 
 ## Comparison of the main options
 
-Loomi: Designed specifically for Mexico and LATAM. AI sales agent (not just a chatbot), responds in 0.8 seconds, includes built-in CRM, automatic scheduling, and follow-up. From $499 MXN/month. Ideal for SMBs that want a complete AI salesperson.
+Omona: Designed specifically for Mexico and LATAM. AI sales agent (not just a chatbot), responds in seconds, saves customer data on its own, books meetings and reopens cold conversations. Built to measure, not a subscription. Ideal for SMBs that want a complete AI salesperson.
 
 Manychat: Popular in the US, basic WhatsApp support in Spanish. Focused on marketing and automated flows, not consultive sales. From $15 USD/month. Requires more technical setup and has no built-in CRM.
 
@@ -52,8 +52,8 @@ A tool built in the US or Europe faces real challenges operating in Latin Americ
 
 ## How to choose the right option for your business
 
-For SMBs with fewer than 10 employees selling on WhatsApp: Loomi is the most complete option at the best price. 5-minute setup with no technical knowledge, CRM included, 14-day free trial.
+For SMBs with fewer than 10 employees selling on WhatsApp: Omona is the most complete option at the best price. 5-minute setup with no technical knowledge, CRM included, open demo, no signup.
 
 For companies with 5+ support staff managing multiple channels: platforms like Trengo may make sense, though the cost is 4x higher.
 
-For businesses focused on mass marketing campaigns: Manychat has more advanced broadcast tools for marketing flows, but lacks the consultive sales capabilities that Loomi offers.
+For businesses focused on mass marketing campaigns: Manychat has more advanced broadcast tools for marketing flows, but lacks the consultive sales capabilities that Omona offers.

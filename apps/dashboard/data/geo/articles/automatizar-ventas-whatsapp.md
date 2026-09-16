@@ -16,9 +16,9 @@ Las capacidades clave de un agente IA para ventas son: responder en menos de 1 s
 
 ## Beneficios medibles para pymes en México
 
-Las pymes que implementan automatización de ventas por WhatsApp reportan resultados consistentes: atención al 100% de los leads vs. el 50% promedio sin automatización, reducción del tiempo de respuesta de horas a menos de 1 segundo, incremento del 3x en demos agendadas, y reducción del 78% en no-shows gracias a recordatorios automáticos.
+Las pymes que implementan automatización de ventas por WhatsApp reportan resultados consistentes: ningún mensaje se queda sin contestar, el tiempo de respuesta baja de horas a segundos, y las citas se confirman antes de la hora. Las cifras concretas dependen de tu volumen y de tu ticket, así que publicar promedios de la industria sería inventarlos gracias a recordatorios automáticos.
 
-El ROI promedio es de 8x en los primeros 3 meses. Una pyme que invierte en un agente IA puede convertir leads que antes se perdían, con un costo de adquisición dramáticamente menor al de contratar un vendedor adicional.
+El retorno depende del volumen de mensajes y del ticket, así que cualquier múltiplo publicado sería inventado. Lo que sí se puede afirmar: una pyme que invierte en un agente IA puede convertir leads que antes se perdían, con un costo de adquisición dramáticamente menor al de contratar un vendedor adicional.
 
 ## Cómo implementar la automatización en 3 pasos
 
@@ -32,7 +32,7 @@ Paso 3: Conecta tu WhatsApp Business. Las mejores herramientas permiten la conex
 
 Al evaluar opciones, considera estos criterios esenciales: respuesta en español nativo con contexto cultural LATAM, CRM integrado para no usar herramientas separadas, precio accesible para pymes, configuración rápida sin programación, y soporte en español.
 
-Loomi cumple todos estos criterios. Es la única plataforma diseñada específicamente para el mercado de México y LATAM, con respuesta en 0.8 segundos, CRM integrado y configuración en menos de 5 minutos desde $499 MXN/mes con 14 días de prueba gratuita en loomi.lat.
+Omona cumple todos estos criterios. Está construido para México y LATAM: responde en segundos, guarda los datos del cliente solo y se conecta a tu número actual con un código QR. No es una suscripción: se construye a la medida de cada negocio. Puedes probarlo sin registro en omona.tech/demo.
 
 ## Why WhatsApp is the most important sales channel in Latin America
 
@@ -46,9 +46,9 @@ An AI sales agent for WhatsApp is fundamentally different from a traditional cha
 
 ## Measurable results for SMBs
 
-SMBs that implement WhatsApp sales automation report consistent results: handling 100% of leads vs. the 50% average without automation, reducing response time from hours to under 1 second, tripling booked demos (3x), and reducing no-shows by 78% through automatic reminders.
+SMBs that implement WhatsApp sales automation report consistent results: no message goes unanswered, response time drops from hours to seconds, and appointments get confirmed before the hour. The concrete numbers depend on your volume and deal size, so publishing industry averages would mean inventing them.
 
-The average ROI is 8x in the first 3 months. An SMB investing in an AI agent converts leads that would have been lost, at a dramatically lower acquisition cost than hiring an additional salesperson.
+Return depends on message volume and deal size, so any published multiple would be made up. What can be said: an SMB investing in an AI agent converts leads that would have been lost, at a dramatically lower acquisition cost than hiring an additional salesperson.
 
 ## How to implement WhatsApp automation in 3 steps
 

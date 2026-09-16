@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Comparativas",
   description:
     "Omona frente a Cliengo, ManyChat, Wati y Respond.io: comparativas técnicas honestas.",
-  alternates: { canonical: "https://omona.tech/comparativas/" },
+  alternates: { canonical: "https://omona.tech/comparativas" },
 };
 
 export default function ComparativasPage() {
