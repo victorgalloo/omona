@@ -6,21 +6,23 @@
  * páginas de servicio— y cuando el botón decía "Empezar gratis" apuntando a
  * /signup, cambiar la oferta significaba encontrarlos todos.
  *
- * El mensaje precargado hace de formulario de calificación. Pide las tres
- * cosas sin las cuales no se puede recomendar un siguiente paso: qué proceso
- * se quiere automatizar, contra qué sistemas, y en qué estado está hoy. Un
- * "Hola, quiero información" obliga a gastar la primera respuesta en
- * preguntarlas.
+ * El mensaje precargado hace de filtro. Pide las tres cosas sin las cuales no
+ * se puede contestar nada útil: a qué se dedica, qué se le está cayendo y
+ * cuánto volumen maneja. Un "Hola, quiero información" obliga a gastar la
+ * primera respuesta en preguntarlas.
+ *
+ * Está escrito como lo escribiría el cliente, no como lo pediría un
+ * consultor: "qué se me está cayendo", no "describe tu proceso comercial".
  */
 export const WHATSAPP_NUMERO = '529849800629';
 
 export const CTA_PROYECTO = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(
   [
-    'Hola, quiero evaluar un proyecto.',
+    'Hola, te escribo por lo de WhatsApp.',
     '',
-    'Workflow:',
-    'Sistemas involucrados:',
-    'Estado del proyecto:',
+    'A qué se dedica mi negocio:',
+    'Qué se me está cayendo:',
+    'Cuántos mensajes me llegan al día:',
   ].join('\n'),
 )}`;
 

@@ -2,15 +2,15 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'Qué construimos',
-    engine: 'Servicios',
-    process: 'Proceso',
-    pricing: 'Cómo trabajamos',
+    features: 'Qué construyo',
+    engine: 'Cuánto tarda',
+    process: 'Preguntas',
+    pricing: 'Cómo trabajo',
     blog: 'Blog',
     useCases: 'Casos de uso',
     demo: 'Demo',
     login: 'Iniciar sesión',
-    signup: 'Evaluar un proyecto',
+    signup: 'Cuéntame tu caso',
   },
   hero: {
     // Estas cuatro ya no se renderizan: el héroe se quedó con titular,
@@ -106,27 +106,14 @@ export const es = {
     ],
   },
   howItWorks: {
-    sectionLabel: 'proceso_',
-    heading: 'Cuatro fases, y la última es irnos',
-    subheading:
-      'El objetivo no es quedarnos operando tu proyecto. **Es dejarlo funcionando en manos de tu equipo.**',
+    sectionLabel: 'cómo trabajo_',
+    heading: 'Cuatro pasos, y el último es soltarlo',
+    subheading: 'No me quedo operando tu negocio. **Te lo dejo andando y me hago a un lado.**',
     steps: [
-      {
-        title: 'Descubrir',
-        detail: 'El proceso real, con sus excepciones. Qué se automatiza y qué no.',
-      },
-      {
-        title: 'Construir',
-        detail: 'Integraciones, permisos, aprobaciones y manejo de errores.',
-      },
-      {
-        title: 'Evaluar',
-        detail: 'Casos reales y casos límite, antes de que lo use el cliente.',
-      },
-      {
-        title: 'Transferir',
-        detail: 'Documentación, accesos y una persona tuya capaz de mantenerlo.',
-      },
+      { title: 'Te escucho', detail: 'Cómo vendes hoy, de verdad. Con sus mañas.' },
+      { title: 'Lo construyo', detail: 'Empezando por lo que más te duele.' },
+      { title: 'Lo probamos', detail: 'Con tus clientes reales, tú revisando.' },
+      { title: 'Te lo entrego', detail: 'A tu nombre, con alguien tuyo entrenado.' },
     ],
   },
   /**
@@ -182,18 +169,18 @@ export const es = {
    * técnico realmente quiere saber antes de la primera llamada.
    */
   guarantee: {
-    sectionLabel: 'cómo evaluamos_',
-    heading: 'Antes de entrar, decidimos si podemos entregarlo',
+    sectionLabel: 'antes de empezar_',
+    heading: 'Te digo si tiene arreglo antes de cobrarte',
     body:
-      'No aceptamos todos los proyectos. Revisamos alcance, sistemas y quién decide del lado del cliente. **Si vemos que no lo podemos entregar bien, lo decimos en la primera conversación** — no en la semana cuatro.',
-    conditionsLabel: 'Qué miramos',
+      'No todos los casos los resuelvo yo. Reviso cómo vendes, qué sistemas usas y quién decide. **Si veo que no te lo puedo dejar bien, te lo digo en la primera plática** — no a medio proyecto.',
+    conditionsLabel: 'Qué necesito de tu lado',
     conditions: [
-      'Que exista un proceso real, con alguien que pueda decidir cómo se hace',
-      'Que los sistemas a integrar tengan API, acceso o una ruta viable',
-      'Que haya fecha y alcance, no una exploración abierta',
-      'Que tu equipo pueda recibir el handoff al cerrar',
+      'Que ya te lleguen mensajes de clientes',
+      'Alguien que pueda decidir cómo se hace el trabajo',
+      'Acceso a tu WhatsApp y a donde guardas tus clientes',
+      'Una persona tuya que reciba el sistema al final',
     ],
-    note: 'Las cuatro son condiciones para que el proyecto salga bien, no letra chica.',
+    note: 'No es letra chica: sin esas cuatro, el trabajo no sale bien.',
   },
   useCases: {
     sectionLabel: 'use_cases_',
@@ -236,12 +223,12 @@ export const es = {
     ],
   },
   cta: {
-    heading: 'Cuéntanos el proyecto',
+    heading: 'Cuéntame qué se te está cayendo',
     subheading:
-      'El workflow, los sistemas involucrados y en qué estado está. **Respondemos con una recomendación de siguiente paso, no con una demo genérica.**',
-    primary: 'Evaluar un proyecto',
-    secondary: 'Ver los servicios',
-    trust: 'si no es para nosotros, te lo decimos en la primera respuesta',
+      'Cómo vendes hoy y qué se te pierde. **Te contesto con qué haría yo y cuánto tardaría.**',
+    primary: 'Escríbeme por WhatsApp',
+    secondary: 'Probar el sistema',
+    trust: 'si no te lo puedo resolver, te lo digo de una vez',
   },
   footer: {
     login: 'Iniciar sesión',
@@ -537,36 +524,36 @@ export const es = {
   },
   faq: {
     sectionLabel: 'preguntas_',
-    heading: 'Lo que preguntan antes de la primera llamada',
-    subheading: 'Las respuestas honestas, incluidas las incómodas.',
+    heading: 'Lo que todos preguntan',
+    subheading: 'Respuestas cortas y honestas.',
     items: [
       {
-        q: '¿Trabajan bajo mi marca, frente a mi cliente?',
-        a: 'Sí, y es la modalidad más pedida. Tú conservas la relación comercial y el crédito; nosotros no aparecemos. Firmamos lo que haga falta para eso. También trabajamos junto a tu equipo con nuestro nombre a la vista, si prefieres presentarlo como una alianza.',
+        q: '¿Me van a bloquear el número?',
+        a: 'No, si lo usas para contestar a quien te escribe. Se conecta con un código QR, igual que WhatsApp Web: tu mismo número, sin trámites con Meta. Lo que sí bloquea WhatsApp es mandar mensajes masivos a gente que no te buscó, y eso no lo hago.',
       },
       {
-        q: '¿Tienen casos de éxito o clientes que pueda ver?',
-        a: 'No publicables. La firma es nueva y presentar testimonios, logos o métricas que no podemos sostener sería inventarlos. Lo que sí es verificable: Omona construyó y opera en producción su propio sistema con Claude — multi-tenant con aislamiento por organización, transcripción de audio, escalamiento a humano, webhooks firmados y despliegue continuo. Todo el corpus de este sitio lo documenta. Es evidencia de que sabemos llevar un agente de prototipo a operación.',
+        q: '¿Va a sonar a robot?',
+        a: 'Júzgalo tú. Ve al demo y ponle las preguntas que quieras antes de darme un solo dato. Si ahí te suena a robot, te va a sonar a robot con tus clientes.',
       },
       {
-        q: '¿Qué pasa si el proyecto ya está fallando en producción?',
-        a: 'Ese es Rescue & Hardening. Primero estabilizamos: entender por qué falla, contener el daño y hacer visibles los errores. Después viene el endurecimiento. No reescribimos desde cero salvo que sea más barato que arreglarlo, y eso lo decimos con argumentos, no por preferencia.',
+        q: '¿Puedo contestar yo cuando quiera?',
+        a: 'Sí, chat por chat. Tomas la conversación y el sistema se calla en esa, y sigue atendiendo las demás. Tu número nunca deja de ser tuyo.',
       },
       {
         q: '¿Cuánto cuesta?',
-        a: 'No publicamos tarifas porque dependen del alcance, de cuántos sistemas hay que integrar y de en qué estado está lo que ya existe. Cotizar antes de saber eso obliga a inventar un número. Cuéntanos el workflow y el estado del proyecto y respondemos con una recomendación de siguiente paso y un rango.',
+        a: 'Depende de qué tanto hay que construir y con qué sistemas conectarlo. Darte un número antes de saberlo sería inventarlo. Cuéntame tu caso y te digo qué haría y cuánto sale, sin costo.',
       },
       {
-        q: '¿Nos quedamos dependiendo de ustedes?',
-        a: 'No, y está diseñado para que no pase. Los accesos y las credenciales quedan a nombre tuyo o de tu cliente, nunca en cuentas nuestras. Al cerrar entregamos documentación, pruebas ejecutables y una sesión de handoff con alguien de tu equipo. Si nos vamos, nada se apaga.',
+        q: '¿Cuánto tarda?',
+        a: 'Entre una y cuatro semanas, según qué se construya. Conectar tu número son cinco minutos; lo que toma tiempo es enseñarle tu catálogo, tus precios y cómo vendes tú.',
       },
       {
-        q: '¿Solo trabajan con Claude?',
-        a: 'Es donde somos buenos y donde tenemos producto propio en producción, así que es lo que ofrecemos. Si tu proyecto está atado a otro proveedor, lo honesto es decirte que busques a alguien especializado en eso. No cobramos por aprender sobre tu presupuesto.',
+        q: '¿Tengo que cambiar de sistema?',
+        a: 'No. Trabajo sobre lo que ya usas, aunque esté a medias. Cambiar de herramienta y ordenar la venta al mismo tiempo son dos broncas peleándose, y normalmente pierden las dos.',
       },
       {
-        q: '¿Qué necesitan de mi lado para empezar?',
-        a: 'Una persona que pueda decidir cómo se hace el proceso, accesos a los sistemas a integrar, y una fecha real. Sin la primera el proyecto se atasca en preguntas que nadie contesta; sin la segunda no hay forma de construir; sin la tercera no es un proyecto, es una exploración.',
+        q: '¿Y si me arrepiento o me quiero ir?',
+        a: 'Todo queda a tu nombre: tu número, tus cuentas, tu información. Te la puedes llevar cuando quieras. No hay nada que se apague porque yo deje de estar.',
       },
     ],
   },
@@ -670,354 +657,305 @@ export const es = {
   /**
    * ══ LA HOME ═════════════════════════════════════════════════
    *
-   * Reposicionamiento: de PRODUCTO a SERVICIO.
+   * Tercera versión, y la primera escrita sobre el negocio real.
    *
-   * Lo que vendía esta página —inteligencia comercial sobre WhatsApp— dejó de
-   * ser la oferta. Ahora es la evidencia. El comprador ya no es un director
-   * comercial que quiere llenar su CRM, sino un AI Practice Lead que ya vendió
-   * un proyecto de Claude y no tiene con quién entregarlo.
+   * Las dos anteriores fallaron por el mismo motivo: describían a un cliente
+   * que no existe. La primera vendía una plataforma por suscripción; la
+   * segunda, delivery técnico para consultoras que subcontratan. El negocio de
+   * verdad es más simple: **le construyo sistemas a pymes que venden por
+   * WhatsApp, directo y a la medida.**
    *
-   * El corpus viejo (74 documentos) se queda publicado a propósito. No se
-   * esconde ni se contradice: se le cambia el rol. Deja de decir "esto es lo
-   * que vendemos" y pasa a decir "esto es lo que construimos y operamos" — que
-   * es la única prueba verificable que tenemos, porque docs/posicionamiento.md
-   * prohíbe inventar testimonios, logos, métricas y casos de éxito.
+   * Cuatro reglas de escritura, y son duras:
    *
-   * Los slots de sección no cambiaron de forma, sólo de contenido, para no
-   * tocar los componentes de `components/home/*`.
+   *  1. CERO inglés. Ni "workflow", ni "handoff", ni "human-in-the-loop". La
+   *     versión anterior tenía 52 términos de jerga en 2,025 palabras —uno
+   *     cada 39— y el propio dueño del negocio no la entendía.
+   *  2. Frases de menos de 12 palabras.
+   *  3. Un ancla en negrita por bloque, para poder escanear sin leer.
+   *  4. Si una frase no la diría el dueño de una ferretería, no va.
+   *
+   * Y el tono lo decide un dato: hoy no llega nadie por el sitio. Así que no
+   * le habla a alguien que ya nos conoce y viene a confirmar. Le habla a un
+   * desconocido que tiene diez segundos.
    */
   home: {
     hero: {
-      eyebrow: 'socio técnico de delivery · claude · latam',
-      // No dice qué somos: dice el momento en el que el comprador está.
-      // Vender el piloto ya lo hizo él; lo que no sabe es cómo entregarlo.
-      title: 'Vender el piloto fue la parte fácil.',
-      titleAccent: 'Operarlo es otra cosa.',
+      eyebrow: 'para negocios que venden por whatsapp',
+      title: 'Vendes por WhatsApp.',
+      titleAccent: 'Y ahí se te pierde.',
       subtitle:
-        'Llevamos automatizaciones Claude de prototipo a producción. Integraciones, permisos, evaluaciones, manejo de errores y transferencia a tu equipo. Bajo tu marca, o junto a él.',
-      ctaPrimary: 'Evaluar un proyecto',
-      ctaSecondary: 'Ver cómo trabajamos',
-      note: 'nos cuentas el workflow y los sistemas · respondemos con un siguiente paso',
+        'Te construyo el sistema que lo arregla. **Hecho para tu negocio**, no una app que rentas.',
+      ctaPrimary: 'Cuéntame tu caso',
+      ctaSecondary: 'Ver qué construyo',
+      note: 'me escribes por WhatsApp · te digo si tiene arreglo',
       /**
-       * La tarjeta dejó de ser una jugada de seguimiento y pasó a ser un
-       * hallazgo de Production Readiness Audit — que es la oferta de entrada.
-       * Enseña el entregable, no una promesa.
+       * La tarjeta muestra una conversación real y lo que el sistema hizo
+       * con ella. Nada de diagramas: es lo que le pasa a su negocio, escrito
+       * como se lo contaría a un amigo.
        */
       card: {
-        label: 'revisión_de_producción',
-        cohort: 'Bloqueante',
-        elapsed: 'hallazgo 3 de 11',
-        contact: 'Agente de cotizaciones · integración con ERP',
-        why: 'El agente escribe en el ERP sin confirmación. Un error de extracción genera una orden real, y hoy no hay forma de revertirla.',
-        messageLabel: 'recomendación',
+        label: 'un_martes_cualquiera',
+        cohort: 'Cliente nuevo',
+        elapsed: '11:40 p.m.',
+        contact: 'Ferretería · WhatsApp del negocio',
+        why: '"¿Tienen compresores de 5 HP? Los necesito para el jueves."',
+        messageLabel: 'contestó solo',
         message:
-          'Meter aprobación humana antes de escribir. El agente propone la orden, una persona la confirma. Se registra quién aprobó y con qué datos.',
-        checksLabel: 'lo que confirma tu equipo',
-        checks: ['Quién tiene autoridad para aprobar', 'Qué monto puede ir sin revisión'],
-        valueLabel: 'riesgo',
-        value: 'Alto',
-        timeLabel: 'esfuerzo',
-        time: '2 días',
-        actionPrimary: 'Aceptado',
-        actionSecondary: 'Aplazar',
+          'Sí, el de 5 HP trifásico está en $18,400 + IVA. Entrega en 48 horas. ¿Es para uso continuo o de rato?',
+        checksLabel: 'y esto quedó guardado',
+        checks: ['Quiere compresor · lo necesita el jueves', 'Siguiente paso: pasar cotización'],
+        valueLabel: 'tardó',
+        value: '8 segundos',
+        timeLabel: 'tú',
+        time: 'dormido',
+        actionPrimary: 'Listo',
+        actionSecondary: 'Ver chat',
       },
     },
 
-    /**
-     * El problema. Son los modos de falla reales de un agente que pasó de
-     * demo a operación — no una lista de miedos genéricos. Cada uno es algo
-     * que el comprador ya vivió o está a punto de vivir.
-     */
+    /** Los cuatro problemas, en las palabras del dueño. Nada más. */
     leak: {
       label: 'el problema_',
-      title: 'La demo funcionó. La operación es otro sistema.',
-      body:
-        'Un prototipo contesta bien el caso feliz. Eso basta para cerrar la venta. **Lo que rompe el proyecto es todo lo demás**, y casi nunca está presupuestado.',
+      title: 'Cuatro cosas te están costando dinero',
+      body: 'Ninguna es culpa de nadie. **Pasan porque no hay sistema, solo memoria.**',
       items: [
         {
-          title: 'Falla y nadie se entera',
-          detail:
-            'Sin logs ni alertas, el error lo reporta el cliente. Para entonces lleva días ocurriendo.',
+          title: 'No das abasto',
+          detail: 'Llegan veinte mensajes juntos. Contestas los que alcanzas. **El resto se va con otro.**',
         },
         {
-          title: 'Actúa sin permiso',
-          detail:
-            'El agente escribe en sistemas reales. **Nadie definió qué puede hacer solo y qué necesita aprobación.**',
+          title: 'Se pierde el seguimiento',
+          detail: 'Cotizaste y nadie volvió a marcar. **La venta no se cayó: se olvidó.**',
         },
         {
-          title: 'Nadie sabe si mejoró',
-          detail:
-            'No hay evaluaciones con datos reales. Cada cambio es una apuesta y el equipo lo prueba a ojo.',
+          title: 'Capturas todo a mano',
+          detail: 'Alguien pasa horas copiando datos de un lado a otro. **Eso no es trabajo, es desgaste.**',
         },
         {
-          title: 'El costo se dispara',
-          detail:
-            'Funciona con diez casos. Con mil, la factura y la latencia dejan de tener sentido.',
+          title: 'No sabes qué está pasando',
+          detail: 'Preguntas cómo vamos y nadie tiene el número. **Hay que buscarlo.**',
         },
       ],
-      quote: 'Un prototipo demuestra que se puede. Una operación aguanta que se use.',
+      quote: 'Tu negocio no falla por falta de ganas. Falla porque todo vive en la cabeza de alguien.',
     },
 
-    /**
-     * Los cuatro pilares de lo que hace falta para que una automatización
-     * aguante producción. Es el reemplazo del ciclo de venta, y ocupa el
-     * mismo componente sin tocarlo.
-     */
+    /** Lo que construyo, una respuesta por problema. */
     cycle: {
-      label: 'qué construimos_',
-      title: 'Cuatro cosas separan un prototipo de una operación',
-      subtitle:
-        'Ninguna es exótica. **Todas se saltan cuando hay prisa por enseñar algo**, y todas se cobran después, en producción y con el cliente mirando.',
-      outputLabel: 'queda',
+      label: 'qué construyo_',
+      title: 'Una solución para cada una',
+      subtitle: 'No es un paquete. **Se arma con lo que tu negocio necesita.**',
+      outputLabel: 'resultado',
       stages: [
         {
-          id: 'workflow',
+          id: 'contesta',
           index: '01',
-          name: 'Workflow',
-          kicker: 'el proceso real',
-          headline: 'Primero el proceso. Después el agente.',
+          name: 'Que conteste',
+          kicker: 'a cualquier hora',
+          headline: 'Nadie se queda esperando.',
           bullets: [
-            'Levantamos cómo se hace hoy, con quién y con qué excepciones.',
-            'Marcamos qué pasos conviene automatizar y **cuáles es mejor dejar en manos de una persona**.',
-            'El diseño sale del proceso, no de lo que el modelo sabe hacer.',
+            'Responde en segundos, con tus precios y tu información.',
+            'Entiende notas de voz. **No pierdes la venta por no traer audífonos.**',
+            'Cuando se pone difícil, te lo pasa a ti.',
           ],
-          output: 'Proceso mapeado y alcance acordado',
+          output: 'Cero mensajes sin contestar',
         },
         {
-          id: 'integracion',
+          id: 'sigue',
           index: '02',
-          name: 'Integración',
-          kicker: 'con los sistemas que ya existen',
-          headline: 'El agente sirve cuando toca los sistemas del negocio.',
+          name: 'Que dé seguimiento',
+          kicker: 'sin que te acuerdes',
+          headline: 'La cotización no se queda enfriando.',
           bullets: [
-            'CRM, ERP, bases de datos y SaaS, por API, webhooks o MCP.',
-            'Autenticación, permisos y alcance de cada herramienta que el agente puede usar.',
-            '**Un agente que solo conversa no cambia nada.** El valor aparece cuando escribe donde importa.',
+            'Retoma solo al que dejó de contestar.',
+            'Te avisa a quién hay que marcarle hoy. **Y por qué.**',
+            'Agenda la cita dentro del mismo chat.',
           ],
-          output: 'Sistemas conectados, con permisos acotados',
+          output: 'Nada se queda a medias',
         },
         {
-          id: 'controles',
+          id: 'captura',
           index: '03',
-          name: 'Controles',
-          kicker: 'para operar sin sustos',
-          headline: 'Lo que pasa cuando algo sale mal.',
+          name: 'Que capture solo',
+          kicker: 'se acabó el copiar y pegar',
+          headline: 'Los datos se guardan donde van.',
           bullets: [
-            'Aprobación humana en las decisiones que cuestan dinero o son difíciles de revertir.',
-            'Logs, reintentos, manejo de errores y una ruta de escalamiento clara.',
-            '**Sin esto el proyecto se entrega y nadie se atreve a dejarlo solo.**',
+            'Nombre, empresa, qué quiere y cuánto: sale de la conversación.',
+            'Entra a tu sistema sin que nadie lo teclee.',
+            '**Las horas de captura se vuelven horas de vender.**',
           ],
-          output: 'Aprobaciones, logs y escalamiento',
+          output: 'Cero captura manual',
         },
         {
-          id: 'evaluacion',
+          id: 'reporta',
           index: '04',
-          name: 'Evaluación',
-          kicker: 'con datos reales',
-          headline: 'Saber si funciona, no creer que funciona.',
+          name: 'Que te diga cómo vas',
+          kicker: 'sin pedirle reportes a nadie',
+          headline: 'Abres y ves el número.',
           bullets: [
-            'Casos reales y casos límite, sacados del proceso del cliente.',
-            'Un cambio de prompt o de modelo se mide antes de salir a producción.',
-            '**Sin evaluaciones, cada ajuste es una apuesta** y nadie puede decir si mejoró.',
+            'Cuántos llegaron, cuántos contestaste, cuántos cerraron.',
+            'En qué punto se te están cayendo. **Con nombre y apellido.**',
+            'Sin hojas de cálculo ni juntas para averiguarlo.',
           ],
-          output: 'Suite de evaluación y criterio de aceptación',
+          output: 'El número, a la mano',
         },
       ],
     },
 
-    /**
-     * Los cinco servicios. Van en la tabla que antes tenía las cohortes: son
-     * cinco filas comparables por las mismas columnas, que es justo para lo
-     * que sirve una tabla. Los dos primeros son las ofertas de entrada.
-     */
+    /** Qué se instala y cuánto tarda. Tabla porque se compara. */
     engine: {
-      label: 'servicios_',
-      title: 'Cinco formas de entrar, según dónde estés',
-      subtitle:
-        'Se nombran por resultado, no por tecnología. **Los dos primeros son por donde empieza casi todo el mundo.**',
+      label: 'cuánto tarda_',
+      title: 'Empezamos por lo que más te duele',
+      subtitle: 'No se construye todo de golpe. **Primero lo que te devuelve dinero más rápido.**',
       table: {
-        cohort: 'Servicio',
-        trigger: 'Cuándo aplica',
-        clock: 'Formato',
-        goal: 'Resultado',
+        cohort: 'Si lo tuyo es',
+        trigger: 'Se instala',
+        clock: 'Tarda',
+        goal: 'Lo notas en',
       },
       cohorts: [
         {
-          name: 'Pilot-to-Production Sprint',
-          trigger: 'Proyecto vendido, con prototipo a medias',
-          clock: 'Sprint',
-          goal: 'Automatización operable y documentada',
+          name: 'No dar abasto',
+          trigger: 'Respuesta automática con tu catálogo',
+          clock: '1 a 2 semanas',
+          goal: 'La primera semana',
         },
         {
-          name: 'White-label Delivery Partner',
-          trigger: 'Tienes la relación, no la capacidad',
-          clock: 'Continuo',
-          goal: 'Entrega bajo tu marca o con tu equipo',
+          name: 'Perder el seguimiento',
+          trigger: 'Recordatorios y retomar conversaciones',
+          clock: '2 a 3 semanas',
+          goal: 'El primer mes',
         },
         {
-          name: 'Production Readiness Audit',
-          trigger: 'Hay un agente y nadie sabe si aguanta',
-          clock: 'Diagnóstico',
-          goal: 'Plan priorizado para llegar a producción',
+          name: 'Capturar a mano',
+          trigger: 'Conexión con tu sistema actual',
+          clock: '2 a 4 semanas',
+          goal: 'De inmediato',
         },
         {
-          name: 'Claude Workflow Build',
-          trigger: 'Hay proceso de negocio y no hay sistema',
-          clock: 'Proyecto',
-          goal: 'Workflow integrado, probado y operable',
-        },
-        {
-          name: 'Rescue & Hardening',
-          trigger: 'La automatización ya falla en producción',
-          clock: 'Intervención',
-          goal: 'Sistema estabilizado y con controles',
+          name: 'No saber cómo vas',
+          trigger: 'Tablero con tus números',
+          clock: '1 a 2 semanas',
+          goal: 'El primer corte',
         },
       ],
-      quote:
-        'No construimos demos vistosas que se rompen al primer caso real. Construimos lo que tu cliente va a usar el lunes.',
+      quote: 'Prefiero entregarte una cosa funcionando en tres semanas que cuatro a medias en tres meses.',
       clocks: {
-        label: 'dos modos de trabajar',
+        label: 'cómo se arma',
         items: [
           {
-            name: 'Bajo tu marca',
-            unit: 'white-label',
+            name: 'Primero una',
+            unit: 'la que más duele',
             detail:
-              'Tu consultora conserva la relación y el crédito. **Nosotros no aparecemos frente a tu cliente.** Entregamos arquitectura, construcción y hardening, y tú lo presentas como tuyo.',
+              'Elegimos el problema que más te cuesta hoy. Eso se construye y se echa a andar. **Lo ves funcionando antes de decidir si sigues.**',
           },
           {
-            name: 'Junto a tu equipo',
-            unit: 'en conjunto',
+            name: 'Después lo demás',
+            unit: 'si quieres',
             detail:
-              'Trabajamos con tus desarrolladores, no en lugar de ellos. **Al cerrar, tu equipo puede mantenerlo sin nosotros.** Eso incluye documentación, handoff y capacitación.',
+              'Con lo primero ya dando resultado, se agrega lo siguiente. **Sin contrato largo ni comprarlo todo por adelantado.**',
           },
         ],
       },
       play: {
-        label: 'cómo arranca',
-        title: 'Primero entendemos el proyecto. Después decimos si entramos.',
+        label: 'cómo empieza',
+        title: 'Primero te digo si tiene arreglo.',
         detail:
-          'Nos cuentas el workflow, los sistemas involucrados y en qué estado está. Respondemos con una recomendación de siguiente paso — **no con una demo genérica ni con una propuesta de plantilla.**',
-        closing:
-          'Si el proyecto no es para nosotros, lo decimos ahí. Es más barato para los dos que descubrirlo en la semana cuatro.',
+          'Me cuentas cómo vendes hoy y qué se te cae. **Te contesto con qué haría yo y cuánto tardaría** — no con una presentación.',
+        closing: 'Si lo tuyo no lo resuelvo yo, te lo digo ahí. No te cobro por averiguarlo.',
       },
       guardrails: {
-        label: 'qué queda instalado',
-        title: 'Un proyecto termina cuando tu equipo puede operarlo sin nosotros.',
+        label: 'sin sorpresas',
+        title: 'Nada se manda sin que tú lo apruebes.',
         detail:
-          'No cuando el código funciona en nuestra máquina. **Al cerrar queda documentación, accesos, pruebas y una persona de tu lado capaz de mantenerlo.**',
-        checksTitle: 'Y lo que no podemos prometer, no lo prometemos',
+          'Los mensajes se revisan contigo antes de encender nada. **Tú decides qué contesta solo y qué te pasa a ti.**',
+        checksTitle: 'Tu número sigue siendo tuyo',
         checksDetail:
-          'No hay testimonios, logos ni métricas publicables: la firma es nueva y presentarlos sería inventarlos. **Lo verificable es nuestro propio producto en producción**, y este sitio lo documenta entero.',
+          'Se conecta a tu WhatsApp de siempre. **Puedes tomar cualquier chat cuando quieras** y el sistema se calla en ese.',
       },
     },
 
-    /**
-     * Capacidades técnicas. El componente muestra "lo que entró → lo que quedó
-     * guardado", y ese par sigue funcionando: entra un encargo en lenguaje de
-     * negocio, sale la lista de piezas técnicas que hay que construir.
-     */
+    /** Muy concreto: un mensaje, y qué quedó guardado. */
     intel: {
-      label: 'capacidades_',
-      title: 'Lo que pide el negocio, traducido a lo que hay que construir',
-      subtitle:
-        'El cliente no pide MCP ni human-in-the-loop. **Pide que deje de perderse el papeleo.** Nuestro trabajo es esa traducción, y luego construirla.',
-      sourceLabel: 'lo que pide el cliente',
+      label: 'cómo se ve_',
+      title: 'De una conversación sale tu información',
+      subtitle: 'Nadie captura nada. **Lo que el cliente dijo, ya está guardado.**',
+      sourceLabel: 'lo que escribió el cliente',
       source:
-        'Queremos que las facturas que llegan por correo se capturen solas en el ERP. Pero si el proveedor es nuevo o el monto es alto, que lo vea alguien antes. Y necesitamos saber qué pasó con cada una.',
-      fieldsLabel: 'lo que hay que construir',
+        'Fíjate, ya lo vi con mi socio. El presupuesto lo tenemos hasta enero, ahorita no. Lo que nos preocupa es la instalación, porque con el proveedor anterior nos fue mal. Al final quien decide es mi papá.',
+      fieldsLabel: 'lo que quedó guardado',
       fields: [
-        { key: 'workflow', value: 'Extracción de documento y alta en ERP' },
-        { key: 'integración', value: 'Correo, almacenamiento y API del ERP' },
-        { key: 'tool_use', value: 'Escritura acotada, solo altas, sin borrado' },
-        { key: 'aprobación', value: 'Proveedor nuevo o monto sobre el umbral' },
-        { key: 'evaluación', value: 'Facturas reales, incluidos los formatos raros' },
-        { key: 'observabilidad', value: 'Traza por factura, reintentos y escalamiento' },
+        { key: 'qué quiere', value: 'Instalación sin que le paren la operación' },
+        { key: 'dinero', value: 'Sí hay · disponible en enero' },
+        { key: 'cuándo', value: 'Enero · no es urgencia, es calendario' },
+        { key: 'qué le preocupa', value: 'Le fue mal con el proveedor anterior' },
+        { key: 'quién decide', value: 'El papá' },
+        { key: 'qué sigue', value: 'Mandarle un caso parecido · marcar en enero' },
       ],
       aside: {
-        title: 'Y sí, nosotros mismos lo operamos.',
+        title: 'Esto ya está funcionando.',
         detail:
-          'Omona construyó y opera su propio sistema con Claude sobre WhatsApp: multi-tenant con aislamiento por organización, transcripción de audio, escalamiento a humano, webhooks firmados y despliegue continuo. **Es evidencia de producción, no la oferta de servicios** — y el corpus de este sitio lo documenta.',
-        cta: 'Ver el sistema funcionando',
+          'No es una idea: es el sistema que construí y opero todos los días. **Puedes ir a probarlo ahora mismo** y ponerle las preguntas que quieras.',
+        cta: 'Probarlo',
       },
     },
 
-    /**
-     * Estándares de entrega. Reemplaza a las métricas del producto viejo, que
-     * medían conversaciones y seguimiento. Aquí lo que se mide es qué queda
-     * instalado — que es la prueba honesta que pide docs/posicionamiento.md.
-     */
+    /** Qué te queda. Sin promesas de resultado. */
     measure: {
-      label: 'estándares de entrega_',
-      title: 'Qué queda cuando nos vamos',
-      subtitle:
-        'No es una promesa de resultado: es la lista de lo que entregamos siempre. **Si algo de esto falta, el proyecto no está cerrado.**',
+      label: 'qué te queda_',
+      title: 'Cuando termino, esto es tuyo',
+      subtitle: 'No rentas nada. **Se queda en tu casa, a tu nombre.**',
       metrics: [
         {
-          name: 'Documentación que tu equipo puede seguir',
-          detail:
-            'Arquitectura, decisiones y cómo operarlo. Escrita para quien lo mantiene, no para quien lo vendió.',
+          name: 'Tu número de WhatsApp',
+          detail: 'El de siempre. Sin trámites con Meta y sin cambiar de línea.',
         },
         {
-          name: 'Accesos y credenciales a tu nombre',
-          detail:
-            'Todo queda en cuentas tuyas o de tu cliente. **Nunca en las nuestras.** Irnos no puede apagar nada.',
+          name: 'Tus cuentas y tus accesos',
+          detail: 'Todo a tu nombre. **Si me voy, no se apaga nada.**',
         },
         {
-          name: 'Pruebas y evaluaciones ejecutables',
-          detail:
-            'Corren sin nosotros. Un cambio futuro se puede validar sin adivinar si rompió algo.',
+          name: 'Tu información, exportable',
+          detail: 'Clientes, conversaciones e historial. Te los llevas cuando quieras.',
         },
         {
-          name: 'Handoff con una persona capacitada',
-          detail:
-            'Alguien de tu lado que entendió el sistema y puede modificarlo. Sesión grabada, dudas resueltas.',
+          name: 'Alguien de tu equipo entrenado',
+          detail: 'Le enseño a una persona tuya a moverle. Grabado, para que lo vuelva a ver.',
         },
       ],
-      moneyLabel: 'la definición de terminado',
+      moneyLabel: 'cuándo digo que ya quedó',
       moneyFormula:
-        'corre en producción        + tu equipo puede operarlo\n+ los errores son visibles  + los cambios se pueden probar\n= proyecto cerrado',
-      moneyNote:
-        'Cualquier cosa que no cumpla las cuatro sigue siendo un prototipo, aunque esté en producción.',
+        'contesta solo          + tú puedes cambiarle cosas\n+ los errores se ven    + tu gente sabe usarlo\n= terminado',
+      moneyNote: 'Si falta una de las cuatro, no está terminado. Aunque ya esté prendido.',
     },
 
-    /**
-     * El anti-ICP, escrito como anti-ICP. Decir a quién NO servimos filtra
-     * mejor que cualquier lista de beneficios, y ahorra la llamada que no
-     * iba a ningún lado.
-     */
     scope: {
-      label: 'alcance_',
-      title: 'Qué tomamos y qué no',
-      subtitle:
-        'Somos una firma pequeña y especializada. **Decir que no a tiempo es parte del trabajo.**',
-      doTitle: 'Lo que tomamos',
+      label: 'para quién sí_',
+      title: 'Con quién trabajo y con quién no',
+      subtitle: 'Somos pocos. **Decir que no a tiempo nos ahorra tiempo a los dos.**',
+      doTitle: 'Sí',
       does: [
-        'Proyectos de Claude ya vendidos o comprometidos, con fecha real.',
-        'Automatizaciones que tocan sistemas del negocio: CRM, ERP, bases de datos, SaaS.',
-        'Trabajo bajo la marca de una consultora, sin aparecer frente a su cliente.',
-        'Rescates de automatizaciones que ya están fallando en producción.',
+        'Negocios que ya venden por WhatsApp y les llegan más mensajes de los que alcanzan.',
+        'Equipos de 2 a 20 personas, donde el dueño todavía se mete a vender.',
+        'Quien ya tiene clientes y quiere dejar de perderlos por lento o por olvido.',
+        'Quien está dispuesto a enseñarme cómo vende de verdad, no cómo debería.',
       ],
-      dontTitle: 'Lo que no tomamos',
+      dontTitle: 'No',
       donts: [
         {
-          title: 'Demos y pruebas de concepto',
-          detail:
-            'Si lo que se busca es enseñar algo en una junta, no somos la firma. Construimos lo que se va a operar.',
+          title: 'Mandar mensajes masivos',
+          detail: 'No hago envíos a gente que no te escribió. Es como te bloquean el número.',
         },
         {
-          title: 'Proyectos sin dueño del proceso',
-          detail:
-            'Alguien del lado del cliente tiene que poder decidir cómo se hace el trabajo. Sin esa persona, el proyecto se atasca.',
+          title: 'Negocios sin clientes todavía',
+          detail: 'Si aún no llegan mensajes, esto no te sirve. Primero hay que traer gente.',
         },
         {
-          title: 'Entrenar o afinar modelos',
-          detail:
-            'Trabajamos sobre modelos existentes. Investigación de ML y fine-tuning no es lo nuestro, y decirlo ahorra tiempo.',
+          title: 'Reemplazar a tu equipo',
+          detail: 'Esto contesta y ordena. Cerrar y dar la cara sigue siendo de una persona.',
         },
         {
-          title: 'Cuerpos por hora sin alcance',
-          detail:
-            'No rentamos desarrolladores para una bolsa de horas. Entramos con un resultado acordado y una definición de terminado.',
+          title: 'Proyectos sin quién decida',
+          detail: 'Necesito a alguien que pueda decir cómo se hace. Si no, se atora todo.',
         },
       ],
     },

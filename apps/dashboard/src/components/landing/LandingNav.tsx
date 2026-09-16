@@ -57,7 +57,7 @@ export function LandingNav() {
   const navLinks = [
     { href: '/#ciclo', label: t.nav.features },
     { href: '/#motor', label: t.nav.engine },
-    { href: '/#proceso', label: t.nav.process },
+    { href: '/#preguntas', label: t.nav.process },
     { href: '/como-trabajamos', label: t.nav.pricing },
     { href: '/blog', label: t.nav.blog },
   ];

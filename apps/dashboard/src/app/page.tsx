@@ -16,22 +16,22 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { es } from '@/lib/i18n';
 
 export const metadata: Metadata = {
-  title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
+  title: 'Omona | Sistemas a la medida para negocios que venden por WhatsApp',
   description:
-    'Llevamos automatizaciones Claude de prototipo a produccion: integraciones, permisos, aprobaciones, evaluaciones y transferencia a tu equipo. Para consultoras, agencias e integradores que ya vendieron el proyecto.',
+    'Te construyo el sistema que contesta, da seguimiento, captura solo y te dice como vas. Hecho para tu negocio, no una app que rentas. Cuentame tu caso sin costo.',
   openGraph: {
-    title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
+    title: 'Omona | Sistemas a la medida para negocios que venden por WhatsApp',
     description:
-      'De piloto a operacion real. Integraciones, controles y evaluaciones para agentes Claude, bajo tu marca o junto a tu equipo.',
+      'Vendes por WhatsApp y ahi se te pierde. Te construyo el sistema que lo arregla, a la medida de tu negocio.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omona | Socio tecnico de delivery para automatizaciones Claude',
+    title: 'Omona | Sistemas a la medida para negocios que venden por WhatsApp',
     description:
-      'De piloto a operacion real. Integraciones, controles y evaluaciones para agentes Claude, bajo tu marca o junto a tu equipo.',
+      'Vendes por WhatsApp y ahi se te pierde. Te construyo el sistema que lo arregla.',
   },
   alternates: {
     canonical: 'https://omona.tech',
@@ -58,18 +58,14 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       logo: 'https://omona.tech/icon.svg',
       description:
-        'Omona es un socio tecnico de delivery para consultoras, agencias e integradores que necesitan construir, endurecer y operar automatizaciones basadas en Claude para clientes de habla hispana.',
-      // Sin `sameAs`: los siete perfiles que se declaraban (LinkedIn, GitHub,
-      // G2, Capterra, Crunchbase, Product Hunt, AlternativeTo) devuelven 404.
-      // Un sameAs a una pagina inexistente le dice a los motores que la entidad
-      // no esta verificada, que es peor que no declarar ninguno. Se reponen
-      // cuando existan las URLs reales.
+        'Omona construye sistemas a la medida para negocios pequenos y medianos que venden por WhatsApp: respuesta automatica, seguimiento, captura de datos sin trabajo manual y tablero de resultados.',
+      // Sin `sameAs`: los perfiles que se declaraban devuelven 404, y un
+      // sameAs roto le dice a los motores que la entidad no esta verificada.
       areaServed: [
         { '@type': 'Country', name: 'Mexico' },
-        { '@type': 'Country', name: 'Espana' },
         { '@type': 'Country', name: 'Colombia' },
-        { '@type': 'Country', name: 'Chile' },
         { '@type': 'Country', name: 'Argentina' },
+        { '@type': 'Country', name: 'Chile' },
         { '@type': 'Country', name: 'Peru' },
       ],
       contactPoint: {
@@ -80,73 +76,63 @@ const jsonLdGraph = {
       },
     },
     {
-      // Era `SoftwareApplication`: describia el producto de WhatsApp como la
-      // oferta. Ahora la oferta es el servicio, y el producto es evidencia.
+      // `ProfessionalService` y no `SoftwareApplication`: no se vende una
+      // licencia, se construye un sistema para cada negocio.
       '@type': 'ProfessionalService',
       name: 'Omona',
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       description:
-        'Delivery tecnico de automatizaciones con Claude: descubrimiento del proceso, integraciones con CRM, ERP y SaaS, permisos y tool use, aprobaciones humanas, evaluaciones con datos reales, observabilidad y transferencia operativa al equipo del cliente.',
-      serviceType: 'Implementacion de agentes y automatizaciones con IA',
+        'Implementacion a la medida sobre el WhatsApp que el negocio ya usa. Se empieza por el problema que mas cuesta y se entrega funcionando, con las cuentas a nombre del cliente.',
+      serviceType: 'Automatizacion de ventas por WhatsApp',
       audience: {
         '@type': 'BusinessAudience',
-        name: 'Consultoras de IA, agencias de automatizacion, software factories e integradores',
+        name: 'Negocios de 2 a 20 personas que venden por WhatsApp',
       },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'Servicios de delivery',
+        name: 'Que se construye',
         itemListElement: [
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Pilot-to-Production Sprint',
+              name: 'Respuesta automatica',
               description:
-                'Un prototipo ya comprometido con un cliente se vuelve operable: manejo de errores, aprobaciones, permisos, logs, pruebas y documentacion.',
+                'Contesta en segundos a cualquier hora, con el catalogo y los precios del negocio. Entiende notas de voz y escala a una persona cuando hace falta.',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'White-label Delivery Partner',
+              name: 'Seguimiento que no se olvida',
               description:
-                'La consultora conserva la relacion comercial; Omona aporta arquitectura, construccion y hardening sin aparecer frente al cliente final.',
+                'Retoma al cliente que dejo de contestar, avisa a quien hay que buscar hoy y agenda la cita dentro del mismo chat.',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Production Readiness Audit',
+              name: 'Captura automatica de datos',
               description:
-                'Diagnostico de riesgos de arquitectura, permisos, datos, evaluaciones y costo. Entregable: plan priorizado para llegar a produccion.',
+                'Nombre, empresa, necesidad y presupuesto salen de la conversacion y entran al sistema del negocio sin que nadie los teclee.',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Claude Workflow Build',
+              name: 'Tablero de resultados',
               description:
-                'Del proceso de negocio real a la operacion: descubrir, disenar, integrar, construir, probar y transferir.',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Rescue & Hardening',
-              description:
-                'Estabilizacion de automatizaciones que ya fallan en produccion: respuestas inconsistentes, costos descontrolados e integraciones fragiles.',
+                'Cuantos mensajes llegaron, cuantos se contestaron y en que punto se pierden los clientes, sin pedirle reportes a nadie.',
             },
           },
         ],
       },
-      // Sin `aggregateRating` ni `review`: no hay resenas verificables, y
-      // marcarlas de todas formas es lo que Google penaliza. Sin `offers` con
-      // precio: el alcance define la cifra y publicar una obligaria a inventarla.
+      // Sin `aggregateRating`, `review` ni `offers` con precio: no hay resenas
+      // verificables y el precio depende de que se construya.
     },
     {
       '@type': 'FAQPage',
@@ -158,16 +144,12 @@ const jsonLdGraph = {
     },
     {
       '@type': 'WebPage',
-      name: 'Omona - Socio tecnico de delivery para automatizaciones Claude',
+      name: 'Omona - Sistemas a la medida para negocios que venden por WhatsApp',
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       datePublished: '2025-01-01',
       dateModified: '2026-09-15',
-      isPartOf: {
-        '@type': 'WebSite',
-        name: 'Omona',
-        url: 'https://omona.tech',
-      },
+      isPartOf: { '@type': 'WebSite', name: 'Omona', url: 'https://omona.tech' },
       speakable: {
         '@type': 'SpeakableSpecification',
         cssSelector: ['h1', '#hero-description'],

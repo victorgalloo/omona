@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Demo Interactivo | Omona - Prueba el Agente de Ventas IA',
     description:
-      'El sistema de inteligencia comercial que Omona construyo y opera en produccion. Chatea con el agente y ve como extrae datos, califica y agenda. Es evidencia de delivery, no la oferta de servicios.',
+      'Prueba el sistema sin registrarte. Chatea con el agente, ponle las preguntas que quieras y ve como contesta, guarda los datos y agenda. Es lo mismo que se construye para cada negocio.',
     locale: 'es_MX',
     type: 'website',
     url: 'https://omona.tech/demo',

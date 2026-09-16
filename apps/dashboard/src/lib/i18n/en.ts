@@ -3,15 +3,15 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'What we build',
-    engine: 'Services',
-    process: 'Process',
-    pricing: 'How we work',
+    features: 'What I build',
+    engine: 'How long',
+    process: 'Questions',
+    pricing: 'How I work',
     blog: 'Blog',
     useCases: 'Use Cases',
     demo: 'Demo',
     login: 'Log in',
-    signup: 'Evaluate a project',
+    signup: 'Tell me your case',
   },
   hero: {
     // `chat` is kept because it is the text baked into the ChatRespondiendo loop
@@ -96,15 +96,14 @@ export const en: Translations = {
     ],
   },
   howItWorks: {
-    sectionLabel: 'process_',
-    heading: 'Four phases, and the last one is leaving',
-    subheading:
-      'The goal is not to stay running your project. **It is to leave it working in your team’s hands.**',
+    sectionLabel: 'how i work_',
+    heading: 'Four steps, and the last one is letting go',
+    subheading: 'I do not stay running your business. **I leave it working and step aside.**',
     steps: [
-      { title: 'Discover', detail: 'The real process, with its exceptions. What gets automated and what does not.' },
-      { title: 'Build', detail: 'Integrations, permissions, approvals and error handling.' },
-      { title: 'Evaluate', detail: 'Real cases and edge cases, before the client ever sees it.' },
-      { title: 'Hand off', detail: 'Documentation, access and someone on your side who can maintain it.' },
+      { title: 'I listen', detail: 'How you really sell today. Quirks included.' },
+      { title: 'I build it', detail: 'Starting with whatever hurts most.' },
+      { title: 'We test it', detail: 'With your real customers, you reviewing.' },
+      { title: 'I hand it over', detail: 'In your name, with one of your people trained.' },
     ],
   },
   offerStack: {
@@ -140,18 +139,18 @@ export const en: Translations = {
     ],
   },
   guarantee: {
-    sectionLabel: 'how we evaluate_',
-    heading: 'Before we start, we decide whether we can deliver it',
+    sectionLabel: 'before we start_',
+    heading: 'I tell you if it can be fixed before charging you',
     body:
-      'We do not accept every project. We review scope, systems and who decides on the client side. **If we see we cannot deliver it well, we say so in the first conversation** — not in week four.',
-    conditionsLabel: 'What we look at',
+      'I cannot solve every case. I look at how you sell, what systems you use and who decides. **If I can see I cannot leave it working well, I say so in the first conversation** — not halfway through.',
+    conditionsLabel: 'What I need from you',
     conditions: [
-      'That a real process exists, with someone who can decide how it runs',
-      'That the systems to integrate have an API, access or a viable path',
-      'That there is a deadline and a scope, not an open-ended exploration',
-      'That your team can take the handoff at close',
+      'That customer messages are already coming in',
+      'Someone who can decide how the work gets done',
+      'Access to your WhatsApp and to wherever you keep customers',
+      'One of your people to receive the system at the end',
     ],
-    note: 'All four are conditions for the project to go well, not fine print.',
+    note: 'Not fine print: without those four, the work does not come out well.',
   },
   useCases: {
     sectionLabel: 'use_cases_',
@@ -194,12 +193,12 @@ export const en: Translations = {
     ],
   },
   cta: {
-    heading: 'Tell us about the project',
+    heading: 'Tell me what is falling through',
     subheading:
-      'The workflow, the systems involved and what state it is in. **We reply with a recommended next step, not a generic demo.**',
-    primary: 'Evaluate a project',
-    secondary: 'See the services',
-    trust: 'if it is not for us, we tell you in the first reply',
+      'How you sell today and what you are losing. **I reply with what I would do and how long it would take.**',
+    primary: 'Message me on WhatsApp',
+    secondary: 'Try the system',
+    trust: 'if I cannot solve it for you, I say so right away',
   },
   footer: {
     login: 'Log in',
@@ -491,36 +490,36 @@ export const en: Translations = {
   },
   faq: {
     sectionLabel: 'questions_',
-    heading: 'What people ask before the first call',
-    subheading: 'The honest answers, including the uncomfortable ones.',
+    heading: 'What everyone asks',
+    subheading: 'Short, honest answers.',
     items: [
       {
-        q: 'Do you work under my brand, in front of my client?',
-        a: 'Yes, and it is the most requested arrangement. You keep the commercial relationship and the credit; we do not appear. We sign whatever is needed for that. We also work alongside your team under our own name if you prefer to present it as a partnership.',
+        q: 'Will my number get blocked?',
+        a: 'No, as long as you use it to answer people who wrote you. It connects with a QR code, just like WhatsApp Web: your same number, no paperwork with Meta. What WhatsApp does block is mass messaging to people who never contacted you, and I do not do that.',
       },
       {
-        q: 'Do you have case studies or clients I can look at?',
-        a: 'None we can publish. The firm is new, and presenting testimonials, logos or metrics we cannot back would mean inventing them. What is verifiable: Omona built and operates its own Claude system in production — multi-tenant with per-organization isolation, audio transcription, human escalation, signed webhooks and continuous deployment. This entire site documents it. It is evidence that we know how to take an agent from prototype to operation.',
+        q: 'Will it sound like a robot?',
+        a: 'Judge it yourself. Go to the demo and throw whatever questions you want at it before giving me a single detail. If it sounds like a robot there, it will sound like a robot to your customers.',
       },
       {
-        q: 'What if the project is already failing in production?',
-        a: 'That is Rescue & Hardening. Stabilize first: understand why it fails, contain the damage and make errors visible. Hardening comes after. We do not rewrite from scratch unless that is cheaper than fixing it, and we argue that case with reasons, not preference.',
+        q: 'Can I answer myself whenever I want?',
+        a: 'Yes, chat by chat. You take the conversation and the system goes quiet in that one while it keeps handling the rest. Your number never stops being yours.',
       },
       {
         q: 'What does it cost?',
-        a: 'We do not publish rates because they depend on scope, how many systems need integrating and what state the existing work is in. Quoting before knowing that forces us to invent a number. Tell us the workflow and the state of the project and we reply with a recommended next step and a range.',
+        a: 'It depends on how much has to be built and what it connects to. Giving you a number before knowing that would mean inventing it. Tell me your case and I will tell you what I would do and what it costs, at no charge.',
       },
       {
-        q: 'Do we end up dependent on you?',
-        a: 'No, and it is designed so that cannot happen. Access and credentials stay in your name or your client’s, never in our accounts. At close we hand over documentation, runnable tests and a handoff session with someone on your team. If we leave, nothing switches off.',
+        q: 'How long does it take?',
+        a: 'Between one and four weeks, depending on what gets built. Connecting your number takes five minutes; what takes time is teaching it your catalog, your prices and how you sell.',
       },
       {
-        q: 'Do you only work with Claude?',
-        a: 'It is where we are good and where we have our own product in production, so it is what we offer. If your project is tied to another provider, the honest answer is to point you at someone specialized in it. We do not bill for learning on your budget.',
+        q: 'Do I have to change systems?',
+        a: 'No. I work on top of what you already use, even if it is half set up. Switching tools and fixing how you sell at the same time are two fights over the same patience, and usually both lose.',
       },
       {
-        q: 'What do you need from us to start?',
-        a: 'A person who can decide how the process works, access to the systems to integrate, and a real deadline. Without the first, the project stalls on questions nobody answers; without the second there is no way to build; without the third it is not a project, it is an exploration.',
+        q: 'What if I change my mind or want out?',
+        a: 'Everything is in your name: your number, your accounts, your data. You can take it whenever you want. Nothing switches off because I stop being around.',
       },
     ],
   },
@@ -619,302 +618,275 @@ export const en: Translations = {
     cta: 'Start 14 days free',
   },
 
-  /** See es.ts for why the site was repositioned from product to service. */
+  /** See es.ts: third version, first one written about the real business. */
   home: {
     hero: {
-      eyebrow: 'technical delivery partner · claude · latam',
-      title: 'Selling the pilot was the easy part.',
-      titleAccent: 'Running it is another thing.',
+      eyebrow: 'for businesses that sell over whatsapp',
+      title: 'You sell over WhatsApp.',
+      titleAccent: 'And that is where you lose it.',
       subtitle:
-        'We take Claude automations from prototype to production. Integrations, permissions, evaluations, error handling and handoff to your team. Under your brand, or alongside it.',
-      ctaPrimary: 'Evaluate a project',
-      ctaSecondary: 'See how we work',
-      note: 'tell us the workflow and the systems · we reply with a next step',
+        'I build the system that fixes it. **Made for your business**, not an app you rent.',
+      ctaPrimary: 'Tell me your case',
+      ctaSecondary: 'See what I build',
+      note: 'message me on WhatsApp · I tell you if it can be fixed',
       card: {
-        label: 'production_review',
-        cohort: 'Blocker',
-        elapsed: 'finding 3 of 11',
-        contact: 'Quoting agent · ERP integration',
-        why: 'The agent writes to the ERP with no confirmation. One extraction error creates a real order, and today there is no way to reverse it.',
-        messageLabel: 'recommendation',
+        label: 'any_given_tuesday',
+        cohort: 'New customer',
+        elapsed: '11:40 p.m.',
+        contact: 'Hardware supplier · business WhatsApp',
+        why: '"Do you carry 5 HP compressors? I need them by Thursday."',
+        messageLabel: 'answered on its own',
         message:
-          'Add human approval before any write. The agent proposes the order, a person confirms it. We log who approved and on what data.',
-        checksLabel: 'your team confirms this',
-        checks: ['Who has authority to approve', 'What amount can skip review'],
-        valueLabel: 'risk',
-        value: 'High',
-        timeLabel: 'effort',
-        time: '2 days',
-        actionPrimary: 'Accepted',
-        actionSecondary: 'Defer',
+          'Yes, the 5 HP three-phase is $18,400 plus tax. Delivery in 48 hours. Is it for continuous use or occasional?',
+        checksLabel: 'and this got saved',
+        checks: ['Wants a compressor · needs it Thursday', 'Next step: send the quote'],
+        valueLabel: 'took',
+        value: '8 seconds',
+        timeLabel: 'you were',
+        time: 'asleep',
+        actionPrimary: 'Done',
+        actionSecondary: 'Open chat',
       },
     },
 
     leak: {
       label: 'the problem_',
-      title: 'The demo worked. Operating it is a different system.',
-      body:
-        'A prototype handles the happy path well. That is enough to close the sale. **What breaks the project is everything else**, and it is almost never budgeted.',
+      title: 'Four things are costing you money',
+      body: 'None of them is anyone’s fault. **They happen because there is no system, only memory.**',
       items: [
         {
-          title: 'It fails and nobody notices',
-          detail:
-            'With no logs or alerts, the client reports the error. By then it has been happening for days.',
+          title: 'You cannot keep up',
+          detail: 'Twenty messages land at once. You answer what you can. **The rest go elsewhere.**',
         },
         {
-          title: 'It acts without permission',
-          detail:
-            'The agent writes to real systems. **Nobody defined what it can do alone and what needs approval.**',
+          title: 'Follow-up gets lost',
+          detail: 'You quoted and nobody called back. **The sale did not fall through: it was forgotten.**',
         },
         {
-          title: 'Nobody knows if it improved',
-          detail:
-            'No evaluations on real data. Every change is a bet, and the team checks it by eye.',
+          title: 'Everything is typed by hand',
+          detail: 'Someone spends hours copying data between systems. **That is not work, it is wear.**',
         },
         {
-          title: 'Cost runs away',
-          detail:
-            'It works with ten cases. At a thousand, the bill and the latency stop making sense.',
+          title: 'You cannot see how it is going',
+          detail: 'You ask how the month looks and nobody has the number. **Someone has to go dig it up.**',
         },
       ],
-      quote: 'A prototype proves it can be done. An operation survives being used.',
+      quote: 'Your business does not fail from lack of effort. It fails because everything lives in one person’s head.',
     },
 
     cycle: {
-      label: 'what we build_',
-      title: 'Four things separate a prototype from an operation',
-      subtitle:
-        'None of them is exotic. **All of them get skipped when there is a rush to show something**, and all of them get charged later, in production, with the client watching.',
-      outputLabel: 'you get',
+      label: 'what i build_',
+      title: 'One answer for each',
+      subtitle: 'It is not a package. **It gets built around what your business needs.**',
+      outputLabel: 'result',
       stages: [
         {
-          id: 'workflow',
+          id: 'contesta',
           index: '01',
-          name: 'Workflow',
-          kicker: 'the real process',
-          headline: 'Process first. Agent second.',
+          name: 'It answers',
+          kicker: 'at any hour',
+          headline: 'Nobody is left waiting.',
           bullets: [
-            'We map how the work is done today, by whom, and with what exceptions.',
-            'We mark what is worth automating and **what is better left to a person**.',
-            'The design comes from the process, not from what the model happens to be good at.',
+            'Replies in seconds, with your prices and your information.',
+            'Understands voice notes. **You do not lose the sale for lack of headphones.**',
+            'When it gets tricky, it hands the chat to you.',
           ],
-          output: 'Mapped process and agreed scope',
+          output: 'No message left unanswered',
         },
         {
-          id: 'integracion',
+          id: 'sigue',
           index: '02',
-          name: 'Integration',
-          kicker: 'with the systems you already run',
-          headline: 'An agent earns its keep when it touches business systems.',
+          name: 'It follows up',
+          kicker: 'without you remembering',
+          headline: 'The quote does not sit there going cold.',
           bullets: [
-            'CRM, ERP, databases and SaaS, over API, webhooks or MCP.',
-            'Authentication, permissions and scope for every tool the agent can reach.',
-            '**An agent that only chats changes nothing.** The value shows up when it writes where it matters.',
+            'Reopens the conversation with whoever went quiet.',
+            'Tells you who to call today. **And why.**',
+            'Books the meeting inside the same chat.',
           ],
-          output: 'Systems connected, with scoped permissions',
+          output: 'Nothing left half-done',
         },
         {
-          id: 'controles',
+          id: 'captura',
           index: '03',
-          name: 'Controls',
-          kicker: 'so it can run unattended',
-          headline: 'What happens when something goes wrong.',
+          name: 'It types for you',
+          kicker: 'no more copy and paste',
+          headline: 'The data lands where it belongs.',
           bullets: [
-            'Human approval on decisions that cost money or are hard to reverse.',
-            'Logs, retries, error handling and a clear escalation path.',
-            '**Without this the project ships and nobody dares leave it alone.**',
+            'Name, company, what they want and how much: taken from the conversation.',
+            'It reaches your system without anyone keying it in.',
+            '**Hours of data entry turn into hours of selling.**',
           ],
-          output: 'Approvals, logs and escalation',
+          output: 'Zero manual entry',
         },
         {
-          id: 'evaluacion',
+          id: 'reporta',
           index: '04',
-          name: 'Evaluation',
-          kicker: 'on real data',
-          headline: 'Knowing it works, not believing it works.',
+          name: 'It tells you how it is going',
+          kicker: 'without asking anyone for a report',
+          headline: 'You open it and the number is there.',
           bullets: [
-            'Real cases and edge cases, taken from the client’s own process.',
-            'A prompt or model change gets measured before it reaches production.',
-            '**Without evals, every adjustment is a bet** and nobody can say whether it improved.',
+            'How many arrived, how many you answered, how many closed.',
+            'Where you are losing them. **With names.**',
+            'No spreadsheets and no meetings to find out.',
           ],
-          output: 'Eval suite and acceptance criteria',
+          output: 'The number, on hand',
         },
       ],
     },
 
     engine: {
-      label: 'services_',
-      title: 'Five ways in, depending on where you are',
-      subtitle:
-        'Named by outcome, not by technology. **The first two are where almost everyone starts.**',
+      label: 'how long_',
+      title: 'We start with whatever hurts most',
+      subtitle: 'It does not all get built at once. **First whatever pays you back fastest.**',
       table: {
-        cohort: 'Service',
-        trigger: 'When it applies',
-        clock: 'Format',
-        goal: 'Outcome',
+        cohort: 'If your problem is',
+        trigger: 'What gets built',
+        clock: 'Takes',
+        goal: 'You notice it in',
       },
       cohorts: [
         {
-          name: 'Pilot-to-Production Sprint',
-          trigger: 'Project sold, prototype half-built',
-          clock: 'Sprint',
-          goal: 'An operable, documented automation',
+          name: 'Not keeping up',
+          trigger: 'Automatic replies using your catalog',
+          clock: '1 to 2 weeks',
+          goal: 'The first week',
         },
         {
-          name: 'White-label Delivery Partner',
-          trigger: 'You have the relationship, not the capacity',
-          clock: 'Ongoing',
-          goal: 'Delivery under your brand or with your team',
+          name: 'Losing follow-up',
+          trigger: 'Reminders and reopening conversations',
+          clock: '2 to 3 weeks',
+          goal: 'The first month',
         },
         {
-          name: 'Production Readiness Audit',
-          trigger: 'An agent exists and nobody knows if it holds',
-          clock: 'Assessment',
-          goal: 'Prioritized plan to reach production',
+          name: 'Typing by hand',
+          trigger: 'A connection to the system you already use',
+          clock: '2 to 4 weeks',
+          goal: 'Immediately',
         },
         {
-          name: 'Claude Workflow Build',
-          trigger: 'There is a business process and no system',
-          clock: 'Project',
-          goal: 'Workflow integrated, tested and operable',
-        },
-        {
-          name: 'Rescue & Hardening',
-          trigger: 'The automation is already failing in production',
-          clock: 'Intervention',
-          goal: 'Stabilized system with real controls',
+          name: 'Not knowing how it is going',
+          trigger: 'A dashboard with your numbers',
+          clock: '1 to 2 weeks',
+          goal: 'The first close',
         },
       ],
-      quote:
-        'We do not build flashy demos that break on the first real case. We build what your client will use on Monday.',
+      quote: 'I would rather hand you one thing working in three weeks than four half-built in three months.',
       clocks: {
-        label: 'two ways to work',
+        label: 'how it gets built',
         items: [
           {
-            name: 'Under your brand',
-            unit: 'white-label',
+            name: 'One thing first',
+            unit: 'the one that hurts',
             detail:
-              'Your firm keeps the relationship and the credit. **We never appear in front of your client.** We deliver architecture, build and hardening, and you present it as yours.',
+              'We pick the problem costing you most today. That gets built and switched on. **You see it working before deciding whether to continue.**',
           },
           {
-            name: 'Alongside your team',
-            unit: 'together',
+            name: 'The rest after',
+            unit: 'if you want',
             detail:
-              'We work with your developers, not instead of them. **When we close, your team can maintain it without us.** That includes documentation, handoff and training.',
+              'With the first one already paying off, we add the next. **No long contract and no buying everything up front.**',
           },
         ],
       },
       play: {
         label: 'how it starts',
-        title: 'First we understand the project. Then we say whether we take it.',
+        title: 'First I tell you whether it can be fixed.',
         detail:
-          'You tell us the workflow, the systems involved and what state it is in. We reply with a recommended next step — **not a generic demo and not a template proposal.**',
-        closing:
-          'If the project is not for us, we say so right there. That is cheaper for both of us than finding out in week four.',
+          'You tell me how you sell today and what falls through. **I reply with what I would do and how long it would take** — not with a slide deck.',
+        closing: 'If yours is not something I can solve, I say so right there. I do not charge you to find out.',
       },
       guardrails: {
-        label: 'what stays installed',
-        title: 'A project ends when your team can run it without us.',
+        label: 'no surprises',
+        title: 'Nothing goes out without your approval.',
         detail:
-          'Not when the code works on our machine. **At close there is documentation, access, tests and a person on your side who can maintain it.**',
-        checksTitle: 'And what we cannot promise, we do not promise',
+          'We go through the messages together before switching anything on. **You decide what it answers alone and what it hands to you.**',
+        checksTitle: 'Your number stays yours',
         checksDetail:
-          'There are no testimonials, logos or publishable metrics: the firm is new and presenting them would mean inventing them. **What is verifiable is our own product in production**, and this site documents all of it.',
+          'It connects to the WhatsApp you already use. **You can take over any chat whenever you want** and the system goes quiet in that one.',
       },
     },
 
     intel: {
-      label: 'capabilities_',
-      title: 'What the business asks for, translated into what has to be built',
-      subtitle:
-        'Clients do not ask for MCP or human-in-the-loop. **They ask to stop losing paperwork.** Our job is that translation, and then building it.',
-      sourceLabel: 'what the client asks for',
+      label: 'what it looks like_',
+      title: 'One conversation turns into your information',
+      subtitle: 'Nobody types anything. **What the customer said is already saved.**',
+      sourceLabel: 'what the customer wrote',
       source:
-        'We want invoices that arrive by email to be captured into the ERP on their own. But if the vendor is new or the amount is large, someone should see it first. And we need to know what happened to each one.',
-      fieldsLabel: 'what has to be built',
+        'Look, I went over it with my partner. The budget is there in January, not right now. What worries us is the installation, because it went badly with our last supplier. My father is the one who decides in the end.',
+      fieldsLabel: 'what got saved',
       fields: [
-        { key: 'workflow', value: 'Document extraction and ERP entry' },
-        { key: 'integration', value: 'Email, storage and the ERP API' },
-        { key: 'tool_use', value: 'Scoped writes: create only, never delete' },
-        { key: 'approval', value: 'New vendor or amount above threshold' },
-        { key: 'evaluation', value: 'Real invoices, odd formats included' },
-        { key: 'observability', value: 'Per-invoice trace, retries and escalation' },
+        { key: 'what they want', value: 'Installation without stopping operations' },
+        { key: 'money', value: 'Yes · available in January' },
+        { key: 'when', value: 'January · not urgency, calendar' },
+        { key: 'what worries them', value: 'Bad experience with the last supplier' },
+        { key: 'who decides', value: 'The father' },
+        { key: 'what is next', value: 'Send a similar case · call in January' },
       ],
       aside: {
-        title: 'And yes, we run one ourselves.',
+        title: 'This is already running.',
         detail:
-          'Omona built and operates its own Claude system over WhatsApp: multi-tenant with per-organization isolation, audio transcription, human escalation, signed webhooks and continuous deployment. **It is production evidence, not the service offering** — and this site’s corpus documents it.',
-        cta: 'See the system running',
+          'It is not an idea: it is the system I built and operate every day. **You can go try it right now** and throw whatever questions you want at it.',
+        cta: 'Try it',
       },
     },
 
     measure: {
-      label: 'delivery standards_',
-      title: 'What is left when we leave',
-      subtitle:
-        'This is not a promise of results: it is the list of what we always hand over. **If any of it is missing, the project is not closed.**',
+      label: 'what you keep_',
+      title: 'When I am done, this is yours',
+      subtitle: 'You are not renting anything. **It stays in your house, in your name.**',
       metrics: [
         {
-          name: 'Documentation your team can follow',
-          detail:
-            'Architecture, decisions and how to operate it. Written for whoever maintains it, not for whoever sold it.',
+          name: 'Your WhatsApp number',
+          detail: 'The same one. No paperwork with Meta and no changing lines.',
         },
         {
-          name: 'Access and credentials in your name',
-          detail:
-            'Everything lives in your accounts or your client’s. **Never in ours.** Us leaving cannot switch anything off.',
+          name: 'Your accounts and access',
+          detail: 'All in your name. **If I leave, nothing switches off.**',
         },
         {
-          name: 'Runnable tests and evaluations',
-          detail:
-            'They run without us. A future change can be validated without guessing whether it broke something.',
+          name: 'Your data, exportable',
+          detail: 'Customers, conversations and history. You take it whenever you want.',
         },
         {
-          name: 'Handoff with a trained person',
-          detail:
-            'Someone on your side who understood the system and can change it. Session recorded, questions answered.',
+          name: 'Someone on your team trained',
+          detail: 'I teach one of your people to work it. Recorded, so they can watch it again.',
         },
       ],
-      moneyLabel: 'the definition of done',
+      moneyLabel: 'when I call it done',
       moneyFormula:
-        'runs in production      + your team can operate it\n+ failures are visible   + changes can be tested\n= project closed',
-      moneyNote:
-        'Anything that misses one of the four is still a prototype, even if it is live.',
+        'it answers on its own   + you can change things\n+ failures are visible   + your people can use it\n= done',
+      moneyNote: 'If one of the four is missing, it is not done. Even if it is already switched on.',
     },
 
     scope: {
-      label: 'scope_',
-      title: 'What we take and what we do not',
-      subtitle:
-        'We are a small, specialized firm. **Saying no early is part of the job.**',
-      doTitle: 'What we take',
+      label: 'who this is for_',
+      title: 'Who I work with and who I do not',
+      subtitle: 'There are few of us. **Saying no early saves us both time.**',
+      doTitle: 'Yes',
       does: [
-        'Claude projects already sold or committed, with a real deadline.',
-        'Automations that touch business systems: CRM, ERP, databases, SaaS.',
-        'Work under a consultancy’s brand, without appearing in front of their client.',
-        'Rescues of automations already failing in production.',
+        'Businesses already selling over WhatsApp, getting more messages than they can handle.',
+        'Teams of 2 to 20 people, where the owner still sells.',
+        'Anyone with customers already, tired of losing them to slowness or forgetfulness.',
+        'Anyone willing to show me how they really sell, not how they should.',
       ],
-      dontTitle: 'What we do not take',
+      dontTitle: 'No',
       donts: [
         {
-          title: 'Demos and proofs of concept',
-          detail:
-            'If the goal is to show something in a meeting, we are not the firm. We build what will be operated.',
+          title: 'Mass messaging',
+          detail: 'I do not send blasts to people who never wrote you. That is how numbers get blocked.',
         },
         {
-          title: 'Projects with no process owner',
-          detail:
-            'Someone on the client side has to be able to decide how the work gets done. Without that person, the project stalls.',
+          title: 'Businesses with no customers yet',
+          detail: 'If messages are not arriving, this will not help. First you need traffic.',
         },
         {
-          title: 'Training or fine-tuning models',
-          detail:
-            'We work on existing models. ML research and fine-tuning are not our thing, and saying so saves time.',
+          title: 'Replacing your team',
+          detail: 'This answers and organizes. Closing and showing your face is still a person’s job.',
         },
         {
-          title: 'Bodies by the hour with no scope',
-          detail:
-            'We do not rent out developers against a bucket of hours. We come in with an agreed outcome and a definition of done.',
+          title: 'Projects with nobody deciding',
+          detail: 'I need someone who can say how it should work. Without that, everything stalls.',
         },
       ],
     },

@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Omona - Socio tecnico de delivery para automatizaciones Claude',
+    name: 'Omona - Sistemas a la medida para vender por WhatsApp',
     short_name: 'Omona',
-    description: 'Construimos, endurecemos y transferimos automatizaciones basadas en Claude. De prototipo a produccion.',
+    description: 'Te construyo el sistema que contesta, da seguimiento y captura solo, sobre el WhatsApp que ya usas.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0C0C0C',
