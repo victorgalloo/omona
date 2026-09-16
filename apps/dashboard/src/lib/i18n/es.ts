@@ -2,7 +2,7 @@ import type { Testimonial } from './types';
 
 export const es = {
   nav: {
-    features: 'El motor',
+    features: 'El proceso',
     engine: 'Se prueba',
     process: 'Preguntas',
     pricing: 'Cómo trabajo',
@@ -224,12 +224,12 @@ export const es = {
     ],
   },
   cta: {
-    heading: 'No se agenda. Se aplica.',
+    heading: 'Primero reviso el caso. Si hay encaje, hablamos.',
     subheading:
       'Cuéntame cómo vendes hoy y qué se te cae. **Lo reviso y te digo si puedo.**',
     primary: 'Aplicar',
     secondary: 'Ver el motor',
-    trust: 'son cinco preguntas · contesto todas, entren o no',
+    trust: 'cinco preguntas por WhatsApp · contesto todas, haya encaje o no',
   },
 
   footer: {
@@ -688,12 +688,12 @@ export const es = {
     hero: {
       eyebrow: 'prospectar · seguir · cerrar',
       title: 'Prospectar, seguir y cerrar.',
-      titleAccent: 'Sin que nadie capture nada.',
+      titleAccent: 'Sin capturar cada paso a mano.',
       subtitle:
-        'Agentes que corren tu operación comercial. **Se prueban antes de hablar con un cliente.**',
+        'Priorizan cuentas, registran lo acordado y preparan la propuesta. **Se prueban con tus casos antes de operar.**',
       ctaPrimary: 'Aplicar',
       ctaSecondary: 'Ver el motor',
-      note: 'trabajo con pocos a la vez · se aplica y reviso',
+      note: 'tomo pocos a la vez · reviso cada caso, haya encaje o no',
     },
 
     /** Las cuatro fugas. Titular y una línea. Nada más. */
@@ -733,8 +733,8 @@ export const es = {
      */
     cycle: {
       label: 'el motor_',
-      title: 'Tres etapas, un solo dato',
-      subtitle: 'Lo que se aprende prospectando **termina escribiendo la propuesta.**',
+      title: 'Un proceso. El mismo contexto.',
+      subtitle: 'Lo que se aprende prospectando **acompaña al seguimiento y a la propuesta.**',
       outputLabel: 'resultado',
       masLabel: 'cómo funciona',
       stages: [
@@ -767,9 +767,9 @@ export const es = {
           index: '03',
           name: 'Cerrar',
           kicker: 'con lo que el cliente dijo',
-          headline: 'La propuesta sale de la conversación, no de una plantilla.',
+          headline: 'La propuesta parte de lo que el cliente ya dijo.',
           detalle: [
-            'El documento se arma con lo que el cliente pidió, contra tu catálogo y tus precios aprobados. No inventa una cifra para salir del paso.',
+            'El borrador sale con los requisitos, los acuerdos y los pendientes de la conversación, contra tu catálogo y tus precios aprobados. Nadie vuelve a reconstruirlo desde cero.',
             '**Sale como borrador.** Alguien lo lee y lo manda. El sistema no manda propuestas solo, y esa es una decisión de diseño, no una limitación.',
           ],
           output: 'Borrador listo para revisar',
@@ -816,7 +816,7 @@ export const es = {
       metrics: [
         {
           name: 'Casos reales, no ejemplos',
-          detail: 'Tus conversaciones, **incluidas las que salieron mal.**',
+          detail: 'Se arma con tus conversaciones, **incluidas las que salieron mal.**',
         },
         {
           name: 'El criterio se escribe antes',

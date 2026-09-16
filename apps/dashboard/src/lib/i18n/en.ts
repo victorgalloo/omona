@@ -3,7 +3,7 @@ import type { Testimonial } from './types';
 
 export const en: Translations = {
   nav: {
-    features: 'Engine',
+    features: 'The process',
     engine: 'Testing',
     process: 'Questions',
     pricing: 'How I work',
@@ -194,12 +194,12 @@ export const en: Translations = {
     ],
   },
   cta: {
-    heading: 'You do not book. You apply.',
+    heading: 'I review the case first. If it fits, we talk.',
     subheading:
       'Tell me how you sell today and what is slipping. **I review it and tell you if I can help.**',
     primary: 'Apply',
     secondary: 'See the engine',
-    trust: 'five questions · I answer every one, in or out',
+    trust: 'five questions over WhatsApp · I answer every one, fit or not',
   },
 
   footer: {
@@ -618,12 +618,12 @@ export const en: Translations = {
     hero: {
       eyebrow: 'prospect · follow up · close',
       title: 'Prospect, follow up, close.',
-      titleAccent: 'Nobody types a thing.',
+      titleAccent: 'Without typing every step.',
       subtitle:
-        'Agents that run your sales motion. **Tested before they talk to a customer.**',
+        'They prioritise accounts, log what was agreed and draft the proposal. **Tested on your own cases before they run.**',
       ctaPrimary: 'Apply',
       ctaSecondary: 'See the engine',
-      note: 'few projects at a time · you apply, I review',
+      note: 'few at a time · I review every case, fit or not',
     },
 
     leak: {
@@ -653,8 +653,8 @@ export const en: Translations = {
 
     cycle: {
       label: 'the engine_',
-      title: 'Three stages, one set of data',
-      subtitle: 'What you learn prospecting **ends up writing the proposal.**',
+      title: 'One process. The same context.',
+      subtitle: 'What you learn prospecting **carries into follow-up and the proposal.**',
       outputLabel: 'output',
       masLabel: 'how it works',
       stages: [
@@ -687,9 +687,9 @@ export const en: Translations = {
           index: '03',
           name: 'Close',
           kicker: 'from what the customer said',
-          headline: 'The proposal comes from the conversation, not a template.',
+          headline: 'The proposal starts from what the customer already said.',
           detalle: [
-            'The document is built from what the customer asked for, against your catalog and approved pricing. It does not invent a number to fill a gap.',
+            'The draft comes out with the requirements, agreements and open points from the conversation, against your catalog and approved pricing. Nobody rebuilds it from scratch.',
             '**It comes out as a draft.** A person reads it and sends it. The system does not send proposals on its own, and that is a design decision, not a limitation.',
           ],
           output: 'Draft ready for review',
@@ -727,7 +727,7 @@ export const en: Translations = {
       metrics: [
         {
           name: 'Real cases, not examples',
-          detail: 'Your conversations, **including the ones that went badly.**',
+          detail: 'Built from your conversations, **including the ones that went badly.**',
         },
         {
           name: 'Criteria written first',

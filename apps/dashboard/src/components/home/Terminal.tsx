@@ -42,7 +42,7 @@ export function Terminal({
           <span className="h-2.5 w-2.5 rounded-full border border-border" />
           <span className="h-2.5 w-2.5 rounded-full border border-border" />
         </span>
-        <span className="ml-1 font-mono text-[11px] text-muted">evaluación</span>
+        <span className="ml-1 font-mono text-[11px] text-muted">ejemplo de evaluación</span>
       </div>
 
       <div className="overflow-x-auto p-4 font-mono text-[12.5px] leading-[1.9] sm:p-5 sm:text-[13px]">

@@ -10,7 +10,11 @@
  * el botón manda a WhatsApp. Un placeholder que no lleva a ningún lado es peor
  * que un canal con más fricción.
  *
- * El mensaje precargado hace de filtro: pide las cuatro cosas sin las cuales no
+ * Son CINCO preguntas y están numeradas porque el copy de la página promete
+ * cinco. Llevaba cuatro: quien llegaba contaba y la primera impresión era que
+ * el sitio no cuadra con lo que hace.
+ *
+ * El mensaje precargado hace de filtro: pide las cinco cosas sin las cuales no
  * se puede contestar nada útil. Un "Hola, quiero información" obliga a gastar
  * la primera respuesta preguntándolas.
  */
@@ -18,12 +22,13 @@ export const WHATSAPP_NUMERO = '524779083304';
 
 export const CTA_PROYECTO = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(
   [
-    'Hola, quiero aplicar.',
+    'Hola, quiero revisar si Omona aplica para mi proceso.',
     '',
-    'A qué se dedica la empresa:',
-    'Qué etapa se me está cayendo (prospección, seguimiento o cierre):',
-    'Qué sistemas usamos:',
-    'Para cuándo lo necesito:',
+    '1. Qué vende la empresa:',
+    '2. A quién le vende:',
+    '3. Dónde se pierden oportunidades (prospección, seguimiento o cierre):',
+    '4. Qué sistemas usan hoy:',
+    '5. Para cuándo necesitan resolverlo:',
   ].join('\n'),
 )}`;
 

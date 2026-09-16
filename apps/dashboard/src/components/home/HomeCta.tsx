@@ -35,8 +35,10 @@ export function HomeCta() {
             {c.primary}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
-          <Link
-            href="/demo"
+          {/* Iba a /demo mientras el del héroe iba a #ciclo, con la MISMA
+              etiqueta. Dos destinos para una promesa es una promesa rota. */}
+            <Link
+            href="#ciclo"
             className="inline-flex items-center justify-center border border-border px-7 py-3.5 font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
           >
             {c.secondary}
