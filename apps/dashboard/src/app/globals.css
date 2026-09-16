@@ -441,6 +441,34 @@ article[id] {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
 }
 
+/* ── Partículas del campo de flujo ────────────────────────────
+   Recorren la curva con `offset-distance`, que el compositor anima igual
+   que un transform: sin repintar y sin tocar el hilo principal. El
+   `offset-path` de cada una va en su `style`, porque es distinto por
+   partícula y no cabe en una clase.
+
+   `offset-rotate: 0deg` es obligatorio: sin él el punto gira para seguir
+   la tangente de la curva, y un círculo girando no se ve rotar — se ve
+   temblar. */
+
+.flow-particle {
+  offset-rotate: 0deg;
+  animation-name: recorrer;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes recorrer {
+  from { offset-distance: 0%;   opacity: 0; }
+  12%  { opacity: 0.65; }
+  86%  { opacity: 0.65; }
+  to   { offset-distance: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-particle { animation: none; opacity: 0; }
+}
+
 /* ── Barrido sobre la retícula ─────────────────────────────────
    La idea viene de "Animated Grid Pattern" de 21st.dev, que anima decenas
    de rectángulos SVG apareciendo y desapareciendo. Aquí es UN elemento
