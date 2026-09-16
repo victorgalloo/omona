@@ -33,7 +33,12 @@ export function HomeHero() {
   const h = t.home.hero;
 
   return (
-    <header className="relative overflow-hidden border-b border-hairline px-5 pb-20 pt-28 sm:px-8 sm:pb-28 sm:pt-36">
+    {/* `isolate` no es decoración: crea el contexto de apilamiento del header.
+        Sin él, un hijo con `-z-10` no se queda detrás del CONTENIDO del header
+        —se va detrás del ancestro que sí tiene contexto— y el `bg-background`
+        del <div> que envuelve la página le pinta encima. Por eso ni la retícula
+        ni el campo de flujo se veían nunca. */}
+    <header className="relative isolate overflow-hidden border-b border-hairline px-5 pb-20 pt-28 sm:px-8 sm:pb-28 sm:pt-36">
       {/* La retícula se queda —es la que da la sensación de archivo— y encima
           va el campo de flujo: catorce trazos convergiendo al centro. No es
           adorno suelto, es la tesis dibujada: prospectar, seguir y cerrar
