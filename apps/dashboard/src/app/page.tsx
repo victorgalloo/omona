@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { LandingNav } from '@/components/landing/LandingNav';
 import { HomeHero } from '@/components/home/HomeHero';
 import { HomeLeak } from '@/components/home/HomeLeak';
+import { HomeShift } from '@/components/home/HomeShift';
 import { HomeCycle } from '@/components/home/HomeCycle';
+import { HomeLadder } from '@/components/home/HomeLadder';
 import { HomeMeasure } from '@/components/home/HomeMeasure';
 import { HomeScope } from '@/components/home/HomeScope';
 import { HomeFaq } from '@/components/home/HomeFaq';
@@ -144,7 +146,7 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       datePublished: '2025-01-01',
-      dateModified: '2026-09-15',
+      dateModified: '2026-09-17',
       isPartOf: { '@type': 'WebSite', name: 'Omona', url: 'https://omona.tech' },
       speakable: {
         '@type': 'SpeakableSpecification',
@@ -167,15 +169,22 @@ const jsonLdGraph = {
  *
  *   1. héroe        qué es, con la tarjeta de jugada como cara del producto
  *   2. diagnóstico  dónde se fuga el dinero, que es lo que el visitante vive
- *   3. ciclo        las cuatro etapas — el corazón de la página
- *   4. motor        el seguimiento abierto, que es donde está la diferencia
- *   5. inteligencia de la conversación al dato (y aquí se menciona el chat)
- *   6. medición     cómo se sabe si funcionó, y la fuga en pesos
+ *   3. categoría    contra qué se compara esto, en dos columnas
+ *   4. ciclo        las tres etapas — el corazón de la página
+ *   5. autonomía    hasta dónde llega solo, y qué se gana contra prueba
+ *   6. medición     cómo se prueba antes de encenderlo
  *   7. alcance      lo que hace y, explícitamente, lo que no
- *   8. proceso      seis semanas
- *   9. garantía     la respuesta a "¿y si no funciona?"
- *  10. preguntas
- *  11. cierre
+ *   8. preguntas
+ *   9. cierre
+ *
+ * Las dos secciones nuevas —categoría y autonomía— entran donde estaban los
+ * dos huecos del argumento. Después del diagnóstico el visitante pensaba
+ * "esto ya me lo ofrecieron veinte veces" y la página no contestaba hasta el
+ * FAQ; y antes de hablar de evaluaciones nadie había dicho qué es lo que el
+ * sistema puede llegar a hacer solo, que es lo que vuelve relevante la
+ * evaluación. Las dos son formato de escaneo puro —seis renglones cada una,
+ * cero prosa visible— justamente porque se suman a una página que ya se había
+ * recortado a propósito.
  *
  * Las secciones retiradas (LandingProof, LandingStats, LandingBeforeAfter,
  * LandingFeatures, LandingOfferStack, LandingCrmEmbedded, LandingUseCases,
@@ -195,7 +204,9 @@ export default function LandingPage() {
       <main>
         <HomeHero />
         <HomeLeak />
+        <HomeShift />
         <HomeCycle />
+        <HomeLadder />
         <HomeMeasure />
         <HomeScope />
         <HomeFaq />

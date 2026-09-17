@@ -6,7 +6,8 @@ export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Guías de IA para ventas B2B por WhatsApp, actualizadas y con fuentes.",
+  description:
+    "Ingeniería de agentes para equipos comerciales: autonomía, evaluaciones, arquitectura, costos y medición. Más el corpus de automatización de ventas B2B por WhatsApp.",
   alternates: { canonical: "https://omona.tech/blog" },
 };
 

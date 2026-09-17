@@ -233,6 +233,7 @@ export const es = {
   },
 
   footer: {
+    allGuides: 'Ver todas →',
     login: 'Iniciar sesión',
     signup: 'Registrarse',
     demo: 'Demo',
@@ -546,6 +547,10 @@ export const es = {
       {
         q: '¿Qué pasa cuando se equivoca?',
         a: 'Se equivoca, como cualquier sistema. Por eso nada que comprometa dinero o reputación sale sin que una persona lo apruebe, y por eso existe el set de prueba: para que el error aparezca en la evaluación y no frente a tu cliente.',
+      },
+      {
+        q: '¿Hasta dónde actúa solo?',
+        a: 'Hasta donde tú decidas, y se empieza abajo. Al principio sólo mira y recomienda; después prepara borradores; después ejecuta pero pidiéndote confirmación. Sube de nivel cuando pasa las pruebas acordadas, no cuando pasa el tiempo, y lo que sale hacia un cliente sigue necesitando que alguien lo apruebe.',
       },
       {
         q: '¿Cuánto cuesta?',
@@ -930,6 +935,90 @@ export const es = {
           ],
           output: 'Borrador listo para revisar',
         },
+      ],
+    },
+
+    /**
+     * La categoría.
+     *
+     * Existe porque la objeción real del visitante no es "¿funciona?" sino
+     * "¿en qué se diferencia de los otros veinte que me escribieron?". Y esa
+     * no se contesta con adjetivos: se contesta poniendo las dos columnas
+     * juntas y dejando que compare.
+     *
+     * Seis renglones y ninguna prosa. Es la sección que más rápido se lee de
+     * la página a propósito — va justo después del diagnóstico, donde el
+     * visitante todavía está decidiendo si esto es otra agencia de bots.
+     */
+    shift: {
+      label: 'la categoría_',
+      title: 'No es un bot con mejor prompt',
+      subtitle:
+        'La diferencia no está en el modelo. **Está en todo lo que va alrededor del modelo.**',
+      commonTitle: 'Lo que se vende como IA',
+      omonaTitle: 'Lo que se construye aquí',
+      rows: [
+        { common: 'Un bot que contesta preguntas', omona: 'Un proceso comercial que se completa' },
+        { common: 'Un flujo lineal en n8n o Make', omona: 'Estado, decisiones y recuperación de errores' },
+        { common: 'Una demo armada con prompts', omona: 'Producción con pruebas y control de versiones' },
+        { common: 'Se mide en mensajes atendidos', omona: 'Se mide en oportunidades que avanzaron' },
+        { common: 'Automatizar todo de golpe', omona: 'Autonomía por niveles, con aprobaciones' },
+        { common: 'Una integración suelta', omona: 'CRM, correo, calendario y datos en una sola capa' },
+      ],
+    },
+
+    /**
+     * Los niveles de autonomía.
+     *
+     * Es la respuesta a la pregunta que todo director comercial hace en
+     * silencio: "¿y si le manda una babosada a mi mejor cuenta?". La respuesta
+     * honesta no es "no pasa" — es esta escala, donde lo que sale a un cliente
+     * requiere que alguien lo apruebe hasta que haya evidencia de lo contrario.
+     *
+     * Seis renglones de una línea. Es información densa en el formato más
+     * rápido de leer que existe: una escala numerada.
+     */
+    ladder: {
+      label: 'cuánta autonomía_',
+      title: 'Empieza mirando. No tocando.',
+      subtitle:
+        'Seis niveles. **Se sube cuando el anterior pasa las pruebas, no cuando pasa el tiempo.**',
+      levelWord: 'nivel',
+      levels: [
+        { n: '0', name: 'Observa', detail: 'Lee el pipeline y detecta lo que se está cayendo. No cambia nada.' },
+        { n: '1', name: 'Recomienda', detail: 'Dice a quién seguir primero y por qué, con la evidencia.' },
+        { n: '2', name: 'Prepara', detail: 'Deja el correo, la tarea o la propuesta listos para revisar.' },
+        { n: '3', name: 'Ejecuta con permiso', detail: 'Manda y registra, pero sólo después de que tú confirmas.' },
+        { n: '4', name: 'Ejecuta por regla', detail: 'Tareas, notas y campos seguros sin preguntar cada vez.' },
+        { n: '5', name: 'Autónomo acotado', detail: 'Opera el ciclo completo y te escala lo que se sale de la regla.' },
+      ],
+      note: 'Lo que sale hacia un cliente no pasa del 3 mientras tú no lo decidas.',
+      mas: {
+        resumen: 'cómo se sube de nivel',
+        parrafos: [
+          'Antes de empezar se escribe qué tiene que pasar para subir: **cuánto coincide con lo que tu equipo habría hecho**, cuántas alertas salieron falsas, cuántos borradores se mandaron sin reescribir y cero acciones fuera de la regla.',
+          'Se escribe también lo contrario: qué evento lo baja de nivel. Una queja de un cliente, una acción que no debía salir, o una caída sostenida en la calidad de los borradores.',
+          'Y la autonomía se define por acción, no por sistema. El mismo agente puede estar en nivel 4 para escribir en tu CRM y en nivel 2 para cualquier cosa que salga por correo.',
+        ],
+      },
+    },
+
+    /**
+     * Enlaces a las guías largas. Van en el pie por la misma razón que la
+     * columna de problemas: es la superficie donde alguien que llegó a leer
+     * encuentra lo siguiente que leer, y es el único sitio de la portada que
+     * reparte enlaces hacia el corpus.
+     */
+    guides: {
+      label: 'guías_',
+      items: [
+        { slug: 'gtm-ai-engineering-que-es', short: 'Qué es GTM AI Engineering' },
+        { slug: 'niveles-autonomia-agente-comercial', short: 'Los 6 niveles de autonomía' },
+        { slug: 'agente-recuperacion-pipeline', short: 'Recuperar el pipeline' },
+        { slug: 'evaluaciones-agentes-comerciales-evals', short: 'Cómo se prueba un agente' },
+        { slug: 'crm-first-no-solo-whatsapp', short: 'Por qué no sólo WhatsApp' },
+        { slug: 'cuanto-cuesta-agente-ia-ventas-mexico', short: 'Cuánto cuesta' },
+        { slug: 'plan-90-dias-agente-comercial', short: 'Plan de 90 días' },
       ],
     },
 

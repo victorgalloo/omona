@@ -11,6 +11,10 @@ export async function GET() {
   let entidad = '';
   const llmsPath = path.join(process.cwd(), 'data', 'geo', 'llms.txt');
   if (fs.existsSync(llmsPath)) entidad = fs.readFileSync(llmsPath, 'utf8').trim();
+  // El archivo de entidad abre con su propio "# Omona" y abajo se emite otro,
+  // asi que la salida arrancaba con el mismo H1 dos veces seguidas. Es lo
+  // primero que lee un motor generativo del dominio.
+  entidad = entidad.replace(/^#\s+Omona\s*\n+/, '');
 
   const lines: string[] = [];
   lines.push('# Omona', '');

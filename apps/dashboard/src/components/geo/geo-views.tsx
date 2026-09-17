@@ -28,7 +28,7 @@ const INDICE: Record<GeoKind, { crumb: string; eyebrow: string; h1: string; desc
     crumb: "Blog",
     eyebrow: "Blog",
     h1: "Blog de Omona",
-    desc: "Guías de IA para ventas B2B por WhatsApp, actualizadas y con fuentes.",
+    desc: "Ingeniería de agentes para equipos comerciales: autonomía, evaluaciones, arquitectura, costos y medición. Más el corpus de automatización de ventas B2B por WhatsApp.",
   },
   comparativa: {
     crumb: "Comparativas",
@@ -146,14 +146,18 @@ function ArticleView({ a }: { a: GeoArticle }) {
             más: tráfico de búsqueda llegando a leer y ninguna forma de
             escribir. Era la fuga más cara del sitio, porque el costo de traer
             a esa persona ya estaba pagado.
-            El texto vive aquí y no en cada .md a propósito: son 74 archivos y
-            el día que cambie la oferta habría que editarlos uno por uno. */}
+            El texto vive aquí y no en cada .md a propósito: son casi cien
+            archivos y el día que cambie la oferta habría que editarlos uno por
+            uno. Ya pasó: decía "si vendes por WhatsApp" y las veinte guías de
+            ingeniería de agentes cerraban hablando de un canal que ni
+            mencionan. Ahora nombra la fuga, que es lo único común a los dos
+            bloques del corpus. */}
         <aside className="mt-16 border-t border-hairline pt-10">
           <p className="mb-2 font-mono text-xs uppercase tracking-[0.18em] text-accent-green">
             ¿te suena tu negocio?
           </p>
           <h2 className="mb-3 max-w-[24ch] text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground">
-            Si vendes por WhatsApp, esto se te puede construir.
+            Si pierdes oportunidades por olvido, esto se te puede construir.
           </h2>
           <p className="mb-6 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
             Cuéntame cómo vendes hoy y qué se te está cayendo. Te contesto con qué haría yo y

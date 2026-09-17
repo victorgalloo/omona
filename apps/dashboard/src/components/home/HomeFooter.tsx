@@ -60,6 +60,32 @@ export function HomeFooter() {
           </div>
         </div>
 
+        {/* Las guías largas.
+            Mismo criterio que la columna de problemas de arriba: el pie es
+            donde alguien que ya leyó encuentra lo siguiente que leer. Y es el
+            único punto de la portada que reparte enlaces hacia el corpus —
+            antes de esto, las guías sólo se alcanzaban desde /blog, que es la
+            página con menos visitas del sitio. */}
+        <div className="mt-10 border-t border-hairline pt-8">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+            {t.home.guides.label}
+          </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-[13.5px] text-muted-foreground">
+            {t.home.guides.items.map((guide) => (
+              <Link
+                key={guide.slug}
+                href={`/blog/${guide.slug}`}
+                className="transition-colors hover:text-foreground"
+              >
+                {guide.short}
+              </Link>
+            ))}
+            <Link href="/blog" className="text-foreground/70 transition-colors hover:text-foreground">
+              {t.footer.allGuides}
+            </Link>
+          </div>
+        </div>
+
         {/* El hueco final de vi: la columna de virgulillas y el EOF. Es lo que
             cierra la metafora del archivo sin necesidad de explicarla. */}
         <div aria-hidden className="md-eof mt-12 select-none text-xs leading-[1.6]">

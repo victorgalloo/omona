@@ -203,6 +203,7 @@ export const en: Translations = {
   },
 
   footer: {
+    allGuides: 'See all →',
     login: 'Log in',
     signup: 'Sign up',
     demo: 'Demo',
@@ -506,6 +507,10 @@ export const en: Translations = {
       {
         q: 'What happens when it gets something wrong?',
         a: 'It gets things wrong, like any system. That is why nothing touching money or reputation ships without a person approving it, and why the test set exists: so the error shows up in evaluation and not in front of your customer.',
+      },
+      {
+        q: 'How far does it act on its own?',
+        a: 'As far as you decide, and it starts at the bottom. At first it only watches and recommends; then it prepares drafts; then it acts, but asks you to confirm. It moves up a level when it passes the agreed tests, not when time passes, and anything going out to a customer still needs someone to approve it.',
       },
       {
         q: 'What does it cost?',
@@ -850,6 +855,61 @@ export const en: Translations = {
           ],
           output: 'Draft ready for review',
         },
+      ],
+    },
+
+    shift: {
+      label: 'the category_',
+      title: 'Not a bot with a better prompt',
+      subtitle:
+        'The difference is not the model. **It is everything built around the model.**',
+      commonTitle: 'What gets sold as AI',
+      omonaTitle: 'What gets built here',
+      rows: [
+        { common: 'A bot that answers questions', omona: 'A sales process that completes' },
+        { common: 'A linear flow in n8n or Make', omona: 'State, decisions and error recovery' },
+        { common: 'A demo put together with prompts', omona: 'Production, with tests and version control' },
+        { common: 'Measured in messages handled', omona: 'Measured in opportunities that moved' },
+        { common: 'Automate everything at once', omona: 'Autonomy by level, with approvals' },
+        { common: 'A one-off integration', omona: 'CRM, email, calendar and data in one layer' },
+      ],
+    },
+
+    ladder: {
+      label: 'how much autonomy_',
+      title: 'It starts by watching. Not touching.',
+      subtitle:
+        'Six levels. **You move up when the previous one passes its tests, not when time passes.**',
+      levelWord: 'level',
+      levels: [
+        { n: '0', name: 'Observes', detail: 'Reads the pipeline and spots what is slipping. Changes nothing.' },
+        { n: '1', name: 'Recommends', detail: 'Says who to chase first and why, with the evidence.' },
+        { n: '2', name: 'Prepares', detail: 'Leaves the email, task or proposal ready for review.' },
+        { n: '3', name: 'Acts on approval', detail: 'Sends and logs, but only after you confirm.' },
+        { n: '4', name: 'Acts on policy', detail: 'Tasks, notes and safe fields without asking every time.' },
+        { n: '5', name: 'Bounded autonomy', detail: 'Runs the whole cycle and escalates whatever falls outside the rules.' },
+      ],
+      note: 'Anything that reaches a customer stays at level 3 until you decide otherwise.',
+      mas: {
+        resumen: 'how it moves up a level',
+        parrafos: [
+          'Before anything starts, the bar is written down: **how closely it matches what your team would have done**, how many alerts were false, how many drafts went out without a rewrite, and zero actions outside policy.',
+          'The reverse is written down too: what event drops it a level. A customer complaint, an action that should not have gone out, or a sustained drop in draft quality.',
+          'And autonomy is defined per action, not per system. The same agent can sit at level 4 for writing to your CRM and at level 2 for anything leaving by email.',
+        ],
+      },
+    },
+
+    guides: {
+      label: 'guides_',
+      items: [
+        { slug: 'gtm-ai-engineering-que-es', short: 'What GTM AI Engineering is' },
+        { slug: 'niveles-autonomia-agente-comercial', short: 'The 6 levels of autonomy' },
+        { slug: 'agente-recuperacion-pipeline', short: 'Recovering the pipeline' },
+        { slug: 'evaluaciones-agentes-comerciales-evals', short: 'How an agent is tested' },
+        { slug: 'crm-first-no-solo-whatsapp', short: 'Why not WhatsApp alone' },
+        { slug: 'cuanto-cuesta-agente-ia-ventas-mexico', short: 'What it costs' },
+        { slug: 'plan-90-dias-agente-comercial', short: 'The 90-day plan' },
       ],
     },
 
