@@ -3,54 +3,44 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { useT } from '@/contexts/LanguageContext';
-import { CTA_PROYECTO } from '@/lib/cta';
 import { Logo } from '../shared/Logo';
 
 /**
- * La barra (DESIGN_SYSTEM.md §7). La usan la portada, el blog, /open-source y
- * las páginas de problema y caso de uso: lo que se arregle aquí se arregla en
- * todas.
+ * La barra (DESIGN_SYSTEM.md §7). La usan la portada, el blog, /open-source,
+ * /about y las páginas legales: lo que se arregle aquí se arregla en todas.
  *
  * 64px, pegada arriba, papel #fafafa con desenfoque de 20px y SIN borde
- * inferior. Marca a la izquierda (el glyph negro + `omona`), cuatro links de
- * 14px, y a la derecha un ghost (Demo) y el lleno (Aplicar), que es la única
- * acción principal del sitio.
+ * inferior. Marca a la izquierda (el glyph negro + `omona`), tres links de
+ * 14px, y a la derecha una sola pill llena: GitHub.
  *
- * Open source y About no van aquí a propósito: la portada vende el sistema, y
- * esas secciones viven en el pie (entrada discreta).
+ * 22-nov-2026: omona.tech es el laboratorio open source de Victor, no un
+ * producto. Sin Demo, sin Aplicar, sin «Cómo trabajo».
  */
-const NAV_EN = {
-  features: 'The process',
-  engine: 'Testing',
-  process: 'FAQ',
-  pricing: 'How I work',
-  blog: 'Blog',
-  demo: 'Demo',
-  signup: 'Apply',
+const LINKS = {
+  es: [
+    { href: '/open-source', label: 'Open source' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/about', label: 'About' },
+  ],
+  en: [
+    { href: '/en/open-source', label: 'Open source' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/about', label: 'About' },
+  ],
 };
 
-/** `lang="en"` solo cambia las etiquetas (páginas /about y /en/open-source). */
-export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
-  const tEs = useT();
-  const t = lang === 'en' ? { ...tEs, nav: { ...tEs.nav, ...NAV_EN } } : tEs;
-  const [open, setOpen] = useState(false);
+const GITHUB = 'https://github.com/victorgalloo';
 
-  const links = [
-    { href: '/#ciclo', label: t.nav.features },
-    { href: '/#medicion', label: t.nav.engine },
-    { href: '/como-trabajamos', label: t.nav.pricing },
-    { href: '/blog', label: t.nav.blog },
-  ];
+/** `lang="en"` solo cambia a dónde apunta Open source (páginas /about y /en/open-source). */
+export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
+  const [open, setOpen] = useState(false);
+  const links = LINKS[lang];
 
   return (
-    <nav
-      aria-label="Principal"
-      className="sticky top-0 z-50 h-16 bg-[#fafafa]/80 backdrop-blur-[20px]"
-    >
+    <nav aria-label={lang === 'en' ? 'Main' : 'Principal'} className="sticky top-0 z-50 h-16 bg-[#fafafa]/80 backdrop-blur-[20px]">
       <div className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between px-6 lg:px-12">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex shrink-0 items-center gap-2" aria-label="Omona — inicio">
+          <Link href="/" className="flex shrink-0 items-center gap-2" aria-label={lang === 'en' ? 'Omona — home' : 'Omona — inicio'}>
             <Logo size={20} className="shrink-0 text-black" />
             <span className="text-[17px] font-medium tracking-[-0.04em] text-obsidian">omona</span>
           </Link>
@@ -68,16 +58,8 @@ export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link href="/demo" className="btn-ghost !h-8 rounded-full">
-            {t.nav.demo}
-          </Link>
-          <a
-            href={CTA_PROYECTO}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-fill !h-8 rounded-full"
-          >
-            {t.nav.signup}
+          <a href={GITHUB} target="_blank" rel="noopener noreferrer me" className="btn-fill !h-8 rounded-full">
+            GitHub ↗
           </a>
         </div>
 
@@ -96,7 +78,7 @@ export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
       {open && (
         <div id="menu-movil" className="border-t border-hair bg-[#fafafa] px-6 pb-6 pt-2 md:hidden">
           <ul className="flex flex-col">
-            {[...links, { href: '/#preguntas', label: t.nav.process }].map((l) => (
+            {links.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
@@ -108,14 +90,9 @@ export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
               </li>
             ))}
           </ul>
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            <Link href="/demo" onClick={() => setOpen(false)} className="btn-ghost">
-              {t.nav.demo}
-            </Link>
-            <a href={CTA_PROYECTO} target="_blank" rel="noopener noreferrer" className="btn-fill">
-              {t.nav.signup}
-            </a>
-          </div>
+          <a href={GITHUB} target="_blank" rel="noopener noreferrer me" className="btn-fill mt-4 w-full">
+            GitHub ↗
+          </a>
         </div>
       )}
     </nav>

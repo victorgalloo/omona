@@ -30,7 +30,7 @@ ${n.tags.map((t) => `      <category>${esc(t)}</category>`).join('\n')}
     <title>Omona · Notas de ingeniería</title>
     <link>${BASE}/blog</link>
     <atom:link href="${BASE}/blog/rss.xml" rel="self" type="application/rss+xml" />
-    <description>Agentes en producción: lo que aprendimos arreglando cosas en Hermes Agent, Amazon Bedrock y más.</description>
+    <description>Notas de ingeniería de Victor Gallo: lo que aprendió arreglando agentes en producción (Hermes Agent, Amazon Bedrock y más).</description>
     <language>es-MX</language>
     <lastBuildDate>${new Date(`${notas[0]?.updated ?? '2026-11-22'}T12:00:00-06:00`).toUTCString()}</lastBuildDate>
 ${items}

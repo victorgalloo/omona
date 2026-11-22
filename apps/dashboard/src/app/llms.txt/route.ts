@@ -1,41 +1,53 @@
-import fs from 'fs';
-import path from 'path';
-import { getAllGeo } from '@/lib/geo/articles';
 import { getNotas } from '@/lib/notas';
+import ossData from '../../../data/oss/oss.json';
 
 export const dynamic = 'force-static';
 
 const BASE = 'https://omona.tech';
 
-export async function GET() {
-  const { articulos, comparativas } = getAllGeo();
-  let entidad = '';
-  const llmsPath = path.join(process.cwd(), 'data', 'geo', 'llms.txt');
-  if (fs.existsSync(llmsPath)) entidad = fs.readFileSync(llmsPath, 'utf8').trim();
+type Oss = {
+  generatedAt: string;
+  stats: Record<string, number>;
+  prs: { key: string; url: string; state: string; title: string }[];
+  issues: { key: string; url: string; state: string; es: string }[];
+};
 
+/**
+ * 22-nov-2026: omona.tech es el laboratorio open source de Victor Gallo. El
+ * bloque de entidad de data/geo/llms.txt describía un producto y ya no se usa.
+ */
+export async function GET() {
+  const oss = ossData as unknown as Oss;
+  const s = oss.stats;
   const lines: string[] = [];
   lines.push('# Omona', '');
-  if (entidad) lines.push(entidad, '');
-  lines.push('## Mapa del sitio', '');
-  // Esta línea decía "agente de IA para ventas B2B por WhatsApp" y contradecía
-  // el bloque de entidad de arriba: el producto de WhatsApp es evidencia, no la
-  // oferta. Era además lo primero que leía un motor generativo del sitio.
-  lines.push(`- [Inicio](${BASE}/): prospectar, seguir y cerrar sin capturar nada a mano.`);
-  lines.push(`- [Cómo trabajamos](${BASE}/como-trabajamos): proceso, alcance y qué queda instalado.`);
+  lines.push(
+    '> Omona es el laboratorio de ingeniería independiente de Victor Gallo (https://victorgallo.com) para su trabajo open source sobre agentes de IA: pull requests a otros proyectos, reportes de bugs y notas de ingeniería. No es un producto comercial y no vende servicios.',
+    '',
+  );
+  lines.push(
+    `Victor Gallo construye y opera agentes de IA sobre Amazon Bedrock y Hermes Agent (Nous Research). Al ${oss.generatedAt.slice(0, 10)}: ${s.prs} pull requests a proyectos de terceros (${s.merged} merged, ${s.open} abiertos) y ${s.issues} reportes. El estado de cada PR sale de GitHub cada semana; ninguno se marca merged a mano.`,
+    '',
+  );
+  lines.push('## Páginas', '');
+  lines.push(`- [Inicio](${BASE}/): quién es Victor, qué está aportando y las últimas notas.`);
+  lines.push(`- [Open source](${BASE}/open-source): PRs y reportes a Hermes Agent y Strands Agents con su estado real. En inglés: ${BASE}/en/open-source`);
+  lines.push(`- [Blog](${BASE}/blog): notas de ingeniería. RSS: ${BASE}/blog/rss.xml`);
+  lines.push(`- [About](${BASE}/about): Victor Gallo y Omona, en inglés, solo hechos fechados.`);
   lines.push('');
-  lines.push(`- [Demo](${BASE}/demo): el sistema funcionando, para probarlo sin registro.`);
+  lines.push('## Pull requests', '');
+  for (const p of oss.prs) lines.push(`- [${p.key}](${p.url}) (${p.state}): ${p.title}`);
   lines.push('');
-  lines.push(`- [Open source](${BASE}/open-source): PRs y reportes a Hermes Agent (Nous Research) y Strands Agents (AWS) con su estado real en GitHub. En inglés: ${BASE}/en/open-source`);
-  lines.push(`- [About](${BASE}/about): Omona y su fundador, Victor Gallo (https://victorgallo.com), en inglés.`);
+  lines.push('## Reportes', '');
+  for (const i of oss.issues) lines.push(`- [${i.key}](${i.url}) (${i.state}): ${i.es}`);
   lines.push('');
   lines.push('## Notas de ingeniería', '');
   for (const n of getNotas()) lines.push(`- [${n.title}](${BASE}/blog/${n.slug}): ${n.description}`);
   lines.push('');
-  lines.push('## Guías publicadas', '');
-  lines.push(`- [Blog](${BASE}/blog): ${articulos.length} guías.`);
-  for (const a of articulos) lines.push(`  - [${a.title}](${BASE}/blog/${a.slug})`);
-  lines.push(`- [Comparativas](${BASE}/comparativas): ${comparativas.length} análisis vs competidores.`);
-  for (const c of comparativas) lines.push(`  - [${c.title}](${BASE}/comparativas/${c.slug})`);
+  lines.push('## Perfiles', '');
+  lines.push('- GitHub: https://github.com/victorgalloo');
+  lines.push('- LinkedIn: https://www.linkedin.com/in/victorgalloo/');
+  lines.push('- Sitio personal: https://victorgallo.com');
   lines.push('');
 
   return new Response(lines.join('\n'), {

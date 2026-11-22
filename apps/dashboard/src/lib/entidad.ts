@@ -1,6 +1,10 @@
 /**
  * La entidad: Omona (organización) y Victor Gallo (persona, fundador).
  *
+ * Desde el 22-nov-2026 Omona NO es un producto: es el laboratorio de ingeniería
+ * independiente de Victor para su trabajo open source (PRs, reportes, notas).
+ * Nada de ofertas, precios ni servicios en el JSON-LD.
+ *
  * Los `@id` son los mismos que usa victorgallo.com (`https://victorgallo.com/#victor`),
  * así los buscadores y los motores generativos unen las dos páginas como una
  * sola persona sin que ninguna de las dos lo grite. Si cambias redes o cargo,
@@ -32,7 +36,7 @@ export const PERSON = {
   // Sin jobTitle/worksFor: victorgallo.com publica los suyos (SuperLeads) con este mismo @id.
   // La relación con Omona va del lado de la organización (`founder`).
   homeLocation: { '@type': 'Place', name: 'León, Guanajuato, México' },
-  knowsAbout: ['AI agents', 'Amazon Bedrock', 'Hermes Agent', 'Strands Agents', 'sales process automation'],
+  knowsAbout: ['AI agents', 'Amazon Bedrock', 'Hermes Agent', 'Strands Agents', 'open source'],
 };
 
 export const ORG = {
@@ -41,14 +45,19 @@ export const ORG = {
   name: 'Omona',
   url: BASE,
   logo: `${BASE}/logo-mark.png`,
+  description:
+    "Victor Gallo's independent engineering lab for open-source work on AI agents: upstream pull requests, issue reports and engineering notes. Not a commercial product.",
   founder: PERSON_REF,
 };
+
+export const ORG_DESC_ES =
+  'Laboratorio de ingeniería independiente de Victor Gallo para su trabajo open source sobre agentes de IA: pull requests a otros proyectos, reportes de bugs y notas de ingeniería. No es un producto comercial.';
 
 export const AUTOR = {
   nombre: 'Victor Gallo',
   url: 'https://victorgallo.com',
   github: 'https://github.com/victorgalloo',
   linkedin: 'https://www.linkedin.com/in/victorgalloo/',
-  bio: 'Fundador de Omona. Construye agentes para el proceso comercial y aporta a Hermes Agent (Nous Research) y a Strands Agents (AWS). León, Gto.',
-  bioEn: 'Founder of Omona. Builds AI agents for the sales process and contributes to Hermes Agent (Nous Research) and Strands Agents (AWS). León, Mexico.',
+  bio: 'Construye agentes de IA sobre Amazon Bedrock y aporta a Hermes Agent (Nous Research) y a Strands Agents (AWS). Omona es su laboratorio open source. León, Gto.',
+  bioEn: 'Builds AI agents on Amazon Bedrock and contributes to Hermes Agent (Nous Research) and Strands Agents (AWS). Omona is his open-source lab. León, Mexico.',
 };

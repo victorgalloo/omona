@@ -1,3 +1,31 @@
+const fs = require('fs');
+const path = require('path');
+
+/**
+ * Slugs de las guías GEO retiradas del blog (data/geo/articles). Misma regla
+ * que `slugify` en src/lib/geo/articles.ts: si cambias una, cambia la otra.
+ */
+function guiasGeo() {
+  const dir = path.join(__dirname, 'data', 'geo', 'articles');
+  if (!fs.existsSync(dir)) return [];
+  const slug = (s) =>
+    s
+      .toLowerCase()
+      .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i')
+      .replace(/ó/g, 'o').replace(/ú/g, 'u').replace(/ñ/g, 'n')
+      .replace(/[‘’]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .replace(/-{2,}/g, '-');
+  const notas = new Set(
+    fs.existsSync(path.join(__dirname, 'data', 'notas'))
+      ? fs.readdirSync(path.join(__dirname, 'data', 'notas')).map((f) => f.replace(/\.md$/, ''))
+      : [],
+  );
+  return [...new Set(fs.readdirSync(dir).filter((f) => f.endsWith('.md')).map((f) => slug(f.replace(/\.md$/, ''))))]
+    .filter((s) => s && !notas.has(s));
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Permite levantar un segundo `next dev` sobre el mismo checkout sin que los
@@ -26,9 +54,37 @@ const nextConfig = {
   // /pricing existía cuando la oferta era autoservicio con dos planes visibles.
   // La página ya no publica cifras, así que la URL mentía sobre su contenido.
   // Redirección permanente para no perder lo que ya esté indexado o enlazado.
+  //
+  // 22-nov-2026: omona.tech dejó de presentar un producto. Es el laboratorio
+  // open source de Victor (PRs, notas, about). Las rutas del producto se
+  // retiraron de app/ y aquí responden 301 a la portada (o al blog, las guías
+  // GEO de ventas por WhatsApp). El dashboard (/login, /inbox, …) sigue igual.
   async redirects() {
+    const aInicio = [
+      '/pricing',
+      '/demo',
+      '/demo/:path*',
+      '/recorrido',
+      '/recorrido/:path*',
+      '/como-trabajamos',
+      '/casos-de-uso',
+      '/casos-de-uso/:path*',
+      '/comparativas',
+      '/comparativas/:path*',
+      '/soluciones',
+      '/soluciones/:path*',
+      '/problemas',
+      '/problemas/:path*',
+      '/servicios',
+      '/servicios/:path*',
+      '/delivery',
+      '/delivery/:path*',
+      '/aplicar',
+    ];
     return [
-      { source: '/pricing', destination: '/como-trabajamos', permanent: true },
+      ...aInicio.map((source) => ({ source, destination: '/', statusCode: 301 })),
+      { source: '/articulos/:path*', destination: '/blog', statusCode: 301 },
+      ...guiasGeo().map((slug) => ({ source: `/blog/${slug}`, destination: '/blog', statusCode: 301 })),
     ];
   },
   async headers() {

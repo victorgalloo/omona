@@ -1,25 +1,19 @@
 import type { MetadataRoute } from 'next';
-import { getAllGeo } from '@/lib/geo/articles';
-import { getAllSoluciones } from '@/lib/soluciones';
-import { es } from '@/lib/i18n';
 import { getNotas } from '@/lib/notas';
 
 export const dynamic = 'force-static';
 
+/**
+ * 22-nov-2026: solo el laboratorio (portada, open source ES/EN, blog, about y
+ * las notas). Las rutas del producto responden 301 (next.config.js) y ya no
+ * se anuncian; /privacidad y /terminos siguen para el dashboard, con noindex.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://omona.tech';
-  const { articulos, comparativas } = getAllGeo();
-  const soluciones = getAllSoluciones();
   const now = new Date();
 
   return [
     { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${baseUrl}/demo`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/como-trabajamos`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/privacidad`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/terminos`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/comparativas`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     ...['/open-source', '/en/open-source'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
@@ -27,48 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       alternates: { languages: { 'es-MX': `${baseUrl}/open-source`, en: `${baseUrl}/en/open-source` } },
     })),
+    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     ...getNotas().map((n) => ({
       url: `${baseUrl}/blog/${n.slug}`,
       lastModified: new Date(n.updated),
       changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    })),
-    // Páginas nombradas por problema: entran al sitemap porque son la superficie
-    // de búsqueda con las palabras del cliente, no con nuestra categoría.
-    ...es.problems.items.map((problem) => ({
-      url: `${baseUrl}/problemas/${problem.slug}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    })),
-    ...soluciones.map((s) => ({
-      url: `${baseUrl}/soluciones/${s.slug}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    })),
-    ...articulos.map((a) => ({
-      url: `${baseUrl}/blog/${a.slug}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    ...comparativas.map((c) => ({
-      url: `${baseUrl}/comparativas/${c.slug}`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
-    // Ni `servicios` ni `delivery` entran todavia.
-    //
-    // `delivery` porque data/geo/delivery/ esta vacio, y anunciar URLs que dan
-    // 404 es peor que no anunciarlas.
-    //
-    // `servicios` porque sus cinco paginas (Pilot-to-Production Sprint,
-    // White-label Delivery Partner...) describen delivery tecnico para
-    // consultoras que subcontratan — un cliente que este negocio nunca ha
-    // tenido. Se publican cuando el catalogo corresponda al negocio real:
-    // construir sistemas para pymes que venden por WhatsApp.
   ];
 }

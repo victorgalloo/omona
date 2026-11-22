@@ -3,6 +3,8 @@ import { LandingNav } from '@/components/landing/LandingNav';
 import { HomeFooter } from '@/components/home/HomeFooter';
 
 export const metadata: Metadata = {
+  // Texto legal del dashboard (sigue en /login). Fuera del sitemap y sin indexar.
+  robots: { index: false, follow: true },
   title: 'Términos de Uso | Omona',
   description: 'Términos y condiciones de uso de Omona. Conoce las reglas que rigen el uso de nuestra plataforma.',
 };

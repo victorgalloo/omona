@@ -3,6 +3,8 @@ import { LandingNav } from '@/components/landing/LandingNav';
 import { HomeFooter } from '@/components/home/HomeFooter';
 
 export const metadata: Metadata = {
+  // Texto legal del dashboard (sigue en /login). Fuera del sitemap y sin indexar.
+  robots: { index: false, follow: true },
   title: 'Política de Privacidad | Omona',
   description: 'Política de privacidad de Omona. Conoce cómo recopilamos, usamos y protegemos tu información.',
 };

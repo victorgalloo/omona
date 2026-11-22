@@ -2,13 +2,13 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Omona - Sistemas a la medida para vender por WhatsApp',
+    name: 'Omona · laboratorio open source de Victor Gallo',
     short_name: 'Omona',
-    description: 'Te construyo el sistema que contesta, da seguimiento y captura solo, sobre el WhatsApp que ya usas.',
+    description: 'Pull requests, reportes y notas de ingeniería de Victor Gallo sobre agentes de IA en Amazon Bedrock.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0C0C0C',
-    theme_color: '#0C0C0C',
+    background_color: '#FAFAFA',
+    theme_color: '#FAFAFA',
     lang: 'es-MX',
     icons: [
       { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },

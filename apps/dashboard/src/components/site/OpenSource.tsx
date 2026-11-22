@@ -36,15 +36,15 @@ const T = {
     path: '/open-source',
     other: { href: '/en/open-source', label: 'English' },
     eyebrow: 'Open source · Victor Gallo',
-    h1: 'Aportes a los agentes que usamos en producción.',
-    sub: 'Omona corre sobre Hermes Agent (Nous Research) y Amazon Bedrock. Cuando algo falla en producción, el arreglo se manda al proyecto original, con prueba y con el reporte que lo explica.',
+    h1: 'Aportes a los agentes que uso en producción.',
+    sub: 'Los agentes que opero corren sobre Hermes Agent (Nous Research) y Amazon Bedrock. Cuando algo falla en producción, mando el arreglo al proyecto original, con prueba y con el reporte que lo explica.',
     auto: 'Esta página se arma sola desde GitHub cada semana. El estado de cada PR es el que dice GitHub.',
     noneMerged: 'Ninguno está merged todavía: todos esperan revisión de los maintainers.',
     stats: { prs: 'PRs', open: 'abiertos', merged: 'merged', repos: 'proyectos', issues: 'reportes', lines: 'líneas' },
     prsH: 'Pull requests',
-    prsSub: 'A proyectos de terceros. El texto en español es nuestro; el título es el del PR.',
+    prsSub: 'A proyectos de terceros. El texto en español es mío; el título es el del PR.',
     issuesH: 'Reportes',
-    issuesSub: 'Bugs y propuestas abiertos por nosotros, y quién los está arreglando.',
+    issuesSub: 'Bugs y propuestas que abrí, y quién los está arreglando.',
     fixedBy: 'Arreglo',
     by: 'de',
     projectsH: 'Proyectos propios',
@@ -64,18 +64,18 @@ const T = {
     path: '/en/open-source',
     other: { href: '/open-source', label: 'Español' },
     eyebrow: 'Open source · Victor Gallo',
-    h1: 'Contributions to the agents we run in production.',
-    sub: 'Omona runs on Hermes Agent (Nous Research) and Amazon Bedrock. When something breaks in production, the fix goes upstream, with tests and the report that explains it.',
+    h1: 'Contributions to the agents I run in production.',
+    sub: 'The agents I run are built on Hermes Agent (Nous Research) and Amazon Bedrock. When something breaks in production, I send the fix upstream, with tests and the report that explains it.',
     auto: 'This page rebuilds itself from GitHub every week. Each PR shows the status GitHub reports.',
     noneMerged: 'None is merged yet: all of them are waiting for maintainer review.',
     stats: { prs: 'PRs', open: 'open', merged: 'merged', repos: 'projects', issues: 'reports', lines: 'lines' },
     prsH: 'Pull requests',
-    prsSub: 'To third-party projects. The one-line summary is ours; the title is the PR’s.',
+    prsSub: 'To third-party projects. The one-line summary is mine; the title is the PR’s.',
     issuesH: 'Reports',
-    issuesSub: 'Bugs and proposals we opened, and who is fixing them.',
+    issuesSub: 'Bugs and proposals I opened, and who is fixing them.',
     fixedBy: 'Fix',
     by: 'by',
-    projectsH: 'Our own projects',
+    projectsH: 'My own projects',
     projectsSub: 'Public code and docs.',
     notesH: 'Engineering notes',
     notesSub: 'Why some of these PRs exist, with measurements (in Spanish).',
@@ -274,7 +274,7 @@ export function OssPage({ lang }: { lang: Lang }) {
                             #{i.fixedBy.pr.split('#')[1]}
                           </a>
                           <span>
-                            {t.by} @{i.fixedBy.author}
+                            {t.by} <span className="normal-case">@{i.fixedBy.author}</span>
                           </span>
                           {i.fixedBy.state && <Badge state={i.fixedBy.state} lang={lang} />}
                         </p>

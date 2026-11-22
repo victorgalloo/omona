@@ -1,22 +1,33 @@
 /**
- * La portada en el sistema «terminal impresa en papel» (DESIGN_SYSTEM.md).
+ * La portada: el laboratorio open source de Victor Gallo (DESIGN_SYSTEM.md).
  *
- * Componentes de servidor: cero JavaScript propio. El copy es el mismo de
- * siempre y sale de `es.home` (lib/i18n/es.ts): aquí solo cambia el acomodo.
- * Nada de clientes, logos ni cifras de negocio inventadas: los paneles CLI y
- * las mini-UI son EJEMPLOS del sistema y lo dicen.
+ * 22-nov-2026: omona.tech dejó de presentar un producto. Victor: «ahorita
+ * omona.tech literalmente nada más es los PR abiertos y yo, como mi GitHub
+ * personal». La portada es eso: quién, qué está aportando (con el estado real
+ * de GitHub, de data/oss/oss.json), las últimas notas y sus perfiles.
  *
- * Orden: héroe asimétrico de 3 zonas → panel CLI → el problema (2×2) → el
- * motor (3-up con mini-UI) → de la conversación al dato (2-up) → se prueba
- * (CLI + tarjeta invertida) → para quién sí / no → preguntas → cierre.
+ * Reglas: nada de «merged» si GitHub no lo dice; sin clientes, cifras de
+ * negocio, precios ni llamadas a comprar. Componentes de servidor.
  */
 import Link from 'next/link';
-import { es } from '@/lib/i18n';
-import { CTA_PROYECTO } from '@/lib/cta';
 import { Logo } from '@/components/shared/Logo';
-import { Rich } from './Rich';
+import { AUTOR } from '@/lib/entidad';
+import { fechaCorta, getNotas } from '@/lib/notas';
+import ossData from '../../../data/oss/oss.json';
+import { StateBadge } from './Blog';
 
-const h = es.home;
+type Pr = {
+  key: string; repo: string; number: number; title: string; url: string; state: string;
+  createdAt: string; additions: number; deletions: number; changedFiles: number; area: string | null; es: string; post: string | null;
+};
+type Issue = {
+  key: string; repo: string; number: number; url: string; state: string; createdAt: string; es: string;
+  fixedBy: { pr: string; url: string; author: string; state?: string } | null;
+};
+type Project = { repo: string; url: string; language: string | null; license: string | null; pushedAt: string; es: string };
+type Oss = { generatedAt: string; author: string; stats: Record<string, number>; prs: Pr[]; issues: Issue[]; projects?: Project[] };
+
+const oss = ossData as unknown as Oss;
 
 export function Wrap({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-[1280px] px-6 lg:px-12 ${className}`}>{children}</div>;
@@ -26,51 +37,83 @@ export function Eyebrow({ children, muted = false }: { children: React.ReactNode
   return <p className={`eyebrow mb-3 ${muted ? 'eyebrow-muted' : ''}`}>{children}</p>;
 }
 
-/** Quita el `_` de los rótulos viejos («el problema_»). */
-const rotulo = (s: string) => s.replace(/_$/, '');
+const fecha = (iso: string) =>
+  new Date(iso).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'America/Mexico_City' });
+
+const corto = (repo: string) => repo.split('/')[1] ?? repo;
+
+/** Nota del blog que cita este PR o issue (frontmatter `prs:`), si existe. */
+function notaDe(key: string, post?: string | null): string | null {
+  if (post) return post;
+  const n = getNotas().find((x) => x.prs.some((p) => p.key === key));
+  return n ? n.slug : null;
+}
 
 function Cmd({ children }: { children: React.ReactNode }) {
   return (
-    <p className="flex items-center gap-2">
-      <Logo size={11} className="shrink-0 text-black" />
-      <span className="min-w-0">{children}</span>
+    <p className="flex items-start gap-2">
+      <Logo size={11} className="mt-[0.3em] shrink-0 text-black" />
+      <span className="min-w-0 break-words">{children}</span>
     </p>
   );
 }
 
-// ── 1. Héroe ────────────────────────────────────────────────────
+/** Estado en la salida del CLI: verde solo si GitHub dice merged. */
+function Estado({ state }: { state: string }) {
+  return <span className={`w-[7ch] shrink-0 uppercase ${state === 'merged' ? 'ok' : 'text-obsidian'}`}>{state}</span>;
+}
+
+function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow: string; h: string; sub?: string; more?: { href: string; label: string } }) {
+  return (
+    <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
+      <div className="max-w-[44rem]">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 id={id} className="text-heading text-obsidian">{h}</h2>
+        {sub && <p className="mt-3 text-[15px] leading-[1.5] text-stone">{sub}</p>}
+      </div>
+      {more && (
+        <Link href={more.href} className="mono-label shrink-0 text-charcoal hover:text-obsidian">
+          {more.label} →
+        </Link>
+      )}
+    </div>
+  );
+}
+
+// ── 1. Héroe: quién ─────────────────────────────────────────────
 
 export function Hero() {
-  const pila = [
-    'evaluado antes de operar',
-    'en el CRM que ya usas',
-    'cuentas a tu nombre',
-    'borradores con revisión humana',
-  ];
+  const s = oss.stats;
+  const pila = ['amazon bedrock', 'hermes agent · nous research', 'strands agents · aws', 'león, gto. · méxico'];
   return (
     <header className="relative overflow-hidden pb-16 pt-16 sm:pt-24">
       <Wrap>
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)_minmax(0,0.6fr)]">
           {/* Zona 1: titular */}
           <div>
-            <Eyebrow>{h.hero.eyebrow}</Eyebrow>
+            <Eyebrow>Laboratorio open source · Victor Gallo</Eyebrow>
             <h1 className="text-display text-balance text-obsidian">
-              {h.hero.title}
+              Agentes de IA en producción.
               <br />
-              <span className="text-stone">{h.hero.titleAccent}</span>
+              <span className="text-stone">Los arreglos, upstream.</span>
             </h1>
-            <p id="hero-description" className="mt-6 max-w-[44ch] text-[18px] leading-[1.5] text-charcoal">
-              <Rich text={h.hero.subtitle} />
+            <p id="hero-description" className="mt-6 max-w-[46ch] text-[18px] leading-[1.5] text-charcoal">
+              Soy Victor Gallo. Construyo y opero agentes de IA sobre Amazon Bedrock y Hermes Agent; cuando algo falla,
+              mando el arreglo al proyecto original.
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
-              <a href={CTA_PROYECTO} target="_blank" rel="noopener noreferrer" className="btn-fill">
-                {h.hero.ctaPrimary}
-              </a>
-              <Link href="#ciclo" className="btn-ghost">
-                {h.hero.ctaSecondary}
+              <Link href="/open-source" className="btn-fill">
+                Ver los aportes
+              </Link>
+              <Link href="/blog" className="btn-ghost">
+                Notas de ingeniería
               </Link>
             </div>
-            <p className="mono-label mt-5 text-stone">{h.hero.note}</p>
+            <p className="mono-label mt-5 flex flex-wrap gap-x-4 gap-y-1 text-stone">
+              <a href={AUTOR.github} rel="me" className="hover:text-obsidian">github.com/victorgalloo</a>
+              <a href={AUTOR.linkedin} rel="me" className="hover:text-obsidian">LinkedIn</a>
+              <a href={AUTOR.url} rel="author" className="hover:text-obsidian">victorgallo.com</a>
+            </p>
           </div>
 
           {/* Zona 2: el glyph negro, flotando sobre el único gradiente del sitio */}
@@ -89,34 +132,65 @@ export function Hero() {
           </ul>
         </div>
 
-        {/* Panel CLI: la terminal es el marketing */}
-        <div className="mt-16 grid gap-3 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-          <div className="cli">
-            <p className="mono-label mb-3 text-graphite">ejemplo · una llamada de seguimiento</p>
-            <Cmd>omona seguir --fuente llamada --escribir crm</Cmd>
-            <p className="dim mt-1">→ transcripción recibida · extrayendo campos</p>
+        {/* Panel CLI: actividad real, armada desde data/oss/oss.json */}
+        <div className="mt-16 grid gap-3 lg:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="cli min-w-0 text-[12.5px]">
+            <p className="mono-label mb-3 text-graphite">actividad · datos de GitHub</p>
+            <Cmd>gh search prs --author {oss.author}</Cmd>
             <ul className="mt-2 space-y-0.5">
-              {h.intel.fields.map((f) => (
-                <li key={f.key} className="flex gap-3">
-                  <span className="ok">✓</span>
-                  <span className="w-[16ch] shrink-0 whitespace-nowrap text-stone">{f.key}</span>
-                  <span className="min-w-0 truncate">{f.value}</span>
+              {oss.prs.map((p) => (
+                <li key={p.key} className="flex gap-3">
+                  <Estado state={p.state} />
+                  <a href={p.url} className="min-w-0 flex-1 truncate text-stone hover:text-obsidian sm:w-[22ch] sm:flex-none sm:shrink-0">
+                    {corto(p.repo)}#{p.number}
+                  </a>
+                  <span className="hidden min-w-0 flex-1 truncate sm:block">{p.title}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-2">
-              <span className="ok">✓</span> tarea creada · responsable y fecha en el CRM
-            </p>
-          </div>
-          <div className="ring-card flex flex-col gap-6 self-start p-4">
-            <div>
-              <p className="mono-label text-graphite">{h.intel.sourceLabel}</p>
-              <p className="mt-3 text-[18px] leading-[1.45] tracking-[-0.02em] text-obsidian">
-                «{h.intel.source}»
-              </p>
+            <div className="mt-3">
+              <Cmd>gh search issues --author {oss.author}</Cmd>
             </div>
+            <ul className="mt-2 space-y-0.5">
+              {oss.issues.map((i) => (
+                <li key={i.key} className="flex gap-3">
+                  <Estado state={i.state} />
+                  <a href={i.url} className="min-w-0 flex-1 truncate text-stone hover:text-obsidian sm:w-[22ch] sm:flex-none sm:shrink-0">
+                    {corto(i.repo)}#{i.number}
+                  </a>
+                  <span className="hidden min-w-0 flex-1 truncate sm:block">
+                    {i.fixedBy ? `arreglo: #${i.fixedBy.pr.split('#')[1]} de @${i.fixedBy.author}` : 'reporte'}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 border-t border-hair pt-3">
+              <span className="ok">✓</span> <span className="whitespace-nowrap">{s.prs} PRs · {s.merged} merged</span>{' '}
+              <span className="whitespace-nowrap">· {s.open} abiertos · {s.issues} reportes</span>{' '}
+              <span className="dim whitespace-nowrap">· +{s.additions} −{s.deletions}</span>
+            </p>
+            {s.merged === 0 && <p className="dim mt-1">→ ninguno merged todavía: todos esperan revisión de los maintainers</p>}
+          </div>
+
+          <div className="ring-card flex flex-col justify-between gap-6 p-4">
+            <dl className="grid grid-cols-2 gap-3">
+              {(
+                [
+                  [String(s.prs), 'pull requests'],
+                  [String(s.merged), 'merged'],
+                  [String(s.issues), 'reportes'],
+                  [String(s.repos), 'proyectos'],
+                ] as [string, string][]
+              ).map(([v, k]) => (
+                <div key={k}>
+                  <dt className="mono-label text-graphite">{k}</dt>
+                  <dd className="mt-2 text-[28px] leading-none tracking-[-0.04em] text-obsidian">{v}</dd>
+                </div>
+              ))}
+            </dl>
             <p className="text-[13px] leading-[1.54] text-stone">
-              <Rich text={h.intel.subtitle} />
+              El estado de cada PR es el que reporta GitHub; la lista se regenera cada lunes. Actualizado el{' '}
+              {fecha(oss.generatedAt)}.
             </p>
           </div>
         </div>
@@ -125,193 +199,151 @@ export function Hero() {
   );
 }
 
-// ── 2. El problema ──────────────────────────────────────────────
+// ── 2. Qué está aportando ───────────────────────────────────────
 
-export function Leak() {
+export function Aportes() {
   return (
-    <section id="diagnostico" className="py-24 sm:py-32">
+    <section className="py-16 sm:py-32" aria-labelledby="aportes">
       <Wrap>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
-          <div>
-            <Eyebrow>{rotulo(h.leak.label)}</Eyebrow>
-            <h2 className="text-heading-lg text-balance text-obsidian">{h.leak.title}</h2>
-            <p className="mt-5 max-w-[40ch] text-charcoal">{h.leak.body}</p>
-            <p className="mono-label mt-8 text-stone">{h.leak.quote}</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {h.leak.items.map((it, i) => (
-              <div key={it.title} className="ring-card p-4">
-                <p className="mono-label text-graphite">fuga 0{i + 1}</p>
-                <p className="mt-6 text-[18px] leading-[1.3] tracking-[-0.03em] text-obsidian">{it.title}</p>
-                <p className="mt-2 text-[14px] text-charcoal">
-                  {it.detail.replace(/\*\*/g, '')}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Wrap>
-    </section>
-  );
-}
-
-// ── 3. El motor ─────────────────────────────────────────────────
-
-function MiniProspectar() {
-  const filas = [
-    { c: 'cuenta 01', s: 'abrió vacante de compras', crm: 'nueva' },
-    { c: 'cuenta 02', s: 'cambió de director comercial', crm: 'nueva' },
-    { c: 'cuenta 03', s: 'ya dijo que no en marzo', crm: 'descartada' },
-  ];
-  return (
-    <div className="cli !p-3 text-[12px]">
-      <Cmd>omona prospectar --cruzar crm</Cmd>
-      <ul className="mt-2 space-y-1">
-        {filas.map((f) => (
-          <li key={f.c} className="flex gap-2">
-            <span className={f.crm === 'nueva' ? 'ok' : 'dim'}>{f.crm === 'nueva' ? '✓' : '–'}</span>
-            <span className="w-[9ch] shrink-0 text-stone">{f.c}</span>
-            <span className={`min-w-0 truncate ${f.crm === 'nueva' ? '' : 'dim line-through'}`}>{f.s}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function MiniSeguir() {
-  return (
-    <div className="ring-card p-3 text-[13px]">
-      <div className="flex items-center justify-between">
-        <span className="mono-label text-graphite">tarea · CRM</span>
-        <span className="mono-label text-[#297a3a]">✓ creada</span>
-      </div>
-      <p className="mt-2 text-obsidian">Marcar el 8 de enero</p>
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] uppercase tracking-[0.071em] text-stone">
-        <span className="whitespace-nowrap">decide · el papá</span>
-        <span className="whitespace-nowrap">dinero · enero</span>
-      </div>
-    </div>
-  );
-}
-
-function MiniCerrar() {
-  return (
-    <div className="ring-card p-3 text-[13px]">
-      <div className="flex items-center justify-between">
-        <span className="mono-label text-graphite">propuesta · borrador</span>
-        <span className="mono-label text-stone">espera revisión</span>
-      </div>
-      <ul className="mt-2 space-y-1 text-charcoal">
-        <li>— Instalación sin parar la operación</li>
-        <li>— Precios del catálogo aprobado</li>
-        <li>— Pendiente: confirmar con el papá</li>
-      </ul>
-    </div>
-  );
-}
-
-const MINI = [MiniProspectar, MiniSeguir, MiniCerrar];
-
-export function Cycle() {
-  const c = h.cycle;
-  return (
-    <section id="ciclo" className="py-24 sm:py-32">
-      <Wrap>
-        <div className="max-w-[40rem]">
-          <Eyebrow>{rotulo(c.label)}</Eyebrow>
-          <h2 className="text-heading-lg text-balance text-obsidian">{c.title}</h2>
-          <p className="mt-5 text-charcoal">
-            <Rich text={c.subtitle} />
-          </p>
-        </div>
-        <div className="mt-12 grid gap-3 lg:grid-cols-3">
-          {c.stages.map((s, i) => {
-            const Mini = MINI[i] ?? MiniCerrar;
+        <Seccion
+          id="aportes"
+          eyebrow="Ahora"
+          h="Lo que estoy aportando"
+          sub="Pull requests a proyectos de terceros y los reportes que los originaron. El texto es mío; el título y el estado son los de GitHub."
+          more={{ href: '/open-source', label: 'Todo en open source' }}
+        />
+        <p className="mono-label mb-3 text-graphite">Pull requests · {oss.prs.length}</p>
+        <ul className="ring-card divide-y divide-hair">
+          {oss.prs.map((p) => {
+            const nota = notaDe(p.key, p.post);
             return (
-              <article key={s.id} id={s.id} className="ring-card flex flex-col p-4">
-                <div className="flex items-baseline justify-between">
-                  <p className="mono-label text-obsidian">
-                    {s.index} · {s.name}
-                  </p>
-                  <p className="mono-label text-graphite">{s.kicker}</p>
-                </div>
-                <h3 className="mt-8 text-[22px] leading-[1.15] tracking-[-0.04em] text-obsidian">{s.headline}</h3>
-                <div className="mt-6 flex min-h-[124px] flex-col [&>*]:flex-1">
-                  <Mini />
-                </div>
-                <p className="mono-label mt-auto pt-4 text-stone">
-                  {c.outputLabel}: <span className="text-obsidian">{s.output}</span>
-                </p>
-                <details className="group mt-4 border-t border-hair pt-3">
-                  <summary className="mono-label cursor-pointer list-none text-charcoal hover:text-obsidian [&::-webkit-details-marker]:hidden">
-                    <span className="inline-block transition-transform group-open:rotate-90">›</span> {c.masLabel}
-                  </summary>
-                  <div className="mt-3 space-y-3 text-[14px] leading-[1.6] text-charcoal">
-                    {s.detalle.map((p, j) => (
-                      <p key={j}>
-                        <Rich text={p} />
-                      </p>
-                    ))}
+              <li key={p.key} className="grid gap-2 p-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-6">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <a href={p.url} className="font-mono text-[12.5px] text-obsidian underline decoration-hair underline-offset-2 hover:decoration-obsidian">
+                      {p.repo}#{p.number}
+                    </a>
+                    <StateBadge state={p.state} />
                   </div>
-                </details>
-              </article>
+                  <p className="mt-2 text-[16px] leading-[1.4] tracking-[-0.02em] text-obsidian">{p.es}</p>
+                  <p className="mt-1 break-words font-mono text-[12px] leading-[1.54] text-stone md:truncate">{p.title}</p>
+                </div>
+                <p className="mono-label flex flex-wrap gap-x-4 gap-y-1 text-stone md:flex-col md:items-end md:gap-1 md:pt-0.5 md:text-right">
+                  <span>{fecha(p.createdAt)}</span>
+                  <span>
+                    {p.area ? `${p.area} · ` : ''}+{p.additions} −{p.deletions}
+                  </span>
+                  {nota && (
+                    <Link href={`/blog/${nota}`} className="text-obsidian hover:underline">
+                      Nota →
+                    </Link>
+                  )}
+                </p>
+              </li>
             );
           })}
-        </div>
+        </ul>
+
+        <p className="mono-label mb-3 mt-10 text-graphite">Reportes · {oss.issues.length}</p>
+        <ul className="grid gap-3 md:grid-cols-2">
+          {oss.issues.map((i) => {
+            const nota = notaDe(i.key);
+            return (
+              <li key={i.key} className="ring-card flex flex-col p-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <a href={i.url} className="font-mono text-[12.5px] text-obsidian underline decoration-hair underline-offset-2 hover:decoration-obsidian">
+                    {i.repo}#{i.number}
+                  </a>
+                  <StateBadge state={i.state} />
+                </div>
+                <p className="mt-3 text-[15px] leading-[1.5] text-charcoal">{i.es}</p>
+                <p className="mono-label mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-4 text-stone">
+                  <span>{fecha(i.createdAt)}</span>
+                  {i.fixedBy && (
+                    <span>
+                      arreglo:{' '}
+                      <a href={i.fixedBy.url} className="text-obsidian underline decoration-hair underline-offset-2">
+                        PR #{i.fixedBy.pr.split('#')[1]}
+                      </a>{' '}
+                      de <span className="normal-case">@{i.fixedBy.author}</span>
+                      {i.fixedBy.state === 'open' ? ' (en revisión)' : i.fixedBy.state ? ` (${i.fixedBy.state})` : ''}
+                    </span>
+                  )}
+                  {nota && (
+                    <Link href={`/blog/${nota}`} className="text-obsidian hover:underline">
+                      Nota →
+                    </Link>
+                  )}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
       </Wrap>
     </section>
   );
 }
 
-// ── 4. Se prueba ────────────────────────────────────────────────
+// ── 3. Proyectos propios ────────────────────────────────────────
 
-export function Measure() {
-  const m = h.measure;
+export function Proyectos() {
+  const ps = oss.projects ?? [];
+  if (!ps.length) return null;
   return (
-    <section id="medicion" className="py-24 sm:py-32">
+    <section className="py-8 sm:py-16" aria-labelledby="proyectos">
       <Wrap>
-        <div className="max-w-[40rem]">
-          <Eyebrow>{rotulo(m.label)}</Eyebrow>
-          <h2 className="text-heading-lg text-obsidian">{m.title}</h2>
-          <p className="mt-5 text-charcoal">
-            <Rich text={m.subtitle} />
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-3 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-          <div className="cli">
-            <p className="mono-label mb-3 text-graphite">ejemplo de evaluación</p>
-            <Cmd>{m.terminal.comando}</Cmd>
-            <ul className="mt-2 space-y-0.5">
-              {m.terminal.casos.map((c) => (
-                <li key={c.nombre} className="flex gap-3">
-                  <span className={c.ok ? 'ok' : 'text-obsidian'}>{c.marca}</span>
-                  <span className="min-w-0 flex-1 truncate text-charcoal">{c.nombre}</span>
-                  <span className={`tabular-nums ${c.ok ? 'text-stone' : 'text-obsidian'}`}>{c.conteo}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-3 border-t border-hair pt-3">
-              <Rich text={m.terminal.resumen} />
-            </p>
-          </div>
-
-          <div className="card-invert flex flex-col justify-between p-4">
-            <p className="mono-label text-[#a8a8a8]">{m.moneyLabel}</p>
-            <pre className="mt-6 whitespace-pre-wrap font-mono text-[13px] leading-[1.8] text-white">{m.moneyFormula}</pre>
-            <p className="mt-6 text-[13px] leading-[1.54] text-[#c9c9c9]">{m.moneyNote}</p>
-          </div>
-        </div>
-
-        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {m.metrics.map((x) => (
-            <div key={x.name} className="ring-card p-4">
-              <p className="text-[16px] leading-[1.3] tracking-[-0.02em] text-obsidian">{x.name}</p>
-              <p className="mt-2 text-[14px] text-charcoal">
-                <Rich text={x.detail} />
+        <Seccion
+          id="proyectos"
+          eyebrow="Código propio"
+          h="Repos públicos"
+          sub="Código y documentación bajo mi cuenta de GitHub."
+          more={{ href: AUTOR.github, label: 'Todos en GitHub' }}
+        />
+        <ul className="grid gap-3 md:grid-cols-2">
+          {ps.map((p) => (
+            <li key={p.repo} className="ring-card flex flex-col p-4">
+              <a href={p.url} className="font-mono text-[12.5px] text-obsidian underline decoration-hair underline-offset-2 hover:decoration-obsidian">
+                {p.repo}
+              </a>
+              <p className="mt-3 text-[15px] leading-[1.5] text-charcoal">{p.es}</p>
+              <p className="mono-label mt-auto flex flex-wrap gap-x-4 pt-4 text-graphite">
+                {p.language && <span>{p.language}</span>}
+                {p.license && <span>{p.license}</span>}
+                <span>actualizado {fecha(p.pushedAt)}</span>
               </p>
-            </div>
+            </li>
+          ))}
+        </ul>
+      </Wrap>
+    </section>
+  );
+}
+
+// ── 4. Últimas notas ────────────────────────────────────────────
+
+export function Notas() {
+  const notas = getNotas().slice(0, 3);
+  if (!notas.length) return null;
+  return (
+    <section className="py-16 sm:py-32" aria-labelledby="notas">
+      <Wrap>
+        <Seccion
+          id="notas"
+          eyebrow="Blog"
+          h="Notas de ingeniería"
+          sub="El porqué de algunos de estos PRs, con mediciones."
+          more={{ href: '/blog', label: 'Todas las notas' }}
+        />
+        <div className="grid gap-3 md:grid-cols-3">
+          {notas.map((n) => (
+            <Link key={n.slug} href={`/blog/${n.slug}`} className="ring-card group flex flex-col p-4 transition-shadow hover:shadow-card-hover">
+              <p className="mono-label text-graphite">{fechaCorta(n.date)}</p>
+              <h3 className="mt-6 text-[19px] leading-[1.2] tracking-[-0.03em] text-obsidian">{n.title}</h3>
+              <p className="mt-3 line-clamp-3 text-[14px] leading-[1.5] text-charcoal">{n.description}</p>
+              <p className="mono-label mt-auto pt-6 text-stone">
+                {n.prs.length ? n.prs.map((p) => `#${p.number}`).join(' · ') : n.tags.slice(0, 2).join(' · ')}
+              </p>
+            </Link>
           ))}
         </div>
       </Wrap>
@@ -319,115 +351,28 @@ export function Measure() {
   );
 }
 
-// ── 5. Para quién sí ────────────────────────────────────────────
+// ── 5. Quién ────────────────────────────────────────────────────
 
-export function Scope() {
-  const s = h.scope;
+export function Quien() {
   return (
-    <section id="alcance" className="py-24 sm:py-32">
+    <section className="py-8 sm:py-16" aria-labelledby="quien">
       <Wrap>
-        <div className="max-w-[40rem]">
-          <Eyebrow>{rotulo(s.label)}</Eyebrow>
-          <h2 className="text-heading-lg text-obsidian">{s.title}</h2>
-          <p className="mt-5 text-charcoal">
-            <Rich text={s.subtitle} />
-          </p>
-        </div>
-        <div className="mt-12 grid gap-3 md:grid-cols-2">
-          <div className="ring-card p-4">
-            <p className="mono-label text-[#297a3a]">✓ {s.doTitle}</p>
-            <ul className="mt-4 space-y-3">
-              {s.does.map((d) => (
-                <li key={d} className="flex gap-3 text-[15px] text-obsidian">
-                  <span className="mono-label pt-1 text-[#297a3a]">✓</span>
-                  {d}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="ring-card p-4">
-            <p className="mono-label text-stone">– {s.dontTitle}</p>
-            <ul className="mt-4 space-y-3">
-              {s.donts.map((d) => (
-                <li key={d.title} className="flex gap-3 text-[15px]">
-                  <span className="mono-label pt-1 text-smoke">–</span>
-                  <span>
-                    <span className="text-obsidian">{d.title}.</span> <span className="text-charcoal">{d.detail}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <details className="group mt-3 ring-ghost bg-white p-4">
-          <summary className="mono-label cursor-pointer list-none text-charcoal hover:text-obsidian [&::-webkit-details-marker]:hidden">
-            <span className="inline-block transition-transform group-open:rotate-90">›</span> {s.mas.resumen}
-          </summary>
-          <div className="mt-3 max-w-[66ch] space-y-3 text-[15px] leading-[1.6] text-charcoal">
-            {s.mas.parrafos.map((p, i) => (
-              <p key={i}>
-                <Rich text={p} />
-              </p>
-            ))}
-          </div>
-        </details>
-      </Wrap>
-    </section>
-  );
-}
-
-// ── 6. Preguntas ────────────────────────────────────────────────
-
-export function Faq() {
-  const f = es.faq;
-  return (
-    <section id="preguntas" className="py-24 sm:py-32">
-      <Wrap>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
+        <div className="ring-card grid gap-6 p-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div>
-            <Eyebrow>{rotulo(f.sectionLabel)}</Eyebrow>
-            <h2 className="text-heading-lg text-obsidian">{f.heading}</h2>
-            <p className="mt-5 text-charcoal">{f.subheading}</p>
+            <p className="mono-label text-graphite">Qué es Omona</p>
+            <p id="quien" className="mt-3 max-w-[62ch] text-[18px] leading-[1.45] tracking-[-0.02em] text-obsidian">
+              Mi laboratorio independiente para el trabajo open source. No hay producto que vender aquí: solo los aportes,
+              las notas y el código.
+            </p>
           </div>
-          <div className="ring-card divide-y divide-hair">
-            {f.items.map((it) => (
-              <details key={it.q} className="group p-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] tracking-[-0.02em] text-obsidian [&::-webkit-details-marker]:hidden">
-                  {it.q}
-                  <span aria-hidden className="mono-label text-stone transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <p className="mt-3 max-w-[66ch] text-[15px] leading-[1.6] text-charcoal">{it.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </Wrap>
-    </section>
-  );
-}
-
-// ── 7. Cierre ───────────────────────────────────────────────────
-
-export function Cta() {
-  const c = es.cta;
-  return (
-    <section className="py-24 sm:py-32">
-      <Wrap>
-        <div className="ring-card relative overflow-hidden px-6 py-16 text-center sm:px-12">
-          <div aria-hidden className="spectrum-line absolute inset-x-0 top-0" />
-          <h2 className="mx-auto max-w-[22ch] text-heading-lg text-obsidian">{c.heading}</h2>
-          <p className="mx-auto mt-5 max-w-[52ch] text-charcoal">
-            <Rich text={c.subheading} />
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            <a href={CTA_PROYECTO} target="_blank" rel="noopener noreferrer" className="btn-fill">
-              {c.primary}
-            </a>
-            <Link href="#ciclo" className="btn-ghost">
-              {c.secondary}
+          <div className="flex flex-wrap gap-2">
+            <Link href="/about" className="btn-ghost">
+              About (EN)
             </Link>
+            <a href={AUTOR.github} rel="me" className="btn-fill">
+              GitHub ↗
+            </a>
           </div>
-          <p className="mono-label mt-6 text-stone">{c.trust}</p>
         </div>
       </Wrap>
     </section>

@@ -13,9 +13,9 @@ import ossData from '../../../data/oss/oss.json';
  */
 export const dynamic = 'force-static';
 
-const TITLE = 'About Omona and Victor Gallo';
+const TITLE = 'About Victor Gallo and Omona, his open-source lab';
 const DESC =
-  'Omona builds AI agents for the sales process and contributes the fixes upstream to Hermes Agent and Strands Agents. Founded by Victor Gallo in León, Mexico.';
+  "Omona is Victor Gallo's independent engineering lab for open-source work on AI agents: upstream pull requests to Hermes Agent and Strands Agents, issue reports and engineering notes. León, Mexico.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -61,8 +61,8 @@ const TIMELINE: { date: string; what: string; status: 'done' | 'planned'; href?:
 const STACK = [
   ['Agent runtime', 'Hermes Agent (Nous Research): scheduled routines, skills, sessions and the messaging gateway.'],
   ['Models', 'Anthropic Claude on Amazon Bedrock, with IAM-scoped credentials per profile.'],
-  ['Agents SDK', 'Strands Agents (AWS), where we also send fixes.'],
-  ['Evaluation', 'Every agent runs against a test set of real cases before it talks to a customer; every change reruns the full set.'],
+  ['Agents SDK', 'Strands Agents (AWS), where he also sends fixes.'],
+  ['Upstream', 'A bug found in production is reported with a reproduction, and the fix goes to the original project as a PR with tests.'],
 ];
 
 export default function AboutPage() {
@@ -91,12 +91,12 @@ export default function AboutPage() {
       <main>
         <header className="pb-10 pt-16 sm:pt-24">
           <Wrap>
-            <Eyebrow>About · Omona</Eyebrow>
+            <Eyebrow>About · Victor Gallo</Eyebrow>
             <h1 className="text-heading-lg max-w-[20ch] text-balance text-obsidian">
-              AI agents for the sales process. The fixes go upstream.
+              An open-source lab. The fixes go upstream.
             </h1>
             <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.5] text-charcoal">
-              Omona is a small engineering practice in León, Mexico. It builds agents that prospect, follow up and prepare proposals inside the CRM a team already uses, and evaluates each one against real cases before it goes live.
+              Omona is Victor Gallo&rsquo;s independent engineering lab in León, Mexico. There is no product here: it is where he publishes the fixes he sends to the open-source agent projects he runs in production, the issue reports behind them, and engineering notes.
             </p>
           </Wrap>
         </header>

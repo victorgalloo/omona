@@ -77,7 +77,7 @@ export function notaJsonLd(n: Nota): string {
         image: `${url}/opengraph-image`,
         author: { '@id': PERSON['@id'] },
         publisher: { '@id': ORG_ID },
-        isPartOf: { '@type': 'Blog', '@id': `${BASE}/blog#blog`, name: 'Blog de Omona', url: `${BASE}/blog` },
+        isPartOf: { '@type': 'Blog', '@id': `${BASE}/blog#blog`, name: 'Notas de ingeniería · Omona', url: `${BASE}/blog` },
         citation: n.prs.map((p) => p.url),
       },
       PERSON,
@@ -155,7 +155,7 @@ export function NotasIndex() {
       <div className="flex items-end justify-between gap-6">
         <div>
           <p className="eyebrow">Notas de ingeniería</p>
-          <h2 className="text-heading text-obsidian">Lo que aprendimos arreglando cosas en producción</h2>
+          <h2 className="text-heading text-obsidian">Lo que aprendí arreglando agentes en producción</h2>
         </div>
         <Link href="/open-source" className="mono-label hidden shrink-0 text-charcoal hover:text-obsidian sm:block">
           Open source →
