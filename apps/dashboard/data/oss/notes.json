@@ -1,0 +1,60 @@
+{
+  "prs": {
+    "NousResearch/hermes-agent#157956": {
+      "area": "tts",
+      "fixes": "#157954",
+      "es": "Opción tts.normalize_loudness: un pase de ffmpeg loudnorm a -16 LUFS para que cada nota de voz suene al mismo volumen.",
+      "en": "Opt-in tts.normalize_loudness: one ffmpeg loudnorm pass to -16 LUFS so every voice note plays at the same volume.",
+      "post": "normalizar-volumen-tts-notas-de-voz"
+    },
+    "NousResearch/hermes-agent#157955": {
+      "area": "gateway",
+      "fixes": "#149680",
+      "es": "El gateway respeta display.platforms.<plataforma>.memory_notifications: el aviso de memoria se puede apagar solo en WhatsApp.",
+      "en": "The gateway honors display.platforms.<platform>.memory_notifications, so memory notices can be turned off per platform."
+    },
+    "NousResearch/hermes-agent#158100": {
+      "area": "gateway",
+      "fixes": "#157834",
+      "es": "/bg enviado como respuesta a un mensaje ahora le pasa ese mensaje al agente en segundo plano como contexto.",
+      "en": "/bg sent as a reply now gives the background agent the replied-to message as context."
+    },
+    "NousResearch/hermes-agent#158458": {
+      "area": "build",
+      "fixes": "#157761",
+      "es": "Los scripts de build de Node ya corren desde un checkout con symlink (antes salían en 0 sin hacer nada).",
+      "en": "Node build scripts now run from a symlinked checkout (they used to exit 0 without doing anything)."
+    },
+    "strands-agents/harness-sdk#6468": {
+      "area": "tools",
+      "fixes": "#6427",
+      "es": "http_request (TypeScript) reporta su propio mensaje de timeout en lugar del genérico de Node.",
+      "en": "The TypeScript http_request tool reports its own timeout message instead of Node's generic abort error."
+    }
+  },
+  "issues": {
+    "NousResearch/hermes-agent#146546": {
+      "es": "Reporte: en Bedrock, AWS_PROFILE + AWS_BEARER_TOKEN_BEDROCK en un mismo perfil tumbaba el cliente AnthropicBedrock.",
+      "en": "Report: on Bedrock, AWS_PROFILE + AWS_BEARER_TOKEN_BEDROCK in one profile crashed the AnthropicBedrock client.",
+      "fixedBy": {
+        "pr": "NousResearch/hermes-agent#146559",
+        "url": "https://github.com/NousResearch/hermes-agent/pull/146559",
+        "author": "linye157"
+      }
+    },
+    "NousResearch/hermes-agent#157954": {
+      "es": "Propuesta: normalización de volumen opcional para la salida de TTS (la implementa el PR #157956).",
+      "en": "Proposal: opt-in loudness normalization for TTS output (implemented in PR #157956)."
+    }
+  },
+  "projects": {
+    "victorgalloo/inscripcion-codi": {
+      "es": "Cobro de inscripciones escolares con CoDi desde WhatsApp. Proyecto para el Hackatón México 2026 (León), licencia MIT.",
+      "en": "School enrollment payments with CoDi (Mexico's instant-payment rail) from WhatsApp. Built for Hackatón México 2026 (León), MIT license."
+    },
+    "victorgalloo/superleads-ai-aws-nvidia": {
+      "es": "Arquitectura de referencia (EN/ES): agentes de admisiones sobre Amazon Bedrock, SageMaker y EC2 con modelos NVIDIA Nemotron y NeMo para entrenamiento y evaluación.",
+      "en": "Reference architecture (EN/ES): admissions agents on Amazon Bedrock, SageMaker and EC2, with NVIDIA Nemotron and NeMo for training and evaluation."
+    }
+  }
+}
