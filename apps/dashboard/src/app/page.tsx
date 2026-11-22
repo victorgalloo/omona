@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
 import { LandingNav } from '@/components/landing/LandingNav';
-import { HomeHero } from '@/components/home/HomeHero';
-import { HomeLeak } from '@/components/home/HomeLeak';
-import { HomeCycle } from '@/components/home/HomeCycle';
-import { HomeMeasure } from '@/components/home/HomeMeasure';
-import { HomeScope } from '@/components/home/HomeScope';
-import { HomeFaq } from '@/components/home/HomeFaq';
-import { HomeCta } from '@/components/home/HomeCta';
+import { Hero, Leak, Cycle, Measure, Scope, Faq, Cta } from '@/components/site/Home';
+import { ORG_ID, PERSON_REF } from '@/lib/entidad';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { es } from '@/lib/i18n';
@@ -50,8 +45,10 @@ const jsonLdGraph = {
   '@graph': [
     {
       '@type': 'Organization',
+      '@id': ORG_ID,
       name: 'Omona',
       url: 'https://omona.tech',
+      founder: PERSON_REF,
       logo: 'https://omona.tech/icon.svg',
       description:
         'Omona construye sistemas comerciales a la medida: prospeccion con listas enriquecidas, seguimiento que extrae lo dicho en cada llamada y lo escribe en el CRM del cliente, y preparacion de propuestas. Cada agente se evalua con casos reales antes de exponerlo a un cliente.',
@@ -144,7 +141,7 @@ const jsonLdGraph = {
       url: 'https://omona.tech',
       inLanguage: 'es-MX',
       datePublished: '2025-01-01',
-      dateModified: '2026-09-15',
+      dateModified: '2026-11-22',
       isPartOf: { '@type': 'WebSite', name: 'Omona', url: 'https://omona.tech' },
       speakable: {
         '@type': 'SpeakableSpecification',
@@ -188,18 +185,18 @@ export default function LandingPage() {
     // `md` enciende el monoespaciado y los signos de markdown; `crt` pinta la
     // unica textura del sitio. Van aqui y no en <body> porque el dashboard
     // comparte el layout raiz y ahi el monoespaciado estorba.
-    <div className="md crt min-h-screen bg-background text-foreground">
+    <div className="md min-h-screen bg-paper text-obsidian">
       <JsonLd data={jsonLdGraph} />
       <LandingNav />
 
       <main>
-        <HomeHero />
-        <HomeLeak />
-        <HomeCycle />
-        <HomeMeasure />
-        <HomeScope />
-        <HomeFaq />
-        <HomeCta />
+        <Hero />
+        <Leak />
+        <Cycle />
+        <Measure />
+        <Scope />
+        <Faq />
+        <Cta />
       </main>
 
       <HomeFooter />
