@@ -12,7 +12,8 @@
  *   - data/notas/*.md         notas del blog (frontmatter date/title/description)
  *   - data/now/manual.json    eventos y foco confirmados a mano (con `hasta` opcional)
  *   - ~/.hermes/omona/devin/bitacora.jsonl, si existe: SOLO líneas con
- *     `"public": true` y una liga a github.com o omona.tech.
+ *     `"public": true` (liga a github.com u omona.tech) o el PR público upstream
+ *     de una sesión (`upstream_pr`) que oss.json no tenga todavía.
  * Toda línea pasa por ~/.hermes/state/showcase_blocklist.txt (nombres de
  * clientes/personas): si aparece uno, la línea no se publica.
  *
@@ -63,6 +64,8 @@ const limpio = (it) => {
 const oss = leer(path.join(DATA, 'oss', 'oss.json'), { prs: [], issues: [], projects: [] });
 const manual = leer(path.join(DATA, 'now', 'manual.json'), { foco: [], eventos: [] });
 const corto = (repo) => repo.split('/')[1] ?? repo;
+// Mismas organizaciones que oss-refresh.mjs (terceros abiertos).
+const permitidoLab = (repo) => ['NousResearch', 'strands-agents'].includes(repo.split('/')[0]);
 const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 const items = [];
 
@@ -141,7 +144,12 @@ for (const e of manual.eventos ?? []) {
   items.push({ date: e.date, kind: e.kind || 'evento', es: e.es, en: e.en, url: e.url ?? null, ref: `manual:${e.date}:${e.kind}` });
 }
 
-// 5. Bitácora del laboratorio (Devin/Omona), solo lo marcado como público.
+// 5. Bitácora del laboratorio (Devin/Omona, ~/.hermes/omona/devin/bitacora.jsonl).
+//    Esa bitácora es interna (sesiones, lecciones, ligas privadas). Solo entra:
+//    a) una línea marcada a mano `"public": true` con liga a github.com u omona.tech, o
+//    b) una sesión que terminó en un PR público upstream (`upstream_pr`) que oss.json aún no
+//       lista; de esa se publica solo el PR y su estado, nunca el texto interno.
+const clavesPr = new Set(oss.prs.map((p) => p.key));
 if (fs.existsSync(BITACORA)) {
   for (const linea of fs.readFileSync(BITACORA, 'utf8').split('\n')) {
     if (!linea.trim()) continue;
@@ -151,12 +159,25 @@ if (fs.existsSync(BITACORA)) {
     } catch {
       continue;
     }
-    const url = b.url || b.liga || '';
-    const es = b.es || b.resumen || b.titulo;
-    if (b.public !== true || !es || !/^https:\/\/(github\.com|omona\.tech)\//.test(url)) continue;
-    const d = dia(b.date || b.fecha || b.ts);
+    const d = dia(b.date || b.fecha || b.fecha_inicio || b.ts);
     if (!d || d > hoy) continue;
-    items.push({ date: d, kind: 'laboratorio', es, en: b.en || es, url, ref: `lab:${url}` });
+    const pr = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)/.exec(b.upstream_pr || '');
+    if (b.public === true) {
+      const url = b.url_publica || b.url || '';
+      const es = b.es || b.resumen;
+      if (!es || !/^https:\/\/(github\.com|omona\.tech)\//.test(url)) continue;
+      items.push({ date: d, kind: 'laboratorio', es, en: b.en || es, url, ref: `lab:${url}` });
+    } else if (pr && permitidoLab(pr[1]) && !clavesPr.has(`${pr[1]}#${pr[2]}`)) {
+      const estado = b.upstream_estado || 'abierto';
+      items.push({
+        date: d,
+        kind: 'laboratorio',
+        es: `Aporte del laboratorio: ${corto(pr[1])}#${pr[2]} (${estado}).`,
+        en: `Lab contribution: ${corto(pr[1])}#${pr[2]} (${estado}).`,
+        url: pr[0],
+        ref: `${pr[1]}#${pr[2]}`,
+      });
+    }
   }
 }
 
