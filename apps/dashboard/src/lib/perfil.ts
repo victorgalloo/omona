@@ -56,7 +56,7 @@ export const LAB = {
 export const TERCERA = {
   posicion: 'Builds AI agents that do real commercial work.',
   superleads:
-    'At SuperLeads he is an Account Executive (public title: "Expert in educational sales processes + AI"): he sells admissions systems to private schools and universities in Mexico and builds the agents that help with the commercial follow-up. More than 100 educational institutions work with SuperLeads. He is not a founder of SuperLeads; its founder is Ing. Ricardo López Reyero.',
+    'At SuperLeads he is an Account Executive (public title: "Expert in educational sales processes + AI"): he sells admissions systems to private schools and universities in Mexico and builds the agents that help with the commercial follow-up. More than 100 educational institutions work with SuperLeads. He is not a founder of SuperLeads.',
   lab: 'Omona is his lab, where he publishes the fixes and contributions he sends to the open-source projects those agents run on.',
 };
 
