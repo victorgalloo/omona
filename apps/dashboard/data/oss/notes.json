@@ -48,6 +48,10 @@
     }
   },
   "projects": {
+    "victorgalloo/bedrock-agent-hierarchy": {
+      "es": "Plantilla en Python para jerarquías gerente → subagente sobre Amazon Bedrock: organigrama como dato, escalamiento de un nivel a la vez y cambios reversibles con respaldo. Etapa temprana (v0), Apache-2.0, README ES/EN.",
+      "en": "Python template for manager → sub-agent hierarchies on Amazon Bedrock: org chart as data, one-level-at-a-time escalation and reversible changes with backups. Early stage (v0), Apache-2.0, README EN/ES."
+    },
     "victorgalloo/inscripcion-codi": {
       "es": "Cobro de inscripciones escolares con CoDi desde WhatsApp. Proyecto para el Hackatón México 2026 (León), licencia MIT.",
       "en": "School enrollment payments with CoDi (Mexico's instant-payment rail) from WhatsApp. Built for Hackatón México 2026 (León), MIT license."

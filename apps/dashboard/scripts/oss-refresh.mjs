@@ -25,7 +25,7 @@ const AUTOR = 'victorgalloo';
 const REPOS_PERMITIDOS = ['NousResearch/hermes-agent', 'strands-agents/harness-sdk', 'strands-agents/sdk-python', 'strands-agents/sdk-typescript', 'strands-agents/tools'];
 const ORGS_PERMITIDAS = ['strands-agents'];
 // Proyectos propios y públicos que se muestran aparte (no cuentan como aportes).
-const PROYECTOS_PROPIOS = ['victorgalloo/inscripcion-codi', 'victorgalloo/superleads-ai-aws-nvidia'];
+const PROYECTOS_PROPIOS = ['victorgalloo/bedrock-agent-hierarchy', 'victorgalloo/inscripcion-codi', 'victorgalloo/superleads-ai-aws-nvidia'];
 
 const aqui = path.dirname(fileURLToPath(import.meta.url));
 const DIR = path.join(aqui, '..', 'data', 'oss');
