@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Check, X } from 'lucide-react';
 import { LandingNav } from './LandingNav';
 import { Section } from '@/components/home/Section';
-import { LoopVideo } from './motion/LoopVideo';
 import { RevealBlock, RevealText } from './motion/RevealText';
 import { useT } from '@/contexts/LanguageContext';
 import { Logo } from '../shared/Logo';
@@ -51,20 +50,30 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
               </p>
               <Link
                 href="/signup"
-                className="group inline-flex items-center gap-2.5 bg-foreground px-8 py-4 text-base font-semibold text-background transition-transform hover:-translate-y-0.5"
+                className="btn-fill group gap-2"
               >
                 {t.problems.ctaSignup}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <RevealBlock className="overflow-hidden border-2 border-hairline">
-              <LoopVideo
-                name={problem.video}
-                alt={problem.videoAlt}
-                className="block h-auto w-full"
-                priority
-              />
+            {/* Antes: un video con burbujas de color. En el sistema de papel la
+                cara del producto es un panel CLI claro (DESIGN_SYSTEM.md §6). */}
+            <RevealBlock className="cli">
+              <p className="mono-label mb-3 text-graphite">ejemplo · {problem.short}</p>
+              <p className="flex items-center gap-2">
+                <Logo size={11} className="shrink-0 text-black" />
+                <span>omona atender --canal whatsapp</span>
+              </p>
+              <p className="dim mt-1">→ {problem.videoAlt}</p>
+              <ul className="mt-2 space-y-0.5">
+                {problem.answers.map((a) => (
+                  <li key={a.title} className="flex gap-2">
+                    <span className="ok">✓</span>
+                    <span>{a.title}</span>
+                  </li>
+                ))}
+              </ul>
             </RevealBlock>
         </div>
       </Section>
@@ -108,7 +117,7 @@ export function ProblemPageLayout({ slug }: { slug: string }) {
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <Link
               href="/signup"
-              className="group inline-flex items-center gap-2.5 bg-foreground px-8 py-4 text-base font-semibold text-background transition-transform hover:-translate-y-0.5"
+              className="btn-fill group gap-2"
             >
               {t.problems.ctaSignup}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

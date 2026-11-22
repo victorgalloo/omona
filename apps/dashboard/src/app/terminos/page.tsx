@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Logo } from '../../components/shared/Logo';
+import { LandingNav } from '@/components/landing/LandingNav';
+import { HomeFooter } from '@/components/home/HomeFooter';
 
 export const metadata: Metadata = {
   title: 'Términos de Uso | Omona',
@@ -9,24 +9,13 @@ export const metadata: Metadata = {
 
 export default function TerminosPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 py-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-1.5">
-            <Logo size={18} className="shrink-0 text-foreground" />
-            <span className="font-mono font-semibold text-sm text-foreground ml-1.5">omona_</span>
-          </Link>
-          <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors">
-            Volver al inicio
-          </Link>
-        </div>
-      </header>
+    <div className="md min-h-screen bg-paper text-obsidian">
+      <LandingNav />
 
       {/* Content */}
       <main className="mx-auto max-w-3xl px-4 sm:px-6 py-16">
-        <p className="font-mono text-xs text-[#27C93F] mb-3">terms_of_service</p>
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Términos de Uso</h1>
+        <p className="eyebrow">Legal · términos</p>
+        <h1 className="text-heading-lg mb-4 text-obsidian">Términos de Uso</h1>
         <p className="text-sm text-muted mb-12">Última actualización: 27 de marzo de 2026</p>
 
         <div className="space-y-10 text-muted-foreground text-[15px] leading-relaxed">
@@ -142,21 +131,13 @@ export default function TerminosPage() {
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-3">13. Contacto</h2>
             <p>Para preguntas sobre estos términos, contáctanos en:</p>
-            <p className="mt-2 font-mono text-[#27C93F]">hello@omona.tech</p>
+            <p className="mt-2 font-mono text-obsidian">hello@omona.tech</p>
           </section>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted">© {new Date().getFullYear()} omona by anthana</p>
-          <div className="flex gap-6 text-sm text-muted">
-            <Link href="/privacidad" className="hover:text-foreground transition-colors">Privacidad</Link>
-            <Link href="/" className="hover:text-foreground transition-colors">Inicio</Link>
-          </div>
-        </div>
-      </footer>
+      <HomeFooter />
     </div>
   );
 }

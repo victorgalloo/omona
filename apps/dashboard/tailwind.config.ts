@@ -56,11 +56,23 @@ const config: Config = {
           muted: 'var(--band-muted)',
           accent: 'var(--band-accent)',
         },
+        // Los puntos de ventana ya no llevan color: el único cromático del
+        // sistema es el verde de confirmación.
         terminal: {
-          red: '#FF5F56',
-          yellow: '#FFBD2E',
-          green: '#27C93F',
+          red: '#EBEBEB',
+          yellow: '#EBEBEB',
+          green: '#297A3A',
         },
+        // Escala del sistema claro (DESIGN_SYSTEM.md §2).
+        paper: '#FAFAFA',
+        hair: '#EBEBEB',
+        ash: '#C9C9C9',
+        smoke: '#A8A8A8',
+        graphite: '#8F8F8F',
+        slate: '#7D7D7D',
+        stone: '#666666',
+        charcoal: '#4D4D4D',
+        obsidian: '#171717',
         info: {
           DEFAULT: 'var(--info)',
           muted: 'var(--info-muted)',
@@ -101,17 +113,21 @@ const config: Config = {
         'border-strong': 'var(--border-strong)',
         ring: 'var(--info)',
       },
+      // r6 en todo lo rectangular; nunca más. `rounded-full` queda para
+      // pills del nav y avatares.
       borderRadius: {
-        lg: '0.5rem',
-        md: '0.375rem',
-        sm: '0.25rem',
-        xl: '0.75rem',
-        '2xl': '1rem',
-        '3xl': '1.5rem',
+        DEFAULT: '6px',
+        sm: '4px',
+        md: '6px',
+        lg: '6px',
+        xl: '6px',
+        '2xl': '6px',
+        '3xl': '6px',
+        nav: '2px',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'SF Mono', 'Menlo', 'monospace'],
+        sans: ['var(--font-geist-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'JetBrains Mono', 'SF Mono', 'Menlo', 'monospace'],
       },
       fontSize: {
         label: ['13px', { lineHeight: '1.4' }],
@@ -119,19 +135,29 @@ const config: Config = {
         // Display fluido con interlineado cerrado (Gumroad usa 96px/96px).
         // Sin cajas ni bordes, es el tamaño del titular lo que separa
         // una sección de la siguiente.
-        'display-sm': ['clamp(2.25rem, 5vw, 3.5rem)', { lineHeight: '0.98', letterSpacing: '-0.02em' }],
-        'display': ['clamp(2.75rem, 7vw, 5.5rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
-        'display-lg': ['clamp(3rem, 9vw, 7rem)', { lineHeight: '0.92', letterSpacing: '-0.035em' }],
+        'display-sm': ['clamp(2.125rem, 5vw, 3.5rem)', { lineHeight: '1', letterSpacing: '-0.06em' }],
+        'display': ['clamp(2.5rem, 6.4vw, 4rem)', { lineHeight: '1', letterSpacing: '-0.06em' }],
+        'display-lg': ['clamp(2.5rem, 6.4vw, 4rem)', { lineHeight: '1', letterSpacing: '-0.06em' }],
         // Para el titular del héroe, que tiene diez palabras: al tope de
         // `display` rompía en seis líneas y no cabía en una pantalla.
-        'display-hero': ['clamp(2.5rem, 5.2vw, 4.5rem)', { lineHeight: '0.96', letterSpacing: '-0.03em' }],
+        'display-hero': ['clamp(2.5rem, 6.4vw, 4rem)', { lineHeight: '1', letterSpacing: '-0.06em' }],
       },
+      // Sin drop-shadows: toda «sombra» es un anillo de 1px. Se pisan también
+      // las de Tailwind (sm…2xl) porque el dashboard las usa en línea.
       boxShadow: {
-        subtle: '0 1px 3px var(--shadow-color)',
-        card: '0 2px 8px var(--shadow-color)',
-        'card-hover': '0 4px 16px var(--shadow-color)',
-        elevated: '0 8px 24px var(--shadow-color)',
-        'focus-green': '0 0 0 3px var(--focus-ring-alpha)',
+        DEFAULT: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        sm: '0 0 0 1px #ebebeb',
+        md: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        lg: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        xl: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        '2xl': '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        subtle: '0 0 0 1px #ebebeb',
+        card: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        'card-hover': '0 0 0 1px rgba(0,0,0,.16), 0 0 0 2px #fafafa',
+        elevated: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        'focus-green': '0 0 0 2px rgba(23,23,23,.18)',
+        ring: '0 0 0 1px rgba(0,0,0,.08), 0 0 0 2px #fafafa',
+        ghost: '0 0 0 1px #ebebeb',
       },
       keyframes: {
         blink: {

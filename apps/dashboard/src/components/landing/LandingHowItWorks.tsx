@@ -1,4 +1,5 @@
 'use client';
+import { Rich } from '@/components/site/Rich';
 
 import { motion, useReducedMotion } from 'motion/react';
 import { useT } from '@/contexts/LanguageContext';
@@ -36,7 +37,7 @@ function StepItem({ step, isLast, number }: { step: Step; isLast: boolean; numbe
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="shrink-0"
         >
-          <span className="block font-mono text-[80px] font-black leading-none text-band-fg/15 lg:text-[120px]">
+          <span className="block font-mono text-[80px] font-normal leading-none text-band-fg/15 lg:text-[120px]">
             {number}
           </span>
         </motion.div>
@@ -75,7 +76,9 @@ export function LandingHowItWorks() {
           lines={[t.howItWorks.heading]}
           className="mb-5 text-display font-bold text-band-fg"
         />
-        <p className="text-xl text-band-muted">{t.howItWorks.subheading}</p>
+        <p className="text-xl text-band-muted">
+          <Rich text={t.howItWorks.subheading} />
+        </p>
       </div>
 
         {/* Steps */}

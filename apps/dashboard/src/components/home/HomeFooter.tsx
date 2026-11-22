@@ -1,77 +1,118 @@
-'use client';
-
 import Link from 'next/link';
-import { useT } from '@/contexts/LanguageContext';
+import { es } from '@/lib/i18n';
 import { Logo } from '../shared/Logo';
 
 /**
- * El pie. Antes era una banda `bg-ink text-bone` fija, que sobre el tema
- * oscuro quedaba del mismo color que la página y se leía como si la página
- * simplemente se acabara. Ahora sigue al tema y se separa con una regla.
+ * El pie (DESIGN_SYSTEM.md §7). Componente de servidor: sin estado.
  *
- * La columna de problemas se queda: son páginas nombradas con la frase que el
- * dueño del negocio diría en voz alta, y son superficie de búsqueda.
+ * Aquí viven las entradas discretas: Open source, notas de ingeniería y About.
+ * La portada vende el sistema; quien evalúa la ingeniería (o un programa de
+ * embajadores) llega por aquí o por un enlace directo.
+ *
+ * La microlínea final enlaza a victorgallo.com. Es la liga indirecta que se
+ * pidió: visible, pero no protagonista. El rel="author" va en el recuadro de
+ * autor de cada artículo, no aquí.
  */
+const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: boolean }[] }[] = [
+  {
+    titulo: 'Producto',
+    links: [
+      { href: '/#ciclo', label: 'El proceso' },
+      { href: '/#medicion', label: 'Se prueba' },
+      { href: '/como-trabajamos', label: 'Cómo trabajo' },
+      { href: '/demo', label: 'Demo' },
+    ],
+  },
+  {
+    titulo: 'Recursos',
+    links: [
+      { href: '/blog', label: 'Blog' },
+      { href: '/blog#ingenieria', label: 'Notas de ingeniería' },
+      { href: '/comparativas', label: 'Comparativas' },
+      { href: '/blog/rss.xml', label: 'RSS' },
+    ],
+  },
+  {
+    titulo: 'Código abierto',
+    links: [
+      { href: '/open-source', label: 'Open source' },
+      { href: '/en/open-source', label: 'Open source (EN)' },
+      { href: '/about', label: 'About' },
+      { href: 'https://github.com/victorgalloo', label: 'GitHub', ext: true },
+    ],
+  },
+  {
+    titulo: 'Cuenta',
+    links: [
+      { href: '/login', label: 'Iniciar sesión' },
+      { href: '/privacidad', label: 'Privacidad' },
+      { href: '/terminos', label: 'Términos de uso' },
+    ],
+  },
+];
+
 export function HomeFooter() {
-  const t = useT();
-
   return (
-    <footer className="border-t border-hairline px-5 py-14 sm:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <Link href="/" className="flex items-center gap-2" aria-label="Omona - Inicio">
-            <Logo size={20} className="shrink-0 text-foreground" />
-            <span className="font-mono font-semibold text-foreground">omona_</span>
-          </Link>
-
-          <nav className="flex flex-wrap gap-x-6 gap-y-3 text-[13.5px] text-muted-foreground">
-            <Link href="/login" className="transition-colors hover:text-foreground">
-              {t.footer.login}
+    <footer className="mt-24 px-6 pb-12 pt-16 lg:px-12">
+      <div className="mx-auto w-full max-w-[1280px]">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
+          <div className="col-span-2 md:col-span-1">
+            <Link href="/" className="flex items-center gap-2" aria-label="Omona — inicio">
+              <Logo size={18} className="text-black" />
+              <span className="text-[15px] font-medium tracking-[-0.04em] text-obsidian">omona</span>
             </Link>
-            <Link href="/signup" className="transition-colors hover:text-foreground">
-              {t.footer.signup}
-            </Link>
-            <Link href="/demo" className="transition-colors hover:text-foreground">
-              {t.footer.demo}
-            </Link>
-            <Link href="/privacidad" className="transition-colors hover:text-foreground">
-              Privacidad
-            </Link>
-            <Link href="/terminos" className="transition-colors hover:text-foreground">
-              Términos de uso
-            </Link>
-          </nav>
+            <p className="mt-4 max-w-[30ch] text-[13px] leading-[1.54] text-stone">
+              Prospectar, seguir y cerrar sin capturar nada a mano.
+            </p>
+          </div>
+          {COLUMNAS.map((c) => (
+            <div key={c.titulo}>
+              <p className="eyebrow eyebrow-muted mb-4">{c.titulo}</p>
+              <ul className="space-y-2.5">
+                {c.links.map((l) => (
+                  <li key={l.href}>
+                    {l.ext ? (
+                      <a
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[14px] text-charcoal transition-colors hover:text-obsidian"
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <Link href={l.href} className="text-[14px] text-charcoal transition-colors hover:text-obsidian">
+                        {l.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-10 border-t border-hairline pt-8">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-            {t.problems.sectionLabel}
-          </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-[13.5px] text-muted-foreground">
-            {t.problems.items.map((problem) => (
-              <Link
-                key={problem.slug}
-                href={`/problemas/${problem.slug}`}
-                className="transition-colors hover:text-foreground"
-              >
-                {problem.short}
+        <div className="mt-14">
+          <p className="eyebrow eyebrow-muted mb-3">{es.problems.sectionLabel.replace(/_$/, '')}</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-stone">
+            {es.problems.items.map((p) => (
+              <Link key={p.slug} href={`/problemas/${p.slug}`} className="transition-colors hover:text-obsidian">
+                {p.short}
               </Link>
             ))}
           </div>
         </div>
 
-        {/* El hueco final de vi: la columna de virgulillas y el EOF. Es lo que
-            cierra la metafora del archivo sin necesidad de explicarla. */}
-        <div aria-hidden className="md-eof mt-12 select-none text-xs leading-[1.6]">
-          {['~', '~', '~'].map((t, i) => (
-            <p key={i}>{t}</p>
-          ))}
-          <p className="mt-1">{'~'} EOF</p>
+        <div className="mt-12 flex flex-col gap-2 text-[12px] text-graphite sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono uppercase tracking-[0.071em]">© {new Date().getFullYear()} Omona · León, México</p>
+          <p>
+            Omona es el proyecto de{' '}
+            <a href="https://victorgallo.com" className="underline decoration-hair underline-offset-2 hover:text-obsidian">
+              Victor Gallo
+            </a>
+            .
+          </p>
         </div>
-
-        <p className="mt-6 text-xs text-muted">
-          © {new Date().getFullYear()} {t.footer.copyright}
-        </p>
       </div>
     </footer>
   );

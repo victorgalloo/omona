@@ -56,13 +56,15 @@ export const BAND_TONES: Record<BandTone, BandVars> = {
     '--band-accent': 'var(--accent-green)',
   },
   // El inverso del tema: negro brilloso en claro, hueso en oscuro.
+  // Sistema «terminal impresa en papel»: sin bandas oscuras a todo lo ancho.
+  // `contrast` queda como alias de papel para no tocar a cada llamador.
   contrast: {
-    '--band-bg': 'var(--foreground)',
-    '--band-fg': 'var(--background)',
-    '--band-bg-rgb': 'var(--foreground-rgb)',
-    '--band-fg-rgb': 'var(--background-rgb)',
-    '--band-muted': 'rgb(var(--background-rgb) / 0.62)',
-    '--band-accent': 'var(--background)',
+    '--band-bg': 'var(--background)',
+    '--band-fg': 'var(--foreground)',
+    '--band-bg-rgb': 'var(--background-rgb)',
+    '--band-fg-rgb': 'var(--foreground-rgb)',
+    '--band-muted': 'var(--muted)',
+    '--band-accent': 'var(--accent-green)',
   },
 };
 

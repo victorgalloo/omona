@@ -115,85 +115,91 @@
           que en oscuro se aclara a #7C9BFF (7.53:1).
      ───────────────────────────────────────────────────────────── */
 
+  /* ─────────────────────────────────────────────────────────────
+     SISTEMA «TERMINAL IMPRESA EN PAPEL» (22-nov-2026)
+
+     Spec completa: DESIGN_SYSTEM.md (raíz del repo). Tema claro único:
+     lienzo #fafafa, texto #171717, bordes hairline #ebebeb, un solo
+     acento cromático (#297a3a). Profundidad por valor tonal, nunca por
+     sombra. Los nombres viejos (ink, bone, neon-*, electric) se quedan
+     como alias MONOCROMOS para que las páginas que aún los usan no
+     metan color: ya no son pigmento, son grises de la escala.
+     ───────────────────────────────────────────────────────────── */
+
   :root,
   [data-theme='light'],
   [data-theme='dark'] {
-    /* Constantes de marca: no cambian con el tema porque son
-       pigmento, no rol. El rol lo asignan los tokens de abajo. */
-    --ink: #0A0A0A;            /* negro brilloso  · texto blanco 19.80:1 */
-    --bone: #F5F3EC;           /* hueso cálido    · texto negro  17.83:1 */
+    --ink: #171717;
+    --bone: #FAFAFA;
+    --neon-lime: #F2F2F2;
+    --neon-yellow: #F2F2F2;
+    --neon-cyan: #F2F2F2;
+    --neon-magenta: #F2F2F2;
+    --neon-orange: #EBEBEB;
+    --electric-blue: #171717;
+    --ink-rgb: 23 23 23;
+    --bone-rgb: 250 250 250;
+    --neon-lime-rgb: 242 242 242;
+    --neon-yellow-rgb: 242 242 242;
+    --neon-cyan-rgb: 242 242 242;
+    --neon-magenta-rgb: 242 242 242;
+    --neon-orange-rgb: 235 235 235;
+    --electric-blue-rgb: 23 23 23;
 
-    --neon-lime: #D8FF3E;      /* texto negro 17.25:1  AAA */
-    --neon-yellow: #FFE500;    /* texto negro 15.52:1  AAA */
-    --neon-cyan: #00E5FF;      /* texto negro 12.87:1  AAA */
-    --neon-magenta: #FF90E8;   /* texto negro  9.81:1  AAA */
-    --neon-orange: #FF5C00;    /* texto negro  6.39:1  AA  */
-    --electric-blue: #2B4BFF;  /* texto blanco 5.91:1  AA  */
-
-    /* Los mismos colores en canales sueltos.
-       Tailwind solo puede aplicar el modificador de opacidad (`text-bone/60`,
-       `border-band-fg/25`) cuando el color se declara como
-       `rgb(<canales> / <alpha-value>)`. Con un `var(--bone)` plano descarta el
-       modificador SIN AVISAR: el texto cae al color heredado y el borde al
-       global. Por eso cada token vive en las dos formas.
-       Deben coincidir con los hex de arriba — scripts/check-contrast.mjs lo verifica. */
-    --ink-rgb: 10 10 10;
-    --bone-rgb: 245 243 236;
-    --neon-lime-rgb: 216 255 62;
-    --neon-yellow-rgb: 255 229 0;
-    --neon-cyan-rgb: 0 229 255;
-    --neon-magenta-rgb: 255 144 232;
-    --neon-orange-rgb: 255 92 0;
-    --electric-blue-rgb: 43 75 255;
+    /* Escala del sistema, por nombre. */
+    --paper: #FAFAFA;
+    --pure: #FFFFFF;
+    --hair: #EBEBEB;
+    --ash: #C9C9C9;
+    --smoke: #A8A8A8;
+    --graphite: #8F8F8F;
+    --slate: #7D7D7D;
+    --stone: #666666;
+    --charcoal: #4D4D4D;
+    --obsidian: #171717;
+    --carbon: #000000;
+    --terminal-green: #297A3A;
+    --ring-card: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 0 2px #FAFAFA;
+    --ring-ghost: 0 0 0 1px #EBEBEB;
+    --spectrum: linear-gradient(90deg, rgb(0 255 149), rgb(255 208 0), rgb(255 23 68), rgb(149 0 255), rgb(0 229 255));
   }
 
-  /* ── Modo claro ─────────────────────────────────────────────── */
+  /* ── Tema claro (único en el marketing) ───────────────────────── */
   :root,
   [data-theme='light'] {
-    --background: #FFFFFF;
-    --foreground: #0A0A0A;
-    --background-rgb: 255 255 255;
-    --foreground-rgb: 10 10 10;
-    --surface: #F6F6F6;
-    --surface-2: #EDEDED;
+    --background: #FAFAFA;
+    --foreground: #171717;
+    --background-rgb: 250 250 250;
+    --foreground-rgb: 23 23 23;
+    --surface: #FFFFFF;
+    --surface-2: #F5F5F5;
     --surface-elevated: #FFFFFF;
-    --muted: #6B6B6B;
-    --muted-foreground: #464646;
+    /* --muted es el gris de captions (stone, 5.7:1 sobre #fafafa) y
+       --muted-foreground el del cuerpo (charcoal, 8.4:1). */
+    --muted: #666666;
+    --muted-foreground: #4D4D4D;
 
-    /* Hairline suave para UI densa (tablas, inputs del dashboard).
-       Las reglas duras de marketing usan --border-strong. */
-    --border: rgba(10, 10, 10, 0.16);
-    --border-hover: rgba(10, 10, 10, 0.32);
-    --border-strong: #0A0A0A;
-    /* Más tenue que --border: es la línea de la rejilla de la home, que se
-       repite cada 64px. Al valor de --border la retícula compite con el texto. */
-    --hairline: rgba(10, 10, 10, 0.10);
-    /* Los dos signos que quedan: el `// ` de los rotulos y el `~/` del nav.
-       Los `##`, `-` y `**` del texto corrido se retiraron. Decorativo a
-       proposito: se pintan con ::before o van aria-hidden, o sea fuera del
-       arbol de accesibilidad, asi que no les aplica el minimo de 4.5:1. */
-    --md-syntax: #9A9A9A;
+    --border: #EBEBEB;
+    --border-hover: #C9C9C9;
+    --border-strong: #171717;
+    --hairline: #EBEBEB;
+    --md-syntax: #A8A8A8;
 
-    /* El acento semántico ("agente activo", éxito). En claro tiene que
-       ser un verde legible sobre hueso; el lima solo vive sobre negro. */
-    --accent-green: #0A0A0A;
-    --accent-link: #0A0A0A;
+    --accent-green: #297A3A;
+    --accent-link: #171717;
 
-    --info: #2B4BFF;
-    --info-muted: #DDE2FF;
-    /* #B45309 daba 4.42:1 sobre --warning-muted: por debajo del piso de 4.5
-       para texto pequeño, y la insignia que lo usa es mono de 10px. #A34A08
-       sube a 5.22:1 ahí y a 5.34:1 sobre el hueso. */
-    --warning: #A34A08;
-    --warning-muted: #FDF0C7;
-    --success: #16704A;
-    --success-muted: #D6F0E2;
-    --error: #C62828;
-    --error-muted: #FBE0E0;
+    --info: #171717;
+    --info-muted: #F2F2F2;
+    --warning: #8A4B08;
+    --warning-muted: #F7F1E6;
+    --success: #297A3A;
+    --success-muted: #EAF3EC;
+    --error: #B42318;
+    --error-muted: #FBEDEC;
 
-    --shadow-color: rgba(10, 10, 10, 0.08);
-    --focus-ring: #2B4BFF;
-    --focus-ring-alpha: rgba(43, 75, 255, 0.28);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --focus-ring: #171717;
+    --focus-ring-alpha: rgba(23, 23, 23, 0.18);
   }
 
   /* ── Modo oscuro ────────────────────────────────────────────── */
@@ -287,12 +293,12 @@
 /* ── Blog GEO (prosa de artículos) ── */
 .geo-prose { max-width: 68ch; }
 .geo-prose h2 {
-  font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2;
+  font-size: 30px; font-weight: 450; letter-spacing: -0.05em; line-height: 1.1;
   margin: 40px 0 14px; color: var(--foreground);
 }
 /* 21px y no 16px: con el cuerpo en 17px un h3 de 16 era MAS PEQUENO que el
    parrafo que encabezaba, y la jerarquia del articulo se leia al reves. */
-.geo-prose h3 { font-size: 21px; font-weight: 600; margin: 32px 0 10px; line-height: 1.3; }
+.geo-prose h3 { font-size: 21px; font-weight: 500; letter-spacing: -0.02em; margin: 32px 0 10px; line-height: 1.3; }
 .geo-prose p { margin-bottom: 16px; color: var(--foreground); line-height: 1.7; }
 .geo-prose ul, .geo-prose ol { margin: 0 0 16px 24px; color: var(--foreground); }
 .geo-prose li { margin-bottom: 8px; line-height: 1.7; }
@@ -330,15 +336,16 @@
   padding: 1px 6px; border-radius: 4px;
 }
 .geo-prose pre {
-  background: #0A0A0A;
-  border: 1px solid var(--border);
-  border-radius: 8px; padding: 16px; overflow-x: auto; margin: 16px 0;
+  background: #FFFFFF;
+  box-shadow: var(--ring-ghost);
+  border-radius: 6px; padding: 16px; overflow-x: auto; margin: 20px 0;
+  font-size: 13px; line-height: 1.6;
 }
-.geo-prose pre code { background: none; border: none; padding: 0; color: #E5E5E5; }
+.geo-prose pre code { background: none; border: none; padding: 0; color: #171717; font-size: 13px; }
 .geo-prose .cite { color: var(--muted); font-size: 0.78em; vertical-align: super; }
 .geo-prose .table-wrap {
   overflow-x: auto; margin: 16px 0;
-  border: 1px solid var(--border); border-radius: 8px;
+  border: 1px solid var(--border); border-radius: 6px;
   background: var(--surface);
 }
 .geo-prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
@@ -716,7 +723,8 @@ article[id] {
    nodos: es el unico adorno que se permite. Si a 390px produce muare al
    hacer scroll, se quita la clase del layout y se acabo. */
 
-.crt::after {
+/* Retirada con el sistema claro: el papel no lleva textura. */
+.crt-off::after {
   content: '';
   position: fixed;
   inset: 0;
@@ -740,4 +748,92 @@ article[id] {
   font-family: var(--font-mono), 'SF Mono', Menlo, monospace;
   color: var(--md-syntax);
   user-select: none;
+}
+
+
+/* ═════════════════════════════════════════════════════════════
+   SISTEMA «TERMINAL IMPRESA EN PAPEL» — utilidades del sitio
+   Spec: DESIGN_SYSTEM.md. Geist Sans para texto, Geist Mono para todo
+   rótulo, metadato y código. Sin sombras: solo anillos.
+   ═════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Alias de los nombres viejos: el CSS del corpus y algunos componentes
+     siguen leyendo --font-mono / --font-inter. */
+  --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-geist-sans);
+}
+
+body {
+  font-feature-settings: "calt" 0, "rlig", "ss11";
+  background-color: #FAFAFA;
+}
+
+/* Titulares: nunca 600–700. Se fuerza en el marketing (.md) porque el
+   corpus de 74 guías y las páginas viejas traen font-semibold en línea. */
+.md h1, .md h2 { font-weight: 450 !important; letter-spacing: -0.05em; }
+.md h3 { font-weight: 500 !important; }
+.md h1 { line-height: 1.02; }
+
+.eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.071em;
+  text-transform: uppercase;
+  color: #171717;
+}
+.eyebrow-muted { color: #666666; }
+
+.mono-label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.071em;
+  text-transform: uppercase;
+}
+
+.ring-card { background: #FFFFFF; border-radius: 6px; box-shadow: var(--ring-card); }
+.ring-ghost { box-shadow: var(--ring-ghost); border-radius: 6px; }
+.card-invert { background: #171717; color: #FFFFFF; border-radius: 6px; }
+
+.btn-fill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 40px; padding: 0 12px; border-radius: 6px;
+  background: #171717; color: #FFFFFF; font-size: 14px; font-weight: 400;
+  transition: background-color .15s ease;
+}
+.btn-fill:hover { background: #383838; }
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 40px; padding: 0 12px; border-radius: 6px;
+  background: transparent; color: #4D4D4D; font-size: 14px; font-weight: 400;
+  box-shadow: var(--ring-ghost);
+  transition: color .15s ease, background-color .15s ease;
+}
+.btn-ghost:hover { color: #171717; background: #FFFFFF; }
+
+.cli {
+  background: #FFFFFF; border-radius: 6px; box-shadow: var(--ring-ghost);
+  padding: 16px; font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 13px; line-height: 1.7; color: #171717;
+  min-width: 0; overflow-wrap: anywhere;
+}
+.cli .ok { color: #297A3A; }
+.cli .dim { color: #8F8F8F; }
+
+.spectrum-line { height: 1px; background: var(--spectrum); }
+.spectrum-glow {
+  background: conic-gradient(from 210deg, rgb(0 255 149), rgb(255 208 0), rgb(255 23 68), rgb(149 0 255), rgb(0 229 255), rgb(0 255 149));
+  filter: blur(48px);
+  opacity: .22;
+}
+
+.text-display {
+  font-size: clamp(2.5rem, 6.4vw, 4rem); line-height: 1; letter-spacing: -0.06em; font-weight: 450;
+}
+.text-heading-lg {
+  font-size: clamp(2.125rem, 5vw, 3.5rem); line-height: 1; letter-spacing: -0.06em; font-weight: 450;
+}
+.text-heading {
+  font-size: clamp(1.5rem, 3vw, 1.875rem); line-height: 1.1; letter-spacing: -0.05em; font-weight: 450;
 }
