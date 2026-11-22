@@ -50,6 +50,16 @@ export function markdownToHtml(md: string): string {
       continue;
     }
 
+    // imagen sola en su línea → figura con pie (las notas de ingeniería traen
+    // su visual original; el corpus GEO no usa imágenes).
+    const img = /^!\[([^\]]*)\]\(([^)\s]+)\)$/.exec(line);
+    if (img) {
+      const alt = esc(img[1]).replace(/"/g, "&quot;");
+      out.push(`<figure><img src="${img[2]}" alt="${alt}" loading="lazy" decoding="async" /><figcaption>${inline(img[1])}</figcaption></figure>`);
+      i += 1;
+      continue;
+    }
+
     // heading
     const h = /^(#{1,4})\s+(.*)$/.exec(line);
     if (h) { out.push(`<h${h[1].length}>${inline(h[2])}</h${h[1].length}>`); i += 1; continue; }
@@ -69,11 +79,14 @@ export function markdownToHtml(md: string): string {
 
     // code fence
     if (line.startsWith("```")) {
+      const lang = line.slice(3).trim();
       const block: string[] = [];
       i += 1;
       while (i < lines.length && !lines[i].trim().startsWith("```")) { block.push(lines[i]); i += 1; }
       i += 1;
-      out.push(`<pre><code>${esc(block.join("\n"))}</code></pre>`);
+      out.push(lang
+        ? `<pre data-lang="${esc(lang)}"><code>${esc(block.join("\n"))}</code></pre>`
+        : `<pre><code>${esc(block.join("\n"))}</code></pre>`);
       continue;
     }
 

@@ -15,6 +15,9 @@ import {
   type GeoKind,
 } from "@/lib/geo/articles";
 import { markdownToHtml } from "@/lib/geo/markdown";
+import { LandingNav } from "@/components/landing/LandingNav";
+import { HomeFooter } from "@/components/home/HomeFooter";
+import { NotasIndex } from "@/components/site/Blog";
 
 const BASE = "https://omona.tech";
 
@@ -52,16 +55,16 @@ const INDICE: Record<GeoKind, { crumb: string; eyebrow: string; h1: string; desc
 
 function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
   return (
-    <nav aria-label="Ruta" className="font-mono text-xs text-muted-foreground mb-8">
+    <nav aria-label="Ruta" className="mono-label mb-10 text-stone">
       <ol className="flex gap-2 flex-wrap">
         {items.map((it, i) => (
           <li key={i}>
             {it.href ? (
-              <Link href={it.href} className="hover:text-foreground transition-colors">{it.label}</Link>
+              <Link href={it.href} className="hover:text-obsidian transition-colors">{it.label}</Link>
             ) : (
-              <span aria-current="page" className="text-foreground/70">{it.label}</span>
+              <span aria-current="page" className="text-charcoal">{it.label}</span>
             )}
-            {i < items.length - 1 && <span className="mx-1 text-muted-foreground/50">/</span>}
+            {i < items.length - 1 && <span className="mx-2 text-ash">/</span>}
           </li>
         ))}
       </ol>
@@ -75,31 +78,40 @@ export function BlogIndex({ kind }: { kind: GeoKind }) {
   const items = getGeo(kind);
   const { crumb, eyebrow, h1, desc } = INDICE[kind];
   return (
-    <main className="md crt min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 pt-16 pb-24">
+    <div className="md min-h-screen bg-paper text-obsidian">
+      <LandingNav />
+      <main className="mx-auto w-full max-w-[1280px] px-6 pb-8 pt-12 lg:px-12">
         <Crumbs items={[{ label: "Inicio", href: "/" }, { label: crumb }]} />
-        <p className="font-mono text-xs uppercase tracking-widest text-accent-green mb-3">{eyebrow}</p>
-        <h1 className="text-4xl font-semibold tracking-tight mb-3">{h1}</h1>
-        <p className="text-muted-foreground mb-10 max-w-2xl">{desc}</p>
-        <div className="grid gap-px bg-border overflow-hidden sm:grid-cols-2">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1 className="text-heading-lg text-obsidian">{h1}</h1>
+        <p className="mt-5 mb-14 max-w-2xl text-charcoal">{desc}</p>
+        {kind === "articulo" && <NotasIndex />}
+        {kind === "articulo" && (
+          <div className="mb-8">
+            <p className="eyebrow">Guías</p>
+            <h2 className="text-heading text-obsidian">Ventas B2B por WhatsApp, con fuentes</h2>
+          </div>
+        )}
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((a) => (
             <Link
               key={a.slug}
               href={geoUrl(a)}
-              className="group bg-background p-6 hover:bg-surface transition-colors"
+              className="ring-card group flex flex-col p-4 transition-shadow hover:shadow-card-hover"
             >
-              <h2 className="font-medium text-foreground group-hover:text-accent-green transition-colors mb-2 leading-snug">
+              <h3 className="text-[16px] leading-[1.3] tracking-[-0.02em] text-obsidian">
                 {a.title}
-              </h2>
-              <p className="text-sm text-muted-foreground">{a.meta.slice(0, 140)}…</p>
+              </h3>
+              <p className="mt-2 text-[14px] leading-[1.5] text-charcoal">{a.meta.slice(0, 140)}…</p>
               {a.updated && (
-                <p className="font-mono text-[11px] text-muted-foreground/60 mt-3">actualizado {a.updated.toLowerCase()}</p>
+                <p className="mono-label mt-auto pt-4 text-graphite">actualizado {a.updated.toLowerCase()}</p>
               )}
             </Link>
           ))}
         </div>
-      </div>
-    </main>
+      </main>
+      <HomeFooter />
+    </div>
   );
 }
 
@@ -110,28 +122,30 @@ function ArticleView({ a }: { a: GeoArticle }) {
   const indice = INDICE[a.kind];
   const indiceHref = `/${GEO_KINDS[a.kind].segment}`;
   return (
-    <main className="md crt min-h-screen bg-background">
-      <div className="max-w-3xl mx-auto px-4 pt-16 pb-24">
+    <div className="md min-h-screen bg-paper text-obsidian">
+      <LandingNav />
+      <main className="mx-auto max-w-3xl px-6 pt-12 pb-8">
         <Crumbs items={[
           { label: "Inicio", href: "/" },
           { label: indice.crumb, href: indiceHref },
           { label: a.title.slice(0, 48) },
         ]} />
         <article>
-          <h1 className="text-4xl font-semibold tracking-tight leading-tight mb-4">{a.h1}</h1>
+          <p className="eyebrow">Guía</p>
+          <h1 className="text-heading-lg mb-4 text-obsidian">{a.h1}</h1>
           {a.updated && (
-            <p className="font-mono text-xs text-muted-foreground mb-8">actualizado {a.updated.toLowerCase()}</p>
+            <p className="mono-label mb-10 text-stone">actualizado {a.updated.toLowerCase()}</p>
           )}
           <div className="geo-prose" dangerouslySetInnerHTML={{ __html: html }} />
           {a.claims.length > 0 && (
             <section className="mt-14" aria-label="Puntos clave">
-              <h2 className="font-mono text-xs uppercase tracking-widest text-accent-green mb-4">
+              <h2 className="eyebrow mb-4">
                 Puntos clave
               </h2>
               <ul className="grid gap-3">
                 {a.claims.map((c, i) => (
                   <li key={i}
-                      className="border-l-2 border-accent-green bg-surface px-5 py-3 text-sm text-muted-foreground"
+                      className="ring-card px-4 py-3 text-sm text-charcoal"
                       dangerouslySetInnerHTML={{
                         __html: markdownToHtml(c).replace(/^<p>|<\/p>$/g, ""),
                       }} />
@@ -148,11 +162,11 @@ function ArticleView({ a }: { a: GeoArticle }) {
             a esa persona ya estaba pagado.
             El texto vive aquí y no en cada .md a propósito: son 74 archivos y
             el día que cambie la oferta habría que editarlos uno por uno. */}
-        <aside className="mt-16 border-t border-hairline pt-10">
-          <p className="mb-2 font-mono text-xs uppercase tracking-[0.18em] text-accent-green">
+        <aside className="ring-card mt-16 p-6">
+          <p className="eyebrow">
             ¿te suena tu negocio?
           </p>
-          <h2 className="mb-3 max-w-[24ch] text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground">
+          <h2 className="mb-3 max-w-[24ch] text-heading text-obsidian">
             Si vendes por WhatsApp, esto se te puede construir.
           </h2>
           <p className="mb-6 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
@@ -164,27 +178,28 @@ function ArticleView({ a }: { a: GeoArticle }) {
               href={CTA_PROYECTO}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              className="btn-fill"
             >
               Cuéntame tu caso
             </a>
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-border-hover hover:bg-surface"
+              className="btn-ghost"
             >
               Probar el sistema
             </Link>
           </div>
         </aside>
 
-        <div className="mt-12 border-t border-dashed border-border pt-8">
+        <div className="mt-12">
           <Link href={indiceHref}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                className="mono-label text-charcoal hover:text-obsidian transition-colors">
             ← Volver a {indice.crumb.toLowerCase()}
           </Link>
         </div>
-      </div>
-    </main>
+      </main>
+      <HomeFooter />
+    </div>
   );
 }
 
@@ -231,8 +246,8 @@ export function articleJsonLd(a: GeoArticle): string {
     description: a.meta,
     url: `${BASE}${geoUrl(a)}`,
     inLanguage: "es-MX",
-    author: { "@type": "Organization", name: "Omona", url: BASE },
-    publisher: { "@type": "Organization", name: "Omona", url: BASE },
+    author: { "@type": "Organization", "@id": `${BASE}/#org`, name: "Omona", url: BASE },
+    publisher: { "@type": "Organization", "@id": `${BASE}/#org`, name: "Omona", url: BASE },
   };
   return JSON.stringify(d);
 }

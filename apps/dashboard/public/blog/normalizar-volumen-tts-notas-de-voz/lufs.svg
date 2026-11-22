@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" role="img">
+<rect x="0.5" y="0.5" width="879" height="419" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="28" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666" text-anchor="start" font-weight="400" letter-spacing="0.8">SONORIDAD INTEGRADA DE 12 NOTAS DE VOZ REALES (LUFS)</text>
+<line x1="80" y1="320.0" x2="850" y2="320.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="70" y="324.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="end" font-weight="400" letter-spacing="0">-20</text>
+<line x1="80" y1="260.0" x2="850" y2="260.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="70" y="264.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="end" font-weight="400" letter-spacing="0">-18</text>
+<line x1="80" y1="200.0" x2="850" y2="200.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="70" y="204.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="end" font-weight="400" letter-spacing="0">-16</text>
+<line x1="80" y1="140.0" x2="850" y2="140.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="70" y="144.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="end" font-weight="400" letter-spacing="0">-14</text>
+<line x1="80" y1="80.0" x2="850" y2="80.0" stroke="#f0f0f0" stroke-width="1"/>
+<text x="70" y="84.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="end" font-weight="400" letter-spacing="0">-12</text>
+<rect x="80" y="170.0" width="770" height="60.0" fill="#297a3a" fill-opacity="0.06"/>
+<line x1="80" y1="200.0" x2="850" y2="200.0" stroke="#297a3a" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="850" y="194.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#297a3a" text-anchor="end" font-weight="400" letter-spacing="0.6">OBJETIVO -16 LUFS</text>
+<line x1="112.08333333333334" y1="200.0" x2="112.08333333333334" y2="194.00000000000003" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="112.1" cy="194.0" r="4" fill="#171717"/>
+<text x="112.08333333333334" y="184.00000000000003" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-15.8</text>
+<text x="112.08333333333334" y="342" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">21-nov 15:39</text>
+<line x1="176.25" y1="200.0" x2="176.25" y2="211.99999999999994" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="176.2" cy="212.0" r="4" fill="#171717"/>
+<text x="176.25" y="229.99999999999994" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-16.4</text>
+<line x1="240.41666666666669" y1="200.0" x2="240.41666666666669" y2="205.99999999999997" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="240.4" cy="206.0" r="4" fill="#171717"/>
+<text x="240.41666666666669" y="223.99999999999997" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-16.2</text>
+<text x="240.41666666666669" y="342" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">21-nov 15:55</text>
+<line x1="304.58333333333337" y1="200.0" x2="304.58333333333337" y2="188.0" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="304.6" cy="188.0" r="4" fill="#171717"/>
+<text x="304.58333333333337" y="178.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-15.6</text>
+<line x1="368.75" y1="200.0" x2="368.75" y2="215.0" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="368.8" cy="215.0" r="4" fill="#171717"/>
+<text x="368.75" y="233.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-16.5</text>
+<text x="368.75" y="342" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">21-nov 16:04</text>
+<line x1="432.9166666666667" y1="200.0" x2="432.9166666666667" y2="170.0" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="432.9" cy="170.0" r="4" fill="#171717"/>
+<text x="432.9166666666667" y="160.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-15.0</text>
+<line x1="497.08333333333337" y1="200.0" x2="497.08333333333337" y2="239.00000000000003" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="497.1" cy="239.0" r="4" fill="#171717"/>
+<text x="497.08333333333337" y="257.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-17.3</text>
+<text x="497.08333333333337" y="342" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">22-nov 10:01</text>
+<line x1="561.25" y1="200.0" x2="561.25" y2="203.00000000000006" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="561.2" cy="203.0" r="4" fill="#171717"/>
+<text x="561.25" y="221.00000000000006" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-16.1</text>
+<line x1="625.4166666666667" y1="200.0" x2="625.4166666666667" y2="160.99999999999997" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="625.4" cy="161.0" r="4" fill="#171717"/>
+<text x="625.4166666666667" y="150.99999999999997" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-14.7</text>
+<text x="625.4166666666667" y="342" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">22-nov 11:04</text>
+<line x1="689.5833333333334" y1="200.0" x2="689.5833333333334" y2="209.00000000000003" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="689.6" cy="209.0" r="4" fill="#171717"/>
+<text x="689.5833333333334" y="227.00000000000003" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-16.3</text>
+<line x1="753.75" y1="200.0" x2="753.75" y2="185.0" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="753.8" cy="185.0" r="4" fill="#171717"/>
+<text x="753.75" y="175.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-15.5</text>
+<text x="753.75" y="342" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">22-nov 11:11</text>
+<line x1="817.9166666666667" y1="200.0" x2="817.9166666666667" y2="190.99999999999997" stroke="#c9c9c9" stroke-width="1"/>
+<circle cx="817.9" cy="191.0" r="4" fill="#171717"/>
+<text x="817.9166666666667" y="180.99999999999997" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">-15.7</text>
+<text x="28" y="370" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="11" fill="#4d4d4d" text-anchor="start" font-weight="400" letter-spacing="0">Promedio -15.9 · rango -17.3 a -14.7 · desviación 0.67 LU · loudnorm de un pase (I=-16, TP=-1.5, LRA=11)</text>
+<text x="28" y="396" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="start" font-weight="400" letter-spacing="0.6">FUENTE: FFMPEG EBUR128 SOBRE LOS ARCHIVOS TTS DEL SERVIDOR · 21–22 NOV 2026</text>
+</svg>

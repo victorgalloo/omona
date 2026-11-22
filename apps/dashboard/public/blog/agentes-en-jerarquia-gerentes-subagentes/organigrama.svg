@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="880" height="440" role="img">
+<rect x="0.5" y="0.5" width="879" height="439" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="28" y="40" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666" text-anchor="start" font-weight="400" letter-spacing="0.8">ORGANIGRAMA DE AGENTES · CUATRO NIVELES</text>
+<rect x="340" y="64" width="200" height="52" rx="6" fill="#171717" stroke="#171717"/>
+<text x="440" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="400" letter-spacing="0">orquestador</text>
+<text x="440" y="104" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#c9c9c9" text-anchor="middle" font-weight="400" letter-spacing="0">decide solo · filtra</text>
+<line x1="440" y1="116" x2="96" y2="150" stroke="#c9c9c9" stroke-width="1"/>
+<rect x="40" y="150" width="112" height="46" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="96" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#171717" text-anchor="middle" font-weight="400" letter-spacing="0">paid</text>
+<text x="96" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">gerente</text>
+<line x1="96" y1="196" x2="68" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="44" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="68" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="96" y1="196" x2="124" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="100" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="124" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="440" y1="116" x2="268" y2="150" stroke="#c9c9c9" stroke-width="1"/>
+<rect x="212" y="150" width="112" height="46" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="268" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#171717" text-anchor="middle" font-weight="400" letter-spacing="0">contenido</text>
+<text x="268" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">gerente</text>
+<line x1="268" y1="196" x2="240" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="216" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="240" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="268" y1="196" x2="296" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="272" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="296" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="440" y1="116" x2="440" y2="150" stroke="#c9c9c9" stroke-width="1"/>
+<rect x="384" y="150" width="112" height="46" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="440" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#171717" text-anchor="middle" font-weight="400" letter-spacing="0">seo</text>
+<text x="440" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">gerente</text>
+<line x1="440" y1="196" x2="412" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="388" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="412" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="440" y1="196" x2="468" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="444" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="468" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="440" y1="116" x2="612" y2="150" stroke="#c9c9c9" stroke-width="1"/>
+<rect x="556" y="150" width="112" height="46" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="612" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#171717" text-anchor="middle" font-weight="400" letter-spacing="0">outbound</text>
+<text x="612" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">gerente</text>
+<line x1="612" y1="196" x2="584" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="560" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="584" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="612" y1="196" x2="640" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="616" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="640" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="440" y1="116" x2="784" y2="150" stroke="#c9c9c9" stroke-width="1"/>
+<rect x="728" y="150" width="112" height="46" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="784" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#171717" text-anchor="middle" font-weight="400" letter-spacing="0">inbound</text>
+<text x="784" y="186" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="middle" font-weight="400" letter-spacing="0">gerente</text>
+<line x1="784" y1="196" x2="756" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="732" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="756" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="784" y1="196" x2="812" y2="236" stroke="#ebebeb" stroke-width="1"/>
+<rect x="788" y="236" width="48" height="30" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="812" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#4d4d4d" text-anchor="middle" font-weight="400" letter-spacing="0">agente</text>
+<line x1="412" y1="266" x2="412" y2="296" stroke="#ebebeb" stroke-width="1"/>
+<rect x="380" y="296" width="64" height="28" rx="6" fill="#fafafa" stroke="#ebebeb"/>
+<text x="412" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" fill="#666666" text-anchor="middle" font-weight="400" letter-spacing="0">subagente</text>
+
+<text x="28" y="368" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="12" fill="#4d4d4d" text-anchor="start" font-weight="400" letter-spacing="0">Cada quien escala un nivel a la vez. A una persona solo suben: dinero, legal, compromisos con clientes,</text>
+<text x="28" y="386" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="12" fill="#4d4d4d" text-anchor="start" font-weight="400" letter-spacing="0">lo público a nombre de alguien, accesos y hablar a nombre de alguien. 107 rutinas activas, 37 agentes con nombre.</text>
+<text x="28" y="414" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" text-anchor="start" font-weight="400" letter-spacing="0.6">FUENTE: INVENTARIO DE RUTINAS Y ORGANIGRAMA APROBADO · 21 NOV 2026</text>
+</svg>
