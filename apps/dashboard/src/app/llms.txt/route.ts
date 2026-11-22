@@ -1,5 +1,7 @@
 import { getNotas } from '@/lib/notas';
+import { CONSTRUYO_SOBRE, CONTRIBUYO, EVIDENCIA, FILOSOFIA, NOMBRE, NOMBRE_LEGAL, REDES, TERCERA } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
+import nowData from '../../../data/now/now.json';
 
 export const dynamic = 'force-static';
 
@@ -11,46 +13,62 @@ type Oss = {
   prs: { key: string; url: string; state: string; title: string }[];
   issues: { key: string; url: string; state: string; es: string }[];
 };
+type Now = { updated: string; items: { date: string; en: string; url: string | null }[] };
 
 /**
- * 22-nov-2026: omona.tech es el laboratorio open source de Victor Gallo. El
- * bloque de entidad de data/geo/llms.txt describía un producto y ya no se usa.
+ * llms.txt (v2, 22-nov-2026): quién es Victor, qué hay en el sitio y dónde está
+ * la evidencia, en inglés para motores de IA y revisores de programas. El perfil
+ * completo (filosofía ES/EN, bitácora, todos los PRs) va en /llms-full.txt.
+ * Textos en lib/perfil.ts; datos en data/oss y data/now (cron diario).
  */
 export async function GET() {
   const oss = ossData as unknown as Oss;
+  const now = nowData as unknown as Now;
   const s = oss.stats;
-  const lines: string[] = [];
-  lines.push('# Omona', '');
-  lines.push(
-    '> Omona es el laboratorio de ingeniería independiente de Victor Gallo (https://victorgallo.com) para su trabajo open source sobre agentes de IA: pull requests a otros proyectos, reportes de bugs y notas de ingeniería. No es un producto comercial y no vende servicios.',
+  const L: string[] = [];
+  L.push(`# ${NOMBRE} · Omona`, '');
+  L.push(
+    `> ${NOMBRE} (${NOMBRE_LEGAL}) builds AI agents that do real commercial work. He is based in León, Mexico. Omona (omona.tech) is his open-source lab: upstream pull requests, issue reports and engineering notes. It is not a commercial product.`,
     '',
   );
-  lines.push(
-    `Victor Gallo construye y opera agentes de IA sobre Amazon Bedrock y Hermes Agent (Nous Research). Al ${oss.generatedAt.slice(0, 10)}: ${s.prs} pull requests a proyectos de terceros (${s.merged} merged, ${s.open} abiertos) y ${s.issues} reportes. El estado de cada PR sale de GitHub cada semana; ninguno se marca merged a mano.`,
-    '',
+  L.push(`- ${TERCERA.superleads}`);
+  L.push(`- ${TERCERA.lab}`);
+  L.push(
+    `- As of ${oss.generatedAt.slice(0, 10)}: ${s.prs} pull requests to third-party projects (${s.merged} merged, ${s.open} open) and ${s.issues} issue reports. Status comes from GitHub daily; nothing is marked merged by hand.`,
   );
-  lines.push('## Páginas', '');
-  lines.push(`- [Inicio](${BASE}/): quién es Victor, qué está aportando y las últimas notas.`);
-  lines.push(`- [Open source](${BASE}/open-source): PRs y reportes a Hermes Agent y Strands Agents con su estado real. En inglés: ${BASE}/en/open-source`);
-  lines.push(`- [Blog](${BASE}/blog): notas de ingeniería. RSS: ${BASE}/blog/rss.xml`);
-  lines.push(`- [About](${BASE}/about): Victor Gallo y Omona, en inglés, solo hechos fechados.`);
-  lines.push('');
-  lines.push('## Pull requests', '');
-  for (const p of oss.prs) lines.push(`- [${p.key}](${p.url}) (${p.state}): ${p.title}`);
-  lines.push('');
-  lines.push('## Reportes', '');
-  for (const i of oss.issues) lines.push(`- [${i.key}](${i.url}) (${i.state}): ${i.es}`);
-  lines.push('');
-  lines.push('## Notas de ingeniería', '');
-  for (const n of getNotas()) lines.push(`- [${n.title}](${BASE}/blog/${n.slug}): ${n.description}`);
-  lines.push('');
-  lines.push('## Perfiles', '');
-  lines.push('- GitHub: https://github.com/victorgalloo');
-  lines.push('- LinkedIn: https://www.linkedin.com/in/victorgalloo/');
-  lines.push('- Sitio personal: https://victorgallo.com');
-  lines.push('');
+  L.push(
+    `- Contributes to: ${CONTRIBUYO.map((m) => `${m.nombre} (${m.dueno})`).join(', ')}. Builds on: ${CONSTRUYO_SOBRE.map((m) => m.nombre).join(', ')}. No sponsorship or endorsement by these companies.`,
+  );
+  L.push('');
+  L.push('## Pages', '');
+  L.push(`- [Full profile for AI assistants](${BASE}/llms-full.txt): who, philosophy, evidence, daily log, all PRs.`);
+  L.push(`- [About, in English](${BASE}/about): profile and evidence for program reviewers.`);
+  L.push(`- [Now](${BASE}/now): daily log, Spanish. RSS: ${BASE}/now/rss.xml`);
+  L.push(`- [Open source](${BASE}/en/open-source): PRs and issues with live status. Spanish: ${BASE}/open-source`);
+  L.push(`- [Blog](${BASE}/blog): engineering notes, Spanish. RSS: ${BASE}/blog/rss.xml`);
+  L.push('');
+  L.push('## Why he does this (his words, translated)', '');
+  for (const f of FILOSOFIA.en) L.push(`- ${f}`);
+  L.push('');
+  L.push('## Evidence', '');
+  for (const e of EVIDENCIA) L.push(`- [${e.en}](${e.href})`);
+  L.push('');
+  L.push(`## Latest (updated ${now.updated})`, '');
+  for (const it of now.items.slice(0, 8)) L.push(`- ${it.date}: ${it.en}${it.url ? ` (${it.url})` : ''}`);
+  L.push('');
+  L.push('## Pull requests', '');
+  for (const p of oss.prs) L.push(`- [${p.key}](${p.url}) (${p.state}): ${p.title}`);
+  L.push('');
+  L.push('## Engineering notes (Spanish)', '');
+  for (const n of getNotas()) L.push(`- [${n.title}](${BASE}/blog/${n.slug}): ${n.description}`);
+  L.push('');
+  L.push('## Profiles', '');
+  L.push(`- GitHub: ${REDES.github}`);
+  L.push(`- LinkedIn: ${REDES.linkedin}`);
+  L.push(`- X: ${REDES.x}`);
+  L.push(`- AWS Builder Center: ${REDES.builder}`);
+  L.push(`- Personal site: ${REDES.web}`);
+  L.push('');
 
-  return new Response(lines.join('\n'), {
-    headers: { 'content-type': 'text/plain; charset=utf-8' },
-  });
+  return new Response(L.join('\n'), { headers: { 'content-type': 'text/plain; charset=utf-8' } });
 }

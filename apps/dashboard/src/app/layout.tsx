@@ -39,6 +39,13 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: '/',
+    types: {
+      'application/rss+xml': [
+        { url: '/blog/rss.xml', title: 'Omona · Notas de ingeniería' },
+        { url: '/now/rss.xml', title: 'Victor Gallo · Ahora' },
+      ],
+      'text/plain': [{ url: '/llms.txt', title: 'llms.txt' }],
+    },
   },
   // verification: { google: 'PEGAR_TOKEN_AQUI' },
   icons: {

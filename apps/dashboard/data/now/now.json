@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-11-22T21:47:11.396Z",
+  "updated": "2026-11-22",
+  "foco": [
+    {
+      "es": "5 pull requests esperando revisión en Hermes Agent y Strands Agents.",
+      "en": "5 pull requests awaiting review in Hermes Agent and Strands Agents.",
+      "url": "https://omona.tech/open-source"
+    },
+    {
+      "es": "Construyendo inscripcion-codi para el Hackatón México 2026 (CoDi + API de pey): cobro de inscripciones escolares desde WhatsApp. Entrega: 12 de diciembre.",
+      "en": "Building inscripcion-codi for Hackatón México 2026 (CoDi + pey API): school enrollment payments from WhatsApp. Submission: December 12.",
+      "url": "https://github.com/victorgalloo/inscripcion-codi"
+    },
+    {
+      "es": "En SuperLeads: vendiendo sistemas de admisiones a colegios y universidades privadas y armando los agentes que me ayudan con el seguimiento comercial.",
+      "en": "At SuperLeads: selling admissions systems to private schools and universities and building the agents that help with the commercial follow-up.",
+      "url": "https://superleads.mx"
+    }
+  ],
+  "items": [
+    {
+      "date": "2026-11-22",
+      "kind": "pr",
+      "es": "Abrí harness-sdk#6468: http_request (TypeScript) reporta su propio mensaje de timeout en lugar del genérico de Node.",
+      "en": "Opened harness-sdk#6468: The TypeScript http_request tool reports its own timeout message instead of Node's generic abort error.",
+      "url": "https://github.com/strands-agents/harness-sdk/pull/6468",
+      "ref": "strands-agents/harness-sdk#6468"
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "nota",
+      "es": "Agentes en jerarquía: gerentes y subagentes para un equipo comercial",
+      "en": "Agentes en jerarquía: gerentes y subagentes para un equipo comercial (note in Spanish)",
+      "url": "https://omona.tech/blog/agentes-en-jerarquia-gerentes-subagentes",
+      "ref": "nota:agentes-en-jerarquia-gerentes-subagentes"
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "nota",
+      "es": "El choque de credenciales de Bedrock en Hermes Agent: del parche local al arreglo upstream",
+      "en": "El choque de credenciales de Bedrock en Hermes Agent: del parche local al arreglo upstream (note in Spanish)",
+      "url": "https://omona.tech/blog/bedrock-credenciales-hermes-agent",
+      "ref": "nota:bedrock-credenciales-hermes-agent"
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "sitio",
+      "es": "omona.tech pasa a ser mi laboratorio open source: aportes, notas y esta bitácora, sin producto.",
+      "en": "omona.tech becomes my open-source lab: contributions, notes and this log, no product.",
+      "url": "https://omona.tech",
+      "ref": "manual:2026-11-22:sitio"
+    },
+    {
+      "date": "2026-11-21",
+      "kind": "nota",
+      "es": "Normalizar el volumen del TTS para notas de voz: un pase de loudnorm a -16 LUFS",
+      "en": "Normalizar el volumen del TTS para notas de voz: un pase de loudnorm a -16 LUFS (note in Spanish)",
+      "url": "https://omona.tech/blog/normalizar-volumen-tts-notas-de-voz",
+      "ref": "nota:normalizar-volumen-tts-notas-de-voz"
+    },
+    {
+      "date": "2026-11-20",
+      "kind": "pr",
+      "es": "Abrí hermes-agent#158458: Los scripts de build de Node ya corren desde un checkout con symlink (antes salían en 0 sin hacer nada).",
+      "en": "Opened hermes-agent#158458: Node build scripts now run from a symlinked checkout (they used to exit 0 without doing anything).",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/158458",
+      "ref": "NousResearch/hermes-agent#158458"
+    },
+    {
+      "date": "2026-11-19",
+      "kind": "pr",
+      "es": "Abrí hermes-agent#158100: /bg enviado como respuesta a un mensaje ahora le pasa ese mensaje al agente en segundo plano como contexto.",
+      "en": "Opened hermes-agent#158100: /bg sent as a reply now gives the background agent the replied-to message as context.",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/158100",
+      "ref": "NousResearch/hermes-agent#158100"
+    },
+    {
+      "date": "2026-11-19",
+      "kind": "pr",
+      "es": "Abrí hermes-agent#157956: Opción tts.normalize_loudness: un pase de ffmpeg loudnorm a -16 LUFS para que cada nota de voz suene al mismo volumen.",
+      "en": "Opened hermes-agent#157956: Opt-in tts.normalize_loudness: one ffmpeg loudnorm pass to -16 LUFS so every voice note plays at the same volume.",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/157956",
+      "ref": "NousResearch/hermes-agent#157956"
+    },
+    {
+      "date": "2026-11-19",
+      "kind": "pr",
+      "es": "Abrí hermes-agent#157955: El gateway respeta display.platforms.<plataforma>.memory_notifications: el aviso de memoria se puede apagar solo en WhatsApp.",
+      "en": "Opened hermes-agent#157955: The gateway honors display.platforms.<platform>.memory_notifications, so memory notices can be turned off per platform.",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/157955",
+      "ref": "NousResearch/hermes-agent#157955"
+    },
+    {
+      "date": "2026-11-19",
+      "kind": "reporte",
+      "es": "Reporté hermes-agent#157954. Normalización de volumen opcional para la salida de TTS (la implementa el PR #157956).",
+      "en": "Reported hermes-agent#157954. Opt-in loudness normalization for TTS output (implemented in PR #157956).",
+      "url": "https://github.com/NousResearch/hermes-agent/issues/157954",
+      "ref": "NousResearch/hermes-agent#157954"
+    },
+    {
+      "date": "2026-11-19",
+      "kind": "programa",
+      "es": "Abrí mi perfil en AWS Builder Center (@victorgalloo) y entré a la lista de espera de AWS Community Builders.",
+      "en": "Opened my AWS Builder Center profile (@victorgalloo) and joined the AWS Community Builders waitlist.",
+      "url": "https://builder.aws.com/community/@victorgalloo",
+      "ref": "manual:2026-11-19:programa"
+    },
+    {
+      "date": "2026-11-14",
+      "kind": "evento",
+      "es": "Fui al arranque del Hackatón México 2026 (CoDi + pey) en León y empecé inscripcion-codi.",
+      "en": "Attended the Hackatón México 2026 kickoff (CoDi + pey) in León and started inscripcion-codi.",
+      "url": "https://hackatonmexico.com",
+      "ref": "manual:2026-11-14:evento"
+    },
+    {
+      "date": "2026-10-29",
+      "kind": "reporte",
+      "es": "Reporté hermes-agent#146546. En Bedrock, AWS_PROFILE + AWS_BEARER_TOKEN_BEDROCK en un mismo perfil tumbaba el cliente AnthropicBedrock. Arreglo: PR #146559 de @linye157.",
+      "en": "Reported hermes-agent#146546. On Bedrock, AWS_PROFILE + AWS_BEARER_TOKEN_BEDROCK in one profile crashed the AnthropicBedrock client. Fix: PR #146559 by @linye157.",
+      "url": "https://github.com/NousResearch/hermes-agent/issues/146546",
+      "ref": "NousResearch/hermes-agent#146546"
+    }
+  ]
+}

@@ -14,16 +14,18 @@ import { Logo } from '../shared/Logo';
  * 14px, y a la derecha una sola pill llena: GitHub.
  *
  * 22-nov-2026: omona.tech es el laboratorio open source de Victor, no un
- * producto. Sin Demo, sin Aplicar, sin «Cómo trabajo».
+ * producto. Sin Demo, sin Aplicar, sin «Cómo trabajo». v2: + Ahora (/now).
  */
 const LINKS = {
   es: [
     { href: '/open-source', label: 'Open source' },
+    { href: '/now', label: 'Ahora' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
   ],
   en: [
     { href: '/en/open-source', label: 'Open source' },
+    { href: '/now', label: 'Now' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
   ],

@@ -1,0 +1,39 @@
+{
+  "_regla": "Solo hechos confirmados y públicos (skill omona-tech). Nada de planes como si fueran hechos, ni clientes, ni nombres de personas privadas. `hasta` (AAAA-MM-DD) hace que la línea desaparezca sola después de esa fecha.",
+  "foco": [
+    {
+      "es": "Construyendo inscripcion-codi para el Hackatón México 2026 (CoDi + API de pey): cobro de inscripciones escolares desde WhatsApp. Entrega: 12 de diciembre.",
+      "en": "Building inscripcion-codi for Hackatón México 2026 (CoDi + pey API): school enrollment payments from WhatsApp. Submission: December 12.",
+      "url": "https://github.com/victorgalloo/inscripcion-codi",
+      "hasta": "2026-12-14"
+    },
+    {
+      "es": "En SuperLeads: vendiendo sistemas de admisiones a colegios y universidades privadas y armando los agentes que me ayudan con el seguimiento comercial.",
+      "en": "At SuperLeads: selling admissions systems to private schools and universities and building the agents that help with the commercial follow-up.",
+      "url": "https://superleads.mx"
+    }
+  ],
+  "eventos": [
+    {
+      "date": "2026-11-14",
+      "kind": "evento",
+      "es": "Fui al arranque del Hackatón México 2026 (CoDi + pey) en León y empecé inscripcion-codi.",
+      "en": "Attended the Hackatón México 2026 kickoff (CoDi + pey) in León and started inscripcion-codi.",
+      "url": "https://hackatonmexico.com"
+    },
+    {
+      "date": "2026-11-19",
+      "kind": "programa",
+      "es": "Abrí mi perfil en AWS Builder Center (@victorgalloo) y entré a la lista de espera de AWS Community Builders.",
+      "en": "Opened my AWS Builder Center profile (@victorgalloo) and joined the AWS Community Builders waitlist.",
+      "url": "https://builder.aws.com/community/@victorgalloo"
+    },
+    {
+      "date": "2026-11-22",
+      "kind": "sitio",
+      "es": "omona.tech pasa a ser mi laboratorio open source: aportes, notas y esta bitácora, sin producto.",
+      "en": "omona.tech becomes my open-source lab: contributions, notes and this log, no product.",
+      "url": "https://omona.tech"
+    }
+  ]
+}

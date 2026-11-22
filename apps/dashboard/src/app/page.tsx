@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import { LandingNav } from '@/components/landing/LandingNav';
-import { Hero, Aportes, Proyectos, Notas, Quien } from '@/components/site/Home';
+import { Hero, Marcas, PorQue, Ahora, Actividad, Proyectos, Notas, Quien } from '@/components/site/Home';
 import { BASE, ORG, ORG_DESC_ES, ORG_ID, PERSON } from '@/lib/entidad';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { JsonLd } from '@/components/seo/JsonLd';
 import ossData from '../../data/oss/oss.json';
+import nowData from '../../data/now/now.json';
 
-const TITLE = 'Omona · laboratorio open source de Victor Gallo';
+const TITLE = 'Victor Gallo · agentes de IA que hacen trabajo comercial · Omona';
 const DESC =
-  'Pull requests, reportes y notas de ingeniería de Victor Gallo sobre agentes de IA en Amazon Bedrock, Hermes Agent y Strands Agents, con su estado real en GitHub.';
+  'Victor Gallo construye agentes de IA que hacen trabajo comercial de verdad. Su laboratorio open source: PRs a Hermes Agent y Strands Agents, notas sobre Amazon Bedrock y una bitácora diaria.';
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -37,9 +38,10 @@ const jsonLdGraph = {
       description: DESC,
       url: BASE,
       inLanguage: 'es-MX',
-      dateModified: '2026-11-22',
+      dateModified: (nowData as { updated: string }).updated,
       isPartOf: { '@id': `${BASE}/#website` },
       about: { '@id': PERSON['@id'] },
+      primaryImageOfPage: { '@type': 'ImageObject', url: `${BASE}/victor/victor-gallo.jpg`, width: 824, height: 1024 },
       mainEntity: {
         '@type': 'ItemList',
         name: 'Pull requests de Victor Gallo a proyectos open source',
@@ -52,12 +54,15 @@ const jsonLdGraph = {
 
 /**
  * ══ LA PORTADA ══════════════════════════════════════════════════
- * 22-nov-2026: laboratorio open source (estilo GitHub personal). Orden:
- *   1. héroe       quién es Victor + panel CLI con la actividad real
- *   2. aportes     PRs y reportes con el estado que dice GitHub
- *   3. proyectos   repos propios
- *   4. notas       las últimas del blog
- *   5. qué es      Omona = laboratorio, sin producto
+ * v2, 22-nov-2026 (Victor: «lúcame más», logos, filosofía, algo que se actualice solo). Orden:
+ *   1. héroe       Victor: nombre, foto, su línea, su cargo en SuperLeads
+ *   2. marcas      contribuyo a / construyo sobre (logos nominativos con evidencia)
+ *   3. por qué     su filosofía (BORRADOR en revisión, lib/perfil.ts)
+ *   4. ahora       bitácora diaria (data/now/now.json, cron)
+ *   5. actividad   panel CLI con el estado real de GitHub
+ *   6. proyectos   repos propios
+ *   7. notas       las últimas del blog
+ *   8. qué es      Omona = laboratorio, sin producto
  * Las secciones del producto (ciclo, medición, alcance, FAQ, cierre) se
  * retiraron; siguen en el historial de git.
  */
@@ -68,7 +73,10 @@ export default function LandingPage() {
       <LandingNav />
       <main>
         <Hero />
-        <Aportes />
+        <Marcas />
+        <PorQue />
+        <Ahora />
+        <Actividad />
         <Proyectos />
         <Notas />
         <Quien />

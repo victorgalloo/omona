@@ -2,23 +2,27 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { LandingNav } from '@/components/landing/LandingNav';
 import { HomeFooter } from '@/components/home/HomeFooter';
-import { Wrap, Eyebrow } from '@/components/site/Home';
-import { AUTOR, BASE, ORG, ORG_ID, PERSON } from '@/lib/entidad';
+import { Wrap, Eyebrow, Marcas, now, TIPO_EN } from '@/components/site/Home';
+import { BASE, ORG, ORG_ID, PERSON } from '@/lib/entidad';
+import { fechaCorta } from '@/lib/notas';
+import { EVIDENCIA, FILOSOFIA, FOTO, LAB, NOMBRE_LEGAL, POSICION, REDES, SUPERLEADS } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
 
 /**
- * /about, en inglés: la página que leen los revisores de programas
- * (AWS Community Builders, NVIDIA Inception, user groups). Solo hechos
- * fechados y verificables; lo que es plan dice «planned». Ver skill omona-tech.
+ * /about, en inglés: la página que leen los revisores de programas (AWS Community
+ * Builders, NVIDIA, Claude/Anthropic y OpenAI ambassadors, user groups). v2
+ * (22-nov-2026): Victor primero (foto, línea, cargo, filosofía), luego evidencia,
+ * logos nominativos, bitácora y contacto. Solo hechos fechados; lo que es plan dice
+ * «planned». Textos en lib/perfil.ts. Ver skill omona-tech.
  */
 export const dynamic = 'force-static';
 
-const TITLE = 'About Victor Gallo and Omona, his open-source lab';
+const TITLE = 'Victor Gallo · AI agents that do real commercial work';
 const DESC =
-  "Omona is Victor Gallo's independent engineering lab for open-source work on AI agents: upstream pull requests to Hermes Agent and Strands Agents, issue reports and engineering notes. León, Mexico.";
+  'Victor Gallo builds AI agents that do real commercial work, in León, Mexico. Evidence for program reviewers: upstream PRs to Hermes Agent and Strands Agents, Amazon Bedrock work, notes and a daily log.';
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESC,
   alternates: { canonical: `${BASE}/about` },
   openGraph: { title: TITLE, description: DESC, url: `${BASE}/about`, type: 'profile', siteName: 'Omona', locale: 'en_US' },
@@ -30,7 +34,7 @@ const stats = (ossData as { stats: Record<string, number> }).stats;
 const TIMELINE: { date: string; what: string; status: 'done' | 'planned'; href?: string }[] = [
   {
     date: 'Oct 2026',
-    what: 'AWS Activate credits (Portfolio, via NVIDIA Inception) granted to SuperLeads, the education-sales company where Victor builds the AI agents. They fund the Amazon Bedrock and SageMaker work.',
+    what: 'AWS Activate credits (Portfolio, via NVIDIA Inception) granted to SuperLeads, the company where I work. They fund the Amazon Bedrock and SageMaker work.',
     status: 'done',
     href: 'https://github.com/victorgalloo/superleads-ai-aws-nvidia',
   },
@@ -41,15 +45,16 @@ const TIMELINE: { date: string; what: string; status: 'done' | 'planned'; href?:
     href: '/en/open-source',
   },
   {
+    date: '14 Nov 2026',
+    what: 'Attended the Hackatón México 2026 kickoff (CoDi + pey API) in León. Building inscripcion-codi: school enrollment payments with CoDi from WhatsApp, MIT-licensed. Submission closes 12 Dec.',
+    status: 'done',
+    href: 'https://github.com/victorgalloo/inscripcion-codi',
+  },
+  {
     date: '19 Nov 2026',
     what: 'AWS Builder ID and Builder Center profile (@victorgalloo). Joined the AWS Community Builders waitlist; the application itself opens in the yearly window.',
     status: 'done',
-  },
-  {
-    date: 'Nov 2026',
-    what: 'Registered for Hackatón México 2026 (CoDi + pey API) in León. Building inscripcion-codi: school enrollment payments with CoDi from WhatsApp, MIT-licensed.',
-    status: 'done',
-    href: 'https://github.com/victorgalloo/inscripcion-codi',
+    href: 'https://builder.aws.com/community/@victorgalloo',
   },
   {
     date: 'Planned',
@@ -65,17 +70,26 @@ const STACK = [
   ['Upstream', 'A bug found in production is reported with a reproduction, and the fix goes to the original project as a PR with tests.'],
 ];
 
+const CONTACT = [
+  ['LinkedIn', REDES.linkedin, 'preferred for programs, talks and events'],
+  ['X', REDES.x, ''],
+  ['GitHub', REDES.github, ''],
+  ['AWS Builder Center', REDES.builder, ''],
+  ['victorgallo.com', REDES.web, 'personal site, with WhatsApp'],
+];
+
 export default function AboutPage() {
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'AboutPage',
+        '@type': 'ProfilePage',
         '@id': `${BASE}/about#page`,
         name: TITLE,
         description: DESC,
         url: `${BASE}/about`,
         inLanguage: 'en',
+        dateModified: now.updated,
         about: { '@id': ORG_ID },
         mainEntity: { '@id': PERSON['@id'] },
       },
@@ -89,43 +103,71 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <LandingNav lang="en" />
       <main>
-        <header className="pb-10 pt-16 sm:pt-24">
+        <header className="pb-12 pt-12 sm:pt-20">
           <Wrap>
-            <Eyebrow>About · Victor Gallo</Eyebrow>
-            <h1 className="text-heading-lg max-w-[20ch] text-balance text-obsidian">
-              An open-source lab. The fixes go upstream.
-            </h1>
-            <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.5] text-charcoal">
-              Omona is Victor Gallo&rsquo;s independent engineering lab in León, Mexico. There is no product here: it is where he publishes the fixes he sends to the open-source agent projects he runs in production, the issue reports behind them, and engineering notes.
-            </p>
+            <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.8fr)] lg:gap-16">
+              <div className="order-2 lg:order-1">
+                <Eyebrow>About · León, Mexico</Eyebrow>
+                <h1 className="text-display text-obsidian">Victor Gallo</h1>
+                <p className="mt-4 text-balance text-[26px] leading-[1.2] tracking-[-0.04em] text-stone sm:max-w-[26ch] sm:text-[32px]">{POSICION.en}</p>
+                <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.5] text-charcoal">
+                  Full name: {NOMBRE_LEGAL}. {SUPERLEADS.en}
+                </p>
+                <p className="mt-4 max-w-[60ch] text-[16px] leading-[1.5] text-stone">{LAB.en} There is no product here.</p>
+                <p className="mono-label mt-6 flex flex-wrap gap-x-5 gap-y-2 text-stone">
+                  <a href="#evidence" className="text-obsidian underline decoration-hair underline-offset-2">Evidence</a>
+                  <a href="#contact" className="hover:text-obsidian">Contact</a>
+                  <Link href="/en/open-source" className="hover:text-obsidian">Open source</Link>
+                  <a href="/llms-full.txt" className="hover:text-obsidian">llms-full.txt</a>
+                  <a href={REDES.web} rel="author" className="hover:text-obsidian">victorgallo.com</a>
+                </p>
+              </div>
+              <figure className="order-1 w-full max-w-[168px] sm:max-w-[280px] lg:order-2 lg:ml-auto lg:max-w-[340px]">
+                <div className="ring-card overflow-hidden p-1.5">
+                  <img src={FOTO} width={824} height={1024} alt="Victor Gallo, black and white portrait" className="block h-auto w-full rounded-[4px]" />
+                </div>
+              </figure>
+            </div>
           </Wrap>
         </header>
 
-        <section className="py-10 sm:py-14">
+        <Marcas lang="en" />
+
+        <section className="py-14 sm:py-20" aria-labelledby="why">
           <Wrap>
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.4fr)] lg:gap-16">
               <div>
-                <Eyebrow muted>Founder</Eyebrow>
-                <h2 className="text-heading text-obsidian">Victor Gallo</h2>
-                <p className="mt-4 max-w-[52ch] text-[16px] leading-[1.5] text-charcoal">
-                  Founder of Omona. He also leads sales at SuperLeads, an education-admissions company in Mexico, where he builds and runs its AI agent operation on Amazon Bedrock. He contributes to Hermes Agent and Strands Agents when production finds a bug.
-                </p>
-                <p className="mono-label mt-6 flex flex-wrap gap-x-5 gap-y-2 text-stone">
-                  <a href={AUTOR.url} rel="author" className="text-obsidian underline decoration-hair underline-offset-2">victorgallo.com</a>
-                  <a href={AUTOR.github} className="hover:text-obsidian">GitHub</a>
-                  <a href={AUTOR.linkedin} className="hover:text-obsidian">LinkedIn</a>
-                  <Link href="/en/open-source" className="hover:text-obsidian">Open source</Link>
-                </p>
+                <Eyebrow>Philosophy</Eyebrow>
+                <h2 id="why" className="text-heading text-obsidian">Why I do this</h2>
+                <p className="mt-3 max-w-[36ch] text-[15px] leading-[1.5] text-stone">Translated from my Spanish original on the home page.</p>
               </div>
-              <dl className="grid gap-3 sm:grid-cols-2">
-                {STACK.map(([k, v]) => (
-                  <div key={k} className="ring-card p-4">
-                    <dt className="mono-label text-graphite">{k}</dt>
-                    <dd className="mt-3 text-[15px] leading-[1.5] text-charcoal">{v}</dd>
-                  </div>
+              <ol className="divide-y divide-hair border-y border-hair">
+                {FILOSOFIA.en.map((linea, i) => (
+                  <li key={linea} className="grid grid-cols-[3ch_minmax(0,1fr)] gap-4 py-4">
+                    <span className="mono-label pt-1 text-graphite">{String(i + 1).padStart(2, '0')}</span>
+                    <p className="text-pretty text-[18px] leading-[1.45] tracking-[-0.02em] text-obsidian">{linea}</p>
+                  </li>
                 ))}
-              </dl>
+              </ol>
             </div>
+          </Wrap>
+        </section>
+
+        <section className="py-10 sm:py-14" aria-labelledby="evidence">
+          <Wrap>
+            <Eyebrow muted>For program reviewers</Eyebrow>
+            <h2 id="evidence" className="text-heading text-obsidian">Evidence</h2>
+            <p className="mt-2 max-w-[60ch] text-[15px] leading-[1.5] text-stone">Every item links to something you can check. PR status is read from GitHub daily.</p>
+            <ul className="ring-card mt-8 divide-y divide-hair">
+              {EVIDENCIA.map((e) => (
+                <li key={e.href + e.en}>
+                  <a href={e.href} className="flex items-start justify-between gap-4 px-4 py-3 text-[15px] leading-[1.5] text-charcoal hover:bg-white hover:text-obsidian">
+                    <span>{e.en}</span>
+                    <span className="mono-label shrink-0 pt-0.5 text-stone">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </Wrap>
         </section>
 
@@ -160,18 +202,65 @@ export default function AboutPage() {
           </Wrap>
         </section>
 
+        <section className="py-10 sm:py-14" aria-labelledby="now">
+          <Wrap>
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <Eyebrow muted>Now</Eyebrow>
+                <h2 id="now" className="text-heading text-obsidian">Latest, updated daily</h2>
+              </div>
+              <Link href="/now" className="mono-label text-charcoal hover:text-obsidian">Full log (Spanish) →</Link>
+            </div>
+            <ul className="ring-card divide-y divide-hair">
+              {now.items.slice(0, 6).map((it) => (
+                <li key={`${it.kind}${it.ref}`} className="grid grid-cols-[12ch_minmax(0,1fr)] gap-3 px-4 py-3">
+                  <time dateTime={it.date} className="mono-label pt-0.5 text-graphite">{it.date}</time>
+                  <p className="min-w-0 text-[14.5px] leading-[1.5] text-charcoal">
+                    <span className="mono-label mr-2 text-stone">{TIPO_EN[it.kind] ?? it.kind}</span>
+                    {it.url ? <a href={it.url} className="break-words hover:text-obsidian">{it.en}</a> : it.en}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <p className="mono-label mt-3 text-graphite">last entry · {fechaCorta(now.updated)}</p>
+          </Wrap>
+        </section>
+
         <section className="py-10 sm:py-14">
           <Wrap>
-            <div className="card-invert flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between">
+            <Eyebrow muted>Stack</Eyebrow>
+            <h2 className="text-heading text-obsidian">What the agents run on</h2>
+            <dl className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {STACK.map(([k, v]) => (
+                <div key={k} className="ring-card p-4">
+                  <dt className="mono-label text-graphite">{k}</dt>
+                  <dd className="mt-3 text-[15px] leading-[1.5] text-charcoal">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Wrap>
+        </section>
+
+        <section className="py-10 sm:py-14" aria-labelledby="contact">
+          <Wrap>
+            <div className="ring-card grid gap-6 p-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
               <div>
-                <p className="mono-label text-[#a8a8a8]">Writing</p>
-                <p className="mt-2 max-w-[48ch] text-[20px] leading-[1.3] tracking-[-0.03em] text-white">
-                  Engineering notes on Bedrock credentials, TTS loudness and agent hierarchies, written from real fixes.
-                </p>
+                <p className="mono-label text-graphite">Contact</p>
+                <h2 id="contact" className="mt-3 text-[22px] leading-[1.25] tracking-[-0.03em] text-obsidian">
+                  Reviewing an application, or looking for a speaker on agents in production?
+                </h2>
+                <p className="mt-3 text-[15px] leading-[1.5] text-stone">I answer in English or Spanish.</p>
               </div>
-              <Link href="/blog#ingenieria" className="inline-flex h-9 shrink-0 items-center rounded-[6px] bg-white px-3 text-[14px] text-[#171717]">
-                Read the notes (Spanish)
-              </Link>
+              <ul className="divide-y divide-hair">
+                {CONTACT.map(([k, href, note]) => (
+                  <li key={k}>
+                    <a href={href} rel="me" className="flex items-baseline justify-between gap-4 py-2.5 text-[15px] text-charcoal hover:text-obsidian">
+                      <span>{k}</span>
+                      <span className="mono-label text-right text-stone">{note || href.replace('https://', '')}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Wrap>
         </section>

@@ -10,19 +10,18 @@
  * sola persona sin que ninguna de las dos lo grite. Si cambias redes o cargo,
  * cámbialo también en ~/victorgallo-com (inicio.py) — skill `omona-tech`.
  *
- * Regla: Victor es fundador de Omona, NUNCA de SuperLeads (ahí lidera ventas; el fundador es
- * Ricardo López Reyero). SuperLeads solo aparece en /about como contexto de los créditos.
+ * Regla: Victor es fundador de Omona, NUNCA de SuperLeads (ahí es «Experto en procesos
+ * comerciales educativos + IA», Account Executive; el fundador es Ricardo López Reyero).
+ * v2 (22-nov-2026): jobTitle/worksFor iguales a los de victorgallo.com (mismo @id), más
+ * knowsAbout, image y sameAs completos para motores de IA. Textos de Victor: lib/perfil.ts.
  */
+import { CARGO_SL, FOTO_JPG, KNOWS_ABOUT, REDES } from './perfil';
+
 export const BASE = 'https://omona.tech';
 export const ORG_ID = `${BASE}/#org`;
 export const PERSON_ID = 'https://victorgallo.com/#victor';
 
-export const PERSON_SAME_AS = [
-  'https://victorgallo.com',
-  'https://github.com/victorgalloo',
-  'https://www.linkedin.com/in/victorgalloo/',
-  'https://builder.aws.com/community/@victorgalloo',
-];
+export const PERSON_SAME_AS = [REDES.web, REDES.github, REDES.linkedin, REDES.x, REDES.builder];
 
 export const PERSON_REF = { '@id': PERSON_ID };
 
@@ -33,10 +32,14 @@ export const PERSON = {
   alternateName: 'Víctor Alejandro Jiménez Gallo',
   url: 'https://victorgallo.com',
   sameAs: PERSON_SAME_AS,
-  // Sin jobTitle/worksFor: victorgallo.com publica los suyos (SuperLeads) con este mismo @id.
+  image: FOTO_JPG,
+  jobTitle: CARGO_SL,
+  worksFor: { '@type': 'Organization', '@id': 'https://superleads.mx/#org', name: 'SuperLeads', url: 'https://superleads.mx' },
   // La relación con Omona va del lado de la organización (`founder`).
   homeLocation: { '@type': 'Place', name: 'León, Guanajuato, México' },
-  knowsAbout: ['AI agents', 'Amazon Bedrock', 'Hermes Agent', 'Strands Agents', 'open source'],
+  nationality: { '@type': 'Country', name: 'México' },
+  knowsLanguage: ['es', 'en'],
+  knowsAbout: KNOWS_ABOUT,
 };
 
 export const ORG = {

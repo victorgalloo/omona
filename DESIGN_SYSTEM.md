@@ -90,7 +90,10 @@ Dos familias del paquete npm `geist` (OFL), cargadas en `app/layout.tsx`:
 
 ## 6. Imagen
 
-Escasa y funcional: sin foto, sin ilustración, sin 3D, sin video decorativo. Mockups del producto
+Escasa y funcional: sin ilustración, sin 3D, sin video decorativo. Única foto: el retrato de Victor
+(`public/victor/`, escala de grises, dentro de un `ring-card` con 6px de aire) en la portada y /about.
+Logos de terceros solo en la tira «Contribuyo a / Construyo sobre», monocromos `#7d7d7d` (`public/logos/`),
+cada uno ligado a su evidencia, con el aviso «no implica patrocinio». Mockups del producto
 en claro dentro de tarjetas con borde. Diagramas de blog en SVG monocromo (`public/blog/<slug>/`).
 OG images con `lib/og.tsx` (papel, titular obsidian, glyph).
 

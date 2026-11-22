@@ -13,7 +13,9 @@ import Link from 'next/link';
 import { Logo } from '@/components/shared/Logo';
 import { AUTOR } from '@/lib/entidad';
 import { fechaCorta, getNotas } from '@/lib/notas';
+import { AVISO_LOGOS, CONSTRUYO_SOBRE, CONTRIBUYO, FILOSOFIA, FOTO, LAB, POSICION, REDES, SUPERLEADS, type Marca } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
+import nowData from '../../../data/now/now.json';
 import { StateBadge } from './Blog';
 
 type Pr = {
@@ -28,6 +30,25 @@ type Project = { repo: string; url: string; language: string | null; license: st
 type Oss = { generatedAt: string; author: string; stats: Record<string, number>; prs: Pr[]; issues: Issue[]; projects?: Project[] };
 
 const oss = ossData as unknown as Oss;
+
+export type NowItem = { date: string; kind: string; es: string; en: string; url: string | null; ref: string };
+export type Now = { generatedAt: string; updated: string; foco: { es: string; en: string; url?: string }[]; items: NowItem[] };
+export const now = nowData as unknown as Now;
+
+export const TIPO: Record<string, string> = {
+  pr: 'PR',
+  merged: 'merged',
+  cerrado: 'cerrado',
+  reporte: 'reporte',
+  nota: 'nota',
+  evento: 'evento',
+  programa: 'programa',
+  sitio: 'sitio',
+  laboratorio: 'lab',
+};
+export const TIPO_EN: Record<string, string> = { ...TIPO, cerrado: 'closed', reporte: 'issue', nota: 'note', evento: 'event', programa: 'program', sitio: 'site' };
+
+const CARGO_CORTO = 'superleads · ventas + ia';
 
 export function Wrap({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-[1280px] px-6 lg:px-12 ${className}`}>{children}</div>;
@@ -80,60 +101,228 @@ function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow: string; h
   );
 }
 
-// ── 1. Héroe: quién ─────────────────────────────────────────────
+// ── 1. Héroe: Victor ────────────────────────────────────────────
+// v2 (22-nov-2026), Victor: «dame más peso a mí, lúcame más». Nombre, foto
+// (la de victorgallo.com, en gris: es la única foto del sitio), su línea, su
+// cargo en SuperLeads y qué es Omona. La foto es la excepción a «sin fotos»
+// del DESIGN_SYSTEM §6: retrato en escala de grises dentro de un anillo.
 
 export function Hero() {
-  const s = oss.stats;
-  const pila = ['amazon bedrock', 'hermes agent · nous research', 'strands agents · aws', 'león, gto. · méxico'];
   return (
-    <header className="relative overflow-hidden pb-16 pt-16 sm:pt-24">
+    <header className="relative overflow-hidden pb-14 pt-12 sm:pb-20 sm:pt-20">
       <Wrap>
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)_minmax(0,0.6fr)]">
-          {/* Zona 1: titular */}
-          <div>
-            <Eyebrow>Laboratorio open source · Victor Gallo</Eyebrow>
-            <h1 className="text-display text-balance text-obsidian">
-              Agentes de IA en producción.
-              <br />
-              <span className="text-stone">Los arreglos, upstream.</span>
-            </h1>
-            <p id="hero-description" className="mt-6 max-w-[46ch] text-[18px] leading-[1.5] text-charcoal">
-              Soy Victor Gallo. Construyo y opero agentes de IA sobre Amazon Bedrock y Hermes Agent; cuando algo falla,
-              mando el arreglo al proyecto original.
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.8fr)] lg:gap-16">
+          <div className="order-2 lg:order-1">
+            <Eyebrow>León, Gto. · México</Eyebrow>
+            <h1 className="text-display text-obsidian">Victor Gallo</h1>
+            <p className="mt-4 text-balance text-[26px] sm:max-w-[24ch] leading-[1.2] tracking-[-0.04em] text-stone sm:text-[32px]">
+              {POSICION.es}
             </p>
+            <p id="hero-description" className="mt-6 max-w-[52ch] text-[18px] leading-[1.5] text-charcoal">
+              {SUPERLEADS.es}
+            </p>
+            <p className="mt-4 max-w-[52ch] text-[16px] leading-[1.5] text-stone">{LAB.es}</p>
             <div className="mt-8 flex flex-wrap gap-2">
-              <Link href="/open-source" className="btn-fill">
-                Ver los aportes
-              </Link>
-              <Link href="/blog" className="btn-ghost">
-                Notas de ingeniería
+              <a href="#por-que" className="btn-fill">
+                Por qué hago esto
+              </a>
+              <Link href="/now" className="btn-ghost">
+                Qué estoy haciendo ahora
               </Link>
             </div>
-            <p className="mono-label mt-5 flex flex-wrap gap-x-4 gap-y-1 text-stone">
-              <a href={AUTOR.github} rel="me" className="hover:text-obsidian">github.com/victorgalloo</a>
-              <a href={AUTOR.linkedin} rel="me" className="hover:text-obsidian">LinkedIn</a>
+            <p className="mono-label mt-6 flex flex-wrap gap-x-4 gap-y-1 text-stone">
+              <a href={REDES.github} rel="me" className="hover:text-obsidian">GitHub</a>
+              <a href={REDES.linkedin} rel="me" className="hover:text-obsidian">LinkedIn</a>
+              <a href={REDES.x} rel="me" className="hover:text-obsidian">X</a>
+              <a href={REDES.builder} rel="me" className="hover:text-obsidian">AWS Builder</a>
               <a href={AUTOR.url} rel="author" className="hover:text-obsidian">victorgallo.com</a>
             </p>
           </div>
 
-          {/* Zona 2: el glyph negro, flotando sobre el único gradiente del sitio */}
-          <div aria-hidden className="relative mx-auto hidden aspect-square w-full max-w-[280px] items-center justify-center lg:flex">
-            <div className="spectrum-glow absolute inset-6 rounded-full" />
-            <Logo size={200} className="relative text-black" />
-          </div>
+          <figure className="order-1 w-full max-w-[168px] sm:max-w-[280px] lg:order-2 lg:ml-auto lg:max-w-[360px]">
+            <div className="ring-card overflow-hidden p-1.5">
+              <img
+                src={FOTO}
+                srcSet="/victor/victor-gallo-412.webp 412w, /victor/victor-gallo.webp 824w"
+                sizes="(min-width: 1024px) 360px, 300px"
+                width={824}
+                height={1024}
+                alt="Victor Gallo, retrato en blanco y negro"
+                className="block h-auto w-full rounded-[4px]"
+                fetchPriority="high"
+              />
+            </div>
+            <figcaption className="mono-label mt-3 whitespace-nowrap text-graphite lg:text-right">{CARGO_CORTO}</figcaption>
+          </figure>
+        </div>
+      </Wrap>
+    </header>
+  );
+}
 
-          {/* Zona 3: pila de eyebrows */}
-          <ul className="flex flex-col gap-2 lg:items-end lg:gap-3 lg:text-right">
-            {pila.map((p) => (
-              <li key={p} className="mono-label text-stone">
-                {p}
+// ── 2. Logos: contribuyo a / construyo sobre ────────────────────
+// Uso nominativo: cada logo liga a la evidencia y el pie lo aclara.
+
+function Celda({ m, lang }: { m: Marca; lang: 'es' | 'en' }) {
+  const txt = lang === 'en' ? m.en : m.es;
+  return (
+    <a
+      href={m.href}
+      className="group flex min-h-[112px] flex-col justify-between gap-4 p-4 transition-colors hover:bg-white sm:p-5"
+      aria-label={`${m.nombre} (${m.dueno}): ${txt}`}
+    >
+      <span className="flex h-10 items-center gap-2.5 transition-[filter] group-hover:brightness-[0.25]">
+        {m.logo ? (
+          <img src={m.logo} alt="" style={{ height: m.alto }} className="w-auto" loading="lazy" />
+        ) : null}
+        {(m.rotulo || !m.logo) && (
+          <span
+            className={`whitespace-nowrap tracking-[-0.03em] text-[#7d7d7d] ${m.logo ? 'text-[17px] font-medium' : 'text-[19px] font-semibold'}`}
+          >
+            {m.rotulo || m.nombre}
+          </span>
+        )}
+      </span>
+      <span className="mono-label flex flex-col gap-0.5 text-stone">
+        <span className="text-graphite">{m.dueno}</span>
+        <span>{txt} →</span>
+      </span>
+    </a>
+  );
+}
+
+export function Marcas({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
+  const en = lang === 'en';
+  return (
+    <section aria-labelledby="marcas" className="pb-6">
+      <Wrap>
+        <h2 id="marcas" className="sr-only">
+          {en ? 'Projects I contribute to and build on' : 'Proyectos a los que contribuyo y sobre los que construyo'}
+        </h2>
+        <div className="ring-card grid overflow-hidden lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div className="border-b border-hair lg:border-b-0 lg:border-r lg:border-r-[#d4d4d4]">
+            <p className="mono-label border-b border-hair px-4 py-2.5 text-graphite sm:px-5">{en ? 'Contributing to' : 'Contribuyo a'}</p>
+            <div className="grid grid-cols-1 divide-y divide-hair sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+              {CONTRIBUYO.map((m) => (
+                <Celda key={m.id} m={m} lang={lang} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="mono-label border-b border-hair px-4 py-2.5 text-graphite sm:px-5">{en ? 'Building on' : 'Construyo sobre'}</p>
+            <div className="grid grid-cols-1 divide-y divide-hair sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {CONSTRUYO_SOBRE.map((m) => (
+                <Celda key={m.id} m={m} lang={lang} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <p className="mt-3 text-[12px] leading-[1.5] text-graphite">{AVISO_LOGOS[lang]}</p>
+      </Wrap>
+    </section>
+  );
+}
+
+// ── 3. Por qué hago esto ────────────────────────────────────────
+// BORRADOR que Victor revisa (lib/perfil.ts → FILOSOFIA).
+
+export function PorQue() {
+  return (
+    <section className="py-16 sm:py-28" aria-labelledby="por-que">
+      <Wrap>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.4fr)] lg:gap-16">
+          <div>
+            <Eyebrow>Filosofía</Eyebrow>
+            <h2 id="por-que" className="text-heading text-obsidian">
+              Por qué hago esto
+            </h2>
+            <p className="mt-3 max-w-[36ch] text-[15px] leading-[1.5] text-stone">En primera persona, y en corto.</p>
+          </div>
+          <ol className="divide-y divide-hair border-y border-hair">
+            {FILOSOFIA.es.map((linea, i) => (
+              <li key={linea} className="grid grid-cols-[3ch_minmax(0,1fr)] gap-4 py-4">
+                <span className="mono-label pt-1 text-graphite">{String(i + 1).padStart(2, '0')}</span>
+                <p className="text-pretty text-[18px] leading-[1.45] tracking-[-0.02em] text-obsidian">{linea}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Wrap>
+    </section>
+  );
+}
+
+// ── 4. Ahora: la bitácora que se actualiza sola ─────────────────
+// data/now/now.json lo arma scripts/now-refresh.mjs a diario (cron).
+
+export function Ahora({ limite = 6 }: { limite?: number }) {
+  const items = now.items.slice(0, limite);
+  return (
+    <section className="py-8 sm:py-16" aria-labelledby="ahora">
+      <Wrap>
+        <Seccion
+          id="ahora"
+          eyebrow="Ahora"
+          h="Qué estoy haciendo"
+          sub={`Se arma sola cada día desde GitHub, el blog y mi agenda confirmada. Última entrada: ${fecha(`${now.updated}T12:00:00-06:00`)}.`}
+          more={{ href: '/now', label: 'Toda la bitácora' }}
+        />
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]">
+          <div className="ring-card self-start p-4">
+            <p className="mono-label text-graphite">En foco</p>
+            <ul className="mt-3 space-y-3">
+              {now.foco.map((f) => (
+                <li key={f.es} className="flex gap-2.5 text-[15px] leading-[1.5] text-charcoal">
+                  <span aria-hidden className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#297a3a]" />
+                  {f.url ? (
+                    <a href={f.url} className="hover:text-obsidian">
+                      {f.es}
+                    </a>
+                  ) : (
+                    f.es
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <ul className="ring-card divide-y divide-hair">
+            {items.map((it) => (
+              <li key={`${it.kind}${it.ref}`} className="grid grid-cols-[12ch_minmax(0,1fr)] gap-x-3 gap-y-1 px-4 py-3 sm:grid-cols-[12ch_8ch_minmax(0,1fr)]">
+                <span className="mono-label pt-0.5 text-graphite">{fechaCorta(it.date)}</span>
+                <span className="mono-label pt-0.5 text-stone">{TIPO[it.kind] ?? it.kind}</span>
+                <p className="col-span-2 min-w-0 text-[15px] leading-[1.5] text-charcoal sm:col-span-1">
+                  {it.url ? (
+                    <a href={it.url} className="break-words hover:text-obsidian">
+                      {it.es}
+                    </a>
+                  ) : (
+                    it.es
+                  )}
+                </p>
               </li>
             ))}
           </ul>
         </div>
+      </Wrap>
+    </section>
+  );
+}
 
-        {/* Panel CLI: actividad real, armada desde data/oss/oss.json */}
-        <div className="mt-16 grid gap-3 lg:grid-cols-[minmax(0,1fr)_300px]">
+// ── 5. Actividad: panel CLI con datos de GitHub ─────────────────
+
+export function Actividad() {
+  const s = oss.stats;
+  return (
+    <section className="pt-8 sm:pt-16" aria-labelledby="actividad">
+      <Wrap>
+        <Seccion
+          id="actividad"
+          eyebrow="Open source"
+          h="Lo que estoy aportando"
+          sub="Pull requests a proyectos de terceros y los reportes que los originaron. El estado es el que dice GitHub."
+          more={{ href: '/open-source', label: 'Todo en open source' }}
+        />
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div className="cli min-w-0 text-[12.5px]">
             <p className="mono-label mb-3 text-graphite">actividad · datos de GitHub</p>
             <Cmd>gh search prs --author {oss.author}</Cmd>
@@ -189,17 +378,16 @@ export function Hero() {
               ))}
             </dl>
             <p className="text-[13px] leading-[1.54] text-stone">
-              El estado de cada PR es el que reporta GitHub; la lista se regenera cada lunes. Actualizado el{' '}
+              El estado de cada PR es el que reporta GitHub; la lista se regenera a diario. Actualizado el{' '}
               {fecha(oss.generatedAt)}.
             </p>
           </div>
         </div>
       </Wrap>
-    </header>
+    </section>
   );
 }
-
-// ── 2. Qué está aportando ───────────────────────────────────────
+// ── 6. Qué está aportando (lista completa; la usa /open-source si hace falta) ───────────────────────────────────────
 
 export function Aportes() {
   return (
@@ -207,7 +395,7 @@ export function Aportes() {
       <Wrap>
         <Seccion
           id="aportes"
-          eyebrow="Ahora"
+          eyebrow="Open source"
           h="Lo que estoy aportando"
           sub="Pull requests a proyectos de terceros y los reportes que los originaron. El texto es mío; el título y el estado son los de GitHub."
           more={{ href: '/open-source', label: 'Todo en open source' }}
@@ -284,7 +472,7 @@ export function Aportes() {
   );
 }
 
-// ── 3. Proyectos propios ────────────────────────────────────────
+// ── 7. Proyectos propios ────────────────────────────────────────
 
 export function Proyectos() {
   const ps = oss.projects ?? [];
@@ -319,7 +507,7 @@ export function Proyectos() {
   );
 }
 
-// ── 4. Últimas notas ────────────────────────────────────────────
+// ── 8. Últimas notas ────────────────────────────────────────────
 
 export function Notas() {
   const notas = getNotas().slice(0, 3);
@@ -351,7 +539,7 @@ export function Notas() {
   );
 }
 
-// ── 5. Quién ────────────────────────────────────────────────────
+// ── 9. Qué es Omona ────────────────────────────────────────────────────
 
 export function Quien() {
   return (

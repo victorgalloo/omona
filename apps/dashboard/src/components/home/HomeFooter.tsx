@@ -15,6 +15,7 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
     links: [
       { href: '/open-source', label: 'Open source' },
       { href: '/en/open-source', label: 'Open source (EN)' },
+      { href: '/now', label: 'Ahora' },
       { href: '/blog', label: 'Blog' },
       { href: '/about', label: 'About' },
     ],
@@ -24,14 +25,17 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
     links: [
       { href: 'https://github.com/victorgalloo', label: 'GitHub', ext: true },
       { href: 'https://www.linkedin.com/in/victorgalloo/', label: 'LinkedIn', ext: true },
+      { href: 'https://x.com/victorgallomx', label: 'X', ext: true },
       { href: 'https://builder.aws.com/community/@victorgalloo', label: 'AWS Builder Center', ext: true },
     ],
   },
   {
     titulo: 'Feeds',
     links: [
-      { href: '/blog/rss.xml', label: 'RSS' },
+      { href: '/blog/rss.xml', label: 'RSS del blog' },
+      { href: '/now/rss.xml', label: 'RSS de Ahora' },
       { href: '/llms.txt', label: 'llms.txt' },
+      { href: '/llms-full.txt', label: 'llms-full.txt' },
     ],
   },
 ];
@@ -79,8 +83,8 @@ export function HomeFooter() {
 
         <div className="mt-12 flex flex-col gap-2 text-[12px] text-graphite sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono uppercase tracking-[0.071em]">© {new Date().getFullYear()} Omona · León, México</p>
-          <p>
-            Omona es el laboratorio de{' '}
+          <p className="sm:max-w-[60ch] sm:text-right">
+            Logos de sus dueños; no implica patrocinio. Omona es el laboratorio de{' '}
             <a href="https://victorgallo.com" className="underline decoration-hair underline-offset-2 hover:text-obsidian">
               Victor Gallo
             </a>

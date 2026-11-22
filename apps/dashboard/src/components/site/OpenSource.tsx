@@ -1,6 +1,6 @@
 /**
  * /open-source y /en/open-source: el escaparate de aportes, armado desde
- * data/oss/oss.json (lo regenera scripts/oss-refresh.mjs cada semana).
+ * data/oss/oss.json (lo regenera scripts/oss-refresh.mjs a diario).
  *
  * Regla dura: el estado de cada PR es el que dice GitHub. Nada se marca
  * «merged» a mano y el texto de arriba cambia solo cuando cambien los datos.
@@ -38,7 +38,7 @@ const T = {
     eyebrow: 'Open source · Victor Gallo',
     h1: 'Aportes a los agentes que uso en producción.',
     sub: 'Los agentes que opero corren sobre Hermes Agent (Nous Research) y Amazon Bedrock. Cuando algo falla en producción, mando el arreglo al proyecto original, con prueba y con el reporte que lo explica.',
-    auto: 'Esta página se arma sola desde GitHub cada semana. El estado de cada PR es el que dice GitHub.',
+    auto: 'Esta página se arma sola desde GitHub cada día. El estado de cada PR es el que dice GitHub.',
     noneMerged: 'Ninguno está merged todavía: todos esperan revisión de los maintainers.',
     stats: { prs: 'PRs', open: 'abiertos', merged: 'merged', repos: 'proyectos', issues: 'reportes', lines: 'líneas' },
     prsH: 'Pull requests',
@@ -58,7 +58,7 @@ const T = {
     state: { merged: 'merged', open: 'abierto', draft: 'borrador', closed: 'cerrado' } as Record<string, string>,
     locale: 'es-MX',
     title: 'Open source: aportes a Hermes Agent y Strands Agents',
-    desc: 'Pull requests y reportes de Victor Gallo (Omona) a Hermes Agent de Nous Research y a Strands Agents de AWS, con su estado real en GitHub. Se actualiza cada semana.',
+    desc: 'Pull requests y reportes de Victor Gallo (Omona) a Hermes Agent de Nous Research y a Strands Agents de AWS, con su estado real en GitHub. Se actualiza a diario.',
   },
   en: {
     path: '/en/open-source',
@@ -66,7 +66,7 @@ const T = {
     eyebrow: 'Open source · Victor Gallo',
     h1: 'Contributions to the agents I run in production.',
     sub: 'The agents I run are built on Hermes Agent (Nous Research) and Amazon Bedrock. When something breaks in production, I send the fix upstream, with tests and the report that explains it.',
-    auto: 'This page rebuilds itself from GitHub every week. Each PR shows the status GitHub reports.',
+    auto: 'This page rebuilds itself from GitHub every day. Each PR shows the status GitHub reports.',
     noneMerged: 'None is merged yet: all of them are waiting for maintainer review.',
     stats: { prs: 'PRs', open: 'open', merged: 'merged', repos: 'projects', issues: 'reports', lines: 'lines' },
     prsH: 'Pull requests',
@@ -86,7 +86,7 @@ const T = {
     state: { merged: 'merged', open: 'open', draft: 'draft', closed: 'closed' } as Record<string, string>,
     locale: 'en-US',
     title: 'Open source: contributions to Hermes Agent and Strands Agents',
-    desc: 'Pull requests and issue reports by Victor Gallo (Omona) to Nous Research’s Hermes Agent and AWS’s Strands Agents, with their live GitHub status. Updated weekly.',
+    desc: 'Pull requests and issue reports by Victor Gallo (Omona) to Nous Research’s Hermes Agent and AWS’s Strands Agents, with their live GitHub status. Updated daily.',
   },
 };
 
