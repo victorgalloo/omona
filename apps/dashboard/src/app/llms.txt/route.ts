@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { getAllGeo } from '@/lib/geo/articles';
+import { getNotas } from '@/lib/notas';
 
 export const dynamic = 'force-static';
 
@@ -23,6 +24,12 @@ export async function GET() {
   lines.push(`- [Cómo trabajamos](${BASE}/como-trabajamos): proceso, alcance y qué queda instalado.`);
   lines.push('');
   lines.push(`- [Demo](${BASE}/demo): el sistema funcionando, para probarlo sin registro.`);
+  lines.push('');
+  lines.push(`- [Open source](${BASE}/open-source): PRs y reportes a Hermes Agent (Nous Research) y Strands Agents (AWS) con su estado real en GitHub. En inglés: ${BASE}/en/open-source`);
+  lines.push(`- [About](${BASE}/about): Omona y su fundador, Victor Gallo (https://victorgallo.com), en inglés.`);
+  lines.push('');
+  lines.push('## Notas de ingeniería', '');
+  for (const n of getNotas()) lines.push(`- [${n.title}](${BASE}/blog/${n.slug}): ${n.description}`);
   lines.push('');
   lines.push('## Guías publicadas', '');
   lines.push(`- [Blog](${BASE}/blog): ${articulos.length} guías.`);

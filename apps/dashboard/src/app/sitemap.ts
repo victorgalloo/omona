@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getAllGeo } from '@/lib/geo/articles';
 import { getAllSoluciones } from '@/lib/soluciones';
 import { es } from '@/lib/i18n';
+import { getNotas } from '@/lib/notas';
 
 export const dynamic = 'force-static';
 
@@ -19,6 +20,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terminos`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/comparativas`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    ...['/open-source', '/en/open-source'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: { languages: { 'es-MX': `${baseUrl}/open-source`, en: `${baseUrl}/en/open-source` } },
+    })),
+    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    ...getNotas().map((n) => ({
+      url: `${baseUrl}/blog/${n.slug}`,
+      lastModified: new Date(n.updated),
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    })),
     // Páginas nombradas por problema: entran al sitemap porque son la superficie
     // de búsqueda con las palabras del cliente, no con nuestra categoría.
     ...es.problems.items.map((problem) => ({
