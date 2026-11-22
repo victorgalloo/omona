@@ -45,7 +45,7 @@ export function Hero() {
     'evaluado antes de operar',
     'en el CRM que ya usas',
     'cuentas a tu nombre',
-    'borradores que revisa una persona',
+    'borradores con revisión humana',
   ];
   return (
     <header className="relative overflow-hidden pb-16 pt-16 sm:pt-24">
