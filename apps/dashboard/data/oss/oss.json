@@ -1,17 +1,37 @@
 {
-  "generatedAt": "2026-11-22T21:52:31.866Z",
+  "generatedAt": "2026-11-23T14:00:52.207Z",
   "author": "victorgalloo",
   "stats": {
-    "prs": 5,
+    "prs": 6,
     "merged": 0,
-    "open": 5,
+    "open": 6,
     "closed": 0,
     "repos": 2,
     "issues": 2,
-    "additions": 451,
-    "deletions": 34
+    "additions": 498,
+    "deletions": 38
   },
   "prs": [
+    {
+      "key": "NousResearch/hermes-agent#159082",
+      "repo": "NousResearch/hermes-agent",
+      "number": 159082,
+      "title": "fix(bedrock): let the context probe reach models with a maxTokens floor",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/159082",
+      "state": "open",
+      "createdAt": "2026-11-23T04:27:17Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "additions": 47,
+      "deletions": 4,
+      "changedFiles": 4,
+      "comments": 0,
+      "fixes": null,
+      "area": null,
+      "es": "fix(bedrock): let the context probe reach models with a maxTokens floor",
+      "en": "fix(bedrock): let the context probe reach models with a maxTokens floor",
+      "post": null
+    },
     {
       "key": "strands-agents/harness-sdk#6468",
       "repo": "strands-agents/harness-sdk",
@@ -164,7 +184,7 @@
       "description": "Cobro de inscripciones escolares con CoDi desde WhatsApp · Hackatón México 2026 (León)",
       "language": "TypeScript",
       "license": "MIT",
-      "pushedAt": "2026-11-20T21:04:45Z",
+      "pushedAt": "2026-11-23T01:52:56Z",
       "stars": 0,
       "es": "Cobro de inscripciones escolares con CoDi desde WhatsApp. Proyecto para el Hackatón México 2026 (León), licencia MIT.",
       "en": "School enrollment payments with CoDi (Mexico's instant-payment rail) from WhatsApp. Built for Hackatón México 2026 (León), MIT license."

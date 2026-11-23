@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-22T21:47:11.396Z",
+  "generatedAt": "2026-11-23T14:00:52.257Z",
   "updated": "2026-11-22",
   "foco": [
     {
-      "es": "5 pull requests esperando revisión en Hermes Agent y Strands Agents.",
-      "en": "5 pull requests awaiting review in Hermes Agent and Strands Agents.",
+      "es": "6 pull requests esperando revisión en Hermes Agent y Strands Agents.",
+      "en": "6 pull requests awaiting review in Hermes Agent and Strands Agents.",
       "url": "https://omona.tech/open-source"
     },
     {
@@ -19,6 +19,14 @@
     }
   ],
   "items": [
+    {
+      "date": "2026-11-22",
+      "kind": "pr",
+      "es": "Abrí hermes-agent#159082: fix(bedrock): let the context probe reach models with a maxTokens floor",
+      "en": "Opened hermes-agent#159082: fix(bedrock): let the context probe reach models with a maxTokens floor",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/159082",
+      "ref": "NousResearch/hermes-agent#159082"
+    },
     {
       "date": "2026-11-22",
       "kind": "pr",
