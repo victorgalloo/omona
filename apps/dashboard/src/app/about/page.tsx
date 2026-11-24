@@ -5,7 +5,7 @@ import { HomeFooter } from '@/components/home/HomeFooter';
 import { Wrap, Eyebrow, Marcas, now, TIPO_EN } from '@/components/site/Home';
 import { BASE, ORG, ORG_ID, PERSON } from '@/lib/entidad';
 import { fechaCorta } from '@/lib/notas';
-import { EVIDENCIA, FILOSOFIA, FOTO, LAB, NOMBRE_LEGAL, POSICION, REDES, SUPERLEADS } from '@/lib/perfil';
+import { AVISO_PROGRAMAS, EVIDENCIA, FILOSOFIA, FOTO, LAB, NOMBRE_LEGAL, ORIGEN, POSICION, PROGRAMAS_SL, REDES, SUPERLEADS } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
 
 /**
@@ -149,6 +149,39 @@ export default function AboutPage() {
                   </li>
                 ))}
               </ol>
+            </div>
+          </Wrap>
+        </section>
+
+        <section className="py-10 sm:py-14" aria-labelledby="origin">
+          <Wrap>
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.4fr)] lg:gap-16">
+              <div>
+                <Eyebrow>Origin</Eyebrow>
+                <h2 id="origin" className="text-heading text-obsidian">Where I started</h2>
+                <p className="mt-3 max-w-[36ch] text-[15px] leading-[1.5] text-stone">
+                  Full story with the photo, in Spanish:{' '}
+                  <a href={ORIGEN.historia} rel="author" className="text-obsidian underline decoration-hair underline-offset-2">victorgallo.com/inicios</a>
+                  {' · '}
+                  <a href={ORIGEN.post} className="text-obsidian underline decoration-hair underline-offset-2">LinkedIn</a>
+                </p>
+              </div>
+              <div>
+                <div className="grid gap-3">
+                  {ORIGEN.en.map((p) => (
+                    <p key={p} className="text-pretty text-[17px] leading-[1.5] tracking-[-0.01em] text-charcoal">{p}</p>
+                  ))}
+                </div>
+                <div className="ring-card mt-6 p-4">
+                  <p className="mono-label text-stone">SuperLeads, where I work, is part of</p>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {PROGRAMAS_SL.map((n) => (
+                      <li key={n} className="rounded-full px-3 py-1 text-[14px] text-obsidian shadow-[0_0_0_1px_#ebebeb]">{n}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-[13px] leading-[1.5] text-stone">{AVISO_PROGRAMAS.en}</p>
+                </div>
+              </div>
             </div>
           </Wrap>
         </section>

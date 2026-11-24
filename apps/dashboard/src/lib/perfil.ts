@@ -168,6 +168,31 @@ export const AVISO_LOGOS = {
   en: 'Logos belong to their owners and appear only to show what I build on; no sponsorship or endorsement implied.',
 };
 
+/** Origen (Victor, 24-nov-2026). Fechas de Globant = las de su LinkedIn; sin roles ni clientes de proyectos. */
+export const ORIGEN = {
+  historia: 'https://victorgallo.com/inicios/',
+  post: 'https://www.linkedin.com/feed/update/urn:li:activity:7531052248143994881/',
+  en: [
+    'I started with my hands: opening computers, swapping hard drives for SSDs, adding memory and talking servers.',
+    'Then came banking (BanBajío, SME banking) and Globant, from November 2021 to April 2023. I joined through Walmeric, the Spanish sales-tech company Globant had acquired, and was trained one-on-one in Google Ads, Meta Ads and LinkedIn Ads.',
+    "On my own: Harvard's CS50, Python, editing React until it ran, and reading security in practice labs.",
+    'Today I build the AI agents SuperLeads runs in production, and the open-source side lives here.',
+  ],
+  es: [
+    'Empecé con las manos: abrir computadoras, cambiar discos duros por SSD, subir memoria y platicar de servidores.',
+    'Después vinieron la banca (BanBajío, banca PyME) y Globant, de noviembre de 2021 a abril de 2023. Llegué por Walmeric, la empresa española de tecnología para ventas que Globant había comprado, y ahí me capacitaron uno a uno en Google Ads, Meta Ads y LinkedIn Ads.',
+    'Por mi cuenta: CS50 de Harvard, Python, editar React hasta que corriera y leer de seguridad en laboratorios de práctica.',
+    'Hoy construyo los agentes de IA que SuperLeads usa en producción; lo open source vive aquí.',
+  ],
+};
+
+/** Programas para startups que aceptaron a SuperLeads (la empresa, no Victor). Solo texto: sin logos ni respaldo implícito. */
+export const PROGRAMAS_SL = ['Google for Startups', 'AWS Activate', 'NVIDIA Inception', 'Claude Startups'];
+export const AVISO_PROGRAMAS = {
+  es: 'Programas de SuperLeads como empresa. Las marcas son de sus dueños; mencionarlas no implica patrocinio ni respaldo.',
+  en: 'These programs accepted SuperLeads as a company. Trademarks belong to their owners; no sponsorship or endorsement implied.',
+};
+
 /** Evidencia verificable para revisores de programas (AWS, NVIDIA, Anthropic, OpenAI). */
 export const EVIDENCIA: { en: string; href: string }[] = [
   { en: `${oss.stats.prs} upstream pull requests (${oss.stats.merged} merged, ${oss.stats.open} under review) and ${oss.stats.issues} issue reports, with live GitHub status`, href: 'https://omona.tech/en/open-source' },
