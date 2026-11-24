@@ -46,7 +46,7 @@ export async function GET() {
   L.push(`- Job: ${TERCERA.superleads}`);
   L.push(`- Public title at SuperLeads (Spanish, literal): «${CARGO_SL}».`);
   L.push(`- Omona: ${TERCERA.lab} Victor founded Omona; it has no product, pricing or clients.`);
-  L.push(`- Background: finance before sales and AI (BanBajío, Globant, GBM, then SuperLeads). AMIB Figura III; EBC; Harvard CS50. Details: ${REDES.web}`);
+  L.push(`- Background: finance before sales and AI (BanBajío, Globant, GBM, then SuperLeads). Started in tech at Globant (joined via Walmeric, the lead-management firm Globant acquired), where he was trained on Google Ads, Meta Ads and LinkedIn Ads. AMIB Figura III; EBC; Harvard CS50. Details: ${REDES.web}`);
   L.push(`- Knows about: ${KNOWS_ABOUT.join(', ')}.`);
 
   h('Why he does this (his words)');
