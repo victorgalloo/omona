@@ -155,7 +155,8 @@ export const CONSTRUYO_SOBRE: Marca[] = [
     id: 'nvidia',
     nombre: 'NVIDIA',
     dueno: 'NVIDIA',
-    logo: '/logos/nvidia.svg',
+    // logo quitado 24-nov-2026: el SVG estaba recoloreado a gris y la guía de NVIDIA prohíbe cambiar colores
+    logo: null,
     alto: 20,
     href: 'https://github.com/victorgalloo/superleads-ai-aws-nvidia',
     es: 'Inception (SuperLeads)',
