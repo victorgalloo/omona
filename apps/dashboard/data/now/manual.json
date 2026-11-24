@@ -34,6 +34,13 @@
       "es": "omona.tech pasa a ser mi laboratorio open source: aportes, notas y esta bitácora, sin producto.",
       "en": "omona.tech becomes my open-source lab: contributions, notes and this log, no product.",
       "url": "https://omona.tech"
+    },
+    {
+      "date": "2026-11-24",
+      "kind": "sitio",
+      "es": "Publiqué Seguridad para agentes de IA: revisiones solo defensivas, con autorización por escrito, aviso legal y responsable.",
+      "en": "Published Security for AI agents: defensive-only reviews, with written authorization, a disclaimer and a named responsible person.",
+      "url": "https://omona.tech/seguridad"
     }
   ]
 }

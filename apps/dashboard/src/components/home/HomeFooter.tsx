@@ -21,6 +21,15 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
     ],
   },
   {
+    titulo: 'Seguridad',
+    links: [
+      { href: '/seguridad', label: 'Para agentes de IA' },
+      { href: '/en/security', label: 'Security (EN)' },
+      { href: '/seguridad#aviso', label: 'Aviso legal' },
+      { href: 'mailto:victor@omona.tech', label: 'victor@omona.tech' },
+    ],
+  },
+  {
     titulo: 'Victor',
     links: [
       { href: 'https://github.com/victorgalloo', label: 'GitHub', ext: true },
@@ -44,7 +53,7 @@ export function HomeFooter() {
   return (
     <footer className="mt-24 pb-12 pt-16">
       <div className="mx-auto w-full max-w-[1280px] px-6 lg:px-12">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_repeat(3,1fr)]">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-[1.6fr_repeat(4,1fr)]">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2" aria-label="Omona — inicio">
               <Logo size={18} className="text-black" />

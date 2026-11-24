@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-24T14:01:07.537Z",
-  "updated": "2026-11-22",
+  "generatedAt": "2026-11-24T14:57:58.695Z",
+  "updated": "2026-11-24",
   "foco": [
     {
       "es": "6 pull requests esperando revisión en Hermes Agent y Strands Agents.",
@@ -19,6 +19,14 @@
     }
   ],
   "items": [
+    {
+      "date": "2026-11-24",
+      "kind": "sitio",
+      "es": "Publiqué Seguridad para agentes de IA: revisiones solo defensivas, con autorización por escrito, aviso legal y responsable.",
+      "en": "Published Security for AI agents: defensive-only reviews, with written authorization, a disclaimer and a named responsible person.",
+      "url": "https://omona.tech/seguridad",
+      "ref": "manual:2026-11-24:sitio"
+    },
     {
       "date": "2026-11-22",
       "kind": "pr",

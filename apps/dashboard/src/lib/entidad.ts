@@ -51,6 +51,10 @@ export const ORG = {
   description:
     "Victor Gallo's independent engineering lab for open-source work on AI agents: upstream pull requests, issue reports and engineering notes. Not a commercial product.",
   founder: PERSON_REF,
+  // 24-nov-2026: la marca Omona la opera esta sociedad (servicio defensivo en /seguridad).
+  legalName: 'COMERCIALIZADORA DE LIBROS DEL BAJIO JIGA S.A.S. de C.V.',
+  address: { '@type': 'PostalAddress', addressLocality: 'León', addressRegion: 'Guanajuato', addressCountry: 'MX' },
+  email: 'victor@omona.tech',
 };
 
 export const ORG_DESC_ES =

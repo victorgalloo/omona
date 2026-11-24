@@ -15,18 +15,21 @@ import { Logo } from '../shared/Logo';
  *
  * 22-nov-2026: omona.tech es el laboratorio open source de Victor, no un
  * producto. Sin Demo, sin Aplicar, sin «Cómo trabajo». v2: + Ahora (/now).
+ * 24-nov-2026: + Seguridad (/seguridad, /en/security): servicio defensivo de la empresa.
  */
 const LINKS = {
   es: [
     { href: '/open-source', label: 'Open source' },
     { href: '/now', label: 'Ahora' },
     { href: '/blog', label: 'Blog' },
+    { href: '/seguridad', label: 'Seguridad' },
     { href: '/about', label: 'About' },
   ],
   en: [
     { href: '/en/open-source', label: 'Open source' },
     { href: '/now', label: 'Now' },
     { href: '/blog', label: 'Blog' },
+    { href: '/en/security', label: 'Security' },
     { href: '/about', label: 'About' },
   ],
 };
