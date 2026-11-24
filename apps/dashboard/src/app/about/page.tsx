@@ -174,12 +174,40 @@ export default function AboutPage() {
                 </div>
                 <div className="ring-card mt-6 p-4">
                   <p className="mono-label text-stone">SuperLeads, where I work, is part of</p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {PROGRAMAS_SL.map((n) => (
-                      <li key={n} className="rounded-full px-3 py-1 text-[14px] text-obsidian shadow-[0_0_0_1px_#ebebeb]">{n}</li>
+                  {/* Insignia oficial de NVIDIA Inception sin tocar; los otros tres en texto (LOGOS-CREDITOS.md).
+                      Altura fija de 52 px por celda: sin brincos al cargar. Columnas de 28 px = espacio libre de la insignia. */}
+                  <ul aria-label="Startup programs SuperLeads is part of" className="mt-3 grid grid-cols-[repeat(2,max-content)] items-center gap-x-7 gap-y-4 sm:grid-cols-[repeat(4,max-content)] lg:grid-cols-[repeat(2,max-content)] xl:grid-cols-[repeat(4,max-content)]">
+                    {PROGRAMAS_SL.map((p) => (
+                      <li key={p.nombre} className="flex min-h-[52px] items-center">
+                        <a
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener nofollow"
+                          title={p.insignia ? `${p.nombre}: ${p.sub.toLowerCase()}` : undefined}
+                          className="group flex min-h-[52px] flex-col justify-center leading-[1.2] text-obsidian focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                        >
+                          {p.insignia ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={p.insignia.src}
+                              width={p.insignia.ancho}
+                              height={p.insignia.alto}
+                              alt={p.insignia.alt}
+                              loading="lazy"
+                              decoding="async"
+                              className="block h-[52px] w-auto max-w-none"
+                            />
+                          ) : (
+                            <>
+                              <span className="text-[15px] font-semibold tracking-[-0.01em] group-hover:underline group-hover:underline-offset-2">{p.nombre}</span>
+                              <span className="text-[12px] text-stone">{p.sub}</span>
+                            </>
+                          )}
+                        </a>
+                      </li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-[13px] leading-[1.5] text-stone">{AVISO_PROGRAMAS.en}</p>
+                  <p className="mt-3 text-[12px] leading-[1.5] text-stone">{AVISO_PROGRAMAS.en}</p>
                 </div>
               </div>
             </div>

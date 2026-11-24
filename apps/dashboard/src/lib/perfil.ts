@@ -186,11 +186,38 @@ export const ORIGEN = {
   ],
 };
 
-/** Programas para startups que aceptaron a SuperLeads (la empresa, no Victor). Solo texto: sin logos ni respaldo implícito. */
-export const PROGRAMAS_SL = ['Google for Startups', 'AWS Activate', 'NVIDIA Inception', 'Claude Startups'];
+/**
+ * Programas para startups que aceptaron a SuperLeads (la empresa, no Victor). Victor, 24-nov-2026: «Pon los logos
+ * oficiales». Arte oficial sin modificar SOLO donde el dueño lo permite al miembro sin aprobación previa; si no, el
+ * nombre oficial en texto. Fuentes y guías: apps/dashboard/LOGOS-CREDITOS.md.
+ * - NVIDIA Inception: insignia de miembro oficial (design.nvidia.com), a color, alto 52 px (recuadro ~40 px ≥ 30 px).
+ * - Google for Startups Cloud Program, AWS Activate, Claude Startups: texto (sus guías piden aprobación escrita).
+ */
+export type ProgramaSL = {
+  nombre: string;
+  sub: string;
+  href: string;
+  insignia?: { src: string; ancho: number; alto: number; alt: string };
+};
+export const PROGRAMAS_SL: ProgramaSL[] = [
+  { nombre: 'Google for Startups', sub: 'Cloud Program', href: 'https://startup.google.com/cloud/' },
+  { nombre: 'AWS Activate', sub: 'AWS for Startups', href: 'https://aws.amazon.com/startups/credits' },
+  {
+    nombre: 'NVIDIA Inception',
+    sub: 'Startup program',
+    href: 'https://www.nvidia.com/en-us/startups/',
+    insignia: {
+      src: '/logos/programas/nvidia-inception-program-badge-rgb-for-screen.svg',
+      ancho: 120,
+      alto: 52,
+      alt: 'NVIDIA Inception Program member badge',
+    },
+  },
+  { nombre: 'Claude Startups', sub: 'Anthropic', href: 'https://claude.com/programs/startups' },
+];
 export const AVISO_PROGRAMAS = {
-  es: 'Programas de SuperLeads como empresa. Las marcas son de sus dueños; mencionarlas no implica patrocinio ni respaldo.',
-  en: 'These programs accepted SuperLeads as a company. Trademarks belong to their owners; no sponsorship or endorsement implied.',
+  es: 'Las marcas pertenecen a sus dueños; su uso no implica patrocinio ni respaldo.',
+  en: 'Trademarks belong to their owners; their use does not imply sponsorship or endorsement.',
 };
 
 /** Evidencia verificable para revisores de programas (AWS, NVIDIA, Anthropic, OpenAI). */
