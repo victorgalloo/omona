@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T14:00:52.207Z",
+  "generatedAt": "2026-11-24T14:01:07.479Z",
   "author": "victorgalloo",
   "stats": {
     "prs": 6,
@@ -25,7 +25,7 @@
       "additions": 47,
       "deletions": 4,
       "changedFiles": 4,
-      "comments": 0,
+      "comments": 2,
       "fixes": null,
       "area": null,
       "es": "fix(bedrock): let the context probe reach models with a maxTokens floor",
@@ -173,7 +173,7 @@
       "description": "Template for manager → sub-agent hierarchies on Amazon Bedrock: managers own an outcome, delegate to scoped workers, verify with evals. ES/EN. By Omona (omona.tech).",
       "language": "Python",
       "license": "Apache-2.0",
-      "pushedAt": "2026-11-22T21:52:08Z",
+      "pushedAt": "2026-11-24T05:01:56Z",
       "stars": 0,
       "es": "Plantilla en Python para jerarquías gerente → subagente sobre Amazon Bedrock: organigrama como dato, escalamiento de un nivel a la vez y cambios reversibles con respaldo. Etapa temprana (v0), Apache-2.0, README ES/EN.",
       "en": "Python template for manager → sub-agent hierarchies on Amazon Bedrock: org chart as data, one-level-at-a-time escalation and reversible changes with backups. Early stage (v0), Apache-2.0, README EN/ES."
@@ -195,7 +195,7 @@
       "description": "How SuperLeads uses AWS (Bedrock, SageMaker, EC2 mx-central-1) and NVIDIA (Nemotron, NeMo) to automate school & university admissions in LATAM — architecture, training & evaluation showcase (EN/ES)",
       "language": null,
       "license": null,
-      "pushedAt": "2026-11-21T16:42:30Z",
+      "pushedAt": "2026-11-24T01:53:38Z",
       "stars": 0,
       "es": "Arquitectura de referencia (EN/ES): agentes de admisiones sobre Amazon Bedrock, SageMaker y EC2 con modelos NVIDIA Nemotron y NeMo para entrenamiento y evaluación.",
       "en": "Reference architecture (EN/ES): admissions agents on Amazon Bedrock, SageMaker and EC2, with NVIDIA Nemotron and NeMo for training and evaluation."
