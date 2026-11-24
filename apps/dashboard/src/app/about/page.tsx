@@ -5,7 +5,7 @@ import { HomeFooter } from '@/components/home/HomeFooter';
 import { Wrap, Eyebrow, Marcas, now, TIPO_EN } from '@/components/site/Home';
 import { BASE, ORG, ORG_ID, PERSON } from '@/lib/entidad';
 import { fechaCorta } from '@/lib/notas';
-import { AVISO_PROGRAMAS, EVIDENCIA, FILOSOFIA, FOTO, LAB, NOMBRE_LEGAL, ORIGEN, POSICION, PROGRAMAS_SL, REDES, SUPERLEADS } from '@/lib/perfil';
+import { AVISO_PROGRAMAS, EVIDENCIA, FILOSOFIA, FOTO, LAB, LOGO_PROGRAMAS, NOMBRE_LEGAL, ORIGEN, POSICION, PROGRAMAS_SL, REDES, SUPERLEADS } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
 
 /**
@@ -174,38 +174,54 @@ export default function AboutPage() {
                 </div>
                 <div className="ring-card mt-6 p-4">
                   <p className="mono-label text-stone">SuperLeads, where I work, is part of</p>
-                  {/* Insignia oficial de NVIDIA Inception sin tocar; los otros tres en texto (LOGOS-CREDITOS.md).
-                      Altura fija de 52 px por celda: sin brincos al cargar. Columnas de 28 px = espacio libre de la insignia. */}
-                  <ul aria-label="Startup programs SuperLeads is part of" className="mt-3 grid grid-cols-[repeat(2,max-content)] items-center gap-x-7 gap-y-4 sm:grid-cols-[repeat(4,max-content)] lg:grid-cols-[repeat(2,max-content)] xl:grid-cols-[repeat(4,max-content)]">
-                    {PROGRAMAS_SL.map((p) => (
-                      <li key={p.nombre} className="flex min-h-[52px] items-center">
-                        <a
-                          href={p.href}
-                          target="_blank"
-                          rel="noopener nofollow"
-                          title={p.insignia ? `${p.nombre}: ${p.sub.toLowerCase()}` : undefined}
-                          className="group flex min-h-[52px] flex-col justify-center leading-[1.2] text-obsidian focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                        >
-                          {p.insignia ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={p.insignia.src}
-                              width={p.insignia.ancho}
-                              height={p.insignia.alto}
-                              alt={p.insignia.alt}
-                              loading="lazy"
-                              decoding="async"
-                              className="block h-[52px] w-auto max-w-none"
-                            />
-                          ) : (
-                            <>
-                              <span className="text-[15px] font-semibold tracking-[-0.01em] group-hover:underline group-hover:underline-offset-2">{p.nombre}</span>
-                              <span className="text-[12px] text-stone">{p.sub}</span>
-                            </>
-                          )}
-                        </a>
-                      </li>
-                    ))}
+                  {/* Logos oficiales sin tocar (LOGOS-CREDITOS.md); LOGO_PROGRAMAS en perfil.ts los pasa a texto.
+                      Celdas iguales de 120 × 52 (recuadro visible 108 × 40, el de la insignia de NVIDIA): sin brincos. */}
+                  <ul aria-label="Startup programs SuperLeads is part of" className="-ml-1.5 mt-3 grid grid-cols-[repeat(2,max-content)] items-start gap-x-5 gap-y-4 sm:grid-cols-[repeat(4,max-content)] lg:grid-cols-[repeat(2,max-content)] xl:grid-cols-[repeat(4,max-content)]">
+                    {PROGRAMAS_SL.map((p) => {
+                      const conLogo = LOGO_PROGRAMAS[p.clave];
+                      const img = (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={p.logo.src}
+                          width={p.logo.ancho}
+                          height={p.logo.alto}
+                          alt={p.logo.alt}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ height: p.logo.alto }}
+                          className="block w-auto max-w-none"
+                        />
+                      );
+                      return (
+                        <li key={p.nombre} className="flex min-h-[52px] items-center">
+                          <a
+                            href={p.href}
+                            target="_blank"
+                            rel="noopener nofollow"
+                            title={conLogo ? `${p.nombre}: ${p.sub.toLowerCase()}` : undefined}
+                            className="group flex min-h-[52px] flex-col justify-center leading-[1.2] text-obsidian focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                          >
+                            {conLogo ? (
+                              <>
+                                <span className="flex h-[52px] w-[120px] items-center justify-center">
+                                  {p.logo.insignia ? (
+                                    img
+                                  ) : (
+                                    <span className="flex h-[40px] w-[108px] items-center justify-center border border-[rgba(0,18,64,0.12)] bg-white">{img}</span>
+                                  )}
+                                </span>
+                                <span aria-hidden="true" className="mt-0.5 block w-[120px] text-center text-[12px] text-stone group-hover:underline group-hover:underline-offset-2">{p.nombre}</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="text-[15px] font-semibold tracking-[-0.01em] group-hover:underline group-hover:underline-offset-2">{p.nombre}</span>
+                                <span className="text-[12px] text-stone">{p.sub}</span>
+                              </>
+                            )}
+                          </a>
+                        </li>
+                      );
+                    })}
                   </ul>
                   <p className="mt-3 text-[12px] leading-[1.5] text-stone">{AVISO_PROGRAMAS.en}</p>
                 </div>

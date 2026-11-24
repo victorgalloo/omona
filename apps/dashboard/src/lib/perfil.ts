@@ -188,33 +188,75 @@ export const ORIGEN = {
 };
 
 /**
- * Programas para startups que aceptaron a SuperLeads (la empresa, no Victor). Victor, 24-nov-2026: «Pon los logos
- * oficiales». Arte oficial sin modificar SOLO donde el dueño lo permite al miembro sin aprobación previa; si no, el
- * nombre oficial en texto. Fuentes y guías: apps/dashboard/LOGOS-CREDITOS.md.
- * - NVIDIA Inception: insignia de miembro oficial (design.nvidia.com), a color, alto 52 px (recuadro ~40 px ≥ 30 px).
- * - Google for Startups Cloud Program, AWS Activate, Claude Startups: texto (sus guías piden aprobación escrita).
+ * Programas para startups que aceptaron a SuperLeads (la empresa, no Victor). Victor, 24-nov-2026, ya avisado de que
+ * Google, AWS y Anthropic piden permiso escrito previo para su logo: «Sí, ponlos». Los cuatro van con arte oficial SIN
+ * modificar (byte por byte el archivo del dueño, en public/logos/programas/). Permisos escritos: pendientes.
+ * Fuentes, sha256 y guías: apps/dashboard/LOGOS-CREDITOS.md.
+ * - NVIDIA Inception: insignia de miembro (trae su recuadro: imagen 120 × 52 → recuadro ~108 × 40).
+ * - Google, AWS y Claude: su versión a color para fondo claro dentro de una placa blanca de 108 × 40 (el mismo
+ *   recuadro visible que la insignia), que da el espacio libre; sin recolorear ni recortar.
+ *
+ * REVERTIR: si un dueño pide quitar su logo, pon su clave en false en LOGO_PROGRAMAS y haz push: esa celda vuelve
+ * al nombre del programa en texto.
  */
+export const LOGO_PROGRAMAS = {
+  google: true,
+  aws: true,
+  nvidia: true,
+  claude: true,
+} as const;
+
 export type ProgramaSL = {
+  clave: keyof typeof LOGO_PROGRAMAS;
   nombre: string;
   sub: string;
   href: string;
-  insignia?: { src: string; ancho: number; alto: number; alt: string };
+  /** insignia: true = el arte trae su propio recuadro (NVIDIA); si no, va en la placa blanca. */
+  logo: { src: string; ancho: number; alto: number; alt: string; insignia?: boolean };
 };
 export const PROGRAMAS_SL: ProgramaSL[] = [
-  { nombre: 'Google for Startups', sub: 'Cloud Program', href: 'https://startup.google.com/cloud/' },
-  { nombre: 'AWS Activate', sub: 'AWS for Startups', href: 'https://aws.amazon.com/startups/credits' },
   {
+    clave: 'google',
+    nombre: 'Google for Startups',
+    sub: 'Cloud Program',
+    href: 'https://startup.google.com/cloud/',
+    // Identificador oficial «Cloud Program» de startup.google.com/cloud (viewBox 204 × 50).
+    logo: {
+      src: '/logos/programas/googleforstartups-cloudprogramidentifier-horizontal-rgb-13.svg',
+      ancho: 90,
+      alto: 22,
+      alt: 'Google for Startups Cloud Program',
+    },
+  },
+  {
+    clave: 'aws',
+    nombre: 'AWS Activate',
+    sub: 'AWS for Startups',
+    href: 'https://aws.amazon.com/startups/credits',
+    // «Powered by AWS» de aws.amazon.com/co-marketing (PNG 200 × 72, fondo claro).
+    logo: { src: '/logos/programas/powered-by-aws.png', ancho: 72, alto: 26, alt: 'AWS Activate (Powered by AWS logo)' },
+  },
+  {
+    clave: 'nvidia',
     nombre: 'NVIDIA Inception',
     sub: 'Startup program',
     href: 'https://www.nvidia.com/en-us/startups/',
-    insignia: {
+    logo: {
       src: '/logos/programas/nvidia-inception-program-badge-rgb-for-screen.svg',
       ancho: 120,
       alto: 52,
       alt: 'NVIDIA Inception Program member badge',
+      insignia: true,
     },
   },
-  { nombre: 'Claude Startups', sub: 'Anthropic', href: 'https://claude.com/programs/startups' },
+  {
+    clave: 'claude',
+    nombre: 'Claude Startups',
+    sub: 'Anthropic',
+    href: 'https://claude.com/programs/startups',
+    // «Claude logo - Slate» del press kit de anthropic.com (viewBox 9156 × 2000).
+    logo: { src: '/logos/programas/claude-logo-slate.svg', ancho: 82, alto: 18, alt: 'Claude Startups by Anthropic (Claude logo)' },
+  },
 ];
 export const AVISO_PROGRAMAS = {
   es: 'Las marcas pertenecen a sus dueños; su uso no implica patrocinio ni respaldo.',
