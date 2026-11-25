@@ -82,6 +82,11 @@ export async function GET() {
   L.push('', 'Log:');
   for (const it of now.items) L.push(`- ${it.date} [${it.kind}] ${it.en}${it.url ? ` ${it.url}` : ''}`);
 
+  h('Original research (passive DNS measurements)');
+  L.push(
+    `- 2026-11-25 · Email spoofing exposure of Mexican domains: of 285 .mx domains with MX records (linked from Mexican business chambers, SME portals and .gob.mx/.org.mx pages; .edu.mx excluded), 66% (188) can still be spoofed: 84 publish no DMARC record and 104 use p=none (monitor only). 57 use p=quarantine and only 40 (14%) use p=reject. 26 lack a valid SPF record and 3 publish two SPF records (permerror under RFC 7208). Method: public MX/TXT/_dmarc lookups over DNS-over-HTTPS, no intrusive traffic; only aggregates are published. Step-by-step SPF/DMARC guide for SMBs (Spanish): ${BASE}/blog/dmarc-spf-facturas-falsas-pymes`,
+  );
+
   h('Engineering notes (Spanish)');
   for (const n of getNotas()) L.push(`- ${n.date} · ${n.title}: ${n.description} ${BASE}/blog/${n.slug}`);
 

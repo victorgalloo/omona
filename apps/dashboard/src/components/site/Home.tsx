@@ -105,14 +105,16 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
 // 24-nov-2026, Victor: «que ese sea el CTA principal de la página y quítame
 // relevancia a mí, haz la página más ejecutiva y con estos CTAs, sin cards».
 
-const PILARES_EJECUTIVOS = [
+const PILARES_EJECUTIVOS: { h: string; p: string; guia?: { href: string; label: string } }[] = [
   {
     h: '1. Correo empresarial y dominio',
-    p: 'Evita que estafadores suplanten el correo de tu empresa (SPF y DMARC) para mandar facturas falsas o enlaces de fraude a tus clientes y proveedores.',
+    p: 'Evita que estafadores suplanten el correo de tu empresa (SPF y DMARC) para mandar facturas falsas o enlaces de fraude a tus clientes y proveedores. En nuestra medición, el 66 % de 285 dominios .mx con correo sigue siendo suplantable.',
+    guia: { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'Guía SPF y DMARC paso a paso' },
   },
   {
     h: '2. Página web y datos de clientes',
     p: 'Verifica cómo saber si tu página web es segura (HTTPS/HSTS, Content-Security-Policy) y bloquea archivos internos o contraseñas expuestas (/.env).',
+    guia: { href: '/blog/ciberseguridad-para-pymes-mexico-guia', label: 'Guía para PyMEs en 4 etapas' },
   },
   {
     h: '3. Control de acceso y nube',
@@ -160,6 +162,13 @@ export function Hero() {
             <div key={x.h} className={`py-6 ${idx > 0 ? 'lg:pl-6' : ''} ${idx < 3 ? 'lg:pr-6' : ''}`}>
               <dt className="text-[16px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{x.h}</dt>
               <dd className="mt-2 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
+              {x.guia && (
+                <dd className="mt-3">
+                  <Link href={x.guia.href} className="mono-label text-charcoal hover:text-obsidian">
+                    {x.guia.label} →
+                  </Link>
+                </dd>
+              )}
             </div>
           ))}
         </dl>
