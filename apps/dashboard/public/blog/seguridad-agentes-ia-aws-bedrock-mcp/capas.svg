@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" role="img">
+<rect x="0.5" y="0.5" width="879" height="419" rx="6" fill="#ffffff" stroke="#ebebeb"/>
+<text x="28" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666" letter-spacing="0.8">OMONA · ARQUITECTURA DEFENSIVA DE 4 CAPAS PARA AGENTES DE IA EN PRODUCCIÓN</text>
+<line x1="28" y1="54" x2="852" y2="54" stroke="#ebebeb" stroke-width="1"/>
+
+<rect x="28" y="76" width="192" height="260" rx="4" fill="#ffffff" stroke="#171717"/>
+<text x="44" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666">CAPA 01 · PERÍMETRO</text>
+<text x="44" y="124" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#171717">Postura de Dominio</text>
+<text x="44" y="152" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• TLS / HSTS preload</text>
+<text x="44" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Content-Security-Policy</text>
+<text x="44" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• DNS SPF + DMARC + CAA</text>
+<text x="44" y="218" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Bloqueo /.env y /.git</text>
+<text x="44" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#297a3a">• security.txt + llms.txt</text>
+<text x="44" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#666666">Verificación: pasiva (0 tokens)</text>
+
+<rect x="238" y="76" width="192" height="260" rx="4" fill="#ffffff" stroke="#ebebeb"/>
+<text x="254" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666">CAPA 02 · NUBE E IAM</text>
+<text x="254" y="124" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#171717">AWS Bedrock y Secretos</text>
+<text x="254" y="152" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Roles IAM por modelo</text>
+<text x="254" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• STS credenciales efímeras</text>
+<text x="254" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Secrets Store (0 .env)</text>
+<text x="254" y="218" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Aislamiento multi-perfil</text>
+<text x="254" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#297a3a">• CloudTrail + presupuesto</text>
+<text x="254" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#666666">Ref: hermes-agent #146546</text>
+
+<rect x="448" y="76" width="192" height="260" rx="4" fill="#ffffff" stroke="#ebebeb"/>
+<text x="464" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666">CAPA 03 · PROTOCOLO MCP</text>
+<text x="464" y="124" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#171717">Servidores MCP y OAuth</text>
+<text x="464" y="152" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Tokens OAuth por perfil</text>
+<text x="464" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Anti tool-poisoning</text>
+<text x="464" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Aprobación en escrituras</text>
+<text x="464" y="218" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Sanitización de shell</text>
+<text x="464" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#297a3a">• Scopes de solo lectura</text>
+<text x="464" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#666666">Ref: harness-sdk #6468</text>
+
+<rect x="658" y="76" width="194" height="260" rx="4" fill="#ffffff" stroke="#ebebeb"/>
+<text x="674" y="102" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#666666">CAPA 04 · EJECUCIÓN</text>
+<text x="674" y="124" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#171717">Prompt Injection y RAG</text>
+<text x="674" y="152" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Separación datos / orden</text>
+<text x="674" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Indirect prompt injection</text>
+<text x="674" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Guardrails deterministas</text>
+<text x="674" y="218" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#4d4d4d">• Prevención exfiltración</text>
+<text x="674" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#297a3a">• Comparador SHA-256</text>
+<text x="674" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#666666">Ref: bedrock-agent-hierarchy</text>
+
+<line x1="28" y1="364" x2="852" y2="364" stroke="#ebebeb" stroke-width="1"/>
+<text x="28" y="390" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f" letter-spacing="0.6">FUENTE: DIAGNÓSTICO PASIVO OMONA.TECH/#DIAGNOSTICO Y KIT DE AUDITORÍA DEFENSIVA (NOV 2026)</text>
+</svg>

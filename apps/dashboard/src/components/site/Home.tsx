@@ -107,20 +107,20 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
 
 const PILARES_EJECUTIVOS = [
   {
-    h: 'Despliegues en AWS Bedrock e IAM',
-    p: 'Mínimo privilegio en roles IAM, credenciales efímeras en lugar de llaves estáticas, bóveda de secretos y bitácoras de auditoría.',
+    h: 'AWS Bedrock, IAM y Secrets Store',
+    p: 'Mínimo privilegio en roles IAM, credenciales efímeras STS en lugar de llaves estáticas, bóveda Secrets Store y bitácoras de auditoría.',
   },
   {
-    h: 'Resistencia a prompt injection',
-    p: 'Baterías adversarias pre-registradas contra tus propios agentes conversacionales y herramientas MCP antes de salir a producción.',
+    h: 'Defensa contra prompt injection y RAG',
+    p: 'Guardrails deterministas y baterías adversarias contra indirect prompt injection y exfiltración de datos en agentes con herramientas.',
   },
   {
-    h: 'Revisión de código y superficie',
-    p: 'Inspección de repositorios, dependencias, cabeceras de seguridad, políticas CORS/CSP y prevención de fugas de datos personales.',
+    h: 'Seguridad en servidores MCP y OAuth',
+    p: 'Aislamiento de tokens OAuth por perfil en Model Context Protocol (MCP), prevención de tool poisoning y revisión de código fuente.',
   },
   {
-    h: 'Entregable ejecutivo y remediación',
-    p: 'Reporte en texto estructurado con severidad, evidencia verificable y guía paso a paso para tu equipo de ingeniería.',
+    h: 'Postura de dominio y entregable ejecutivo',
+    p: 'Verificación de HSTS, Content-Security-Policy, DMARC, DNS CAA, security.txt y llms.txt con guía de remediación paso a paso.',
   },
 ];
 

@@ -47,18 +47,18 @@ const T = {
     services: [
       {
         k: '01',
-        h: 'Revisión de despliegues en AWS Bedrock',
-        p: 'Permisos IAM de mínimo privilegio, roles de instancia o de carga de trabajo en lugar de llaves fijas, manejo de secretos fuera del código y de la configuración, bitácoras (logs) y retención de datos.',
+        h: 'Revisión de despliegues en AWS Bedrock, IAM y Secrets Store',
+        p: 'Permisos IAM de mínimo privilegio, roles STS efímeros en lugar de llaves fijas, bóveda Secrets Store fuera del código y de la configuración, bitácoras (logs) y retención de datos.',
       },
       {
         k: '02',
-        h: 'Pruebas de prompt injection y jailbreak',
-        p: 'Probamos tus propios asistentes con una batería de casos escrita y registrada antes de correrla, con criterios de aprobado o fallido fijados de antemano. Solo contra tu entorno de pruebas o los endpoints que autorices.',
+        h: 'Pruebas y guardrails contra indirect prompt injection y jailbreak',
+        p: 'Probamos tus propios asistentes con una batería de casos contra indirect prompt injection y exfiltración registrada antes de correrla, con criterios de aprobado o fallido fijados de antemano. Solo contra tu entorno de pruebas o los endpoints que autorices.',
       },
       {
         k: '03',
-        h: 'Revisión de código seguro',
-        p: 'Leemos los repositorios que nos indiques en busca de vulnerabilidades, manejo inseguro de datos personales, secretos expuestos y dependencias riesgosas.',
+        h: 'Seguridad en servidores MCP (Model Context Protocol) y código',
+        p: 'Leemos tus repositorios y configuraciones MCP para detectar tool poisoning, falta de aislamiento de tokens OAuth, secretos expuestos, dependencias riesgosas y cabeceras Content-Security-Policy, HSTS, DMARC y DNS CAA.',
       },
       {
         k: '04',
@@ -124,18 +124,18 @@ const T = {
     services: [
       {
         k: '01',
-        h: 'AI-agent deployment review on AWS Bedrock',
-        p: 'Least-privilege IAM, instance or workload roles instead of long-lived keys, secrets kept out of code and config, logging and data retention.',
+        h: 'AI-agent deployment review on AWS Bedrock, IAM & Secrets Store',
+        p: 'Least-privilege IAM, short-lived STS workload roles instead of long-lived keys, Secrets Store isolation kept out of code and config, logging and data retention.',
       },
       {
         k: '02',
-        h: 'Prompt-injection and jailbreak testing',
-        p: 'We test your own assistants with a written battery of cases registered before the run, with pass/fail criteria fixed in advance. Only against your staging environment or the endpoints you authorize.',
+        h: 'Indirect prompt-injection, guardrails and jailbreak testing',
+        p: 'We test your own assistants against indirect prompt injection and data exfiltration with a written battery of cases registered before the run, with pass/fail criteria fixed in advance. Only against your staging environment or the endpoints you authorize.',
       },
       {
         k: '03',
-        h: 'Secure code review',
-        p: 'We read the repositories you point us to for vulnerabilities, unsafe handling of personal data, exposed secrets and risky dependencies.',
+        h: 'MCP server security (Model Context Protocol) & secure code review',
+        p: 'We read your repositories and MCP server configurations for tool poisoning, OAuth token isolation gaps, unsafe handling of personal data, exposed secrets, risky dependencies, and Content-Security-Policy, HSTS, DMARC & DNS CAA posture.',
       },
       {
         k: '04',
