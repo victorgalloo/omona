@@ -1,6 +1,6 @@
 ---
-title: Agentes en jerarquía: gerentes y subagentes para un equipo comercial
-description: Cómo organicé más de cien rutinas de agentes en un organigrama con orquestador, gerentes, agentes y subagentes, con reglas de escalamiento, cambios reversibles y medición. Sobre Hermes Agent y Claude en Amazon Bedrock.
+title: Jerarquía de agentes y subagentes en producción
+description: Cómo organicé más de cien rutinas de agentes en un organigrama con orquestador, gerentes y subagentes sobre Hermes Agent y Claude en Amazon Bedrock.
 date: 2026-11-22
 tags: agentes, Hermes Agent, Amazon Bedrock, arquitectura, operación
 prs:

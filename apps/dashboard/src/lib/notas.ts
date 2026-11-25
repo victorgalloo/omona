@@ -46,7 +46,7 @@ function parse(file: string): Nota {
   const meta: Record<string, string> = {};
   for (const line of m[1].split('\n')) {
     const i = line.indexOf(':');
-    if (i > 0) meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    if (i > 0) meta[line.slice(0, i).trim()] = line.slice(i + 1).trim().replace(/^["']|["']$/g, '');
   }
   let body = m[2].trim();
   let h1 = meta.title;

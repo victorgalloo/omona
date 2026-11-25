@@ -36,14 +36,14 @@ const T = {
   es: {
     path: '/seguridad',
     other: { href: '/en/security', label: 'English' },
-    eyebrow: 'Seguridad · Solo defensiva',
-    h1: 'Seguridad para agentes de IA',
-    sub: 'Revisamos los agentes de IA que ya corren en tu empresa, su nube y su código, para que no filtren datos ni obedezcan a quien no deben. Solo trabajo defensivo, solo sobre sistemas tuyos y siempre con autorización por escrito.',
+    eyebrow: 'Ciberseguridad para PyMEs e IA · Solo defensiva',
+    h1: 'Ciberseguridad para tu empresa: de lo básico a la IA',
+    sub: 'Ayudamos a PyMEs y empresas en México a proteger su correo empresarial, su página web, los accesos de su equipo y los agentes de IA que van adoptando. Solo trabajo defensivo, sobre sistemas propios del cliente y con autorización por escrito.',
     status:
       'Servicio nuevo: todavía no hay proyectos con clientes. Algunos servicios dependen de que los proveedores de modelos aprueben nuestra participación en sus programas.',
     contactCta: 'Escribir a',
-    servicesH: 'Qué hacemos',
-    servicesSub: 'Cuatro piezas. Se contratan juntas o por separado, siempre con alcance firmado.',
+    servicesH: 'Cómo acompañamos a tu empresa (paso a paso)',
+    servicesSub: 'Cuatro etapas que puedes contratar desde lo más básico o en conjunto, siempre con alcance firmado.',
     services: [
       {
         k: '01',
@@ -106,8 +106,8 @@ const T = {
     ],
     contactH: 'Contacto de seguridad',
     contactP: 'Para cotizar un alcance o reportar un problema de seguridad en este sitio.',
-    title: 'Seguridad para agentes de IA (solo defensiva)',
-    desc: 'Revisión de seguridad de agentes de IA en AWS Bedrock, pruebas de prompt injection a tus propios asistentes, revisión de código seguro y hardening. Solo defensiva, con autorización por escrito. Omona, León, México.',
+    title: 'Ciberseguridad para PyMEs y Agentes de IA en México',
+    desc: 'Diagnóstico de dominio y correo, control de acceso, revisión de sistemas y seguridad defensiva para agentes de IA en México bajo alcance firmado.',
     locale: 'es_MX',
   },
   en: {
@@ -183,8 +183,8 @@ const T = {
     ],
     contactH: 'Security contact',
     contactP: 'To scope an engagement or report a security issue on this site.',
-    title: 'Security for AI agents (defensive only)',
-    desc: 'Security reviews of AI-agent deployments on AWS Bedrock, prompt-injection testing of your own assistants, secure code review and hardening. Defensive only, with written authorization. Omona, León, Mexico.',
+    title: 'Security for AI Agents & Cloud Architecture',
+    desc: 'Defensive security reviews of AI-agent deployments on AWS Bedrock, MCP servers, prompt-injection testing and secure code under signed scope.',
     locale: 'en_US',
   },
 };

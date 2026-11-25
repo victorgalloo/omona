@@ -107,20 +107,20 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
 
 const PILARES_EJECUTIVOS = [
   {
-    h: 'AWS Bedrock, IAM y Secrets Store',
-    p: 'Mínimo privilegio en roles IAM, credenciales efímeras STS en lugar de llaves estáticas, bóveda Secrets Store y bitácoras de auditoría.',
+    h: '1. Correo empresarial y dominio',
+    p: 'Evita que estafadores suplanten el correo de tu empresa (SPF y DMARC) para mandar facturas falsas o enlaces de fraude a tus clientes y proveedores.',
   },
   {
-    h: 'Defensa contra prompt injection y RAG',
-    p: 'Guardrails deterministas y baterías adversarias contra indirect prompt injection y exfiltración de datos en agentes con herramientas.',
+    h: '2. Página web y datos de clientes',
+    p: 'Verifica cómo saber si tu página web es segura (HTTPS/HSTS, Content-Security-Policy) y bloquea archivos internos o contraseñas expuestas (/.env).',
   },
   {
-    h: 'Seguridad en servidores MCP y OAuth',
-    p: 'Aislamiento de tokens OAuth por perfil en Model Context Protocol (MCP), prevención de tool poisoning y revisión de código fuente.',
+    h: '3. Control de acceso y nube',
+    p: 'Ordena quién tiene acceso a los sistemas de tu negocio (mínimo privilegio IAM), elimina contraseñas compartidas y resguarda llaves en bóveda (Secrets Store).',
   },
   {
-    h: 'Postura de dominio y entregable ejecutivo',
-    p: 'Verificación de HSTS, Content-Security-Policy, DMARC, DNS CAA, security.txt y llms.txt con guía de remediación paso a paso.',
+    h: '4. IA, chatbots y agentes seguros',
+    p: 'Cuando tu empresa empieza a usar bots de WhatsApp o agentes de IA (AWS Bedrock, servidores MCP), blindamos que no filtren bases de datos ni caigan en engaños (prompt injection).',
   },
 ];
 
@@ -130,23 +130,23 @@ export function Hero() {
       <Wrap>
         <div className="max-w-[54rem]">
           <h1 className="text-heading-lg text-balance text-obsidian">
-            Blinda la arquitectura de tu nube y tus agentes de IA.
+            Ciberseguridad para tu empresa: desde lo más básico hasta tus agentes de IA.
           </h1>
           <p id="hero-description" className="mt-6 max-w-[62ch] text-[19px] leading-[1.5] text-charcoal">
-            Evaluamos la superficie pública de tu dominio al instante y auditamos bajo alcance firmado tus despliegues en AWS Bedrock, permisos IAM, secretos, código fuente y resistencia a prompt injection.
+            Empezamos por lo que hoy protege a una PyME en México —saber si tu página web es segura, impedir que falsifiquen tu correo empresarial y ordenar los accesos de tu equipo— y te acompañamos paso a paso conforme conectas la nube, WhatsApp e inteligencia artificial.
           </p>
           <p className="mt-3 max-w-[62ch] text-[15px] leading-[1.5] text-stone">
-            Trabajo 100 % defensivo sobre sistemas propios del cliente, con autorización por escrito y revisión humana de cada hallazgo.
+            Sin jerga incomprensible: diagnóstico inmediato con tu dominio, entregable claro para dirección y para sistemas, y revisiones 100 % defensivas bajo alcance firmado.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#diagnostico" className="btn-fill">
-              Evaluar mi dominio ahora →
+              Revisar mi dominio gratis →
             </a>
             <a
-              href="mailto:victor@omona.tech?subject=Agendar%20revisi%C3%B3n%20de%20arquitectura%20y%20agentes%20IA%20%E2%80%94%20Omona"
+              href="mailto:victor@omona.tech?subject=Diagn%C3%B3stico%20de%20ciberseguridad%20para%20mi%20empresa%20%E2%80%94%20Omona"
               className="btn-ghost"
             >
-              Agendar llamada de alcance →
+              Agendar llamada de diagnóstico →
             </a>
           </div>
         </div>

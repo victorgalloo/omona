@@ -1,6 +1,6 @@
 ---
-title: El choque de credenciales de Bedrock en Hermes Agent: del parche local al arreglo upstream
-description: Un perfil con AWS_PROFILE y AWS_BEARER_TOKEN_BEDROCK tumbaba el cliente AnthropicBedrock de Hermes Agent. Cómo lo encontré, el reporte #146546 y el arreglo #146559.
+title: Credenciales de AWS Bedrock en Hermes Agent
+description: Cómo resolví el choque entre AWS_PROFILE y AWS_BEARER_TOKEN_BEDROCK en el cliente AnthropicBedrock de Hermes Agent (reporte #146546 y PR #146559).
 date: 2026-11-22
 tags: Hermes Agent, Amazon Bedrock, Python, open source
 prs: NousResearch/hermes-agent#146546, NousResearch/hermes-agent#146559

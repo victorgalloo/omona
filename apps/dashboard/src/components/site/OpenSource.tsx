@@ -85,8 +85,8 @@ const T = {
     updated: 'updated',
     state: { merged: 'merged', open: 'open', draft: 'draft', closed: 'closed' } as Record<string, string>,
     locale: 'en-US',
-    title: 'Open source: contributions to Hermes Agent and Strands Agents',
-    desc: 'Pull requests and issue reports by Victor Gallo (Omona) to Nous Research’s Hermes Agent and AWS’s Strands Agents, with their live GitHub status. Updated daily.',
+    title: 'Open source: Hermes Agent & Strands Agents PRs',
+    desc: 'Pull requests and issue reports by Victor Gallo (Omona) to Nous Research’s Hermes Agent and AWS’s Strands Agents, with live GitHub status.',
   },
 };
 

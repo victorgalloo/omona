@@ -17,9 +17,9 @@ import ossData from '../../../data/oss/oss.json';
  */
 export const dynamic = 'force-static';
 
-const TITLE = 'Victor Gallo · AI agents that do real commercial work';
+const TITLE = 'Victor Gallo · AI Agents & Cloud Security (Omona)';
 const DESC =
-  'Victor Gallo builds AI agents that do real commercial work, in León, Mexico. Evidence for program reviewers: upstream PRs to Hermes Agent and Strands Agents, Amazon Bedrock work, notes and a daily log.';
+  'Victor Gallo builds AI agents and defensive security architectures in León, Mexico: upstream PRs to Hermes Agent and Strands Agents, AWS Bedrock and notes.';
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

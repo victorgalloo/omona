@@ -1,6 +1,6 @@
 ---
-title: "Seguridad para agentes de IA en producción: AWS Bedrock IAM, servidores MCP y defensa contra prompt injection"
-description: "Checklist de arquitectura defensiva en 4 capas para blindar despliegues de agentes de IA: postura de dominio (HSTS, Content-Security-Policy, DNS CAA), mínimo privilegio en AWS Bedrock y Secrets Store, aislamiento OAuth en servidores MCP y contención de indirect prompt injection."
+title: Seguridad para agentes de IA en AWS Bedrock y MCP
+description: Checklist en 4 capas para agentes de IA: postura de dominio (HSTS, CSP), mínimo privilegio en AWS Bedrock, servidores MCP y defensa ante prompt injection.
 date: 2026-11-24
 tags: Seguridad de Agentes IA, Amazon Bedrock, MCP, Prompt Injection
 prs: NousResearch/hermes-agent#146546, strands-agents/harness-sdk#6468, victorgalloo/bedrock-agent-hierarchy#1

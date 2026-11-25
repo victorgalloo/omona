@@ -1,6 +1,6 @@
 ---
-title: Normalizar el volumen del TTS para notas de voz: un pase de loudnorm a -16 LUFS
-description: Por qué unas notas de voz generadas con TTS casi no se oían en el celular, cómo lo resolví con ffmpeg loudnorm y el PR #157956 a Hermes Agent, con mediciones reales.
+title: Normalizar volumen TTS en notas de voz (-16 LUFS)
+description: Por qué unas notas de voz con TTS casi no se oían en el celular y cómo lo resolví con ffmpeg loudnorm a -16 LUFS en el PR #157956 a Hermes Agent.
 date: 2026-11-21
 tags: Hermes Agent, TTS, ffmpeg, audio, WhatsApp
 prs: NousResearch/hermes-agent#157956, NousResearch/hermes-agent#157954

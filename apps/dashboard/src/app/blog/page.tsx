@@ -9,9 +9,9 @@ import { fechaCorta, getNotas } from '@/lib/notas';
 
 export const dynamic = 'force-static';
 
-const TITLE = 'Blog: notas de ingeniería sobre agentes de IA';
+const TITLE = 'Blog: ciberseguridad para PyMEs y agentes de IA';
 const DESC =
-  'Notas de ingeniería de Victor Gallo sobre agentes en producción: credenciales de Amazon Bedrock en Hermes Agent, volumen de TTS, jerarquías de agentes. Con mediciones y el PR detrás.';
+  'Guías prácticas de ciberseguridad para PyMEs en México, seguridad de correo y páginas web, control de acceso en AWS Bedrock y agentes de IA en producción.';
 
 export const metadata: Metadata = {
   title: TITLE,

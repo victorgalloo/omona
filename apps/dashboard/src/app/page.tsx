@@ -7,9 +7,9 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import ossData from '../../data/oss/oss.json';
 import nowData from '../../data/now/now.json';
 
-const TITLE = 'Omona · Seguridad para Agentes de IA y Arquitectura en la Nube';
+const TITLE = 'Omona · Ciberseguridad para PyMEs e IA en México';
 const DESC =
-  'Diagnóstico pasivo de superficie pública en segundos y auditorías defensivas de alcance cerrado para agentes de IA en AWS Bedrock, permisos IAM, secretos y código fuente.';
+  'Diagnóstico gratuito de dominio, correo y página web para PyMEs en México. Protege tu negocio desde lo básico hasta la nube y agentes de IA.';
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
