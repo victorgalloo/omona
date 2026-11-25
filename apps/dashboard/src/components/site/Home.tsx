@@ -113,8 +113,8 @@ const PILARES_EJECUTIVOS: { h: string; p: string; guia?: { href: string; label: 
   },
   {
     h: '2. Página web y datos de clientes',
-    p: 'Verifica cómo saber si tu página web es segura (HTTPS/HSTS, Content-Security-Policy) y bloquea archivos internos o contraseñas expuestas (/.env).',
-    guia: { href: '/blog/ciberseguridad-para-pymes-mexico-guia', label: 'Guía para PyMEs en 4 etapas' },
+    p: 'Verifica cómo saber si tu página web es segura (HTTPS/HSTS, Content-Security-Policy) y bloquea archivos internos o contraseñas expuestas (/.env). En nuestra medición de 304 sitios .mx, el 60 % no tiene HSTS y el 71 % no tiene CSP.',
+    guia: { href: '/blog/cabeceras-seguridad-web-pymes-mexico', label: 'Guía de cabeceras de seguridad' },
   },
   {
     h: '3. Control de acceso y nube',

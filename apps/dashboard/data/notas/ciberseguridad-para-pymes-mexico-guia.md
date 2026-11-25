@@ -38,6 +38,8 @@ Para comprobar **cómo saber si una página web es segura** en una auditoría in
 4. **Protección contra ventanas falsas (`X-Frame-Options`):** Evita que otra página web incruste la tuya dentro de un recuadro invisible para robar clics (*clickjacking*).
 5. **Canal oficial de seguridad (`/.well-known/security.txt`):** Permite que si un investigador o proveedor detecta un problema en tu sitio, sepa exactamente a qué correo reportarlo de forma privada.
 
+En nuestra [medición de 304 sitios .mx](/blog/cabeceras-seguridad-web-pymes-mexico) (25-nov-2026), el 60 % no tiene HSTS y el 71 % no tiene `Content-Security-Policy`; ahí viene cómo configurarlas en Apache, Nginx, Cloudflare o Vercel.
+
 ## Etapa 3: Control de acceso en ciberseguridad y nube (Mes 1)
 
 Conforme la empresa crece de 5 a 50 o 200 personas, el riesgo pasa de la página web a las cuentas internas (CRM, facturación, bancos, Google Drive, AWS o servidores):

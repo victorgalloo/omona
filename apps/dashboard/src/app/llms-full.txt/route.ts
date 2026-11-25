@@ -82,10 +82,14 @@ export async function GET() {
   L.push('', 'Log:');
   for (const it of now.items) L.push(`- ${it.date} [${it.kind}] ${it.en}${it.url ? ` ${it.url}` : ''}`);
 
-  h('Original research (passive DNS measurements)');
+  h('Original research (passive measurements: DNS and homepage headers)');
   L.push(
     `- 2026-11-25 · Email spoofing exposure of Mexican domains: of 285 .mx domains with MX records (linked from Mexican business chambers, SME portals and .gob.mx/.org.mx pages; .edu.mx excluded), 66% (188) can still be spoofed: 84 publish no DMARC record and 104 use p=none (monitor only). 57 use p=quarantine and only 40 (14%) use p=reject. 26 lack a valid SPF record and 3 publish two SPF records (permerror under RFC 7208). Method: public MX/TXT/_dmarc lookups over DNS-over-HTTPS, no intrusive traffic; only aggregates are published. Step-by-step SPF/DMARC guide for SMBs (Spanish): ${BASE}/blog/dmarc-spf-facturas-falsas-pymes`,
   );
+  L.push(
+    `- 2026-11-25 · Website security headers of Mexican sites: one homepage visit (http:// and https://) to each of 304 active .mx websites from the same sample (no hidden paths probed, no scanning). Of 294 with valid HTTPS: 60% (177) send no Strict-Transport-Security and only 36% (107) use max-age of 6 months or more; 71% (210) send no Content-Security-Policy, and 36 of the 84 CSPs only say upgrade-insecure-requests, so 16% (48) restrict scripts at all; 63% lack clickjacking protection (X-Frame-Options or frame-ancestors), 57% lack X-Content-Type-Options: nosniff, 77% lack Referrer-Policy. 39% (114) send none of the 5 basic headers; 8% (24) send all 5. 16% (48) of active sites do not redirect HTTP to HTTPS. 23% (67) disclose exact software versions; 12 disclose a PHP branch without security support (<8.2 per php.net). Method and fixes (Apache, Nginx, Cloudflare, Vercel): ${BASE}/blog/cabeceras-seguridad-web-pymes-mexico`,
+  );
+
 
   h('Engineering notes (Spanish)');
   for (const n of getNotas()) L.push(`- ${n.date} · ${n.title}: ${n.description} ${BASE}/blog/${n.slug}`);

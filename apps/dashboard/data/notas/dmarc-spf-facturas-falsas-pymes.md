@@ -85,6 +85,6 @@ Aunque tu dominio esté blindado, los estafadores registran dominios parecidos (
 
 ## Siguiente paso
 
-Este es el escalón 1 de la [guía de ciberseguridad para PyMEs en México](/blog/ciberseguridad-para-pymes-mexico-guia). Con el correo en orden, sigue tu página web (HTTPS/HSTS, `Content-Security-Policy`, bloqueo de `/.env`) y después los accesos de tu equipo. Revisa tu dominio hoy en [`omona.tech/#diagnostico`](/#diagnostico) o escríbenos a [`victor@omona.tech`](mailto:victor@omona.tech?subject=DMARC%20y%20SPF%20para%20mi%20PyME%20%E2%80%94%20Omona).
+Este es el escalón 1 de la [guía de ciberseguridad para PyMEs en México](/blog/ciberseguridad-para-pymes-mexico-guia). Con el correo en orden, sigue tu página web ([cabeceras de seguridad: HTTPS/HSTS, `Content-Security-Policy`](/blog/cabeceras-seguridad-web-pymes-mexico), bloqueo de `/.env`) y después los accesos de tu equipo. Revisa tu dominio hoy en [`omona.tech/#diagnostico`](/#diagnostico) o escríbenos a [`victor@omona.tech`](mailto:victor@omona.tech?subject=DMARC%20y%20SPF%20para%20mi%20PyME%20%E2%80%94%20Omona).
 
 _Método: medición pasiva del 25 de noviembre de 2026, 0 tokens de IA, solo consultas DNS públicas. Publicamos agregados; no publicamos qué dominio está en qué grupo._

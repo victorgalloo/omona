@@ -48,6 +48,7 @@ export async function GET() {
   L.push(`- [Blog](${BASE}/blog): engineering notes, Spanish. RSS: ${BASE}/blog/rss.xml`);
   L.push(`- [Security for AI agents](${BASE}/en/security): defensive-only security reviews of AI-agent deployments, provided by a formally incorporated Mexican legal entity under the Omona brand, with ${NOMBRE_LEGAL} as the responsible person. Spanish: ${BASE}/seguridad`);
   L.push(`- [Original data: email spoofing in Mexico](${BASE}/blog/dmarc-spf-facturas-falsas-pymes): passive DNS measurement (2026-11-25) of 285 .mx domains with email; 66% can be spoofed (no DMARC or p=none), only 14% enforce p=reject. Spanish.`);
+  L.push(`- [Original data: website security headers in Mexico](${BASE}/blog/cabeceras-seguridad-web-pymes-mexico): passive homepage measurement (2026-11-25) of 304 active .mx websites; 60% lack HSTS, 71% lack any Content-Security-Policy, 39% send none of 5 basic security headers. Spanish.`);
   L.push('');
   L.push('## Why he does this (his words, translated)', '');
   for (const f of FILOSOFIA.en) L.push(`- ${f}`);
