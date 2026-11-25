@@ -22,6 +22,7 @@ import { Wrap, Eyebrow } from './Home';
 import { BASE, ORG, ORG_ID, PERSON } from '@/lib/entidad';
 import { CARGO_SL, NOMBRE_LEGAL, REDES } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
+import { DiagnosticoSaaS } from './DiagnosticoSaaS';
 
 type Lang = 'es' | 'en';
 
@@ -253,11 +254,14 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                 <h1 className="text-heading-lg max-w-[20ch] text-balance text-obsidian">{t.h1}</h1>
                 <p className="mt-6 max-w-[58ch] text-[18px] leading-[1.5] text-charcoal">{t.sub}</p>
                 <p className="mt-4 max-w-[58ch] text-pretty text-[15px] leading-[1.5] text-stone">{t.status}</p>
-                <p className="mt-6">
-                  <a href={`mailto:${CORREO_SEGURIDAD}`} className="btn-fill">
-                    {t.contactCta} {CORREO_SEGURIDAD}
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  <a href="#diagnostico" className="btn-fill">
+                    {lang === 'es' ? 'Evaluar mi dominio ahora →' : 'Analyze my domain now →'}
                   </a>
-                </p>
+                  <a href={`mailto:${CORREO_SEGURIDAD}?subject=${encodeURIComponent(lang === 'es' ? 'Agendar revisión de seguridad para agentes IA — Omona' : 'Schedule an AI Agent Security Review — Omona')}`} className="btn-ghost">
+                    {lang === 'es' ? 'Agendar llamada de alcance' : 'Book scope call'}
+                  </a>
+                </div>
               </div>
               <div className="cli text-[12.5px]">
                 <p>
@@ -275,6 +279,9 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                 <p className="dim mt-1">{lang === 'es' ? '× sin pentest ofensivo' : '× no offensive pentest'}</p>
                 <p className="dim">{lang === 'es' ? '× sin red team a terceros' : '× no third-party red team'}</p>
               </div>
+            </div>
+            <div className="mt-10">
+              <DiagnosticoSaaS lang={lang} showScopeLink={false} />
             </div>
           </Wrap>
         </header>

@@ -19,22 +19,25 @@ import { Logo } from '../shared/Logo';
  */
 const LINKS = {
   es: [
+    { href: '/#diagnostico', label: 'Diagnóstico' },
+    { href: '/seguridad', label: 'Seguridad IA' },
     { href: '/open-source', label: 'Open source' },
+    { href: '/blog', label: 'Notas' },
     { href: '/now', label: 'Ahora' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/seguridad', label: 'Seguridad' },
     { href: '/about', label: 'About' },
   ],
   en: [
+    { href: '/en/security#diagnostico', label: 'Diagnostic' },
+    { href: '/en/security', label: 'AI Security' },
     { href: '/en/open-source', label: 'Open source' },
+    { href: '/blog', label: 'Notes' },
     { href: '/now', label: 'Now' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/en/security', label: 'Security' },
     { href: '/about', label: 'About' },
   ],
 };
 
-const GITHUB = 'https://github.com/victorgalloo';
+const AGENDA_MAILTO =
+  'mailto:victor@omona.tech?subject=Agendar%20revisi%C3%B3n%20de%20arquitectura%20y%20agentes%20IA%20%E2%80%94%20Omona';
 
 /** `lang="en"` solo cambia a dónde apunta Open source (páginas /about y /en/open-source). */
 export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
@@ -63,9 +66,12 @@ export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <a href={GITHUB} target="_blank" rel="noopener noreferrer me" className="btn-fill !h-8 rounded-full">
-            GitHub ↗
+          <a href={AGENDA_MAILTO} className="btn-ghost !h-8 rounded-full text-[13px]">
+            {lang === 'en' ? 'Book review' : 'Agendar llamada'}
           </a>
+          <Link href={lang === 'en' ? '/en/security#diagnostico' : '/#diagnostico'} className="btn-fill !h-8 rounded-full text-[13px]">
+            {lang === 'en' ? 'Analyze domain →' : 'Evaluar dominio →'}
+          </Link>
         </div>
 
         <button
@@ -95,9 +101,18 @@ export function LandingNav({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
               </li>
             ))}
           </ul>
-          <a href={GITHUB} target="_blank" rel="noopener noreferrer me" className="btn-fill mt-4 w-full">
-            GitHub ↗
-          </a>
+          <div className="mt-4 flex flex-col gap-2">
+            <Link
+              href={lang === 'en' ? '/en/security#diagnostico' : '/#diagnostico'}
+              onClick={() => setOpen(false)}
+              className="btn-fill w-full"
+            >
+              {lang === 'en' ? 'Analyze domain →' : 'Evaluar dominio →'}
+            </Link>
+            <a href={AGENDA_MAILTO} className="btn-ghost w-full">
+              {lang === 'en' ? 'Book review' : 'Agendar llamada'}
+            </a>
+          </div>
         </div>
       )}
     </nav>

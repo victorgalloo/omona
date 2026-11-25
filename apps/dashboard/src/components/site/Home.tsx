@@ -13,10 +13,11 @@ import Link from 'next/link';
 import { Logo } from '@/components/shared/Logo';
 import { AUTOR } from '@/lib/entidad';
 import { fechaCorta, getNotas } from '@/lib/notas';
-import { AVISO_LOGOS, CONSTRUYO_SOBRE, CONTRIBUYO, FILOSOFIA, FOTO, LAB, POSICION, REDES, SUPERLEADS, type Marca } from '@/lib/perfil';
+import { AVISO_LOGOS, CONSTRUYO_SOBRE, CONTRIBUYO, FILOSOFIA, NOMBRE_LEGAL, REDES, type Marca } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
 import nowData from '../../../data/now/now.json';
 import { StateBadge } from './Blog';
+import { DiagnosticoSaaS } from './DiagnosticoSaaS';
 
 type Pr = {
   key: string; repo: string; number: number; title: string; url: string; state: string;
@@ -101,59 +102,74 @@ function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow: string; h
   );
 }
 
-// ── 1. Héroe: Victor ────────────────────────────────────────────
-// v2 (22-nov-2026), Victor: «dame más peso a mí, lúcame más». Nombre, foto
-// (la de victorgallo.com, en gris: es la única foto del sitio), su línea, su
-// cargo en SuperLeads y qué es Omona. La foto es la excepción a «sin fotos»
-// del DESIGN_SYSTEM §6: retrato en escala de grises dentro de un anillo.
+// ── 1. Héroe ejecutivo: Omona · Seguridad para agentes de IA y arquitectura ──
+// 24-nov-2026, Victor: «que ese sea el CTA principal de la página y quítame
+// relevancia a mí, haz la página más ejecutiva y con estos CTAs».
+
+const PILARES_EJECUTIVOS = [
+  {
+    k: '01',
+    h: 'Despliegues en AWS Bedrock e IAM',
+    p: 'Mínimo privilegio en roles IAM, credenciales efímeras en lugar de llaves estáticas, bóveda de secretos y bitácoras de auditoría.',
+  },
+  {
+    k: '02',
+    h: 'Resistencia a prompt injection',
+    p: 'Baterías adversarias pre-registradas contra tus propios agentes conversacionales y herramientas MCP antes de salir a producción.',
+  },
+  {
+    k: '03',
+    h: 'Revisión de código y superficie',
+    p: 'Inspección de repositorios, dependencias, cabeceras de seguridad, políticas CORS/CSP y prevención de fugas de datos personales.',
+  },
+  {
+    k: '04',
+    h: 'Entregable ejecutivo y remediación',
+    p: 'Reporte en texto estructurado con severidad, evidencia verificable y guía paso a paso para tu equipo de ingeniería.',
+  },
+];
 
 export function Hero() {
   return (
-    <header className="relative overflow-hidden pb-14 pt-12 sm:pb-20 sm:pt-20">
+    <header className="relative overflow-hidden pb-14 pt-10 sm:pb-20 sm:pt-16">
       <Wrap>
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.8fr)] lg:gap-16">
-          <div className="order-2 lg:order-1">
-            <Eyebrow>León, Gto. · México</Eyebrow>
-            <h1 className="text-display text-obsidian">Victor Gallo</h1>
-            <p className="mt-4 text-balance text-[26px] sm:max-w-[24ch] leading-[1.2] tracking-[-0.04em] text-stone sm:text-[32px]">
-              {POSICION.es}
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.25fr)] lg:gap-12">
+          <div>
+            <Eyebrow>Omona · Seguridad para Agentes de IA y Nube</Eyebrow>
+            <h1 className="text-heading-lg max-w-[18ch] text-balance text-obsidian">
+              Blinda la arquitectura de tu nube y tus agentes de IA.
+            </h1>
+            <p id="hero-description" className="mt-5 max-w-[54ch] text-[18px] leading-[1.5] text-charcoal">
+              Evaluamos la superficie pública de tu dominio al instante y auditamos bajo alcance firmado tus despliegues en AWS Bedrock, permisos IAM, secretos, código fuente y resistencia a prompt injection.
             </p>
-            <p id="hero-description" className="mt-6 max-w-[52ch] text-[18px] leading-[1.5] text-charcoal">
-              {SUPERLEADS.es}
+            <p className="mt-3 max-w-[54ch] text-[14.5px] leading-[1.5] text-stone">
+              100 % trabajo defensivo sobre sistemas propios del cliente, con autorización por escrito y revisión humana de cada hallazgo.
             </p>
-            <p className="mt-4 max-w-[52ch] text-[16px] leading-[1.5] text-stone">{LAB.es}</p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              <a href="#por-que" className="btn-fill">
-                Por qué hago esto
+            <div className="mt-7 flex flex-wrap gap-2.5">
+              <a href="#diagnostico" className="btn-fill">
+                Evaluar mi dominio ahora →
               </a>
-              <Link href="/now" className="btn-ghost">
-                Qué estoy haciendo ahora
-              </Link>
+              <a
+                href="mailto:victor@omona.tech?subject=Agendar%20revisi%C3%B3n%20de%20arquitectura%20y%20agentes%20IA%20%E2%80%94%20Omona"
+                className="btn-ghost"
+              >
+                Agendar llamada de alcance →
+              </a>
             </div>
-            <p className="mono-label mt-6 flex flex-wrap gap-x-4 gap-y-1 text-stone">
-              <a href={REDES.github} rel="me" className="hover:text-obsidian">GitHub</a>
-              <a href={REDES.linkedin} rel="me" className="hover:text-obsidian">LinkedIn</a>
-              <a href={REDES.x} rel="me" className="hover:text-obsidian">X</a>
-              <a href={REDES.builder} rel="me" className="hover:text-obsidian">AWS Builder</a>
-              <a href={AUTOR.url} rel="author" className="hover:text-obsidian">victorgallo.com</a>
-            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {PILARES_EJECUTIVOS.map((x) => (
+                <div key={x.k} className="ring-card p-4">
+                  <p className="mono-label text-graphite">{x.k}</p>
+                  <h2 className="mt-2 text-[16px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{x.h}</h2>
+                  <p className="mt-1.5 text-[13.5px] leading-[1.45] text-charcoal">{x.p}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <figure className="order-1 w-full max-w-[168px] sm:max-w-[280px] lg:order-2 lg:ml-auto lg:max-w-[360px]">
-            <div className="ring-card overflow-hidden p-1.5">
-              <img
-                src={FOTO}
-                srcSet="/victor/victor-gallo-412.webp 412w, /victor/victor-gallo.webp 824w"
-                sizes="(min-width: 1024px) 360px, 300px"
-                width={824}
-                height={1024}
-                alt="Victor Gallo, retrato en blanco y negro"
-                className="block h-auto w-full rounded-[4px]"
-                fetchPriority="high"
-              />
-            </div>
-            <figcaption className="mono-label mt-3 whitespace-nowrap text-graphite lg:text-right">{CARGO_CORTO}</figcaption>
-          </figure>
+          <div className="lg:sticky lg:top-20">
+            <DiagnosticoSaaS lang="es" />
+          </div>
         </div>
       </Wrap>
     </header>
@@ -539,7 +555,7 @@ export function Notas() {
   );
 }
 
-// ── 9. Qué es Omona ────────────────────────────────────────────────────
+// ── 9. Dirección técnica y respaldo legal ────────────────────────────────────
 
 export function Quien() {
   return (
@@ -547,18 +563,27 @@ export function Quien() {
       <Wrap>
         <div className="ring-card grid gap-6 p-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div>
-            <p className="mono-label text-graphite">Qué es Omona</p>
-            <p id="quien" className="mt-3 max-w-[62ch] text-[18px] leading-[1.45] tracking-[-0.02em] text-obsidian">
-              Mi laboratorio independiente para el trabajo open source. No hay producto que vender aquí: solo los aportes,
-              las notas y el código.
+            <p className="mono-label text-graphite">Dirección técnica · {NOMBRE_LEGAL}</p>
+            <p id="quien" className="mt-2 max-w-[64ch] text-[16px] leading-[1.5] text-obsidian">
+              Omona es operada por COMERCIALIZADORA DE LIBROS DEL BAJIO JIGA S.A.S. de C.V. (León, Guanajuato, México) y dirigida por {NOMBRE_LEGAL}. Combinamos revisiones defensivas de arquitectura para agentes de IA con contribuciones verificables a proyectos open source.
+            </p>
+            <p className="mono-label mt-3 flex flex-wrap gap-x-4 gap-y-1 text-stone">
+              <Link href="/seguridad" className="hover:text-obsidian">Alcance y aviso legal</Link>
+              <Link href="/about" className="hover:text-obsidian">About (EN)</Link>
+              <a href={REDES.github} rel="me" className="hover:text-obsidian">GitHub</a>
+              <a href={REDES.linkedin} rel="me" className="hover:text-obsidian">LinkedIn</a>
+              <a href={AUTOR.url} rel="author" className="hover:text-obsidian">victorgallo.com</a>
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link href="/about" className="btn-ghost">
-              About (EN)
-            </Link>
-            <a href={AUTOR.github} rel="me" className="btn-fill">
-              GitHub ↗
+            <a href="#diagnostico" className="btn-ghost">
+              Evaluar dominio
+            </a>
+            <a
+              href="mailto:victor@omona.tech?subject=Agendar%20revisi%C3%B3n%20de%20arquitectura%20y%20agentes%20IA%20%E2%80%94%20Omona"
+              className="btn-fill"
+            >
+              Agendar llamada →
             </a>
           </div>
         </div>

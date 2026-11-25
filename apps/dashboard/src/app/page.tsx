@@ -7,9 +7,9 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import ossData from '../../data/oss/oss.json';
 import nowData from '../../data/now/now.json';
 
-const TITLE = 'Victor Gallo · agentes de IA que hacen trabajo comercial · Omona';
+const TITLE = 'Omona · Seguridad para Agentes de IA y Arquitectura en la Nube';
 const DESC =
-  'Victor Gallo construye agentes de IA que hacen trabajo comercial de verdad. Su laboratorio open source: PRs a Hermes Agent y Strands Agents, notas sobre Amazon Bedrock y una bitácora diaria.';
+  'Diagnóstico pasivo de superficie pública en segundos y auditorías defensivas de alcance cerrado para agentes de IA en AWS Bedrock, permisos IAM, secretos y código fuente.';
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -74,11 +74,10 @@ export default function LandingPage() {
       <main>
         <Hero />
         <Marcas />
-        <PorQue />
-        <Ahora />
         <Actividad />
         <Proyectos />
         <Notas />
+        <Ahora />
         <Quien />
       </main>
       <HomeFooter />
