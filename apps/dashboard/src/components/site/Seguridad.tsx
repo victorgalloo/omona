@@ -26,7 +26,8 @@ import { DiagnosticoSaaS } from './DiagnosticoSaaS';
 
 type Lang = 'es' | 'en';
 
-export const RAZON_SOCIAL = 'COMERCIALIZADORA DE LIBROS DEL BAJIO JIGA S.A.S. de C.V.';
+export const PERSONA_MORAL_ES = 'una persona moral formalmente establecida en México';
+export const PERSONA_MORAL_EN = 'a formally incorporated Mexican legal entity';
 export const CORREO_SEGURIDAD = 'victor@omona.tech';
 
 const s = (ossData as unknown as { stats: Record<string, number> }).stats;
@@ -95,7 +96,7 @@ const T = {
     ossLink: 'Ver los PR con su estado en GitHub',
     discH: 'Aviso legal',
     disc: [
-      `Los servicios los presta ${RAZON_SOCIAL}, bajo la marca Omona, con domicilio en León, Guanajuato, México.`,
+      `Los servicios se representan y prestan a través de ${PERSONA_MORAL_ES}, bajo la marca Omona, con domicilio en León, Guanajuato, México.`,
       'Cada proyecto se hace solo con contrato por escrito y alcance firmado.',
       'Ninguna revisión garantiza seguridad absoluta. Los hallazgos son recomendaciones; decidir y aplicar los cambios le corresponde al cliente.',
       'No probamos ningún sistema sin la autorización de su dueño.',
@@ -172,7 +173,7 @@ const T = {
     ossLink: 'See the PRs with their GitHub status',
     discH: 'Disclaimer',
     disc: [
-      `Services are provided by ${RAZON_SOCIAL}, under the brand Omona, based in León, Guanajuato, Mexico.`,
+      `Services are represented and provided by ${PERSONA_MORAL_EN}, under the brand Omona, based in León, Guanajuato, Mexico.`,
       'Every engagement happens only under a written contract and a signed scope.',
       'No review guarantees absolute security. Findings are recommendations; deciding on and applying changes is the customer’s responsibility.',
       'We don’t test any system without its owner’s authorization.',
@@ -289,17 +290,16 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
         <section className="py-10 sm:py-14" aria-labelledby="servicios">
           <Wrap>
             <Head id="servicios" h={t.servicesH} sub={t.servicesSub} />
-            <ul className="grid gap-3 md:grid-cols-2">
+            <ul className="divide-y divide-hair border-y border-hair">
               {t.services.map((x) => (
-                <li key={x.k} className="ring-card p-5">
-                  <p className="mono-label text-graphite">{x.k}</p>
-                  <h3 className="mt-4 text-[19px] leading-[1.25] tracking-[-0.03em] text-obsidian">{x.h}</h3>
-                  <p className="mt-2 text-[15px] leading-[1.5] text-charcoal">{x.p}</p>
+                <li key={x.k} className="grid gap-2 py-5 md:grid-cols-[28ch_minmax(0,1fr)] md:items-baseline md:gap-8">
+                  <h3 className="text-[18px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{x.h}</h3>
+                  <p className="text-[15px] leading-[1.5] text-charcoal">{x.p}</p>
                 </li>
               ))}
             </ul>
-            <div className="ring-card mt-3 p-5">
-              <h3 className="text-[19px] leading-[1.25] tracking-[-0.03em] text-obsidian">{t.notH}</h3>
+            <div className="mt-8 border-b border-hair pb-6">
+              <h3 className="text-[18px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{t.notH}</h3>
               <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                 {t.not.map((x) => (
                   <li key={x} className="flex gap-3 text-[15px] leading-[1.5] text-charcoal">
@@ -341,9 +341,9 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
             </h2>
             <p className="mt-2 max-w-[60ch] text-[16px] leading-[1.5] text-charcoal">{t.whoRole}</p>
             <p className="mt-1 max-w-[60ch] text-[15px] leading-[1.5] text-stone">{t.whoSub}</p>
-            <dl className="ring-card mt-8 divide-y divide-hair">
+            <dl className="mt-8 divide-y divide-hair border-y border-hair">
               {t.creds.map(([k, v]) => (
-                <div key={k} className="grid gap-1 px-4 py-3 sm:grid-cols-[200px_minmax(0,1fr)] sm:gap-6">
+                <div key={k} className="grid gap-1 py-3.5 sm:grid-cols-[200px_minmax(0,1fr)] sm:gap-6">
                   <dt className="mono-label pt-0.5 text-graphite">{k}</dt>
                   <dd className="text-pretty text-[15px] leading-[1.5] text-charcoal">{v}</dd>
                 </div>
@@ -368,8 +368,8 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
 
         <section className="py-10 sm:py-14" aria-labelledby="aviso">
           <Wrap>
-            <div className="grid gap-3 lg:grid-cols-2">
-              <div className="ring-card p-5">
+            <div className="grid gap-10 border-y border-hair py-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)]">
+              <div>
                 <h2 id="aviso" className="text-[22px] leading-[1.2] tracking-[-0.03em] text-obsidian">
                   {t.discH}
                 </h2>
@@ -381,7 +381,7 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                   ))}
                 </ul>
               </div>
-              <div className="ring-card self-start p-5">
+              <div className="self-start lg:border-l lg:border-hair lg:pl-8">
                 <h2 className="text-[22px] leading-[1.2] tracking-[-0.03em] text-obsidian">{t.contactH}</h2>
                 <p className="mt-2 text-[15px] leading-[1.5] text-stone">{t.contactP}</p>
                 <p className="mt-4 text-[15px] leading-[1.5] text-charcoal">

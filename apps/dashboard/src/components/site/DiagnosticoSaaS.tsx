@@ -132,53 +132,94 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
       )}`;
 
   return (
-    <div id="diagnostico" className="ring-card bg-white p-5 sm:p-7">
-      <p className="mono-label text-graphite">{t.eyebrow}</p>
-      <h2 className="mt-2 text-[22px] font-medium leading-[1.2] tracking-[-0.03em] text-obsidian sm:text-[26px]">{t.title}</h2>
-      <p className="mt-2 max-w-[64ch] text-[15px] leading-[1.5] text-charcoal">{t.sub}</p>
+    <section id="diagnostico" aria-labelledby="diagnostico-heading" className="border-t border-obsidian pt-6">
+      <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+        <div>
+          <h2 id="diagnostico-heading" className="text-[22px] font-medium leading-[1.2] tracking-[-0.03em] text-obsidian sm:text-[26px]">
+            {t.title}
+          </h2>
+          <p className="mt-2 max-w-[68ch] text-[15px] leading-[1.5] text-charcoal">{t.sub}</p>
+        </div>
+        <div className="mono-label flex items-center gap-2 text-stone">
+          <span>{lang === 'en' ? 'Try example:' : 'Probar ejemplo:'}</span>
+          {['omona.tech', 'superleads.mx'].map((ej) => (
+            <button
+              key={ej}
+              type="button"
+              onClick={async () => {
+                setDominio(ej);
+                setAutorizado(true);
+                setError(null);
+                setCargando(true);
+                try {
+                  const r = await fetch('/api/diagnostico', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ dominio: ej, autorizado: true, lang }),
+                  });
+                  const j = await r.json();
+                  if (r.ok && j.ok) setRes(j);
+                } finally {
+                  setCargando(false);
+                }
+              }}
+              className="underline decoration-hair underline-offset-4 transition-colors hover:text-obsidian hover:decoration-obsidian"
+            >
+              {ej}
+            </button>
+          ))}
+        </div>
+      </div>
 
-      <form onSubmit={ejecutar} className="mt-5 space-y-3">
-        <div className="flex flex-col gap-2.5 sm:flex-row">
-          <input
-            type="text"
-            required
-            value={dominio}
-            onChange={(e) => setDominio(e.target.value)}
-            placeholder={t.placeholder}
-            aria-label={t.placeholder}
-            className="h-11 flex-1 rounded-[6px] border border-hair bg-[#fafafa] px-3.5 font-mono text-[14px] text-obsidian placeholder:text-graphite focus:border-obsidian focus:outline-none"
-          />
-          <button type="submit" disabled={cargando} className="btn-fill !h-11 shrink-0 px-5 text-[14px] disabled:opacity-50">
+      <form onSubmit={ejecutar} className="mt-6">
+        <div className="flex flex-col border-y border-obsidian bg-white sm:flex-row sm:items-stretch">
+          <div className="flex flex-1 items-center px-4 py-3">
+            <span className="select-none font-mono text-[14px] text-graphite">https://</span>
+            <input
+              type="text"
+              required
+              value={dominio}
+              onChange={(e) => setDominio(e.target.value)}
+              placeholder={t.placeholder}
+              aria-label={t.placeholder}
+              className="w-full bg-transparent pl-1 font-mono text-[15px] text-obsidian placeholder:text-graphite focus:outline-none"
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={cargando}
+            className="h-12 shrink-0 bg-obsidian px-6 font-mono text-[13px] font-medium uppercase tracking-[0.06em] text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:h-auto"
+          >
             {cargando ? t.btnRunning : t.btnRun}
           </button>
         </div>
-        <label className="flex cursor-pointer items-start gap-2.5 text-[13px] leading-[1.45] text-stone">
+        <label className="mt-3 flex cursor-pointer items-start gap-2.5 text-[13px] leading-[1.45] text-stone">
           <input
             type="checkbox"
             checked={autorizado}
             onChange={(e) => setAutorizado(e.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded border-hair accent-obsidian"
+            className="mt-0.5 h-4 w-4 accent-obsidian"
           />
           <span>{t.authLabel}</span>
         </label>
       </form>
 
-      {error && <p className="mt-4 rounded-[6px] border border-hair bg-[#fafafa] px-3.5 py-2.5 font-mono text-[13px] text-obsidian">× {error}</p>}
+      {error && <p className="mt-4 border-l-2 border-obsidian pl-3 font-mono text-[13px] text-obsidian">× {error}</p>}
 
       {res && (
-        <div className="mt-6 border-t border-hair pt-6">
-          <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <div>
-              <p className="mono-label text-graphite">
-                {res.dominio} · {res.fecha}
-              </p>
-              <p className="mt-1 text-[28px] font-medium leading-none tracking-[-0.04em] text-obsidian">
+        <div className="mt-8 border-t border-hair pt-6 tabular-nums">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 pb-5">
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+              <p className="text-[36px] font-medium leading-none tracking-[-0.04em] text-obsidian">
                 {res.puntaje}
-                <span className="text-[16px] text-stone">/100</span>{' '}
-                <span className="mono-label ml-2 text-charcoal">
-                  {res.conteos.ok} {t.okLabel} · {res.conteos.aviso} {t.warnLabel} · {res.conteos.brecha} {t.failLabel}
-                </span>
+                <span className="text-[18px] text-stone">/100</span>
               </p>
+              <div>
+                <p className="font-mono text-[14px] font-medium text-obsidian">{res.dominio}</p>
+                <p className="mono-label mt-0.5 text-stone">
+                  {res.conteos.ok} {t.okLabel} · {res.conteos.aviso} {t.warnLabel} · {res.conteos.brecha} {t.failLabel} · {res.fecha}
+                </p>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={descargarMd} className="btn-ghost !h-8 text-[13px]">
@@ -190,18 +231,19 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
             </div>
           </div>
 
-          <ul className="mt-5 divide-y divide-hair border-y border-hair">
+          <ul className="divide-y divide-hair border-y border-hair">
             {res.controles.map((c) => (
-              <li key={c.id} className="grid gap-2 py-3.5 sm:grid-cols-[9ch_18ch_minmax(0,1fr)] sm:items-baseline sm:gap-4">
+              <li key={c.id} className="grid gap-2 py-4 sm:grid-cols-[10ch_18ch_minmax(0,1fr)] sm:items-baseline sm:gap-6">
                 <span
-                  className={`mono-label inline-block w-fit rounded px-1.5 py-0.5 text-[11px] ${
+                  className={`mono-label inline-block w-fit text-[11.5px] ${
                     c.estado === 'ok'
-                      ? 'bg-[#ebfbee] text-[#297a3a]'
+                      ? 'text-[#297a3a]'
                       : c.estado === 'aviso'
-                        ? 'bg-[#f4f4f5] text-charcoal'
-                        : 'bg-obsidian text-white'
+                        ? 'text-charcoal'
+                        : 'font-semibold text-obsidian'
                   }`}
                 >
+                  {c.estado === 'ok' ? '✓ ' : c.estado === 'aviso' ? '! ' : '× '}
                   {t.badge[c.estado]}
                 </span>
                 <span className="mono-label text-graphite">{c.categoria}</span>
@@ -214,10 +256,12 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
             ))}
           </ul>
 
-          <div className="mt-6 rounded-[6px] border border-hair bg-[#fafafa] p-4 sm:p-5">
-            <p className="text-[16px] font-medium tracking-[-0.02em] text-obsidian">{t.ctaDeepTitle}</p>
-            <p className="mt-1.5 max-w-[64ch] text-[14px] leading-[1.5] text-charcoal">{t.ctaDeepSub}</p>
-            <div className="mt-4 flex flex-wrap gap-2.5">
+          <div className="mt-6 flex flex-col justify-between gap-6 border-b border-hair pb-6 lg:flex-row lg:items-center">
+            <div className="max-w-[62ch]">
+              <p className="text-[17px] font-medium tracking-[-0.02em] text-obsidian">{t.ctaDeepTitle}</p>
+              <p className="mt-1 text-[14.5px] leading-[1.5] text-charcoal">{t.ctaDeepSub}</p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-2.5">
               <a href={mailtoHref} className="btn-fill">
                 {t.ctaBook}
               </a>
@@ -230,6 +274,6 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }

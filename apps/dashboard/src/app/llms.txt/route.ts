@@ -46,7 +46,7 @@ export async function GET() {
   L.push(`- [Now](${BASE}/now): daily log, Spanish. RSS: ${BASE}/now/rss.xml`);
   L.push(`- [Open source](${BASE}/en/open-source): PRs and issues with live status. Spanish: ${BASE}/open-source`);
   L.push(`- [Blog](${BASE}/blog): engineering notes, Spanish. RSS: ${BASE}/blog/rss.xml`);
-  L.push(`- [Security for AI agents](${BASE}/en/security): defensive-only security reviews of AI-agent deployments, provided by COMERCIALIZADORA DE LIBROS DEL BAJIO JIGA S.A.S. de C.V. under the Omona brand, with ${NOMBRE_LEGAL} as the responsible person. No customer engagements yet. Spanish: ${BASE}/seguridad`);
+  L.push(`- [Security for AI agents](${BASE}/en/security): defensive-only security reviews of AI-agent deployments, provided by a formally incorporated Mexican legal entity under the Omona brand, with ${NOMBRE_LEGAL} as the responsible person. Spanish: ${BASE}/seguridad`);
   L.push('');
   L.push('## Why he does this (his words, translated)', '');
   for (const f of FILOSOFIA.en) L.push(`- ${f}`);

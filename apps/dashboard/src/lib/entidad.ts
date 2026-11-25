@@ -49,16 +49,14 @@ export const ORG = {
   url: BASE,
   logo: `${BASE}/logo-mark.png`,
   description:
-    "Victor Gallo's independent engineering lab for open-source work on AI agents: upstream pull requests, issue reports and engineering notes. Not a commercial product.",
+    'Independent AI-agent security and open-source engineering lab: passive domain posture diagnostics, defensive architecture reviews on AWS Bedrock, and upstream pull requests.',
   founder: PERSON_REF,
-  // 24-nov-2026: la marca Omona la opera esta sociedad (servicio defensivo en /seguridad).
-  legalName: 'COMERCIALIZADORA DE LIBROS DEL BAJIO JIGA S.A.S. de C.V.',
   address: { '@type': 'PostalAddress', addressLocality: 'León', addressRegion: 'Guanajuato', addressCountry: 'MX' },
   email: 'victor@omona.tech',
 };
 
 export const ORG_DESC_ES =
-  'Laboratorio de ingeniería independiente de Victor Gallo para su trabajo open source sobre agentes de IA: pull requests a otros proyectos, reportes de bugs y notas de ingeniería. No es un producto comercial.';
+  'Seguridad defensiva para agentes de IA y arquitectura en la nube, operada como persona moral formalmente establecida en México, más contribuciones verificables a código abierto.';
 
 export const AUTOR = {
   nombre: 'Victor Gallo',

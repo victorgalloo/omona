@@ -85,13 +85,12 @@ function Estado({ state }: { state: string }) {
   return <span className={`w-[7ch] shrink-0 uppercase ${state === 'merged' ? 'ok' : 'text-obsidian'}`}>{state}</span>;
 }
 
-function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow: string; h: string; sub?: string; more?: { href: string; label: string } }) {
+export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: string; h: string; sub?: string; more?: { href: string; label: string } }) {
   return (
     <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
       <div className="max-w-[44rem]">
-        <Eyebrow>{eyebrow}</Eyebrow>
         <h2 id={id} className="text-heading text-obsidian">{h}</h2>
-        {sub && <p className="mt-3 text-[15px] leading-[1.5] text-stone">{sub}</p>}
+        {sub && <p className="mt-2.5 text-[15px] leading-[1.5] text-stone">{sub}</p>}
       </div>
       {more && (
         <Link href={more.href} className="mono-label shrink-0 text-charcoal hover:text-obsidian">
@@ -104,26 +103,22 @@ function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow: string; h
 
 // ── 1. Héroe ejecutivo: Omona · Seguridad para agentes de IA y arquitectura ──
 // 24-nov-2026, Victor: «que ese sea el CTA principal de la página y quítame
-// relevancia a mí, haz la página más ejecutiva y con estos CTAs».
+// relevancia a mí, haz la página más ejecutiva y con estos CTAs, sin cards».
 
 const PILARES_EJECUTIVOS = [
   {
-    k: '01',
     h: 'Despliegues en AWS Bedrock e IAM',
     p: 'Mínimo privilegio en roles IAM, credenciales efímeras en lugar de llaves estáticas, bóveda de secretos y bitácoras de auditoría.',
   },
   {
-    k: '02',
     h: 'Resistencia a prompt injection',
     p: 'Baterías adversarias pre-registradas contra tus propios agentes conversacionales y herramientas MCP antes de salir a producción.',
   },
   {
-    k: '03',
     h: 'Revisión de código y superficie',
     p: 'Inspección de repositorios, dependencias, cabeceras de seguridad, políticas CORS/CSP y prevención de fugas de datos personales.',
   },
   {
-    k: '04',
     h: 'Entregable ejecutivo y remediación',
     p: 'Reporte en texto estructurado con severidad, evidencia verificable y guía paso a paso para tu equipo de ingeniería.',
   },
@@ -131,46 +126,43 @@ const PILARES_EJECUTIVOS = [
 
 export function Hero() {
   return (
-    <header className="relative overflow-hidden pb-14 pt-10 sm:pb-20 sm:pt-16">
+    <header className="relative overflow-hidden pb-14 pt-12 sm:pb-24 sm:pt-20">
       <Wrap>
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.25fr)] lg:gap-12">
-          <div>
-            <Eyebrow>Omona · Seguridad para Agentes de IA y Nube</Eyebrow>
-            <h1 className="text-heading-lg max-w-[18ch] text-balance text-obsidian">
-              Blinda la arquitectura de tu nube y tus agentes de IA.
-            </h1>
-            <p id="hero-description" className="mt-5 max-w-[54ch] text-[18px] leading-[1.5] text-charcoal">
-              Evaluamos la superficie pública de tu dominio al instante y auditamos bajo alcance firmado tus despliegues en AWS Bedrock, permisos IAM, secretos, código fuente y resistencia a prompt injection.
-            </p>
-            <p className="mt-3 max-w-[54ch] text-[14.5px] leading-[1.5] text-stone">
-              100 % trabajo defensivo sobre sistemas propios del cliente, con autorización por escrito y revisión humana de cada hallazgo.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-2.5">
-              <a href="#diagnostico" className="btn-fill">
-                Evaluar mi dominio ahora →
-              </a>
-              <a
-                href="mailto:victor@omona.tech?subject=Agendar%20revisi%C3%B3n%20de%20arquitectura%20y%20agentes%20IA%20%E2%80%94%20Omona"
-                className="btn-ghost"
-              >
-                Agendar llamada de alcance →
-              </a>
-            </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {PILARES_EJECUTIVOS.map((x) => (
-                <div key={x.k} className="ring-card p-4">
-                  <p className="mono-label text-graphite">{x.k}</p>
-                  <h2 className="mt-2 text-[16px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{x.h}</h2>
-                  <p className="mt-1.5 text-[13.5px] leading-[1.45] text-charcoal">{x.p}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:sticky lg:top-20">
-            <DiagnosticoSaaS lang="es" />
+        <div className="max-w-[54rem]">
+          <h1 className="text-heading-lg text-balance text-obsidian">
+            Blinda la arquitectura de tu nube y tus agentes de IA.
+          </h1>
+          <p id="hero-description" className="mt-6 max-w-[62ch] text-[19px] leading-[1.5] text-charcoal">
+            Evaluamos la superficie pública de tu dominio al instante y auditamos bajo alcance firmado tus despliegues en AWS Bedrock, permisos IAM, secretos, código fuente y resistencia a prompt injection.
+          </p>
+          <p className="mt-3 max-w-[62ch] text-[15px] leading-[1.5] text-stone">
+            Trabajo 100 % defensivo sobre sistemas propios del cliente, con autorización por escrito y revisión humana de cada hallazgo.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#diagnostico" className="btn-fill">
+              Evaluar mi dominio ahora →
+            </a>
+            <a
+              href="mailto:victor@omona.tech?subject=Agendar%20revisi%C3%B3n%20de%20arquitectura%20y%20agentes%20IA%20%E2%80%94%20Omona"
+              className="btn-ghost"
+            >
+              Agendar llamada de alcance →
+            </a>
           </div>
         </div>
+
+        <div className="mt-14">
+          <DiagnosticoSaaS lang="es" />
+        </div>
+
+        <dl className="mt-12 grid divide-y divide-hair border-y border-hair sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-y-0">
+          {PILARES_EJECUTIVOS.map((x, idx) => (
+            <div key={x.h} className={`py-6 ${idx > 0 ? 'lg:pl-6' : ''} ${idx < 3 ? 'lg:pr-6' : ''}`}>
+              <dt className="text-[16px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{x.h}</dt>
+              <dd className="mt-2 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
+            </div>
+          ))}
+        </dl>
       </Wrap>
     </header>
   );
@@ -215,9 +207,9 @@ export function Marcas({ lang = 'es' }: { lang?: 'es' | 'en' } = {}) {
         <h2 id="marcas" className="sr-only">
           {en ? 'Projects I contribute to and build on' : 'Proyectos a los que contribuyo y sobre los que construyo'}
         </h2>
-        <div className="ring-card grid overflow-hidden lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="border-b border-hair lg:border-b-0 lg:border-r lg:border-r-[#d4d4d4]">
-            <p className="mono-label border-b border-hair px-4 py-2.5 text-graphite sm:px-5">{en ? 'Contributing to' : 'Contribuyo a'}</p>
+        <div className="grid border-y border-hair lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div className="border-b border-hair lg:border-b-0 lg:border-r lg:border-r-hair">
+            <p className="mono-label border-b border-hair py-2.5 pr-4 text-graphite sm:pr-5">{en ? 'Contributing to' : 'Contribuyo a'}</p>
             <div className="grid grid-cols-1 divide-y divide-hair sm:grid-cols-2 sm:divide-x sm:divide-y-0">
               {CONTRIBUYO.map((m) => (
                 <Celda key={m.id} m={m} lang={lang} />
@@ -283,8 +275,8 @@ export function Ahora({ limite = 6 }: { limite?: number }) {
           sub={`Se arma sola cada día desde GitHub, el blog y mi agenda confirmada. Última entrada: ${fecha(`${now.updated}T12:00:00-06:00`)}.`}
           more={{ href: '/now', label: 'Toda la bitácora' }}
         />
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]">
-          <div className="ring-card self-start p-4">
+        <div className="grid gap-8 border-t border-hair pt-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]">
+          <div className="self-start">
             <p className="mono-label text-graphite">En foco</p>
             <ul className="mt-3 space-y-3">
               {now.foco.map((f) => (
@@ -301,9 +293,9 @@ export function Ahora({ limite = 6 }: { limite?: number }) {
               ))}
             </ul>
           </div>
-          <ul className="ring-card divide-y divide-hair">
+          <ul className="divide-y divide-hair border-y border-hair">
             {items.map((it) => (
-              <li key={`${it.kind}${it.ref}`} className="grid grid-cols-[12ch_minmax(0,1fr)] gap-x-3 gap-y-1 px-4 py-3 sm:grid-cols-[12ch_8ch_minmax(0,1fr)]">
+              <li key={`${it.kind}${it.ref}`} className="grid grid-cols-[12ch_minmax(0,1fr)] gap-x-3 gap-y-1 py-3 sm:grid-cols-[12ch_8ch_minmax(0,1fr)]">
                 <span className="mono-label pt-0.5 text-graphite">{fechaCorta(it.date)}</span>
                 <span className="mono-label pt-0.5 text-stone">{TIPO[it.kind] ?? it.kind}</span>
                 <p className="col-span-2 min-w-0 text-[15px] leading-[1.5] text-charcoal sm:col-span-1">
@@ -377,8 +369,8 @@ export function Actividad() {
             {s.merged === 0 && <p className="dim mt-1">→ ninguno merged todavía: todos esperan revisión de los maintainers</p>}
           </div>
 
-          <div className="ring-card flex flex-col justify-between gap-6 p-4">
-            <dl className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col justify-between gap-6 border-y border-hair py-5 tabular-nums">
+            <dl className="grid grid-cols-2 gap-4">
               {(
                 [
                   [String(s.prs), 'pull requests'],
@@ -498,19 +490,18 @@ export function Proyectos() {
       <Wrap>
         <Seccion
           id="proyectos"
-          eyebrow="Código propio"
-          h="Repos públicos"
-          sub="Código y documentación bajo mi cuenta de GitHub."
+          h="Repositorios públicos"
+          sub="Herramientas y plantillas abiertas bajo licencia permisiva."
           more={{ href: AUTOR.github, label: 'Todos en GitHub' }}
         />
-        <ul className="grid gap-3 md:grid-cols-2">
+        <ul className="divide-y divide-hair border-y border-hair">
           {ps.map((p) => (
-            <li key={p.repo} className="ring-card flex flex-col p-4">
-              <a href={p.url} className="font-mono text-[12.5px] text-obsidian underline decoration-hair underline-offset-2 hover:decoration-obsidian">
+            <li key={p.repo} className="grid gap-2 py-5 md:grid-cols-[28ch_minmax(0,1fr)_auto] md:items-baseline md:gap-8">
+              <a href={p.url} className="font-mono text-[13px] text-obsidian underline decoration-hair underline-offset-4 hover:decoration-obsidian">
                 {p.repo}
               </a>
-              <p className="mt-3 text-[15px] leading-[1.5] text-charcoal">{p.es}</p>
-              <p className="mono-label mt-auto flex flex-wrap gap-x-4 pt-4 text-graphite">
+              <p className="text-[15px] leading-[1.5] text-charcoal">{p.es}</p>
+              <p className="mono-label flex flex-wrap gap-x-4 text-graphite">
                 {p.language && <span>{p.language}</span>}
                 {p.license && <span>{p.license}</span>}
                 <span>actualizado {fecha(p.pushedAt)}</span>
@@ -529,22 +520,23 @@ export function Notas() {
   const notas = getNotas().slice(0, 3);
   if (!notas.length) return null;
   return (
-    <section className="py-16 sm:py-32" aria-labelledby="notas">
+    <section className="py-12 sm:py-24" aria-labelledby="notas">
       <Wrap>
         <Seccion
           id="notas"
-          eyebrow="Blog"
           h="Notas de ingeniería"
-          sub="El porqué de algunos de estos PRs, con mediciones."
+          sub="Arquitectura, seguridad de agentes y mediciones en producción."
           more={{ href: '/blog', label: 'Todas las notas' }}
         />
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="divide-y divide-hair border-y border-hair">
           {notas.map((n) => (
-            <Link key={n.slug} href={`/blog/${n.slug}`} className="ring-card group flex flex-col p-4 transition-shadow hover:shadow-card-hover">
+            <Link key={n.slug} href={`/blog/${n.slug}`} className="group grid gap-2 py-5 md:grid-cols-[14ch_minmax(0,1fr)_18ch] md:items-baseline md:gap-8">
               <p className="mono-label text-graphite">{fechaCorta(n.date)}</p>
-              <h3 className="mt-6 text-[19px] leading-[1.2] tracking-[-0.03em] text-obsidian">{n.title}</h3>
-              <p className="mt-3 line-clamp-3 text-[14px] leading-[1.5] text-charcoal">{n.description}</p>
-              <p className="mono-label mt-auto pt-6 text-stone">
+              <div>
+                <h3 className="text-[18px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian group-hover:underline">{n.title}</h3>
+                <p className="mt-1.5 text-[14.5px] leading-[1.5] text-charcoal">{n.description}</p>
+              </div>
+              <p className="mono-label text-stone md:text-right">
                 {n.prs.length ? n.prs.map((p) => `#${p.number}`).join(' · ') : n.tags.slice(0, 2).join(' · ')}
               </p>
             </Link>
@@ -561,11 +553,11 @@ export function Quien() {
   return (
     <section className="py-8 sm:py-16" aria-labelledby="quien">
       <Wrap>
-        <div className="ring-card grid gap-6 p-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+        <div className="grid gap-6 border-y border-hair py-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div>
-            <p className="mono-label text-graphite">Dirección técnica · {NOMBRE_LEGAL}</p>
+            <p className="mono-label text-graphite">Respaldo legal y dirección técnica</p>
             <p id="quien" className="mt-2 max-w-[64ch] text-[16px] leading-[1.5] text-obsidian">
-              Omona es operada por COMERCIALIZADORA DE LIBROS DEL BAJIO JIGA S.A.S. de C.V. (León, Guanajuato, México) y dirigida por {NOMBRE_LEGAL}. Combinamos revisiones defensivas de arquitectura para agentes de IA con contribuciones verificables a proyectos open source.
+              Omona se representa y opera como persona moral formalmente establecida en México (León, Guanajuato), bajo la dirección técnica de {NOMBRE_LEGAL}.
             </p>
             <p className="mono-label mt-3 flex flex-wrap gap-x-4 gap-y-1 text-stone">
               <Link href="/seguridad" className="hover:text-obsidian">Alcance y aviso legal</Link>
