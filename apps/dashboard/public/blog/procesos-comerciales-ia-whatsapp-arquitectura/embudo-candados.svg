@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" width="920" height="300" role="img" aria-label="Arquitectura comercial con IA en cuatro etapas: captura con contexto, calificación una pregunta a la vez, candados en código y traspaso a vendedor humano">
+  <rect width="920" height="300" fill="#fafafa"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+    <text x="32" y="36" font-size="11" fill="#666666" letter-spacing="0.08em">PROCESO COMERCIAL + IA · FLUJO CON CANDADOS DETERMINISTAS</text>
+    <line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+
+    <!-- Etapa 01 -->
+    <rect x="32" y="74" width="196" height="164" rx="6" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+    <text x="48" y="100" font-size="11" fill="#666666">01 · CAPTURA (&lt; 60 s)</text>
+    <text x="48" y="124" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Entrada con contexto</text>
+    <text x="48" y="150" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">WhatsApp, web o anuncio</text>
+    <text x="48" y="170" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">con origen atribuido en CRM</text>
+    <text x="48" y="190" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">y mensaje inicial claro.</text>
+    <text x="48" y="220" font-size="11" fill="#297a3a">✓ 0 leads en blanco</text>
+
+    <!-- Flecha 1 -->
+    <line x1="228" y1="156" x2="250" y2="156" stroke="#111111" stroke-width="1.2"/>
+    <polygon points="250,156 244,152 244,160" fill="#111111"/>
+
+    <!-- Etapa 02 -->
+    <rect x="252" y="74" width="196" height="164" rx="6" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+    <text x="268" y="100" font-size="11" fill="#666666">02 · CALIFICACIÓN</text>
+    <text x="268" y="124" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">1 pregunta por turno</text>
+    <text x="268" y="150" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">Necesidad, volumen y</text>
+    <text x="268" y="170" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">urgencia según etapas</text>
+    <text x="268" y="190" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">del embudo comercial.</text>
+    <text x="268" y="220" font-size="11" fill="#297a3a">✓ Sin interrogatorios</text>
+
+    <!-- Flecha 2 -->
+    <line x1="448" y1="156" x2="470" y2="156" stroke="#111111" stroke-width="1.2"/>
+    <polygon points="470,156 464,152 464,160" fill="#111111"/>
+
+    <!-- Etapa 03 -->
+    <rect x="472" y="74" width="196" height="164" rx="6" fill="#ffffff" stroke="#297a3a" stroke-width="1.5"/>
+    <text x="488" y="100" font-size="11" fill="#297a3a">03 · CANDADOS EN CÓDIGO</text>
+    <text x="488" y="124" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Reglas antes de enviar</text>
+    <text x="488" y="150" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">Bloquea precios, plazos</text>
+    <text x="488" y="170" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">o descuentos sin fuente;</text>
+    <text x="488" y="190" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">defensa prompt injection.</text>
+    <text x="488" y="220" font-size="11" fill="#297a3a">✓ 0 datos inventados</text>
+
+    <!-- Flecha 3 -->
+    <line x1="668" y1="156" x2="690" y2="156" stroke="#111111" stroke-width="1.2"/>
+    <polygon points="690,156 684,152 684,160" fill="#111111"/>
+
+    <!-- Etapa 04 -->
+    <rect x="692" y="74" width="196" height="164" rx="6" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+    <text x="708" y="100" font-size="11" fill="#666666">04 · HANDOFF Y CIERRE</text>
+    <text x="708" y="124" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Vendedor con resumen</text>
+    <text x="708" y="150" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">Pasa al asesor cuando pide</text>
+    <text x="708" y="170" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">persona o cotización a</text>
+    <text x="708" y="190" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">medida + ficha en CRM.</text>
+    <text x="708" y="220" font-size="11" fill="#297a3a">✓ Cierre humano asistido</text>
+
+    <line x1="32" y1="262" x2="888" y2="262" stroke="#e5e5e5" stroke-width="1"/>
+    <text x="32" y="282" font-size="11" fill="#666666">Supervisión: Orquestador → Gerentes de área → Agentes → Subagentes · Seguridad defensiva (/seguridad)</text>
+  </g>
+</svg>

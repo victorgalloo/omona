@@ -19,16 +19,18 @@ import { Logo } from '../shared/Logo';
  */
 const LINKS = {
   es: [
-    { href: '/#diagnostico', label: 'Diagnóstico' },
+    { href: '/comercial-ia', label: 'Comercial + IA' },
     { href: '/seguridad', label: 'Seguridad IA' },
+    { href: '/#diagnostico', label: 'Diagnóstico' },
     { href: '/open-source', label: 'Open source' },
     { href: '/blog', label: 'Notas' },
     { href: '/now', label: 'Ahora' },
     { href: '/about', label: 'About' },
   ],
   en: [
-    { href: '/en/security#diagnostico', label: 'Diagnostic' },
+    { href: '/en/commercial-ai', label: 'Commercial + AI' },
     { href: '/en/security', label: 'AI Security' },
+    { href: '/en/security#diagnostico', label: 'Diagnostic' },
     { href: '/en/open-source', label: 'Open source' },
     { href: '/blog', label: 'Notes' },
     { href: '/now', label: 'Now' },

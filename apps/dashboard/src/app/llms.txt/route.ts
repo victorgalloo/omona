@@ -46,7 +46,9 @@ export async function GET() {
   L.push(`- [Now](${BASE}/now): daily log, Spanish. RSS: ${BASE}/now/rss.xml`);
   L.push(`- [Open source](${BASE}/en/open-source): PRs and issues with live status. Spanish: ${BASE}/open-source`);
   L.push(`- [Blog](${BASE}/blog): engineering notes, Spanish. RSS: ${BASE}/blog/rss.xml`);
+  L.push(`- [Commercial processes + AI](${BASE}/en/commercial-ai): end-to-end commercial funnels with AI agents on WhatsApp and CRM (sub-minute response, deterministic pricing guardrails, context-rich human handoff, and multi-agent hierarchies on AWS Bedrock) for B2B companies and SMBs in Mexico outside education. Spanish: ${BASE}/comercial-ia`);
   L.push(`- [Security for AI agents](${BASE}/en/security): defensive-only security reviews of AI-agent deployments, provided by a formally incorporated Mexican legal entity under the Omona brand, with ${NOMBRE_LEGAL} as the responsible person. Spanish: ${BASE}/seguridad`);
+  L.push(`- [Original data: commercial digital readiness in Mexico](${BASE}/blog/procesos-comerciales-ia-whatsapp-arquitectura): passive homepage measurement (2026-11-25) of 255 active business .mx websites; 77.3% lack any immediate response channel on their homepage, 20.0% link to WhatsApp and 64.7% of those open blank without prefilled context. Spanish.`);
   L.push(`- [Original data: email spoofing in Mexico](${BASE}/blog/dmarc-spf-facturas-falsas-pymes): passive DNS measurement (2026-11-25) of 285 .mx domains with email; 66% can be spoofed (no DMARC or p=none), only 14% enforce p=reject. Spanish.`);
   L.push(`- [Original data: website security headers in Mexico](${BASE}/blog/cabeceras-seguridad-web-pymes-mexico): passive homepage measurement (2026-11-25) of 304 active .mx websites; 60% lack HSTS, 71% lack any Content-Security-Policy, 39% send none of 5 basic security headers. Spanish.`);
   L.push('');

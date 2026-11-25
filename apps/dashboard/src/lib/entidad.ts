@@ -49,14 +49,14 @@ export const ORG = {
   url: BASE,
   logo: `${BASE}/logo-mark.png`,
   description:
-    'Independent AI-agent security and open-source engineering lab: passive domain posture diagnostics, defensive architecture reviews on AWS Bedrock, and upstream pull requests.',
+    'Commercial processes with AI agents, defensive AI/cloud cybersecurity, and open-source engineering in Mexico: WhatsApp/CRM workflows with deterministic guardrails, domain posture diagnostics, and AWS Bedrock reviews.',
   founder: PERSON_REF,
   address: { '@type': 'PostalAddress', addressLocality: 'León', addressRegion: 'Guanajuato', addressCountry: 'MX' },
   email: 'victor@omona.tech',
 };
 
 export const ORG_DESC_ES =
-  'Seguridad defensiva para agentes de IA y arquitectura en la nube, operada como persona moral formalmente establecida en México, más contribuciones verificables a código abierto.';
+  'Procesos comerciales con agentes de IA y ciberseguridad defensiva en México, operada como persona moral formalmente establecida en México, más contribuciones verificables a código abierto.';
 
 export const AUTOR = {
   nombre: 'Victor Gallo',

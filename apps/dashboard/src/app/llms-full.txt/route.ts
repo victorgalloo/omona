@@ -82,7 +82,14 @@ export async function GET() {
   L.push('', 'Log:');
   for (const it of now.items) L.push(`- ${it.date} [${it.kind}] ${it.en}${it.url ? ` ${it.url}` : ''}`);
 
-  h('Original research (passive measurements: DNS and homepage headers)');
+  h('Two core areas at Omona (Commercial Processes + AI & Defensive Cybersecurity)');
+  L.push(`- Area 1 — Commercial Processes + AI (${BASE}/comercial-ia, EN: ${BASE}/en/commercial-ai): commercial funnel design, sub-minute WhatsApp qualification with deterministic code guardrails (zero hallucinated prices), executive human handoff into CRM, and manager→agent→subagent orchestration on AWS Bedrock for B2B companies and SMBs in Mexico (education sector excluded; served exclusively by SuperLeads).`);
+  L.push(`- Area 2 — Defensive Cybersecurity from Domain to AI (${BASE}/seguridad, EN: ${BASE}/en/security): SPF/DMARC anti-spoofing, HTTP security headers, least-privilege cloud IAM, secrets vaults, and prompt-injection/MCP guardrails under written authorization.`);
+
+  h('Original research (passive measurements: commercial funnels, DNS, and homepage headers)');
+  L.push(
+    `- 2026-11-25 · Commercial digital readiness of Mexican business sites: passive homepage review of 255 active non-governmental, non-educational .mx websites linked by Mexican business chambers and SME portals (1 GET to public homepage HTML, zero form submissions). 77.3% (197) offer no immediate response channel on their homepage (29.8% rely only on static forms, mailto:, or phone; 47.5% show no direct commercial channel on the homepage). Only 20.0% (51) link directly to WhatsApp, and 64.7% (33 of 51) open blank with no prefilled context; 4.3% (11) run a chat/CRM widget and 0.4% (1) offer direct online booking. Architecture & guide (Spanish): ${BASE}/blog/procesos-comerciales-ia-whatsapp-arquitectura`,
+  );
   L.push(
     `- 2026-11-25 · Email spoofing exposure of Mexican domains: of 285 .mx domains with MX records (linked from Mexican business chambers, SME portals and .gob.mx/.org.mx pages; .edu.mx excluded), 66% (188) can still be spoofed: 84 publish no DMARC record and 104 use p=none (monitor only). 57 use p=quarantine and only 40 (14%) use p=reject. 26 lack a valid SPF record and 3 publish two SPF records (permerror under RFC 7208). Method: public MX/TXT/_dmarc lookups over DNS-over-HTTPS, no intrusive traffic; only aggregates are published. Step-by-step SPF/DMARC guide for SMBs (Spanish): ${BASE}/blog/dmarc-spf-facturas-falsas-pymes`,
   );

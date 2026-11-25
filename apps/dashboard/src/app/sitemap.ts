@@ -21,6 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       alternates: { languages: { 'es-MX': `${baseUrl}/open-source`, en: `${baseUrl}/en/open-source` } },
     })),
+    ...['/comercial-ia', '/en/commercial-ai'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: { languages: { 'es-MX': `${baseUrl}/comercial-ia`, en: `${baseUrl}/en/commercial-ai` } },
+    })),
     ...['/seguridad', '/en/security'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,

@@ -105,24 +105,38 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
 // 24-nov-2026, Victor: «que ese sea el CTA principal de la página y quítame
 // relevancia a mí, haz la página más ejecutiva y con estos CTAs, sin cards».
 
-const PILARES_EJECUTIVOS: { h: string; p: string; guia?: { href: string; label: string } }[] = [
+const PILARES_COMERCIAL_IA: { h: string; p: string; guia?: { href: string; label: string } }[] = [
   {
-    h: '1. Correo empresarial y dominio',
-    p: 'Evita que estafadores suplanten el correo de tu empresa (SPF y DMARC) para mandar facturas falsas o enlaces de fraude a tus clientes y proveedores. En nuestra medición, el 66 % de 285 dominios .mx con correo sigue siendo suplantable.',
+    h: '01 · Velocidad de primera respuesta en WhatsApp',
+    p: 'En nuestra medición de 255 sitios empresariales .mx, el 77 % no ofrece atención inmediata y el 65 % de los enlaces a WhatsApp abre en blanco sin contexto. Atendemos en segundos con origen atribuido en CRM.',
+    guia: { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Estudio y arquitectura comercial (.mx)' },
+  },
+  {
+    h: '02 · Calificación y candados en código (0 datos inventados)',
+    p: 'Una sola pregunta por turno según la etapa del embudo y validación determinista antes de enviar: el agente nunca improvisa precios, descuentos ni plazos fuera de tu ficha autorizada.',
+  },
+  {
+    h: '03 · Traspaso a vendedor humano (handoff) y jerarquía',
+    p: 'Cuando el prospecto pide hablar con alguien o está listo para cerrar, el vendedor recibe un resumen ejecutivo accionable; detrás operan gerentes, agentes y subagentes sobre AWS Bedrock.',
+    guia: { href: '/blog/agentes-en-jerarquia-gerentes-subagentes', label: 'Jerarquía gerente → agente → subagente' },
+  },
+];
+
+const PILARES_SEGURIDAD: { h: string; p: string; guia?: { href: string; label: string } }[] = [
+  {
+    h: '01 · Correo empresarial y dominio (SPF / DMARC)',
+    p: 'Evita que suplanten el correo de tu empresa para mandar cotizaciones o facturas falsas. En nuestra medición, el 66 % de 285 dominios .mx con correo sigue siendo suplantable.',
     guia: { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'Guía SPF y DMARC paso a paso' },
   },
   {
-    h: '2. Página web y datos de clientes',
-    p: 'Verifica cómo saber si tu página web es segura (HTTPS/HSTS, Content-Security-Policy) y bloquea archivos internos o contraseñas expuestas (/.env). En nuestra medición de 304 sitios .mx, el 60 % no tiene HSTS y el 71 % no tiene CSP.',
+    h: '02 · Página web, cabeceras y accesos en la nube',
+    p: 'Protege formularios y sesiones (HTTPS/HSTS, CSP, bloqueo de /.env) y ordena permisos IAM y bóveda de secretos. El 60 % de 304 sitios .mx no envía HSTS y el 71 % carece de CSP.',
     guia: { href: '/blog/cabeceras-seguridad-web-pymes-mexico', label: 'Guía de cabeceras de seguridad' },
   },
   {
-    h: '3. Control de acceso y nube',
-    p: 'Ordena quién tiene acceso a los sistemas de tu negocio (mínimo privilegio IAM), elimina contraseñas compartidas y resguarda llaves en bóveda (Secrets Store).',
-  },
-  {
-    h: '4. IA, chatbots y agentes seguros',
-    p: 'Cuando tu empresa empieza a usar bots de WhatsApp o agentes de IA (AWS Bedrock, servidores MCP), blindamos que no filtren bases de datos ni caigan en engaños (prompt injection).',
+    h: '03 · Guardrails para agentes de IA y servidores MCP',
+    p: 'Al conectar WhatsApp y tu CRM a modelos de IA, blindamos despliegues en AWS Bedrock y servidores MCP contra indirect prompt injection y fuga de bases de clientes.',
+    guia: { href: '/blog/seguridad-agentes-ia-aws-bedrock-mcp', label: 'Seguridad en AWS Bedrock y MCP' },
   },
 ];
 
@@ -130,48 +144,99 @@ export function Hero() {
   return (
     <header className="relative overflow-hidden pb-14 pt-12 sm:pb-24 sm:pt-20">
       <Wrap>
-        <div className="max-w-[54rem]">
+        <div className="max-w-[56rem]">
+          <Eyebrow>Dos áreas integradas · Empresas en México</Eyebrow>
           <h1 className="text-heading-lg text-balance text-obsidian">
-            Ciberseguridad para tu empresa: desde lo más básico hasta tus agentes de IA.
+            Procesos comerciales con IA y la ciberseguridad para operarlos en serio.
           </h1>
-          <p id="hero-description" className="mt-6 max-w-[62ch] text-[19px] leading-[1.5] text-charcoal">
-            Empezamos por lo que hoy protege a una PyME en México —saber si tu página web es segura, impedir que falsifiquen tu correo empresarial y ordenar los accesos de tu equipo— y te acompañamos paso a paso conforme conectas la nube, WhatsApp e inteligencia artificial.
+          <p id="hero-description" className="mt-6 max-w-[64ch] text-[19px] leading-[1.5] text-charcoal">
+            Estructuramos embudos comerciales con agentes de IA en WhatsApp y CRM —respuesta en segundos, calificación con candados que no inventan precios y traspaso limpio a tus vendedores— junto con la ciberseguridad defensiva que protege tu correo empresarial, tu web y esos mismos agentes.
           </p>
-          <p className="mt-3 max-w-[62ch] text-[15px] leading-[1.5] text-stone">
-            Sin jerga incomprensible: diagnóstico inmediato con tu dominio, entregable claro para dirección y para sistemas, y revisiones 100 % defensivas bajo alcance firmado.
+          <p className="mt-3 max-w-[64ch] text-[15px] leading-[1.5] text-stone">
+            Primero el proceso de negocio y las reglas en código; después el modelo. Sin jerga, con datos medidos en México y bajo alcance firmado.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#diagnostico" className="btn-fill">
-              Revisar mi dominio gratis →
+            <Link href="/comercial-ia" className="btn-fill">
+              Procesos comerciales + IA →
+            </Link>
+            <a href="#diagnostico" className="btn-ghost">
+              Diagnosticar mi dominio gratis →
             </a>
             <a
-              href="mailto:victor@omona.tech?subject=Diagn%C3%B3stico%20de%20ciberseguridad%20para%20mi%20empresa%20%E2%80%94%20Omona"
+              href="mailto:victor@omona.tech?subject=Diagn%C3%B3stico%20de%20proceso%20comercial%20%2B%20IA%20y%20seguridad%20%E2%80%94%20Omona"
               className="btn-ghost"
             >
-              Agendar llamada de diagnóstico →
+              Agendar llamada →
             </a>
+          </div>
+        </div>
+
+        {/* Matriz arquitectónica de las 2 áreas (0 cards: franjas con divisores de 1 px) */}
+        <div className="mt-14 grid border-y border-hair lg:grid-cols-2 lg:divide-x lg:divide-hair">
+          <div className="py-8 lg:pr-10">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <p className="mono-label text-[#297a3a]">Área 01 · Especialidad principal</p>
+              <Link href="/comercial-ia" className="mono-label text-obsidian hover:underline">
+                Ver práctica completa →
+              </Link>
+            </div>
+            <h2 className="mt-2 text-[22px] font-medium tracking-[-0.03em] text-obsidian">
+              Procesos comerciales + Agentes de IA
+            </h2>
+            <p className="mt-2 text-[14.5px] leading-[1.5] text-stone">
+              Para equipos B2B y PyMEs que quieren convertir más en WhatsApp y CRM sin perder control comercial.
+            </p>
+            <dl className="mt-6 divide-y divide-hair border-t border-hair">
+              {PILARES_COMERCIAL_IA.map((x) => (
+                <div key={x.h} className="py-4">
+                  <dt className="text-[15.5px] font-medium leading-[1.35] tracking-[-0.02em] text-obsidian">{x.h}</dt>
+                  <dd className="mt-1.5 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
+                  {x.guia && (
+                    <dd className="mt-2">
+                      <Link href={x.guia.href} className="mono-label text-charcoal hover:text-obsidian">
+                        {x.guia.label} →
+                      </Link>
+                    </dd>
+                  )}
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="border-t border-hair py-8 lg:border-t-0 lg:pl-10">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <p className="mono-label text-graphite">Área 02 · Operación sin riesgo</p>
+              <Link href="/seguridad" className="mono-label text-obsidian hover:underline">
+                Ver alcance defensivo →
+              </Link>
+            </div>
+            <h2 className="mt-2 text-[22px] font-medium tracking-[-0.03em] text-obsidian">
+              Ciberseguridad: del dominio a la IA
+            </h2>
+            <p className="mt-2 text-[14.5px] leading-[1.5] text-stone">
+              Protección 100 % defensiva desde facturas falsas y cabeceras web hasta permisos de nube y agentes.
+            </p>
+            <dl className="mt-6 divide-y divide-hair border-t border-hair">
+              {PILARES_SEGURIDAD.map((x) => (
+                <div key={x.h} className="py-4">
+                  <dt className="text-[15.5px] font-medium leading-[1.35] tracking-[-0.02em] text-obsidian">{x.h}</dt>
+                  <dd className="mt-1.5 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
+                  {x.guia && (
+                    <dd className="mt-2">
+                      <Link href={x.guia.href} className="mono-label text-charcoal hover:text-obsidian">
+                        {x.guia.label} →
+                      </Link>
+                    </dd>
+                  )}
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
 
         <div className="mt-14">
           <DiagnosticoSaaS lang="es" />
         </div>
-
-        <dl className="mt-12 grid divide-y divide-hair border-y border-hair sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-y-0">
-          {PILARES_EJECUTIVOS.map((x, idx) => (
-            <div key={x.h} className={`py-6 ${idx > 0 ? 'lg:pl-6' : ''} ${idx < 3 ? 'lg:pr-6' : ''}`}>
-              <dt className="text-[16px] font-medium leading-[1.3] tracking-[-0.02em] text-obsidian">{x.h}</dt>
-              <dd className="mt-2 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
-              {x.guia && (
-                <dd className="mt-3">
-                  <Link href={x.guia.href} className="mono-label text-charcoal hover:text-obsidian">
-                    {x.guia.label} →
-                  </Link>
-                </dd>
-              )}
-            </div>
-          ))}
-        </dl>
       </Wrap>
     </header>
   );
@@ -534,7 +599,7 @@ export function Notas() {
         <Seccion
           id="notas"
           h="Notas de ingeniería"
-          sub="Arquitectura, seguridad de agentes y mediciones en producción."
+          sub="Procesos comerciales con IA, seguridad de agentes y mediciones propias en producción."
           more={{ href: '/blog', label: 'Todas las notas' }}
         />
         <div className="divide-y divide-hair border-y border-hair">

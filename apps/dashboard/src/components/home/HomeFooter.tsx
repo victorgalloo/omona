@@ -21,11 +21,12 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
     ],
   },
   {
-    titulo: 'Seguridad',
+    titulo: 'Áreas',
     links: [
-      { href: '/seguridad', label: 'Para agentes de IA' },
+      { href: '/comercial-ia', label: 'Procesos comerciales + IA' },
+      { href: '/en/commercial-ai', label: 'Commercial + AI (EN)' },
+      { href: '/seguridad', label: 'Ciberseguridad e IA' },
       { href: '/en/security', label: 'Security (EN)' },
-      { href: '/seguridad#aviso', label: 'Aviso legal' },
       { href: 'mailto:victor@omona.tech', label: 'victor@omona.tech' },
     ],
   },
@@ -60,7 +61,7 @@ export function HomeFooter() {
               <span className="text-[15px] font-medium tracking-[-0.04em] text-obsidian">omona</span>
             </Link>
             <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.54] text-stone">
-              El laboratorio open source de Victor Gallo: pull requests, reportes y notas de ingeniería.
+              Procesos comerciales con IA, ciberseguridad defensiva y laboratorio open source en México.
             </p>
           </div>
           {COLUMNAS.map((c) => (

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T14:00:40.630Z",
+  "generatedAt": "2026-11-25T16:43:48.411Z",
   "updated": "2026-11-25",
   "foco": [
     {
@@ -22,10 +22,26 @@
     {
       "date": "2026-11-25",
       "kind": "nota",
+      "es": "Cabeceras de seguridad web: medimos 304 sitios",
+      "en": "Cabeceras de seguridad web: medimos 304 sitios (note in Spanish)",
+      "url": "https://omona.tech/blog/cabeceras-seguridad-web-pymes-mexico",
+      "ref": "nota:cabeceras-seguridad-web-pymes-mexico"
+    },
+    {
+      "date": "2026-11-25",
+      "kind": "nota",
       "es": "DMARC y SPF para PyMEs: frena facturas falsas",
       "en": "DMARC y SPF para PyMEs: frena facturas falsas (note in Spanish)",
       "url": "https://omona.tech/blog/dmarc-spf-facturas-falsas-pymes",
       "ref": "nota:dmarc-spf-facturas-falsas-pymes"
+    },
+    {
+      "date": "2026-11-25",
+      "kind": "nota",
+      "es": "Procesos comerciales con IA sin inventar datos",
+      "en": "Procesos comerciales con IA sin inventar datos (note in Spanish)",
+      "url": "https://omona.tech/blog/procesos-comerciales-ia-whatsapp-arquitectura",
+      "ref": "nota:procesos-comerciales-ia-whatsapp-arquitectura"
     },
     {
       "date": "2026-11-24",
