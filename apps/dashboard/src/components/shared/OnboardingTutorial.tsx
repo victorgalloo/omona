@@ -167,7 +167,7 @@ function Spotlight({ selector }: { selector: string }) {
 
   return (
     <div
-      className="absolute z-[9998] rounded-xl ring-4 ring-accent-green ring-offset-2 transition-all duration-500 pointer-events-none"
+      className="absolute z-[9998] rounded-xl ring-4 ring-accent-green ring-offset-2 transition-[top,left,width,height] duration-500 motion-reduce:transition-none pointer-events-none"
       style={{
         top: rect.top - 4,
         left: rect.left - 4,
@@ -194,7 +194,7 @@ function NavHighlight({ href }: { href: string }) {
 
   return (
     <div
-      className="absolute z-[9998] rounded-xl transition-all duration-500 pointer-events-none"
+      className="absolute z-[9998] rounded-xl transition-[top,left,width,height] duration-500 motion-reduce:transition-none pointer-events-none"
       style={{
         top: rect.top - 6,
         left: rect.left - 6,
@@ -271,7 +271,7 @@ function TooltipCard({
         <div className="px-5">
           <div className="h-1 w-full rounded-full bg-surface overflow-hidden">
             <div
-              className="h-full rounded-full bg-accent-green transition-all duration-500"
+              className="h-full rounded-full bg-accent-green transition-[width] duration-500 motion-reduce:transition-none"
               style={{ width: `${((currentIndex + 1) / totalSteps) * 100}%` }}
             />
           </div>

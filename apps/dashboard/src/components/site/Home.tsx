@@ -250,12 +250,12 @@ function Celda({ m, lang }: { m: Marca; lang: 'es' | 'en' }) {
   return (
     <a
       href={m.href}
-      className="group flex min-h-[112px] flex-col justify-between gap-4 p-4 transition-colors hover:bg-white sm:p-5"
+      className="group flex min-h-[112px] flex-col justify-between gap-4 p-4 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-obsidian/40 focus-visible:ring-inset sm:p-5"
       aria-label={`${m.nombre} (${m.dueno}): ${txt}`}
     >
       <span className="flex h-10 items-center gap-2.5 transition-[filter] group-hover:brightness-[0.25]">
         {m.logo ? (
-          <img src={m.logo} alt="" style={{ height: m.alto }} className="w-auto" loading="lazy" />
+          <img src={m.logo} alt="" aria-hidden="true" width={m.ancho} height={m.alto} style={{ height: m.alto }} className="w-auto" loading="lazy" decoding="async" />
         ) : null}
         {(m.rotulo || !m.logo) && (
           <span

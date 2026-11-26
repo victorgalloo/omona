@@ -200,6 +200,8 @@ export function WhatsAppSettings() {
                   <img
                     src={status.qr_code!.startsWith('data:') ? status.qr_code! : `data:image/png;base64,${status.qr_code}`}
                     alt="QR Code"
+                    width={224}
+                    height={224}
                     className="h-56 w-56"
                   />
                 </div>

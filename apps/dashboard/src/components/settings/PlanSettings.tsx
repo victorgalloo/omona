@@ -68,7 +68,7 @@ export function PlanSettings() {
             <div className="relative h-2 w-full overflow-hidden rounded-full bg-surface-2">
               <div
                 className={cn(
-                  'h-full rounded-full transition-all',
+                  'h-full rounded-full transition-[width,background-color] motion-reduce:transition-none',
                   (trial.daysRemaining ?? 0) <= 3 ? 'bg-warning' : 'bg-accent-green'
                 )}
                 style={{ width: `${Math.min(100, ((trial.daysRemaining ?? 0) / 14) * 100)}%` }}

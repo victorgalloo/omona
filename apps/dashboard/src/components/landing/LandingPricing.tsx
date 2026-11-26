@@ -107,7 +107,7 @@ export function LandingPricing() {
               {/* CTA */}
               <Link
                 href="/signup"
-                className="group relative overflow-hidden flex items-center justify-center gap-2 w-full rounded-xl bg-foreground px-6 py-3.5 text-base font-medium text-background transition-all hover:opacity-90 mb-8"
+                className="group relative overflow-hidden flex items-center justify-center gap-2 w-full rounded-xl bg-foreground px-6 py-3.5 text-base font-medium text-background transition-opacity hover:opacity-90 mb-8"
               >
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 Empezar gratis 14 días

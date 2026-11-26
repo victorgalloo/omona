@@ -90,6 +90,8 @@ export function StepConnectWhatsApp({ onComplete }: StepConnectWhatsAppProps) {
             <img
               src={qrCode.startsWith('data:') ? qrCode : `data:image/png;base64,${qrCode}`}
               alt="QR Code"
+              width={256}
+              height={256}
               className="h-64 w-64"
             />
           </div>

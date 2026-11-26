@@ -95,7 +95,8 @@ export type Marca = {
   nombre: string;
   dueno: string;
   logo: string | null;
-  /** Alto del logo en px; los wordmarks anchos van más bajos. */
+  /** Ancho y alto del logo en px (evita CLS). */
+  ancho?: number;
   alto: number;
   /** Texto junto al logo cuando el logo es solo un símbolo. */
   rotulo?: string;
@@ -110,6 +111,7 @@ export const CONTRIBUYO: Marca[] = [
     nombre: 'Hermes Agent',
     dueno: 'Nous Research',
     logo: '/logos/nous-research.svg',
+    ancho: 29,
     alto: 40,
     rotulo: 'Hermes Agent',
     href: 'https://github.com/NousResearch/hermes-agent/pulls?q=author%3Avictorgalloo',
@@ -122,6 +124,7 @@ export const CONTRIBUYO: Marca[] = [
     nombre: 'Strands Agents',
     dueno: 'AWS',
     logo: '/logos/strands-agents.svg',
+    ancho: 20,
     alto: 32,
     rotulo: 'Strands Agents',
     href: 'https://github.com/pulls?q=author%3Avictorgalloo+org%3Astrands-agents',
@@ -146,6 +149,7 @@ export const CONSTRUYO_SOBRE: Marca[] = [
     nombre: 'Claude',
     dueno: 'Anthropic',
     logo: '/logos/claude.svg',
+    ancho: 101,
     alto: 22,
     href: 'https://omona.tech/blog/bedrock-credenciales-hermes-agent',
     es: 'Claude en Bedrock',

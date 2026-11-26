@@ -177,7 +177,7 @@ export default function AnalyticsPage() {
                     <span className="w-28 text-xs text-muted text-right">{stage.label}</span>
                     <div className="flex-1 h-8 bg-surface rounded-lg overflow-hidden">
                       <div
-                        className="h-full rounded-lg flex items-center px-3 text-xs font-semibold text-background transition-all"
+                        className="h-full rounded-lg flex items-center px-3 text-xs font-semibold text-background transition-[width] motion-reduce:transition-none"
                         style={{ width: `${width}%`, backgroundColor: FUNNEL_COLORS[i] || FUNNEL_COLORS[0] }}
                       >
                         {stage.count}

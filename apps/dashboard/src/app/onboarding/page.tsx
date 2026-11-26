@@ -196,7 +196,7 @@ export default function OnboardingPage() {
             <div key={s.id} className="flex items-center">
               <button
                 onClick={() => i <= step ? setStep(i) : null}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                   i === step
                     ? 'bg-accent-green text-background'
                     : i < step
@@ -358,7 +358,7 @@ export default function OnboardingPage() {
                     { value: 'custom', label: '✨ Custom', desc: 'Tú defines' },
                   ].map((t) => (
                     <button key={t.value} onClick={() => updateConfig({ tone: t.value })}
-                      className={`rounded-xl p-3 text-left transition-all ${config.tone === t.value ? 'bg-foreground border-2 border-accent-green' : 'bg-background border-2 border-transparent shadow-sm'}`}>
+                      className={`rounded-xl p-3 text-left transition-colors ${config.tone === t.value ? 'bg-foreground border-2 border-accent-green' : 'bg-background border-2 border-transparent shadow-sm'}`}>
                       <div className="text-sm font-medium">{t.label}</div>
                       <div className="text-[10px] text-muted mt-0.5">{t.desc}</div>
                     </button>
@@ -387,7 +387,7 @@ export default function OnboardingPage() {
                     { value: 'flexible', label: '🎯 Flexible', desc: 'Se adapta según la conversación' },
                   ].map((m) => (
                     <button key={m.value} onClick={() => updateConfig({ sales_mode: m.value })}
-                      className={`w-full rounded-xl p-3 text-left transition-all ${config.sales_mode === m.value ? 'bg-foreground border-2 border-accent-green' : 'bg-background border-2 border-transparent shadow-sm'}`}>
+                      className={`w-full rounded-xl p-3 text-left transition-colors ${config.sales_mode === m.value ? 'bg-foreground border-2 border-accent-green' : 'bg-background border-2 border-transparent shadow-sm'}`}>
                       <div className="text-sm font-medium">{m.label}</div>
                       <div className="text-[10px] text-muted mt-0.5">{m.desc}</div>
                     </button>

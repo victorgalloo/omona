@@ -260,7 +260,7 @@ export default function TestPage() {
             <button
               onClick={handleSend}
               disabled={sending || !input.trim()}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-green text-background transition-all active:scale-95 disabled:opacity-40"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-green text-background transition-[transform,opacity] motion-reduce:transition-none active:scale-95 disabled:opacity-40"
             >
               <SendHorizontal className="h-5 w-5" />
             </button>

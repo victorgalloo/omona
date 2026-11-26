@@ -114,7 +114,7 @@ export function Sidebar({ mobile, onClose }: { mobile?: boolean; onClose?: () =>
   const content = (
     <aside
       className={cn(
-        'flex h-screen flex-col bg-background border-r border-border transition-all duration-200',
+        'flex h-screen flex-col bg-background border-r border-border transition-[width] duration-200 motion-reduce:transition-none',
         mobile ? 'w-[240px]' : ''
       )}
       style={mobile ? undefined : { width }}
@@ -223,7 +223,7 @@ export function Sidebar({ mobile, onClose }: { mobile?: boolean; onClose?: () =>
               <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
                 <div
                   className={cn(
-                    'h-full rounded-full transition-all',
+                    'h-full rounded-full transition-[width,background-color] motion-reduce:transition-none',
                     (trial.daysRemaining ?? 0) <= 3 ? 'bg-warning' : 'bg-accent-green'
                   )}
                   style={{ width: `${Math.min(100, ((trial.daysRemaining ?? 0) / 14) * 100)}%` }}
