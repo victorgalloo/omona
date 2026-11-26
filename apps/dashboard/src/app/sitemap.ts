@@ -22,7 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           'es-US': baseUrl,
           'es-MX': baseUrl,
-          'en-US': `${baseUrl}/en/security`,
           'x-default': baseUrl,
         },
       },
@@ -54,6 +53,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
           'en-US': `${baseUrl}/en/commercial-ai`,
           en: `${baseUrl}/en/commercial-ai`,
           'x-default': `${baseUrl}/comercial-ia`,
+        },
+      },
+    })),
+    ...['/verificador-dmarc-spf', '/en/dmarc-spf-checker'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/verificador-dmarc-spf`,
+          'es-MX': `${baseUrl}/verificador-dmarc-spf`,
+          'en-US': `${baseUrl}/en/dmarc-spf-checker`,
+          en: `${baseUrl}/en/dmarc-spf-checker`,
+          'x-default': `${baseUrl}/verificador-dmarc-spf`,
         },
       },
     })),

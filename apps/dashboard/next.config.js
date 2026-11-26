@@ -82,7 +82,12 @@ const nextConfig = {
       '/aplicar',
     ];
     return [
-      ...aInicio.map((source) => ({ source, destination: '/', statusCode: 301 })),
+      { source: '/blog/como-usar-ia-en-whatsapp-para-hacer-lead-scoring-automatico-en-ventas-b2b', destination: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', statusCode: 301 },
+      { source: '/problemas', destination: '/comercial-ia', statusCode: 301 },
+      { source: '/problemas/:path*', destination: '/comercial-ia', statusCode: 301 },
+      { source: '/soluciones', destination: '/comercial-ia', statusCode: 301 },
+      { source: '/soluciones/:path*', destination: '/comercial-ia', statusCode: 301 },
+      ...aInicio.filter((s) => !s.startsWith('/problemas') && !s.startsWith('/soluciones')).map((source) => ({ source, destination: '/', statusCode: 301 })),
       { source: '/articulos/:path*', destination: '/blog', statusCode: 301 },
       ...guiasGeo().map((slug) => ({ source: `/blog/${slug}`, destination: '/blog', statusCode: 301 })),
     ];

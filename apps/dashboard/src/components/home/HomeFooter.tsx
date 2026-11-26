@@ -27,6 +27,8 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
       { href: '/en/commercial-ai', label: 'Commercial + AI (EN)' },
       { href: '/seguridad', label: 'Ciberseguridad e IA' },
       { href: '/en/security', label: 'Security (EN)' },
+      { href: '/verificador-dmarc-spf', label: 'Verificador SPF/DMARC' },
+      { href: '/en/dmarc-spf-checker', label: 'SPF/DMARC Checker (EN)' },
       { href: 'mailto:victor@omona.tech', label: 'victor@omona.tech' },
     ],
   },

@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     languages: {
       'es-US': BASE,
       'es-MX': BASE,
-      'en-US': `${BASE}/en/security`,
       'x-default': BASE,
     },
   },
