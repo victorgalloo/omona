@@ -107,35 +107,35 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
 
 const PILARES_COMERCIAL_IA: { h: string; p: string; guia?: { href: string; label: string } }[] = [
   {
-    h: '01 · Velocidad de primera respuesta en WhatsApp',
-    p: 'En nuestra medición de 255 sitios empresariales .mx, el 77 % no ofrece atención inmediata y el 65 % de los enlaces a WhatsApp abre en blanco sin contexto. Atendemos en segundos con origen atribuido en CRM.',
-    guia: { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Estudio y arquitectura comercial (.mx)' },
+    h: '01 · Atención inmediata bilingüe (español + inglés) en WhatsApp y web',
+    p: 'En Estados Unidos gana el contrato quien contesta en el primer minuto. El agente detecta si el prospecto escribe en inglés o en español, responde en segundos y registra el origen real en tu CRM.',
+    guia: { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Arquitectura comercial con IA y estudio base' },
   },
   {
-    h: '02 · Calificación y candados en código (0 datos inventados)',
-    p: 'Una sola pregunta por turno según la etapa del embudo y validación determinista antes de enviar: el agente nunca improvisa precios, descuentos ni plazos fuera de tu ficha autorizada.',
+    h: '02 · Calificación y candados en código (0 precios inventados)',
+    p: 'Una sola pregunta por turno según la etapa del embudo y validación determinista antes de enviar: el agente nunca improvisa tarifas, estimados ni condiciones fuera de tu ficha autorizada.',
   },
   {
-    h: '03 · Traspaso a vendedor humano (handoff) y jerarquía',
-    p: 'Cuando el prospecto pide hablar con alguien o está listo para cerrar, el vendedor recibe un resumen ejecutivo accionable; detrás operan gerentes, agentes y subagentes sobre AWS Bedrock.',
+    h: '03 · Traspaso a vendedor humano (handoff) sobre AWS Bedrock',
+    p: 'Cuando el cliente pide hablar con alguien o cerrar un estimado, tu vendedor recibe un resumen ejecutivo bilingüe; detrás operan gerentes, agentes y subagentes sobre AWS Bedrock.',
     guia: { href: '/blog/agentes-en-jerarquia-gerentes-subagentes', label: 'Jerarquía gerente → agente → subagente' },
   },
 ];
 
 const PILARES_SEGURIDAD: { h: string; p: string; guia?: { href: string; label: string } }[] = [
   {
-    h: '01 · Correo empresarial y dominio (SPF / DMARC)',
-    p: 'Evita que suplanten el correo de tu empresa para mandar cotizaciones o facturas falsas. En nuestra medición, el 66 % de 285 dominios .mx con correo sigue siendo suplantable.',
-    guia: { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'Guía SPF y DMARC paso a paso' },
+    h: '01 · Frenar fraude de transferencias (ACH / wire) y facturas BEC',
+    p: 'El FBI IC3 reportó $2,770 millones USD en pérdidas por Business Email Compromise. Blindamos Google Workspace y Microsoft 365 con SPF, DKIM, DMARC y MFA resistente a phishing.',
+    guia: { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Guía pilar para negocios latinos en EE. UU.' },
   },
   {
-    h: '02 · Página web, cabeceras y accesos en la nube',
-    p: 'Protege formularios y sesiones (HTTPS/HSTS, CSP, bloqueo de /.env) y ordena permisos IAM y bóveda de secretos. El 60 % de 304 sitios .mx no envía HSTS y el 71 % carece de CSP.',
-    guia: { href: '/blog/cabeceras-seguridad-web-pymes-mexico', label: 'Guía de cabeceras de seguridad' },
+    h: '02 · FTC Safeguards Rule, plan WISP (IRS) y Cyber Insurance',
+    p: 'Para firmas hispanas de impuestos, contabilidad, contratistas y servicios en EE. UU.: cifrado TLS/HSTS, cabeceras CSP, control de accesos y respaldos exigidos por la FTC y aseguradoras.',
+    guia: { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'Guía técnica SPF y DMARC paso a paso' },
   },
   {
-    h: '03 · Guardrails para agentes de IA y servidores MCP',
-    p: 'Al conectar WhatsApp y tu CRM a modelos de IA, blindamos despliegues en AWS Bedrock y servidores MCP contra indirect prompt injection y fuga de bases de clientes.',
+    h: '03 · Guardrails para agentes de IA bilingües y servidores MCP',
+    p: 'Al conectar WhatsApp, SMS y tu CRM a modelos de IA en EE. UU., auditamos AWS Bedrock, roles IAM efímeros y servidores MCP contra indirect prompt injection y fuga de PII/SSN/ITIN.',
     guia: { href: '/blog/seguridad-agentes-ia-aws-bedrock-mcp', label: 'Seguridad en AWS Bedrock y MCP' },
   },
 ];
@@ -145,29 +145,26 @@ export function Hero() {
     <header className="relative overflow-hidden pb-14 pt-12 sm:pb-24 sm:pt-20">
       <Wrap>
         <div className="max-w-[56rem]">
-          <Eyebrow>Dos áreas integradas · Empresas en México</Eyebrow>
+          <Eyebrow>Negocios latinos en Estados Unidos · Español + English</Eyebrow>
           <h1 className="text-heading-lg text-balance text-obsidian">
-            Procesos comerciales con IA y la ciberseguridad para operarlos en serio.
+            Agentes comerciales bilingües y ciberseguridad para tu negocio en EE. UU.
           </h1>
           <p id="hero-description" className="mt-6 max-w-[64ch] text-[19px] leading-[1.5] text-charcoal">
-            Estructuramos embudos comerciales con agentes de IA en WhatsApp y CRM —respuesta en segundos, calificación con candados que no inventan precios y traspaso limpio a tus vendedores— junto con la ciberseguridad defensiva que protege tu correo empresarial, tu web y esos mismos agentes.
+            Estructuramos procesos comerciales con agentes de IA bilingües (español + inglés) en WhatsApp, web y CRM —respuesta en menos de 60 segundos, candados que no inventan precios y traspaso limpio a tu equipo— junto con la ciberseguridad defensiva que frena el fraude de transferencias ACH/facturas, ordena el cumplimiento FTC/WISP y blinda esos mismos agentes sobre AWS.
           </p>
           <p className="mt-3 max-w-[64ch] text-[15px] leading-[1.5] text-stone">
-            Primero el proceso de negocio y las reglas en código; después el modelo. Sin jerga, con datos medidos en México y bajo alcance firmado.
+            Diseñado para dueños de negocios hispanos en Estados Unidos (construcción y contratistas, firmas de impuestos y contabilidad, logística, clínicas y empresas B2B): primero las reglas del negocio en código; después el modelo.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/comercial-ia" className="btn-fill">
-              Procesos comerciales + IA →
+              Agentes comerciales bilingües →
             </Link>
             <a href="#diagnostico" className="btn-ghost">
               Diagnosticar mi dominio gratis →
             </a>
-            <a
-              href="mailto:victor@omona.tech?subject=Diagn%C3%B3stico%20de%20proceso%20comercial%20%2B%20IA%20y%20seguridad%20%E2%80%94%20Omona"
-              className="btn-ghost"
-            >
-              Agendar llamada →
-            </a>
+            <Link href="/blog/ciberseguridad-negocios-latinos-estados-unidos" className="btn-ghost">
+              Guía EE. UU. (ACH, FTC e IA) →
+            </Link>
           </div>
         </div>
 
@@ -175,16 +172,16 @@ export function Hero() {
         <div className="mt-14 grid border-y border-hair lg:grid-cols-2 lg:divide-x lg:divide-hair">
           <div className="py-8 lg:pr-10">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <p className="mono-label text-[#297a3a]">Área 01 · Especialidad principal</p>
+              <p className="mono-label text-[#297a3a]">Área 01 · Ventas bilingües (ES + EN)</p>
               <Link href="/comercial-ia" className="mono-label text-obsidian hover:underline">
                 Ver práctica completa →
               </Link>
             </div>
             <h2 className="mt-2 text-[22px] font-medium tracking-[-0.03em] text-obsidian">
-              Procesos comerciales + Agentes de IA
+              Procesos comerciales + Agentes de IA bilingües
             </h2>
             <p className="mt-2 text-[14.5px] leading-[1.5] text-stone">
-              Para equipos B2B y PyMEs que quieren convertir más en WhatsApp y CRM sin perder control comercial.
+              Para negocios hispanos en EE. UU. que atienden clientes en español e inglés sin perder prospectos ni inventar tarifas.
             </p>
             <dl className="mt-6 divide-y divide-hair border-t border-hair">
               {PILARES_COMERCIAL_IA.map((x) => (
@@ -205,16 +202,16 @@ export function Hero() {
 
           <div className="border-t border-hair py-8 lg:border-t-0 lg:pl-10">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <p className="mono-label text-graphite">Área 02 · Operación sin riesgo</p>
+              <p className="mono-label text-graphite">Área 02 · Protección en EE. UU.</p>
               <Link href="/seguridad" className="mono-label text-obsidian hover:underline">
                 Ver alcance defensivo →
               </Link>
             </div>
             <h2 className="mt-2 text-[22px] font-medium tracking-[-0.03em] text-obsidian">
-              Ciberseguridad: del dominio a la IA
+              Ciberseguridad: de ACH y FTC a tus agentes de IA
             </h2>
             <p className="mt-2 text-[14.5px] leading-[1.5] text-stone">
-              Protección 100 % defensiva desde facturas falsas y cabeceras web hasta permisos de nube y agentes.
+              Protección 100 % defensiva contra facturas falsas BEC, cumplimiento FTC Safeguards / cyber insurance y seguridad en AWS.
             </p>
             <dl className="mt-6 divide-y divide-hair border-t border-hair">
               {PILARES_SEGURIDAD.map((x) => (
@@ -631,10 +628,11 @@ export function Quien() {
           <div>
             <p className="mono-label text-graphite">Respaldo legal y dirección técnica</p>
             <p id="quien" className="mt-2 max-w-[64ch] text-[16px] leading-[1.5] text-obsidian">
-              Omona se representa y opera como persona moral formalmente establecida en México (León, Guanajuato), bajo la dirección técnica de {NOMBRE_LEGAL}.
+              Omona atiende de forma remota y bilingüe a negocios hispanos en Estados Unidos y empresas en México; se representa y opera como persona moral formalmente establecida en México (León, Guanajuato), bajo la dirección técnica de {NOMBRE_LEGAL}.
             </p>
             <p className="mono-label mt-3 flex flex-wrap gap-x-4 gap-y-1 text-stone">
               <Link href="/seguridad" className="hover:text-obsidian">Alcance y aviso legal</Link>
+              <Link href="/en/security" className="hover:text-obsidian">Security (EN-US)</Link>
               <Link href="/about" className="hover:text-obsidian">About (EN)</Link>
               <a href={REDES.github} rel="me" className="hover:text-obsidian">GitHub</a>
               <a href={REDES.linkedin} rel="me" className="hover:text-obsidian">LinkedIn</a>

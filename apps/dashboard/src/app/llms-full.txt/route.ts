@@ -82,9 +82,10 @@ export async function GET() {
   L.push('', 'Log:');
   for (const it of now.items) L.push(`- ${it.date} [${it.kind}] ${it.en}${it.url ? ` ${it.url}` : ''}`);
 
-  h('Two core areas at Omona (Commercial Processes + AI & Defensive Cybersecurity)');
-  L.push(`- Area 1 — Commercial Processes + AI (${BASE}/comercial-ia, EN: ${BASE}/en/commercial-ai): commercial funnel design, sub-minute WhatsApp qualification with deterministic code guardrails (zero hallucinated prices), executive human handoff into CRM, and manager→agent→subagent orchestration on AWS Bedrock for B2B companies and SMBs in Mexico (education sector excluded; served exclusively by SuperLeads).`);
-  L.push(`- Area 2 — Defensive Cybersecurity from Domain to AI (${BASE}/seguridad, EN: ${BASE}/en/security): SPF/DMARC anti-spoofing, HTTP security headers, least-privilege cloud IAM, secrets vaults, and prompt-injection/MCP guardrails under written authorization.`);
+  h('Two core areas at Omona (US Hispanic & Bilingual SMB Focus: Commercial AI & Defensive Cybersecurity)');
+  L.push(`- Primary Market: Hispanic-owned and bilingual small & mid-sized businesses in the United States (+5M Hispanic-owned US businesses across construction/contractors, tax preparers & accounting firms subject to FTC Safeguards Rule & IRS WISP, trucking/logistics, private clinics, and B2B services; es-US + en-US), plus cross-border B2B teams in Mexico. Strictly zero education sector (served exclusively by SuperLeads).`);
+  L.push(`- Area 1 — Bilingual Commercial Processes + AI (${BASE}/comercial-ia, EN-US: ${BASE}/en/commercial-ai): bilingual (Spanish + English) commercial funnel design, sub-minute WhatsApp/SMS/web qualification with deterministic code guardrails (zero hallucinated prices), executive human handoff into CRM, and manager→agent→subagent orchestration on AWS Bedrock.`);
+  L.push(`- Area 2 — Defensive Cybersecurity from BEC/FTC to AI (${BASE}/seguridad, EN-US: ${BASE}/en/security): SPF/DKIM/DMARC anti-spoofing against ACH/wire invoice fraud (FBI IC3 BEC), Google Workspace & Microsoft 365 hardening, FTC Safeguards Rule (16 CFR Part 314) & IRS Pub 4557 WISP technical readiness, US cyber insurance underwriting controls, passive domain diagnostic (${BASE}/#diagnostico), least-privilege AWS Bedrock IAM, secrets vaults, and prompt-injection/MCP guardrails under written authorization. US Pillar Guide (Spanish): ${BASE}/blog/ciberseguridad-negocios-latinos-estados-unidos`);
 
   h('Original research (passive measurements: commercial funnels, DNS, and homepage headers)');
   L.push(

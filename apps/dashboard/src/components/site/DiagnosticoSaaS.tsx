@@ -22,8 +22,8 @@ type Resultado = {
 
 const COPY = {
   es: {
-    title: '¿Qué tan seguros están hoy tu página web y el correo de tu empresa?',
-    sub: 'Escribe el dominio de tu negocio (ej. tuempresa.com). En 2 segundos revisamos 9 candados básicos —sin tocar ni alterar tus sistemas— para saber si pueden falsificar tu correo empresarial, si tu web protege los datos de tus clientes y si hay archivos internos expuestos.',
+    title: '¿Tu dominio en EE. UU. está protegido contra facturas falsas (BEC) y brechas web?',
+    sub: 'Escribe el dominio de tu negocio (ej. tuempresa.com). En 2 segundos revisamos 9 candados públicos —sin tocar ni alterar tus sistemas— para saber si pueden suplantar tu correo en pagos ACH/wire, si tu web cumple higiene básica de FTC Safeguards / cyber insurance y si hay archivos expuestos.',
     placeholder: 'tuempresa.com',
     quickLabel: 'Probar ejemplo:',
     authLabel: 'Confirmo que soy propietario o tengo permiso para revisar la seguridad pública de este dominio.',
@@ -36,17 +36,17 @@ const COPY = {
     downloadBtn: 'Descargar entregable (.md)',
     copyBtn: 'Copiar reporte para sistemas',
     copiedBtn: 'Copiado ✓',
-    ctaDeepTitle: '¿Quieres corregir estas brechas o blindar los accesos, nube e IA de tu empresa?',
+    ctaDeepTitle: '¿Quieres cerrar estas brechas para tu póliza cyber, regla FTC o agentes bilingües de IA?',
     ctaDeepSub:
-      'Este diagnóstico revisa tu fachada pública. Si quieres asegurar tu correo empresarial, ordenar los accesos de tu equipo o implementar inteligencia artificial y bots de WhatsApp sin filtrar datos de clientes:',
+      'Este diagnóstico revisa tu fachada pública. Si quieres blindar Google Workspace / Microsoft 365 contra desvío de pagos ACH, documentar controles WISP o conectar agentes bilingües en WhatsApp y CRM sobre AWS sin filtrar datos:',
     ctaBook: 'Agendar llamada con Omona →',
     ctaScope: 'Ver etapas de ciberseguridad',
     badge: { ok: 'OK', aviso: 'AVISO', brecha: 'RIESGO' },
   },
   en: {
     eyebrow: 'Passive architecture diagnostic · 0 tokens · Live',
-    title: 'Inspect your domain now and get the technical deliverable',
-    sub: 'Passive inspection in seconds covering TLS/HSTS, HTTP security headers, CSP/CORS policies, DNS authentication (SPF, DMARC, CAA), sensitive file exposure, and AI governance (security.txt & llms.txt). Zero intrusive traffic.',
+    title: 'Inspect your US business domain posture in two seconds',
+    sub: 'Passive read-only inspection covering DNS anti-spoofing (SPF, DMARC, CAA against BEC/wire invoice fraud), TLS/HSTS, HTTP security headers for FTC Safeguards & cyber insurance readiness, accidental file exposure, and AI governance (security.txt & llms.txt). Zero intrusive traffic.',
     placeholder: 'yourcompany.com',
     authLabel: 'I confirm I own or am authorized to inspect the public posture of this domain.',
     btnRun: 'Analyze architecture →',
@@ -142,7 +142,7 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
         </div>
         <div className="mono-label flex items-center gap-2 text-stone">
           <span>{lang === 'en' ? 'Try example:' : 'Probar ejemplo:'}</span>
-          {['omona.tech', 'superleads.mx'].map((ej) => (
+          {['omona.tech', 'ushcc.com'].map((ej) => (
             <button
               key={ej}
               type="button"

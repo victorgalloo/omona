@@ -16,29 +16,47 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   // 22-nov-2026: omona.tech es el laboratorio open source de Victor Gallo, sin producto.
   title: {
-    default: 'Omona · laboratorio open source de Victor Gallo',
+    default: 'Omona · IA Bilingüe y Ciberseguridad en EE. UU.',
     template: '%s | Omona',
   },
   description:
-    'Pull requests, reportes y notas de ingeniería de Victor Gallo sobre agentes de IA en Amazon Bedrock, Hermes Agent y Strands Agents.',
-  keywords: ['Victor Gallo', 'open source', 'Hermes Agent', 'Strands Agents', 'Amazon Bedrock', 'agentes de IA', 'pull requests'],
+    'Agentes comerciales de IA bilingües y ciberseguridad para negocios latinos en EE. UU., sobre AWS Bedrock y código abierto.',
+  keywords: [
+    'negocios latinos en Estados Unidos',
+    'ciberseguridad para pequeñas empresas',
+    'bilingual AI agents',
+    'hispanic small business cybersecurity',
+    'FTC Safeguards Rule',
+    'Amazon Bedrock',
+    'Hermes Agent',
+    'Strands Agents',
+    'Victor Gallo',
+  ],
   authors: [{ name: 'Victor Gallo', url: 'https://victorgallo.com' }],
   creator: 'Victor Gallo',
   openGraph: {
-    title: 'Omona · laboratorio open source de Victor Gallo',
-    description: 'Agentes de IA en producción. Los arreglos, upstream: PRs, reportes y notas con su estado real en GitHub.',
+    title: 'Omona · IA Bilingüe y Ciberseguridad en EE. UU.',
+    description:
+      'Agentes de IA bilingües (español e inglés) y ciberseguridad defensiva para dueños de negocios hispanos en Estados Unidos.',
     siteName: 'Omona',
-    locale: 'es_MX',
+    locale: 'es_US',
+    alternateLocale: ['en_US', 'es_MX'],
     type: 'website',
     url: '/',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Omona · laboratorio open source de Victor Gallo',
-    description: 'Agentes de IA en producción. Los arreglos, upstream: PRs, reportes y notas con su estado real en GitHub.',
+    title: 'Omona · IA Bilingüe y Ciberseguridad en EE. UU.',
+    description:
+      'Agentes de IA bilingües (español e inglés) y ciberseguridad defensiva para dueños de negocios hispanos en Estados Unidos.',
   },
   alternates: {
     canonical: '/',
+    languages: {
+      'es-US': '/',
+      'es-MX': '/',
+      'x-default': '/',
+    },
     types: {
       'application/rss+xml': [
         { url: '/blog/rss.xml', title: 'Omona · Notas de ingeniería' },

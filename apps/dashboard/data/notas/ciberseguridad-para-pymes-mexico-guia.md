@@ -1,5 +1,5 @@
 ---
-title: Ciberseguridad para PyMEs en México: guía paso a paso
+title: Ciberseguridad para PyMEs en México: guía base
 description: Por dónde empezar en ciberseguridad para PyMEs en México: cómo saber si tu página web es segura, blindar el correo empresarial, ordenar accesos y usar IA.
 date: 2026-11-24
 tags: Ciberseguridad para PyMEs, Seguridad Informática, Correo Empresarial, IA

@@ -32,12 +32,13 @@ const AGENDA_COMERCIAL_EN =
 const T = {
   es: {
     path: '/comercial-ia',
-    other: { href: '/en/commercial-ai', label: 'English' },
-    eyebrow: 'Área 01 · Procesos comerciales + IA para empresas',
-    h1: 'Primero el proceso comercial; después los agentes de IA que lo ejecutan.',
-    sub: 'Diseñamos y operamos embudos comerciales con agentes de IA en WhatsApp, web y CRM para empresas B2B y PyMEs en México: respuesta en segundos, calificación sin inventar precios, traspaso con contexto a tus vendedores y la ciberseguridad necesaria para proteger tus datos.',
+    other: { href: '/en/commercial-ai', label: 'English (US)' },
+    eyebrow: 'Área 01 · Agentes Comerciales Bilingües (ES + EN) · EE. UU.',
+    h1: 'Primero el proceso comercial; después los agentes bilingües de IA que lo ejecutan.',
+    sub: 'Diseñamos y operamos embudos comerciales con agentes de IA bilingües (español + inglés) en WhatsApp, web y CRM para dueños de negocios latinos en Estados Unidos (contratistas, firmas de impuestos y contabilidad, logística, clínicas y empresas B2B): respuesta en menos de 60 segundos, calificación sin inventar precios, traspaso limpio a tu equipo y ciberseguridad integrada.',
     ctaPrimary: 'Agendar diagnóstico comercial →',
-    ctaSecondary: 'Ver arquitectura y datos (.mx) →',
+    ctaSecondary: 'Guía EE. UU. (ACH, FTC e IA) →',
+    ctaSecondaryHref: '/blog/ciberseguridad-negocios-latinos-estados-unidos',
     ctaMail: AGENDA_COMERCIAL_ES,
     dataEyebrow: 'Medición propia en México · 255 sitios empresariales .mx (nov 2026)',
     dataSub: 'Lectura pasiva de portadas públicas vinculadas por cámaras empresariales y portales PyME (sin enviar formularios):',
@@ -94,17 +95,18 @@ const T = {
       ['Procesos comerciales + IA', `En SuperLeads es «${CARGO_SL}» (Account Executive; más de 100 instituciones educativas trabajan con SuperLeads; no es fundador de SuperLeads): vende sistemas comerciales y construye los agentes de IA en jerarquía que apoyan el seguimiento diario.`],
       ['Trayectoria comercial y tech', 'Banca empresarial PyME en BanBajío, tecnología para ventas en Globant (incorporado vía Walmeric, capacitado uno a uno en Google Ads, Meta Ads y LinkedIn Ads) y asesoría financiera en GBM.'],
       ['Formación e ingeniería', 'Contaduría y Finanzas (EBC), AMIB Figura III, CS50 de Harvard, repositorios abiertos de orquestación multiagente en AWS Bedrock (bedrock-agent-hierarchy) y contribuciones a Hermes Agent y Strands Agents.'],
-      ['Entidad y alcance en Omona', `Omona es operada por ${PERSONA_MORAL_ES} (León, Guanajuato) bajo la dirección de ${NOMBRE_LEGAL}, enfocada en empresas B2B y PyMEs fuera del sector educativo.`],
+      ['Entidad y alcance en Omona', `Omona atiende de forma remota y bilingüe a negocios hispanos en Estados Unidos y empresas en México; es operada por ${PERSONA_MORAL_ES} (León, Guanajuato) bajo la dirección de ${NOMBRE_LEGAL}, enfocada exclusivamente fuera del sector educativo.`],
     ] as [string, string][],
   },
   en: {
     path: '/en/commercial-ai',
-    other: { href: '/comercial-ia', label: 'Español' },
-    eyebrow: 'Area 01 · Commercial Processes + AI for Business',
-    h1: 'Commercial process first; the AI agents that execute it second.',
-    sub: 'We design and operate AI-assisted commercial funnels across WhatsApp, web, and CRM for B2B companies and SMBs in Mexico: sub-minute response, deterministic guardrails with zero hallucinated pricing, clean human handoff, and defensive security built in.',
+    other: { href: '/comercial-ia', label: 'Español (EE. UU.)' },
+    eyebrow: 'Area 01 · Bilingual Commercial AI (EN + ES) · United States',
+    h1: 'Commercial process first; the bilingual AI agents that execute it second.',
+    sub: 'We design and operate bilingual (English + Spanish) AI commercial funnels across WhatsApp, SMS, web, and CRM for Hispanic-owned and bilingual businesses in the United States: sub-minute response in whichever language your customer uses, deterministic guardrails with zero hallucinated pricing, clean human handoff, and defensive security built in.',
     ctaPrimary: 'Book commercial review →',
-    ctaSecondary: 'Read architecture & .mx study (ES) →',
+    ctaSecondary: 'Read US Hispanic SMB Guide (ES) →',
+    ctaSecondaryHref: '/blog/ciberseguridad-negocios-latinos-estados-unidos',
     ctaMail: AGENDA_COMERCIAL_EN,
     dataEyebrow: 'Original Mexican benchmark · 255 business .mx sites (Nov 2026)',
     dataSub: 'Passive homepage review of non-governmental, non-educational .mx sites linked by Mexican business chambers:',
@@ -161,7 +163,7 @@ const T = {
       ['Commercial processes + AI', `At SuperLeads he is an Account Executive (public title: “${CARGO_SL}”; 100+ educational institutions work with SuperLeads; not a founder of SuperLeads), selling admissions systems and building the multi-agent hierarchy supporting daily commercial follow-up.`],
       ['Sales & tech background', 'SME banking at BanBajío, sales technology at Globant (joined via Walmeric; trained one-on-one in Google Ads, Meta Ads, and LinkedIn Ads), and financial advisory at GBM.'],
       ['Education & open source', 'B.S. in Accounting & Finance (EBC), AMIB Figura III, Harvard CS50, author of open-source Bedrock orchestration templates (bedrock-agent-hierarchy), and contributor to Hermes Agent and Strands Agents.'],
-      ['Entity & scope at Omona', `Omona is operated by ${PERSONA_MORAL_EN} (León, Guanajuato, Mexico) led by ${NOMBRE_LEGAL}, serving B2B companies and SMBs outside the education sector.`],
+      ['Entity & scope at Omona', `Omona serves Hispanic-owned and bilingual businesses in the United States and cross-border B2B teams in Mexico remotely; it is operated by ${PERSONA_MORAL_EN} (León, Guanajuato, Mexico) led by ${NOMBRE_LEGAL}, strictly outside the education sector.`],
     ] as [string, string][],
   },
 } as const;
@@ -169,20 +171,34 @@ const T = {
 export function metadataComercialIA(lang: Lang): Metadata {
   const en = lang === 'en';
   const title = en
-    ? 'Omona · AI Commercial Processes & Agents'
-    : 'Omona · Procesos Comerciales con IA en México';
+    ? 'Bilingual AI Sales Agents for US Businesses | Omona'
+    : 'Agentes de IA Bilingües para Negocios en EE. UU.';
   const description = en
-    ? 'Commercial processes and AI sales agents on WhatsApp and CRM: fast response, deterministic pricing guardrails, human handoff, and defensive security.'
-    : 'Diseño de procesos comerciales con agentes de IA en WhatsApp y CRM: respuesta inmediata, candados sin inventar precios, handoff humano y seguridad.';
+    ? 'Bilingual Spanish-English AI sales agents on WhatsApp, web & CRM for US Hispanic businesses: fast response, zero invented prices & clean handoff.'
+    : 'Embudos comerciales y agentes de IA bilingües (español + inglés) en WhatsApp y CRM para negocios latinos en EE. UU., con candados en código.';
   const url = `${BASE}${en ? '/en/commercial-ai' : '/comercial-ia'}`;
   return {
     title: { absolute: title },
     description,
     alternates: {
       canonical: url,
-      languages: { 'es-MX': `${BASE}/comercial-ia`, en: `${BASE}/en/commercial-ai` },
+      languages: {
+        'es-US': `${BASE}/comercial-ia`,
+        'es-MX': `${BASE}/comercial-ia`,
+        'en-US': `${BASE}/en/commercial-ai`,
+        en: `${BASE}/en/commercial-ai`,
+        'x-default': `${BASE}/comercial-ia`,
+      },
     },
-    openGraph: { title, description, url, siteName: 'Omona', locale: en ? 'en_US' : 'es_MX', type: 'website' },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'Omona',
+      locale: en ? 'en_US' : 'es_US',
+      alternateLocale: en ? ['es_US', 'es_MX'] : ['en_US', 'es_MX'],
+      type: 'website',
+    },
     twitter: { card: 'summary_large_image', title, description },
   };
 }
@@ -201,7 +217,7 @@ export function ComercialIA({ lang = 'es' }: { lang?: Lang }) {
         url: `${BASE}${t.path}`,
         name: t.h1,
         description: t.sub,
-        inLanguage: en ? 'en' : 'es-MX',
+        inLanguage: en ? 'en-US' : 'es-US',
         isPartOf: { '@id': `${BASE}/#website` },
         about: { '@id': ORG_ID },
       },
@@ -209,7 +225,7 @@ export function ComercialIA({ lang = 'es' }: { lang?: Lang }) {
   };
 
   return (
-    <div className="md min-h-screen bg-paper text-obsidian">
+    <div lang={en ? 'en-US' : 'es-US'} className="md min-h-screen bg-paper text-obsidian">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <LandingNav lang={lang} />
       <main>
@@ -218,7 +234,7 @@ export function ComercialIA({ lang = 'es' }: { lang?: Lang }) {
           <Wrap>
             <div className="flex flex-wrap items-baseline justify-between gap-4">
               <Eyebrow>{t.eyebrow}</Eyebrow>
-              <Link href={t.other.href} className="mono-label text-stone hover:text-obsidian">
+              <Link href={t.other.href} hrefLang={en ? 'es-US' : 'en-US'} className="mono-label text-stone hover:text-obsidian">
                 {t.other.label} →
               </Link>
             </div>
@@ -228,8 +244,11 @@ export function ComercialIA({ lang = 'es' }: { lang?: Lang }) {
               <a href={t.ctaMail} className="btn-fill">
                 {t.ctaPrimary}
               </a>
-              <Link href="/blog/procesos-comerciales-ia-whatsapp-arquitectura" className="btn-ghost">
+              <Link href={t.ctaSecondaryHref} className="btn-ghost">
                 {t.ctaSecondary}
+              </Link>
+              <Link href="/blog/procesos-comerciales-ia-whatsapp-arquitectura" className="btn-ghost">
+                {en ? 'Architecture & .mx benchmark →' : 'Arquitectura y estudio base →'}
               </Link>
             </div>
 

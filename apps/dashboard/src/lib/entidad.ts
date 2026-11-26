@@ -49,14 +49,19 @@ export const ORG = {
   url: BASE,
   logo: `${BASE}/logo-mark.png`,
   description:
-    'Commercial processes with AI agents, defensive AI/cloud cybersecurity, and open-source engineering in Mexico: WhatsApp/CRM workflows with deterministic guardrails, domain posture diagnostics, and AWS Bedrock reviews.',
+    'Bilingual (Spanish + English) commercial AI agents, defensive SMB & AI/cloud cybersecurity for Hispanic-owned businesses in the United States, and open-source engineering: WhatsApp/CRM funnels with deterministic guardrails, BEC/wire fraud & FTC Safeguards posture diagnostics, and AWS Bedrock reviews.',
   founder: PERSON_REF,
+  areaServed: [
+    { '@type': 'Country', name: 'United States', identifier: 'US' },
+    { '@type': 'Country', name: 'Mexico', identifier: 'MX' },
+  ],
+  knowsLanguage: ['es-US', 'en-US', 'es-MX'],
   address: { '@type': 'PostalAddress', addressLocality: 'León', addressRegion: 'Guanajuato', addressCountry: 'MX' },
   email: 'victor@omona.tech',
 };
 
 export const ORG_DESC_ES =
-  'Procesos comerciales con agentes de IA y ciberseguridad defensiva en México, operada como persona moral formalmente establecida en México, más contribuciones verificables a código abierto.';
+  'Agentes comerciales de IA bilingües (español + inglés) y ciberseguridad defensiva para dueños de negocios latinos en Estados Unidos (fraude ACH/BEC, FTC Safeguards Rule, cyber insurance y AWS Bedrock), operada como persona moral formalmente establecida en México, más contribuciones verificables a código abierto.';
 
 export const AUTOR = {
   nombre: 'Victor Gallo',

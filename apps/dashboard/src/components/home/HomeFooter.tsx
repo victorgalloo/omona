@@ -61,7 +61,7 @@ export function HomeFooter() {
               <span className="text-[15px] font-medium tracking-[-0.04em] text-obsidian">omona</span>
             </Link>
             <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.54] text-stone">
-              Procesos comerciales con IA, ciberseguridad defensiva y laboratorio open source en México.
+              Agentes comerciales bilingües con IA y ciberseguridad defensiva para negocios latinos en EE. UU., más laboratorio open source.
             </p>
           </div>
           {COLUMNAS.map((c) => (

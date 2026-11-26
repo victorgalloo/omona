@@ -9,18 +9,31 @@ import { fechaCorta, getNotas } from '@/lib/notas';
 
 export const dynamic = 'force-static';
 
-const TITLE = 'Blog: ciberseguridad para PyMEs y agentes de IA';
+const TITLE = 'Notas: Ciberseguridad e IA en EE. UU.';
 const DESC =
-  'Guías prácticas de ciberseguridad para PyMEs en México, seguridad de correo y páginas web, control de acceso en AWS Bedrock y agentes de IA en producción.';
+  'Guías de ciberseguridad para negocios latinos en EE. UU., prevención de fraude ACH/BEC, regla FTC, procesos comerciales e IA en AWS Bedrock.';
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: {
     canonical: `${BASE}/blog`,
+    languages: {
+      'es-US': `${BASE}/blog`,
+      'es-MX': `${BASE}/blog`,
+      'x-default': `${BASE}/blog`,
+    },
     types: { 'application/rss+xml': `${BASE}/blog/rss.xml` },
   },
-  openGraph: { title: TITLE, description: DESC, url: `${BASE}/blog`, type: 'website', siteName: 'Omona', locale: 'es_MX' },
+  openGraph: {
+    title: TITLE,
+    description: DESC,
+    url: `${BASE}/blog`,
+    type: 'website',
+    siteName: 'Omona',
+    locale: 'es_US',
+    alternateLocale: ['es_MX'],
+  },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESC },
 };
 

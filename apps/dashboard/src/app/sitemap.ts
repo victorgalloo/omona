@@ -13,27 +13,64 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
-    { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
+    {
+      url: baseUrl,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+      alternates: {
+        languages: {
+          'es-US': baseUrl,
+          'es-MX': baseUrl,
+          'en-US': `${baseUrl}/en/security`,
+          'x-default': baseUrl,
+        },
+      },
+    },
     ...['/open-source', '/en/open-source'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
-      alternates: { languages: { 'es-MX': `${baseUrl}/open-source`, en: `${baseUrl}/en/open-source` } },
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/open-source`,
+          'es-MX': `${baseUrl}/open-source`,
+          'en-US': `${baseUrl}/en/open-source`,
+          en: `${baseUrl}/en/open-source`,
+          'x-default': `${baseUrl}/open-source`,
+        },
+      },
     })),
     ...['/comercial-ia', '/en/commercial-ai'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
-      alternates: { languages: { 'es-MX': `${baseUrl}/comercial-ia`, en: `${baseUrl}/en/commercial-ai` } },
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/comercial-ia`,
+          'es-MX': `${baseUrl}/comercial-ia`,
+          'en-US': `${baseUrl}/en/commercial-ai`,
+          en: `${baseUrl}/en/commercial-ai`,
+          'x-default': `${baseUrl}/comercial-ia`,
+        },
+      },
     })),
     ...['/seguridad', '/en/security'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-      alternates: { languages: { 'es-MX': `${baseUrl}/seguridad`, en: `${baseUrl}/en/security` } },
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/seguridad`,
+          'es-MX': `${baseUrl}/seguridad`,
+          'en-US': `${baseUrl}/en/security`,
+          en: `${baseUrl}/en/security`,
+          'x-default': `${baseUrl}/seguridad`,
+        },
+      },
     })),
     { url: `${baseUrl}/now`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
@@ -42,7 +79,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog/${n.slug}`,
       lastModified: new Date(n.updated),
       changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      priority: n.slug === 'ciberseguridad-negocios-latinos-estados-unidos' ? 0.9 : 0.8,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/blog/${n.slug}`,
+          'es-MX': `${baseUrl}/blog/${n.slug}`,
+          'x-default': `${baseUrl}/blog/${n.slug}`,
+        },
+      },
     })),
   ];
 }

@@ -35,35 +35,36 @@ const s = (ossData as unknown as { stats: Record<string, number> }).stats;
 const T = {
   es: {
     path: '/seguridad',
-    other: { href: '/en/security', label: 'English' },
-    eyebrow: 'Ciberseguridad para PyMEs e IA · Solo defensiva',
-    h1: 'Ciberseguridad para tu empresa: de lo básico a la IA',
-    sub: 'Ayudamos a PyMEs y empresas en México a proteger su correo empresarial, su página web, los accesos de su equipo y los agentes de IA que van adoptando. Solo trabajo defensivo, sobre sistemas propios del cliente y con autorización por escrito.',
+    other: { href: '/en/security', label: 'English (US)' },
+    eyebrow: 'Ciberseguridad para Negocios Latinos en EE. UU. e IA · Solo defensiva',
+    h1: 'Ciberseguridad para tu negocio en EE. UU.: del fraude ACH a la IA',
+    sub: 'Ayudamos a dueños de negocios latinos e hispanos en Estados Unidos (contratistas, firmas de impuestos sujetas a FTC Safeguards / IRS WISP, transporte, clínicas y servicios B2B) a blindar Google Workspace o Microsoft 365 contra facturas falsas BEC, cumplir requisitos de cyber insurance y asegurar sus agentes de IA bilingües en AWS. Solo trabajo defensivo, sobre sistemas propios del cliente y con autorización por escrito.',
     status:
       'Servicio nuevo: todavía no hay proyectos con clientes. Algunos servicios dependen de que los proveedores de modelos aprueben nuestra participación en sus programas.',
+    pillarLabel: 'Leer guía pilar para negocios latinos en EE. UU. (ACH, FTC Safeguards, Cyber Insurance e IA) →',
     contactCta: 'Escribir a',
-    servicesH: 'Cómo acompañamos a tu empresa (paso a paso)',
+    servicesH: 'Cómo acompañamos a tu negocio en EE. UU. (paso a paso)',
     servicesSub: 'Cuatro etapas que puedes contratar desde lo más básico o en conjunto, siempre con alcance firmado.',
     services: [
       {
         k: '01',
-        h: 'Revisión de despliegues en AWS Bedrock, IAM y Secrets Store',
-        p: 'Permisos IAM de mínimo privilegio, roles STS efímeros en lugar de llaves fijas, bóveda Secrets Store fuera del código y de la configuración, bitácoras (logs) y retención de datos.',
+        h: 'Correo empresarial (SPF/DKIM/DMARC), nube AWS Bedrock, IAM y Secrets Store',
+        p: 'Freno técnico a suplantación de facturas y desvíos ACH/wire (BEC) en Google Workspace y Microsoft 365, permisos IAM de mínimo privilegio, roles STS efímeros en lugar de llaves fijas, bóveda Secrets Store fuera del código y bitácoras alineadas a FTC Safeguards / WISP y cyber insurance.',
       },
       {
         k: '02',
         h: 'Pruebas y guardrails contra indirect prompt injection y jailbreak',
-        p: 'Probamos tus propios asistentes con una batería de casos contra indirect prompt injection y exfiltración registrada antes de correrla, con criterios de aprobado o fallido fijados de antemano. Solo contra tu entorno de pruebas o los endpoints que autorices.',
+        p: 'Probamos tus propios asistentes bilingües (español + inglés) con una batería de casos contra indirect prompt injection y exfiltración de PII/SSN/ITIN registrada antes de correrla, con criterios de aprobado o fallido fijados de antemano. Solo contra tu entorno de pruebas o los endpoints que autorices.',
       },
       {
         k: '03',
-        h: 'Seguridad en servidores MCP (Model Context Protocol) y código',
-        p: 'Leemos tus repositorios y configuraciones MCP para detectar tool poisoning, falta de aislamiento de tokens OAuth, secretos expuestos, dependencias riesgosas y cabeceras Content-Security-Policy, HSTS, DMARC y DNS CAA.',
+        h: 'Seguridad en servidores MCP (Model Context Protocol), web y código',
+        p: 'Leemos tus repositorios y configuraciones MCP para detectar tool poisoning, falta de aislamiento de tokens OAuth, secretos expuestos, dependencias riesgosas y postura pública Content-Security-Policy, HSTS, DMARC y DNS CAA.',
       },
       {
         k: '04',
-        h: 'Recomendaciones de hardening',
-        p: 'Un reporte con cada hallazgo, su severidad, la evidencia y los pasos para corregirlo. Si se acuerda, volvemos a probar después de que lo arregles.',
+        h: 'Recomendaciones de hardening y evidencia para cumplimiento',
+        p: 'Un reporte en español o inglés con cada hallazgo, su severidad, la evidencia técnica y los pasos para corregirlo (útil para tu expediente WISP o cuestionarios de cyber insurance en EE. UU.). Si se acuerda, volvemos a probar después de que lo arregles.',
       },
     ],
     notH: 'Lo que NO hacemos',
@@ -105,32 +106,33 @@ const T = {
       'La disponibilidad de algunos servicios depende de que los programas de los proveedores nos aprueben.',
     ],
     contactH: 'Contacto de seguridad',
-    contactP: 'Para cotizar un alcance o reportar un problema de seguridad en este sitio.',
-    title: 'Ciberseguridad para PyMEs y Agentes de IA en México',
-    desc: 'Diagnóstico de dominio y correo, control de acceso, revisión de sistemas y seguridad defensiva para agentes de IA en México bajo alcance firmado.',
-    locale: 'es_MX',
+    contactP: 'Para cotizar un alcance en EE. UU. o México, o reportar un problema de seguridad en este sitio.',
+    title: 'Ciberseguridad Negocios Latinos EE. UU. e IA',
+    desc: 'Ciberseguridad defensiva para negocios latinos en EE. UU.: freno a fraude ACH/facturas, correo SPF/DMARC, regla FTC, seguro cyber e IA en AWS.',
+    locale: 'es_US',
   },
   en: {
     path: '/en/security',
-    other: { href: '/seguridad', label: 'Español' },
-    eyebrow: 'Security · Defensive only',
-    h1: 'Security for AI agents',
-    sub: 'We review the AI agents your company already runs, their cloud and their code, so they don’t leak data or take orders from the wrong people. Defensive work only, only on systems you own, always with written authorization.',
+    other: { href: '/seguridad', label: 'Español (EE. UU.)' },
+    eyebrow: 'Hispanic & Bilingual US SMB Security · Defensive only',
+    h1: 'Security for AI agents & bilingual US businesses',
+    sub: 'We help Hispanic-owned and bilingual small businesses in the United States harden email and cloud posture (BEC/wire fraud prevention, Google Workspace & Microsoft 365, FTC Safeguards / IRS WISP technical controls, cyber insurance readiness) and review production AI agents on AWS so they never leak data or take orders from untrusted inputs. Defensive work only, only on systems you own, always with written authorization.',
     status:
       'New service: there are no customer engagements yet. Some services depend on model providers approving our participation in their programs.',
+    pillarLabel: 'Read our US Hispanic Small Business Cybersecurity & Bilingual AI Guide (Spanish) →',
     contactCta: 'Write to',
     servicesH: 'What we do',
     servicesSub: 'Four pieces, hired together or separately, always with a signed scope.',
     services: [
       {
         k: '01',
-        h: 'AI-agent deployment review on AWS Bedrock, IAM & Secrets Store',
-        p: 'Least-privilege IAM, short-lived STS workload roles instead of long-lived keys, Secrets Store isolation kept out of code and config, logging and data retention.',
+        h: 'Email anti-spoofing (SPF/DKIM/DMARC), AWS Bedrock, IAM & Secrets Store review',
+        p: 'Technical controls against invoice/ACH wire fraud (BEC) across Google Workspace and Microsoft 365, least-privilege IAM, short-lived STS workload roles instead of long-lived keys, Secrets Store isolation kept out of code and config, and logging aligned with FTC Safeguards / WISP & US cyber insurance checklists.',
       },
       {
         k: '02',
         h: 'Indirect prompt-injection, guardrails and jailbreak testing',
-        p: 'We test your own assistants against indirect prompt injection and data exfiltration with a written battery of cases registered before the run, with pass/fail criteria fixed in advance. Only against your staging environment or the endpoints you authorize.',
+        p: 'We test your own bilingual (English + Spanish) assistants against indirect prompt injection and PII/SSN/ITIN exfiltration with a written battery of cases registered before the run, with pass/fail criteria fixed in advance. Only against your staging environment or the endpoints you authorize.',
       },
       {
         k: '03',
@@ -139,8 +141,8 @@ const T = {
       },
       {
         k: '04',
-        h: 'Hardening recommendations',
-        p: 'A report with every finding, its severity, the evidence and step-by-step remediation. If agreed, a retest after you fix it.',
+        h: 'Hardening recommendations & compliance evidence',
+        p: 'A bilingual-ready report with every finding, its severity, the evidence and step-by-step remediation. If agreed, a retest after you fix it.',
       },
     ],
     notH: 'What we do NOT do',
@@ -182,9 +184,9 @@ const T = {
       'Availability of some services is subject to approval by the providers’ programs.',
     ],
     contactH: 'Security contact',
-    contactP: 'To scope an engagement or report a security issue on this site.',
-    title: 'Security for AI Agents & Cloud Architecture',
-    desc: 'Defensive security reviews of AI-agent deployments on AWS Bedrock, MCP servers, prompt-injection testing and secure code under signed scope.',
+    contactP: 'To scope an engagement for your US or cross-border team, or report a security issue on this site.',
+    title: 'Hispanic SMB & AI Agent Security in the US',
+    desc: 'Defensive cybersecurity for Hispanic & bilingual US businesses: wire/BEC fraud prevention, FTC Safeguards, AWS Bedrock IAM & MCP security.',
     locale: 'en_US',
   },
 };
@@ -196,9 +198,23 @@ export function seguridadMetadata(lang: Lang): Metadata {
     description: t.desc,
     alternates: {
       canonical: `${BASE}${t.path}`,
-      languages: { 'es-MX': `${BASE}/seguridad`, en: `${BASE}/en/security`, 'x-default': `${BASE}/seguridad` },
+      languages: {
+        'es-US': `${BASE}/seguridad`,
+        'es-MX': `${BASE}/seguridad`,
+        'en-US': `${BASE}/en/security`,
+        en: `${BASE}/en/security`,
+        'x-default': `${BASE}/seguridad`,
+      },
     },
-    openGraph: { title: t.title, description: t.desc, url: `${BASE}${t.path}`, type: 'website', siteName: 'Omona', locale: t.locale },
+    openGraph: {
+      title: t.title,
+      description: t.desc,
+      url: `${BASE}${t.path}`,
+      type: 'website',
+      siteName: 'Omona',
+      locale: t.locale,
+      alternateLocale: lang === 'es' ? ['en_US', 'es_MX'] : ['es_US', 'es_MX'],
+    },
     twitter: { card: 'summary_large_image', title: t.title, description: t.desc },
   };
 }
@@ -228,7 +244,7 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
         name: t.title,
         description: t.desc,
         url,
-        inLanguage: lang === 'es' ? 'es-MX' : 'en',
+        inLanguage: lang === 'es' ? 'es-US' : 'en-US',
         about: { '@id': ORG_ID },
         publisher: { '@id': ORG_ID },
       },
@@ -238,7 +254,7 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
   };
 
   return (
-    <div lang={lang === 'es' ? 'es-MX' : 'en'} className="md min-h-screen bg-paper text-obsidian">
+    <div lang={lang === 'es' ? 'es-US' : 'en-US'} className="md min-h-screen bg-paper text-obsidian">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <LandingNav lang={lang} />
       <main>
@@ -246,7 +262,7 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
           <Wrap>
             <div className="flex items-baseline justify-between gap-6">
               <Eyebrow>{t.eyebrow}</Eyebrow>
-              <Link href={t.other.href} hrefLang={lang === 'es' ? 'en' : 'es-MX'} className="mono-label text-charcoal hover:text-obsidian">
+              <Link href={t.other.href} hrefLang={lang === 'es' ? 'en-US' : 'es-US'} className="mono-label text-charcoal hover:text-obsidian">
                 {t.other.label} →
               </Link>
             </div>
@@ -263,6 +279,11 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                     {lang === 'es' ? 'Agendar llamada de alcance' : 'Book scope call'}
                   </a>
                 </div>
+                <p className="mt-4">
+                  <Link href="/blog/ciberseguridad-negocios-latinos-estados-unidos" className="mono-label text-[#297a3a] hover:underline">
+                    {t.pillarLabel}
+                  </Link>
+                </p>
               </div>
               <div className="cli text-[12.5px]">
                 <p>

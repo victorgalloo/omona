@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T03:32:50.083Z",
+  "generatedAt": "2026-11-26T05:14:58.017Z",
   "updated": "2026-11-25",
   "foco": [
     {
@@ -30,6 +30,14 @@
     {
       "date": "2026-11-25",
       "kind": "nota",
+      "es": "Ciberseguridad para negocios latinos en EE.UU.",
+      "en": "Ciberseguridad para negocios latinos en EE.UU. (note in Spanish)",
+      "url": "https://omona.tech/blog/ciberseguridad-negocios-latinos-estados-unidos",
+      "ref": "nota:ciberseguridad-negocios-latinos-estados-unidos"
+    },
+    {
+      "date": "2026-11-25",
+      "kind": "nota",
       "es": "DMARC y SPF para PyMEs: frena facturas falsas",
       "en": "DMARC y SPF para PyMEs: frena facturas falsas (note in Spanish)",
       "url": "https://omona.tech/blog/dmarc-spf-facturas-falsas-pymes",
@@ -54,8 +62,8 @@
     {
       "date": "2026-11-24",
       "kind": "nota",
-      "es": "Ciberseguridad para PyMEs en México: guía paso a paso",
-      "en": "Ciberseguridad para PyMEs en México: guía paso a paso (note in Spanish)",
+      "es": "Ciberseguridad para PyMEs en México: guía base",
+      "en": "Ciberseguridad para PyMEs en México: guía base (note in Spanish)",
       "url": "https://omona.tech/blog/ciberseguridad-para-pymes-mexico-guia",
       "ref": "nota:ciberseguridad-para-pymes-mexico-guia"
     },

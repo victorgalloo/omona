@@ -100,7 +100,13 @@ export function ossMetadata(lang: Lang): Metadata {
     description: t.desc,
     alternates: {
       canonical: `${BASE}${t.path}`,
-      languages: { 'es-MX': `${BASE}/open-source`, en: `${BASE}/en/open-source`, 'x-default': `${BASE}/open-source` },
+      languages: {
+        'es-US': `${BASE}/open-source`,
+        'es-MX': `${BASE}/open-source`,
+        'en-US': `${BASE}/en/open-source`,
+        en: `${BASE}/en/open-source`,
+        'x-default': `${BASE}/open-source`,
+      },
     },
     openGraph: { title: t.title, description: t.desc, url: `${BASE}${t.path}`, type: 'website', siteName: 'Omona', locale: lang === 'es' ? 'es_MX' : 'en_US' },
     twitter: { card: 'summary_large_image', title: t.title, description: t.desc },

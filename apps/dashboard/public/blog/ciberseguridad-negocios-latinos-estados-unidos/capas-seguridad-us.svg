@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 310" width="920" height="310" role="img" aria-label="Cuatro capas de ciberseguridad e IA bilingüe para negocios latinos en Estados Unidos: correo y transferencias ACH/BEC, cumplimiento FTC e IRS WISP, requisitos de cyber insurance y agentes bilingües seguros en AWS Bedrock">
+  <rect width="920" height="310" fill="#fafafa"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+    <text x="32" y="36" font-size="11" fill="#666666" letter-spacing="0.08em">NEGOCIOS LATINOS EN EE. UU. · RUTA DEFENSIVA DE CIBERSEGURIDAD A IA BILINGÜE</text>
+    <line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+
+    <!-- Capa 01 -->
+    <rect x="32" y="72" width="196" height="174" rx="6" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+    <text x="48" y="98" font-size="11" fill="#666666">01 · TESORERÍA Y CORREO</text>
+    <text x="48" y="122" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Freno a BEC y ACH</text>
+    <text x="48" y="146" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">SPF, DKIM y DMARC</text>
+    <text x="48" y="166" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">p=reject + MFA sin SMS</text>
+    <text x="48" y="186" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">y doble validación wire.</text>
+    <text x="48" y="226" font-size="11" fill="#297a3a">✓ 0 facturas suplantadas</text>
+
+    <!-- Flecha 1 -->
+    <line x1="228" y1="159" x2="250" y2="159" stroke="#111111" stroke-width="1.2"/>
+    <polygon points="250,159 244,155 244,163" fill="#111111"/>
+
+    <!-- Capa 02 -->
+    <rect x="252" y="72" width="196" height="174" rx="6" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+    <text x="268" y="98" font-size="11" fill="#666666">02 · REGLA FEDERAL US</text>
+    <text x="268" y="122" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">FTC Safeguards + WISP</text>
+    <text x="268" y="146" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">Cifrado TLS/HSTS, control</text>
+    <text x="268" y="166" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">de SSN/ITIN (IRS 4557) y</text>
+    <text x="268" y="186" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">accesos por temporada.</text>
+    <text x="268" y="226" font-size="11" fill="#297a3a">✓ Cumplimiento auditable</text>
+
+    <!-- Flecha 2 -->
+    <line x1="448" y1="159" x2="470" y2="159" stroke="#111111" stroke-width="1.2"/>
+    <polygon points="470,159 464,155 464,163" fill="#111111"/>
+
+    <!-- Capa 03 -->
+    <rect x="472" y="72" width="196" height="174" rx="6" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/>
+    <text x="488" y="98" font-size="11" fill="#666666">03 · PÓLIZAS EN EE. UU.</text>
+    <text x="488" y="122" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Cyber Insurance</text>
+    <text x="488" y="146" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">Backups inmutables, EDR,</text>
+    <text x="488" y="166" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">cabeceras CSP/HSTS y</text>
+    <text x="488" y="186" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">cero secretos expuestos.</text>
+    <text x="488" y="226" font-size="11" fill="#297a3a">✓ Cuestionario verificable</text>
+
+    <!-- Flecha 3 -->
+    <line x1="668" y1="159" x2="690" y2="159" stroke="#111111" stroke-width="1.2"/>
+    <polygon points="690,159 684,155 684,163" fill="#111111"/>
+
+    <!-- Capa 04 -->
+    <rect x="692" y="72" width="196" height="174" rx="6" fill="#ffffff" stroke="#297a3a" stroke-width="1.5"/>
+    <text x="708" y="98" font-size="11" fill="#297a3a">04 · IA BILINGÜE SEGURA</text>
+    <text x="708" y="122" font-size="14" font-weight="600" font-family="system-ui, -apple-system, sans-serif">ES + EN sobre AWS</text>
+    <text x="708" y="146" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">WhatsApp, SMS y CRM con</text>
+    <text x="708" y="166" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">candados en código, IAM</text>
+    <text x="708" y="186" font-size="12" fill="#444444" font-family="system-ui, -apple-system, sans-serif">efímero y defensa MCP.</text>
+    <text x="708" y="226" font-size="11" fill="#297a3a">✓ 0 precios inventados</text>
+
+    <line x1="32" y1="268" x2="888" y2="268" stroke="#e5e5e5" stroke-width="1"/>
+    <text x="32" y="288" font-size="11" fill="#666666">Diagnóstico pasivo gratuito (2 s): omona.tech/#diagnostico · Práctica defensiva: omona.tech/seguridad</text>
+  </g>
+</svg>

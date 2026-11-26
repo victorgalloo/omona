@@ -7,22 +7,37 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import ossData from '../../data/oss/oss.json';
 import nowData from '../../data/now/now.json';
 
-const TITLE = 'Omona · Procesos Comerciales con IA y Ciberseguridad';
+const TITLE = 'Omona · IA Bilingüe y Ciberseguridad en EE. UU.';
 const DESC =
-  'Sistemas comerciales con agentes de IA y ciberseguridad defensiva en México: embudos en WhatsApp, candados en código y protección de dominio a nube.';
+  'Agentes de IA bilingües (español e inglés) y ciberseguridad para dueños de negocios latinos en Estados Unidos: correo, FTC, web y AWS.';
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESC,
-  openGraph: { title: TITLE, description: DESC, locale: 'es_MX', type: 'website', url: BASE, siteName: 'Omona' },
+  openGraph: {
+    title: TITLE,
+    description: DESC,
+    locale: 'es_US',
+    alternateLocale: ['en_US', 'es_MX'],
+    type: 'website',
+    url: BASE,
+    siteName: 'Omona',
+  },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESC },
-  alternates: { canonical: BASE },
+  alternates: {
+    canonical: BASE,
+    languages: {
+      'es-US': BASE,
+      'es-MX': BASE,
+      'en-US': `${BASE}/en/security`,
+      'x-default': BASE,
+    },
+  },
 };
 
 /**
- * JSON-LD de la portada. Omona es el laboratorio de Victor, no un producto:
- * sin ProfessionalService, sin ofertas, sin FAQ comercial. La organización
- * (con `founder`) y la persona comparten @id con victorgallo.com.
+ * JSON-LD de la portada. La organización incluye areaServed US + MX y comparte
+ * @id con victorgallo.com sin exponer razón social.
  */
 const prs = (ossData as { prs: { title: string; url: string }[] }).prs;
 const jsonLdGraph = {
@@ -30,14 +45,14 @@ const jsonLdGraph = {
   '@graph': [
     { ...ORG, description: ORG_DESC_ES },
     PERSON,
-    { '@type': 'WebSite', '@id': `${BASE}/#website`, name: 'Omona', url: BASE, inLanguage: 'es-MX', publisher: { '@id': ORG_ID } },
+    { '@type': 'WebSite', '@id': `${BASE}/#website`, name: 'Omona', url: BASE, inLanguage: 'es-US', publisher: { '@id': ORG_ID } },
     {
       '@type': 'WebPage',
       '@id': `${BASE}/#page`,
       name: TITLE,
       description: DESC,
       url: BASE,
-      inLanguage: 'es-MX',
+      inLanguage: 'es-US',
       dateModified: (nowData as { updated: string }).updated,
       isPartOf: { '@id': `${BASE}/#website` },
       about: { '@id': PERSON['@id'] },
