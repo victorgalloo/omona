@@ -163,7 +163,7 @@ function FranjasHero({ filas }: { filas: { n: string; paso: string; dato: string
   return (
     <ol className="mt-3 divide-y divide-hair border-y border-hair">
       {filas.map((x) => (
-        <li key={x.n} className="grid grid-cols-[1.75rem_minmax(0,1fr)] items-baseline gap-x-2 gap-y-1 py-[11px] sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
+        <li key={x.n} className="grid grid-cols-[1.75rem_minmax(0,1fr)] items-baseline gap-x-2 gap-y-1 py-[11px] lg:py-[15px] sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
           <span className="mono-label tabular-nums text-graphite">{x.n}</span>
           <span className="text-[14.5px] font-medium tracking-[-0.02em] text-obsidian">{x.paso}</span>
           <span className="mono-label col-start-2 tabular-nums text-charcoal sm:col-start-3 sm:text-right">{x.dato}</span>
@@ -202,7 +202,7 @@ export function Hero() {
             </ul>
           </div>
 
-          <div className="border-t border-hair pt-8 lg:flex lg:flex-col lg:justify-between lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+          <div className="border-t border-hair pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
             <div>
             <div className="flex items-baseline justify-between gap-3">
               <p className="mono-label text-obsidian">Flujo comercial</p>
@@ -214,7 +214,7 @@ export function Hero() {
             </div>
 
             <div>
-            <div className="mt-7 flex items-baseline justify-between gap-3">
+            <div className="mt-7 flex items-baseline justify-between gap-3 lg:mt-10">
               <p className="mono-label text-obsidian">Capas de defensa</p>
               <Link href="/seguridad" className="mono-label text-charcoal hover:text-obsidian">
                 Ver →
