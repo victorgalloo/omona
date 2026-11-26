@@ -138,6 +138,7 @@ const AREAS_HERO: AreaHero[] = [
       },
     ],
     guias: [
+      { href: '/blog/recepcionista-bilingue-ia-negocios-latinos', label: 'Recepcionista bilingüe con IA' },
       { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Arquitectura comercial con IA' },
       { href: '/blog/agentes-en-jerarquia-gerentes-subagentes', label: 'Agentes en jerarquía' },
     ],
