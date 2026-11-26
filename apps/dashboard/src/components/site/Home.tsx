@@ -162,7 +162,7 @@ const AREAS_HERO: AreaHero[] = [
       },
     ],
     guias: [
-      { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Guía para negocios latinos en EE. UU.' },
+      { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Negocios latinos en EE. UU.' },
       { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'SPF y DMARC paso a paso' },
       { href: '/blog/seguridad-agentes-ia-aws-bedrock-mcp', label: 'Agentes seguros en AWS' },
     ],
@@ -177,7 +177,7 @@ function AreaSubHero({ a, i }: { a: AreaHero; i: number }) {
       className={`py-9 lg:row-span-9 lg:grid lg:grid-rows-subgrid ${i === 0 ? 'lg:pr-10' : 'border-t border-hair lg:border-l lg:border-t-0 lg:pl-10'}`}
     >
       <p className="mono-label text-stone">{a.rotulo}</p>
-      <h2 className="mt-3 text-[26px] font-medium leading-[1.15] tracking-[-0.035em] text-obsidian sm:text-[30px]">
+      <h2 className="mt-3 text-balance text-[26px] font-medium leading-[1.15] tracking-[-0.035em] text-obsidian sm:text-[30px]">
         {a.h[0]} <span className="lg:block">{a.h[1]}</span>
       </h2>
       <p className="mt-3 max-w-[46ch] text-pretty text-[15px] leading-[1.5] text-stone">{a.porque}</p>
@@ -189,10 +189,10 @@ function AreaSubHero({ a, i }: { a: AreaHero; i: number }) {
       <dl className="mt-6 divide-y divide-hair border-y border-hair sm:mt-0 sm:border-t-0 lg:row-span-3 lg:grid lg:grid-rows-subgrid">
         {a.filas.map((f) => (
           <div key={f.hoy} className="grid content-start gap-y-1.5 py-4 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] sm:gap-x-6">
-            <dt className="text-[14px] leading-[1.45] text-stone">{f.hoy}</dt>
+            <dt className="text-pretty text-[14px] leading-[1.45] text-stone">{f.hoy}</dt>
             <dd className="flex gap-2 text-[15px] font-medium leading-[1.4] tracking-[-0.015em] text-obsidian">
               <span aria-hidden className="text-stone sm:hidden">→</span>
-              <span>{f.con}</span>
+              <span className="text-pretty">{f.con}</span>
             </dd>
           </div>
         ))}
