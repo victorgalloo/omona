@@ -140,31 +140,88 @@ const PILARES_SEGURIDAD: { h: string; p: string; guia?: { href: string; label: s
   },
 ];
 
+// Héroe v5 (26-nov-2026, Victor: «Hero de Omona.tech»): una promesa por área en el
+// titular, una sola oración de apoyo, 2 botones y a la derecha la ficha del flujo
+// (franjas de 1 px, sin cards). El detalle largo vive en la matriz de abajo.
+const FLUJO_HERO: { n: string; paso: string; dato: string }[] = [
+  { n: '01', paso: 'Entra un mensaje', dato: 'WhatsApp · web · SMS' },
+  { n: '02', paso: 'Primera respuesta', dato: '< 60 seg · ES / EN' },
+  { n: '03', paso: 'Calificación', dato: '1 pregunta por turno' },
+  { n: '04', paso: 'Candados en código', dato: '0 precios inventados' },
+  { n: '05', paso: 'Traspaso a tu vendedor', dato: 'resumen bilingüe' },
+];
+
+const DEFENSA_HERO: { n: string; paso: string; dato: string }[] = [
+  { n: '01', paso: 'Correo y pagos', dato: 'SPF · DKIM · DMARC' },
+  { n: '02', paso: 'Web y cumplimiento', dato: 'HTTPS · CSP · FTC / WISP' },
+  { n: '03', paso: 'Accesos y agentes', dato: 'IAM · MFA · MCP' },
+];
+
+const GIROS_HERO = ['Contratistas', 'Impuestos y contabilidad', 'Clínicas', 'Logística', 'B2B'];
+
+function FranjasHero({ filas }: { filas: { n: string; paso: string; dato: string }[] }) {
+  return (
+    <ol className="mt-3 divide-y divide-hair border-y border-hair">
+      {filas.map((x) => (
+        <li key={x.n} className="grid grid-cols-[1.75rem_minmax(0,1fr)] items-baseline gap-x-2 gap-y-1 py-[11px] sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
+          <span className="mono-label tabular-nums text-graphite">{x.n}</span>
+          <span className="text-[14.5px] font-medium tracking-[-0.02em] text-obsidian">{x.paso}</span>
+          <span className="mono-label col-start-2 tabular-nums text-charcoal sm:col-start-3 sm:text-right">{x.dato}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 export function Hero() {
   return (
-    <header className="relative overflow-hidden pb-14 pt-12 sm:pb-24 sm:pt-20">
+    <header className="relative overflow-hidden pb-14 pt-10 sm:pb-24 sm:pt-16">
       <Wrap>
-        <div className="max-w-[56rem]">
-          <Eyebrow>Negocios latinos en Estados Unidos · Español + English</Eyebrow>
-          <h1 className="text-heading-lg text-balance text-obsidian">
-            Agentes comerciales bilingües y ciberseguridad para tu negocio en EE. UU.
-          </h1>
-          <p id="hero-description" className="mt-6 max-w-[64ch] text-[19px] leading-[1.5] text-charcoal">
-            Estructuramos procesos comerciales con agentes de IA bilingües (español + inglés) en WhatsApp, web y CRM —respuesta en menos de 60 segundos, candados que no inventan precios y traspaso limpio a tu equipo— junto con la ciberseguridad defensiva que frena el fraude de transferencias ACH/facturas, ordena el cumplimiento FTC/WISP y blinda esos mismos agentes sobre AWS.
-          </p>
-          <p className="mt-3 max-w-[64ch] text-[15px] leading-[1.5] text-stone">
-            Diseñado para dueños de negocios hispanos en Estados Unidos (construcción y contratistas, firmas de impuestos y contabilidad, logística, clínicas y empresas B2B): primero las reglas del negocio en código; después el modelo.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/comercial-ia" className="btn-fill">
-              Agentes comerciales bilingües →
-            </Link>
-            <a href="#diagnostico" className="btn-ghost">
-              Diagnosticar mi dominio gratis →
-            </a>
-            <Link href="/blog/ciberseguridad-negocios-latinos-estados-unidos" className="btn-ghost">
-              Guía EE. UU. (ACH, FTC e IA) →
-            </Link>
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-0">
+          <div className="lg:pr-10">
+            <Eyebrow>Negocios latinos en EE. UU. · ES + EN</Eyebrow>
+            <h1 className="text-heading-lg text-balance text-obsidian">
+              Vende en español e inglés con agentes de IA.
+              <span className="mt-[0.12em] block text-stone">Protege tu negocio en EE. UU.</span>
+            </h1>
+            <p id="hero-description" className="mt-6 max-w-[50ch] text-[18px] leading-[1.5] text-charcoal">
+              Agentes de IA bilingües que contestan en WhatsApp, web y CRM en menos de 60 segundos sin inventar precios, y ciberseguridad defensiva que frena facturas falsas y fraude ACH/wire.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href="/comercial-ia" className="btn-fill w-full sm:w-auto">
+                Ver agentes bilingües →
+              </Link>
+              <a href="#diagnostico" className="btn-ghost w-full sm:w-auto">
+                Evaluar mi dominio gratis →
+              </a>
+            </div>
+            <ul className="mono-label mt-8 flex flex-wrap gap-x-5 gap-y-1.5 text-stone">
+              {GIROS_HERO.map((g) => (
+                <li key={g} className="whitespace-nowrap">{g}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="border-t border-hair pt-8 lg:flex lg:flex-col lg:justify-between lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <div>
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="mono-label text-obsidian">Flujo comercial</p>
+              <Link href="/comercial-ia" className="mono-label text-charcoal hover:text-obsidian">
+                Ver →
+              </Link>
+            </div>
+            <FranjasHero filas={FLUJO_HERO} />
+            </div>
+
+            <div>
+            <div className="mt-7 flex items-baseline justify-between gap-3">
+              <p className="mono-label text-obsidian">Capas de defensa</p>
+              <Link href="/seguridad" className="mono-label text-charcoal hover:text-obsidian">
+                Ver →
+              </Link>
+            </div>
+            <FranjasHero filas={DEFENSA_HERO} />
+            </div>
           </div>
         </div>
 
