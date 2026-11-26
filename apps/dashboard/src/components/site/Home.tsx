@@ -105,40 +105,117 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
 // 24-nov-2026, Victor: «que ese sea el CTA principal de la página y quítame
 // relevancia a mí, haz la página más ejecutiva y con estos CTAs, sin cards».
 
-const PILARES_COMERCIAL_IA: { h: string; p: string; guia?: { href: string; label: string } }[] = [
+// Sub héroe v2 (26-nov-2026, Victor: «Sub hero»): cada área en lenguaje de dueño de
+// negocio: una orden como titular, una razón, y 3 filas «hoy → con Omona». La
+// jerga (SPF, IAM, MCP…) ya vive en la ficha del héroe y en las guías ligadas.
+type AreaHero = {
+  rotulo: string;
+  h: [string, string];
+  porque: string;
+  mas: { href: string; label: string };
+  filas: { hoy: string; con: string }[];
+  guias: { href: string; label: string }[];
+};
+
+const AREAS_HERO: AreaHero[] = [
   {
-    h: '01 · Atención inmediata bilingüe (español + inglés) en WhatsApp y web',
-    p: 'En Estados Unidos gana el contrato quien contesta en el primer minuto. El agente detecta si el prospecto escribe en inglés o en español, responde en segundos y registra el origen real en tu CRM.',
-    guia: { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Arquitectura comercial con IA y estudio base' },
+    rotulo: 'Área 01 · Agentes comerciales bilingües',
+    h: ['Contesta primero,', 'en el idioma de tu cliente.'],
+    porque: 'En Estados Unidos gana el contrato quien contesta en el primer minuto.',
+    mas: { href: '/comercial-ia', label: 'Ver cómo funciona' },
+    filas: [
+      {
+        hoy: 'Un cliente escribe por WhatsApp fuera de horario y nadie contesta.',
+        con: 'Recibe respuesta en menos de 60 segundos, en español o en inglés.',
+      },
+      {
+        hoy: 'Cada quien da un precio o un estimado distinto.',
+        con: 'El agente solo cotiza lo que está en tu lista de precios.',
+      },
+      {
+        hoy: 'Tu vendedor vuelve a preguntarle todo al cliente.',
+        con: 'Le llega un resumen del caso, listo para cerrar.',
+      },
+    ],
+    guias: [
+      { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Arquitectura comercial con IA' },
+      { href: '/blog/agentes-en-jerarquia-gerentes-subagentes', label: 'Agentes en jerarquía' },
+    ],
   },
   {
-    h: '02 · Calificación y candados en código (0 precios inventados)',
-    p: 'Una sola pregunta por turno según la etapa del embudo y validación determinista antes de enviar: el agente nunca improvisa tarifas, estimados ni condiciones fuera de tu ficha autorizada.',
-  },
-  {
-    h: '03 · Traspaso a vendedor humano (handoff) sobre AWS Bedrock',
-    p: 'Cuando el cliente pide hablar con alguien o cerrar un estimado, tu vendedor recibe un resumen ejecutivo bilingüe; detrás operan gerentes, agentes y subagentes sobre AWS Bedrock.',
-    guia: { href: '/blog/agentes-en-jerarquia-gerentes-subagentes', label: 'Jerarquía gerente → agente → subagente' },
+    rotulo: 'Área 02 · Ciberseguridad defensiva',
+    h: ['Frena la factura falsa', 'antes de que se pague.'],
+    porque: 'El FBI documentó $2,770 millones USD perdidos en 2024 por correos que suplantan a un proveedor o a un jefe.',
+    mas: { href: '/seguridad', label: 'Ver qué cubrimos' },
+    filas: [
+      {
+        hoy: 'Un cliente recibe una factura a tu nombre con otra cuenta de banco.',
+        con: 'Tu dominio rechaza los correos que te suplantan y tu buzón pide doble verificación.',
+      },
+      {
+        hoy: 'La FTC (Safeguards Rule), el IRS (plan WISP) o tu aseguradora te piden controles.',
+        con: 'Dejamos en orden el cifrado, los accesos y los respaldos que exigen.',
+      },
+      {
+        hoy: 'Conectaste un agente de IA a WhatsApp y a tu CRM.',
+        con: 'Revisamos que no pueda filtrar datos de clientes ni ser manipulado.',
+      },
+    ],
+    guias: [
+      { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Guía para negocios latinos en EE. UU.' },
+      { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'SPF y DMARC paso a paso' },
+      { href: '/blog/seguridad-agentes-ia-aws-bedrock-mcp', label: 'Agentes seguros en AWS' },
+    ],
   },
 ];
 
-const PILARES_SEGURIDAD: { h: string; p: string; guia?: { href: string; label: string } }[] = [
-  {
-    h: '01 · Frenar fraude de transferencias (ACH / wire) y facturas BEC',
-    p: 'El FBI IC3 reportó $2,770 millones USD en pérdidas por Business Email Compromise. Blindamos Google Workspace y Microsoft 365 con SPF, DKIM, DMARC y MFA resistente a phishing.',
-    guia: { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Guía pilar para negocios latinos en EE. UU.' },
-  },
-  {
-    h: '02 · FTC Safeguards Rule, plan WISP (IRS) y Cyber Insurance',
-    p: 'Para firmas hispanas de impuestos, contabilidad, contratistas y servicios en EE. UU.: cifrado TLS/HSTS, cabeceras CSP, control de accesos y respaldos exigidos por la FTC y aseguradoras.',
-    guia: { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'Guía técnica SPF y DMARC paso a paso' },
-  },
-  {
-    h: '03 · Guardrails para agentes de IA bilingües y servidores MCP',
-    p: 'Al conectar WhatsApp, SMS y tu CRM a modelos de IA en EE. UU., auditamos AWS Bedrock, roles IAM efímeros y servidores MCP contra indirect prompt injection y fuga de PII/SSN/ITIN.',
-    guia: { href: '/blog/seguridad-agentes-ia-aws-bedrock-mcp', label: 'Seguridad en AWS Bedrock y MCP' },
-  },
-];
+// En escritorio las dos áreas comparten filas (subgrid): rótulo, titular, razón,
+// cabecera, 3 filas, liga y guías caen a la misma altura en ambas columnas.
+function AreaSubHero({ a, i }: { a: AreaHero; i: number }) {
+  return (
+    <section
+      className={`py-9 lg:row-span-9 lg:grid lg:grid-rows-subgrid ${i === 0 ? 'lg:pr-10' : 'border-t border-hair lg:border-l lg:border-t-0 lg:pl-10'}`}
+    >
+      <p className="mono-label text-stone">{a.rotulo}</p>
+      <h2 className="mt-3 text-[26px] font-medium leading-[1.15] tracking-[-0.035em] text-obsidian sm:text-[30px]">
+        {a.h[0]} <span className="lg:block">{a.h[1]}</span>
+      </h2>
+      <p className="mt-3 max-w-[46ch] text-pretty text-[15px] leading-[1.5] text-stone">{a.porque}</p>
+
+      <div className="mono-label mt-7 hidden grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] items-end gap-x-6 border-b border-hair pb-2 text-stone sm:grid">
+        <span>Hoy</span>
+        <span>Con Omona</span>
+      </div>
+      <dl className="mt-6 divide-y divide-hair border-y border-hair sm:mt-0 sm:border-t-0 lg:row-span-3 lg:grid lg:grid-rows-subgrid">
+        {a.filas.map((f) => (
+          <div key={f.hoy} className="grid content-start gap-y-1.5 py-4 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] sm:gap-x-6">
+            <dt className="text-[14px] leading-[1.45] text-stone">{f.hoy}</dt>
+            <dd className="flex gap-2 text-[15px] font-medium leading-[1.4] tracking-[-0.015em] text-obsidian">
+              <span aria-hidden className="text-stone sm:hidden">→</span>
+              <span>{f.con}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <p className="mt-6">
+        <Link href={a.mas.href} className="text-[15px] font-medium tracking-[-0.02em] text-obsidian underline decoration-hair underline-offset-4 hover:decoration-obsidian">
+          {a.mas.label} →
+        </Link>
+      </p>
+      <ul className="mono-label mt-4 flex flex-col content-start gap-y-2 text-charcoal sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-1.5">
+        <li className="text-stone">Guías</li>
+        {a.guias.map((g) => (
+          <li key={g.href}>
+            <Link href={g.href} className="hover:text-obsidian">
+              {g.label} →
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 // Héroe v5 (26-nov-2026, Victor: «Hero de Omona.tech»): una promesa por área en el
 // titular, una sola oración de apoyo, 2 botones y a la derecha la ficha del flujo
@@ -225,67 +302,11 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Matriz arquitectónica de las 2 áreas (0 cards: franjas con divisores de 1 px) */}
-        <div className="mt-14 grid border-y border-hair lg:grid-cols-2 lg:divide-x lg:divide-hair">
-          <div className="py-8 lg:pr-10">
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <p className="mono-label text-[#297a3a]">Área 01 · Ventas bilingües (ES + EN)</p>
-              <Link href="/comercial-ia" className="mono-label text-obsidian hover:underline">
-                Ver práctica completa →
-              </Link>
-            </div>
-            <h2 className="mt-2 text-[22px] font-medium tracking-[-0.03em] text-obsidian">
-              Procesos comerciales + Agentes de IA bilingües
-            </h2>
-            <p className="mt-2 text-[14.5px] leading-[1.5] text-stone">
-              Para negocios hispanos en EE. UU. que atienden clientes en español e inglés sin perder prospectos ni inventar tarifas.
-            </p>
-            <dl className="mt-6 divide-y divide-hair border-t border-hair">
-              {PILARES_COMERCIAL_IA.map((x) => (
-                <div key={x.h} className="py-4">
-                  <dt className="text-[15.5px] font-medium leading-[1.35] tracking-[-0.02em] text-obsidian">{x.h}</dt>
-                  <dd className="mt-1.5 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
-                  {x.guia && (
-                    <dd className="mt-2">
-                      <Link href={x.guia.href} className="mono-label text-charcoal hover:text-obsidian">
-                        {x.guia.label} →
-                      </Link>
-                    </dd>
-                  )}
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="border-t border-hair py-8 lg:border-t-0 lg:pl-10">
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <p className="mono-label text-graphite">Área 02 · Protección en EE. UU.</p>
-              <Link href="/seguridad" className="mono-label text-obsidian hover:underline">
-                Ver alcance defensivo →
-              </Link>
-            </div>
-            <h2 className="mt-2 text-[22px] font-medium tracking-[-0.03em] text-obsidian">
-              Ciberseguridad: de ACH y FTC a tus agentes de IA
-            </h2>
-            <p className="mt-2 text-[14.5px] leading-[1.5] text-stone">
-              Protección 100 % defensiva contra facturas falsas BEC, cumplimiento FTC Safeguards / cyber insurance y seguridad en AWS.
-            </p>
-            <dl className="mt-6 divide-y divide-hair border-t border-hair">
-              {PILARES_SEGURIDAD.map((x) => (
-                <div key={x.h} className="py-4">
-                  <dt className="text-[15.5px] font-medium leading-[1.35] tracking-[-0.02em] text-obsidian">{x.h}</dt>
-                  <dd className="mt-1.5 text-[14px] leading-[1.5] text-charcoal">{x.p}</dd>
-                  {x.guia && (
-                    <dd className="mt-2">
-                      <Link href={x.guia.href} className="mono-label text-charcoal hover:text-obsidian">
-                        {x.guia.label} →
-                      </Link>
-                    </dd>
-                  )}
-                </div>
-              ))}
-            </dl>
-          </div>
+        {/* Sub héroe: las 2 áreas en «hoy → con Omona» (0 cards: franjas de 1 px) */}
+        <div className="mt-14 grid border-y border-hair lg:grid-cols-2">
+          {AREAS_HERO.map((a, i) => (
+            <AreaSubHero key={a.rotulo} a={a} i={i} />
+          ))}
         </div>
 
         <div className="mt-14">
