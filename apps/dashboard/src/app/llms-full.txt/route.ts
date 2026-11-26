@@ -89,6 +89,9 @@ export async function GET() {
 
   h('Original research (passive measurements: commercial funnels, DNS, and homepage headers)');
   L.push(
+    `- 2026-11-26 · Email and website posture of US Hispanic chamber members: from the public ChamberMaster member directories of the Fort Worth Hispanic Chamber (TX, 716 listings) and the Statewide Hispanic Chamber of Commerce of New Jersey (199 listings), excluding government/education, 604 member domains with MX records were read via DNS-over-HTTPS. 62.7% (379) can be spoofed: 171 (28.3%) publish no DMARC record and 208 (34.4%) use p=none; 111 (18.4%) use p=quarantine and 114 (18.9%) p=reject; 51 (8.4%) lack SPF. Finance & Insurance members (91): 45.1% spoofable, 37.4% p=reject. Restaurants 80.8%, legal 75%, construction 68.1% spoofable. The 27 chamber/.org domains: 59.3% spoofable, 7.4% p=reject; the 3 federal .gov portals with email: 100% p=reject (CISA BOD 18-01). Of 654 active member homepages: 72.2% send no Content-Security-Policy, 45.1% no HSTS, 27.9% none of 5 basic headers. Aggregates only. Guide: ${BASE}/blog/irs-wisp-ftc-safeguards-tax-preparers (EN) · ${BASE}/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos (ES)`,
+  );
+  L.push(
     `- 2026-11-25 · Commercial digital readiness of Mexican business sites: passive homepage review of 255 active non-governmental, non-educational .mx websites linked by Mexican business chambers and SME portals (1 GET to public homepage HTML, zero form submissions). 77.3% (197) offer no immediate response channel on their homepage (29.8% rely only on static forms, mailto:, or phone; 47.5% show no direct commercial channel on the homepage). Only 20.0% (51) link directly to WhatsApp, and 64.7% (33 of 51) open blank with no prefilled context; 4.3% (11) run a chat/CRM widget and 0.4% (1) offer direct online booking. Architecture & guide (Spanish): ${BASE}/blog/procesos-comerciales-ia-whatsapp-arquitectura`,
   );
   L.push(
@@ -99,8 +102,8 @@ export async function GET() {
   );
 
 
-  h('Engineering notes (Spanish)');
-  for (const n of getNotas()) L.push(`- ${n.date} · ${n.title}: ${n.description} ${BASE}/blog/${n.slug}`);
+  h('Engineering notes (Spanish; English where marked en-US)');
+  for (const n of getNotas()) L.push(`- ${n.date} · ${n.title}${n.lang === 'en' ? ' (en-US)' : ''}: ${n.description} ${BASE}/blog/${n.slug}`);
 
   h('Contact and profiles');
   L.push(`- LinkedIn (preferred for programs and talks): ${REDES.linkedin}`);

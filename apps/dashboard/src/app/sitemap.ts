@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { getNotas } from '@/lib/notas';
+import { getNotas, notaLanguages } from '@/lib/notas';
 
 export const dynamic = 'force-static';
 
@@ -93,14 +93,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog/${n.slug}`,
       lastModified: new Date(n.updated),
       changeFrequency: 'monthly' as const,
-      priority: n.slug === 'ciberseguridad-negocios-latinos-estados-unidos' ? 0.9 : 0.8,
-      alternates: {
-        languages: {
-          'es-US': `${baseUrl}/blog/${n.slug}`,
-          'es-MX': `${baseUrl}/blog/${n.slug}`,
-          'x-default': `${baseUrl}/blog/${n.slug}`,
-        },
-      },
+      priority: ['ciberseguridad-negocios-latinos-estados-unidos', 'plan-wisp-irs-ftc-safeguards-preparadores-impuestos', 'irs-wisp-ftc-safeguards-tax-preparers'].includes(n.slug) ? 0.9 : 0.8,
+      alternates: { languages: notaLanguages(n, baseUrl) },
     })),
   ];
 }

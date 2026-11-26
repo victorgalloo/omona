@@ -1,7 +1,7 @@
 import { NotaView, notaJsonLd } from '@/components/site/Blog';
 import { LandingNav } from '@/components/landing/LandingNav';
 import { HomeFooter } from '@/components/home/HomeFooter';
-import { getNota, getNotas } from '@/lib/notas';
+import { getNota, getNotas, notaLanguages } from '@/lib/notas';
 import { BASE } from '@/lib/entidad';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     keywords: n.tags,
     alternates: {
       canonical: url,
-      languages: { 'es-US': url, 'es-MX': url, 'x-default': url },
+      languages: notaLanguages(n, BASE),
       types: { 'application/rss+xml': `${BASE}/blog/rss.xml` },
     },
     openGraph: {
@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url,
       siteName: 'Omona',
       type: 'article',
-      locale: 'es_US',
-      alternateLocale: ['es_MX'],
+      locale: n.lang === 'en' ? 'en_US' : 'es_US',
+      alternateLocale: n.lang === 'en' ? ['es_US', 'es_MX'] : ['es_MX', ...(n.alternate ? ['en_US'] : [])],
       publishedTime: n.date,
       modifiedTime: n.updated,
       authors: ['https://victorgallo.com'],
@@ -52,9 +52,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   const n = getNota(params.slug);
   if (!n) notFound();
   return (
-    <div className="md min-h-screen bg-paper text-obsidian">
+    <div className="md min-h-screen bg-paper text-obsidian" lang={n.lang === 'en' ? 'en' : undefined}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: notaJsonLd(n) }} />
-      <LandingNav />
+      <LandingNav lang={n.lang} />
       <main>
         <NotaView n={n} />
       </main>

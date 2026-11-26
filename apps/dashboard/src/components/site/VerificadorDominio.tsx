@@ -41,6 +41,7 @@ const T = {
       { href: '/comercial-ia', label: 'Área 01 · Procesos comerciales + IA' },
       { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'Estudio DMARC/SPF (285 dominios)' },
       { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Guía negocios latinos en EE. UU.' },
+      { href: '/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos', label: 'Plan WISP del IRS (604 dominios hispanos)' },
     ],
   },
   en: {
@@ -75,6 +76,7 @@ const T = {
       { href: '/en/commercial-ai', label: 'Area 01 · Bilingual Commercial AI' },
       { href: '/verificador-dmarc-spf', label: 'Versión en español (ES)' },
       { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'US Hispanic SMB Guide (ES)' },
+      { href: '/blog/irs-wisp-ftc-safeguards-tax-preparers', label: 'IRS WISP guide + data on 604 Hispanic domains' },
     ],
   },
 } as const;

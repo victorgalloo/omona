@@ -69,7 +69,7 @@ export function notaJsonLd(n: Nota): string {
         description: n.description,
         url,
         mainEntityOfPage: url,
-        inLanguage: 'es-MX',
+        inLanguage: n.lang === 'en' ? 'en-US' : 'es-MX',
         datePublished: n.date,
         dateModified: n.updated,
         wordCount: n.palabras,
@@ -85,7 +85,7 @@ export function notaJsonLd(n: Nota): string {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Inicio', item: BASE },
+          { '@type': 'ListItem', position: 1, name: n.lang === 'en' ? 'Home' : 'Inicio', item: BASE },
           { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE}/blog` },
           { '@type': 'ListItem', position: 3, name: n.title, item: url },
         ],
@@ -97,30 +97,39 @@ export function notaJsonLd(n: Nota): string {
 export function NotaView({ n }: { n: Nota }) {
   const html = markdownToHtml(n.body);
   const min = Math.max(1, Math.round(n.palabras / 200));
+  const en = n.lang === 'en';
   return (
     <article className="mx-auto w-full max-w-[1280px] px-6 pb-8 pt-12 lg:px-12">
-      <nav aria-label="Ruta" className="mono-label mb-10 text-stone">
-        <Link href="/" className="hover:text-obsidian">Inicio</Link>
+      <nav aria-label={en ? 'Breadcrumb' : 'Ruta'} className="mono-label mb-10 text-stone">
+        <Link href="/" className="hover:text-obsidian">{en ? 'Home' : 'Inicio'}</Link>
         <span className="mx-2 text-ash">/</span>
         <Link href="/blog" className="hover:text-obsidian">Blog</Link>
         <span className="mx-2 text-ash">/</span>
-        <Link href="/blog#ingenieria" className="hover:text-obsidian">Ingeniería</Link>
+        <Link href="/blog#ingenieria" className="hover:text-obsidian">{en ? 'Engineering' : 'Ingeniería'}</Link>
+        {n.alternate && (
+          <>
+            <span className="mx-2 text-ash">·</span>
+            <Link href={`/blog/${n.alternate}`} hrefLang={en ? 'es-US' : 'en-US'} className="text-charcoal hover:text-obsidian">
+              {en ? 'Leer en español →' : 'Read in English →'}
+            </Link>
+          </>
+        )}
       </nav>
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_260px]">
         <div className="min-w-0">
-          <p className="eyebrow">Nota de ingeniería · {fechaCorta(n.date)}</p>
+          <p className="eyebrow">{en ? `Engineering note · ${n.date}` : `Nota de ingeniería · ${fechaCorta(n.date)}`}</p>
           <h1 className="max-w-[24ch] text-heading-lg text-obsidian">{n.h1}</h1>
           <p className="mono-label mt-6 text-stone">
             {AUTOR.nombre} · {min} min · {n.tags.slice(0, 3).join(' · ')}
           </p>
           <div className="geo-prose nota-prose mt-10" dangerouslySetInnerHTML={{ __html: html }} />
-          <AuthorBox />
+          <AuthorBox lang={n.lang} />
         </div>
         <aside className="hidden lg:block">
           <div className="sticky top-24 space-y-3">
             {n.prs.length > 0 && (
               <div className="ring-card p-4">
-                <p className="mono-label text-graphite">Referencias en GitHub</p>
+                <p className="mono-label text-graphite">{en ? 'GitHub references' : 'Referencias en GitHub'}</p>
                 <ul className="mt-3 space-y-2">
                   {n.prs.map((p) => {
                     const st = estadoPr(p.key);

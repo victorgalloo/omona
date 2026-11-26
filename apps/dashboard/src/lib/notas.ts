@@ -13,6 +13,8 @@
  *   prs: owner/repo#123, owner/repo#456
  *   image: /blog/<slug>/visual.svg   (visual original de la nota)
  *   imageAlt: …
+ *   lang: es | en       (opcional, default es; en = nota en inglés en-US)
+ *   alternate: <slug>   (opcional, la misma nota en el otro idioma → hreflang recíproco)
  *   ---
  *
  * Reglas (skill omona-tech): capa de experiencia completa, nunca «merged» si
@@ -31,6 +33,10 @@ export interface Nota {
   prs: { repo: string; number: number; url: string; key: string }[];
   image: string | null;
   imageAlt: string;
+  /** Idioma de la nota (frontmatter `lang`, default es). */
+  lang: 'es' | 'en';
+  /** Slug de la misma nota en el otro idioma (frontmatter `alternate`). */
+  alternate: string | null;
   /** Markdown sin frontmatter ni el H1. */
   body: string;
   h1: string;
@@ -73,6 +79,8 @@ function parse(file: string): Nota {
     prs,
     image: meta.image || null,
     imageAlt: meta.imageAlt || '',
+    lang: meta.lang === 'en' ? 'en' : 'es',
+    alternate: meta.alternate || null,
     body,
     h1,
     palabras: body.split(/\s+/).filter(Boolean).length,
@@ -99,4 +107,23 @@ const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'o
 export function fechaCorta(iso: string): string {
   const [y, mo, d] = iso.split('-').map(Number);
   return `${d} ${MESES[mo - 1]} ${y}`;
+}
+
+/**
+ * hreflang de una nota: es-US/es-MX → versión en español, en-US → versión en
+ * inglés (si existe `alternate`), x-default → español. Recíproco en ambas.
+ */
+export function notaLanguages(n: Nota, base: string): Record<string, string> {
+  const self = `${base}/blog/${n.slug}`;
+  const alt = n.alternate && getNota(n.alternate) ? `${base}/blog/${n.alternate}` : null;
+  const es = n.lang === 'es' ? self : alt;
+  const en = n.lang === 'en' ? self : alt;
+  const out: Record<string, string> = {};
+  if (es) {
+    out['es-US'] = es;
+    out['es-MX'] = es;
+  }
+  if (en) out['en-US'] = en;
+  out['x-default'] = es ?? self;
+  return out;
 }

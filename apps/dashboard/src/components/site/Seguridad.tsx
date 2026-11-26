@@ -42,6 +42,8 @@ const T = {
     status:
       'Servicio nuevo: todavía no hay proyectos con clientes. Algunos servicios dependen de que los proveedores de modelos aprueben nuestra participación en sus programas.',
     pillarLabel: 'Leer guía pilar para negocios latinos en EE. UU. (ACH, FTC Safeguards, Cyber Insurance e IA) →',
+    wispLabel: 'Plan WISP del IRS y FTC Safeguards para preparadores de impuestos (con medición de 604 dominios hispanos) →',
+    wispHref: '/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos',
     contactCta: 'Escribir a',
     servicesH: 'Cómo acompañamos a tu negocio en EE. UU. (paso a paso)',
     servicesSub: 'Cuatro etapas que puedes contratar desde lo más básico o en conjunto, siempre con alcance firmado.',
@@ -120,6 +122,8 @@ const T = {
     status:
       'New service: there are no customer engagements yet. Some services depend on model providers approving our participation in their programs.',
     pillarLabel: 'Read our US Hispanic Small Business Cybersecurity & Bilingual AI Guide (Spanish) →',
+    wispLabel: 'IRS WISP & FTC Safeguards Rule for tax preparers (with data on 604 Hispanic business domains) →',
+    wispHref: '/blog/irs-wisp-ftc-safeguards-tax-preparers',
     contactCta: 'Write to',
     servicesH: 'What we do',
     servicesSub: 'Four pieces, hired together or separately, always with a signed scope.',
@@ -282,6 +286,11 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                 <p className="mt-4">
                   <Link href="/blog/ciberseguridad-negocios-latinos-estados-unidos" className="mono-label text-[#297a3a] hover:underline">
                     {t.pillarLabel}
+                  </Link>
+                </p>
+                <p className="mt-2">
+                  <Link href={t.wispHref} className="mono-label text-[#297a3a] hover:underline">
+                    {t.wispLabel}
                   </Link>
                 </p>
               </div>
