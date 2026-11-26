@@ -93,7 +93,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog/${n.slug}`,
       lastModified: new Date(n.updated),
       changeFrequency: 'monthly' as const,
-      priority: ['ciberseguridad-negocios-latinos-estados-unidos', 'plan-wisp-irs-ftc-safeguards-preparadores-impuestos', 'irs-wisp-ftc-safeguards-tax-preparers'].includes(n.slug) ? 0.9 : 0.8,
+      priority: ['ciberseguridad-negocios-latinos-estados-unidos', 'plan-wisp-irs-ftc-safeguards-preparadores-impuestos', 'irs-wisp-ftc-safeguards-tax-preparers', 'wire-fraud-ach-fraud-small-business', 'fraude-ach-wire-facturas-falsas-contratistas'].includes(n.slug) ? 0.9 : 0.8,
       alternates: { languages: notaLanguages(n, baseUrl) },
     })),
   ];

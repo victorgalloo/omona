@@ -17,7 +17,16 @@ type Resultado = {
   puntaje: number;
   conteos: { ok: number; aviso: number; brecha: number };
   controles: Control[];
+  pagos?: { proveedor: string; dkimDefecto: boolean | null; suplantable: boolean };
   markdown: string;
+};
+
+const PROVEEDOR: Record<string, string> = {
+  microsoft365: 'Microsoft 365',
+  google: 'Google Workspace',
+  pasarela: 'Gateway',
+  otro: '—',
+  'sin-mx': '—',
 };
 
 const COPY = {
@@ -255,6 +264,28 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
               </li>
             ))}
           </ul>
+
+          {res.pagos && (
+            <div className="border-b border-hair py-4 text-[14px] leading-[1.5] text-charcoal">
+              <p className="mono-label text-graphite">{lang === 'en' ? 'ACH / wire payment diversion' : 'Desvío de pagos ACH / wire'}</p>
+              <p className="mt-1 font-mono text-[12.5px]">
+                {lang === 'en' ? 'Mail' : 'Correo'}: {PROVEEDOR[res.pagos.proveedor] ?? '—'} · DKIM:{' '}
+                {res.pagos.dkimDefecto === null ? 'n/a' : res.pagos.dkimDefecto ? 'OK' : lang === 'en' ? 'not found' : 'no encontrado'} ·{' '}
+                {res.pagos.suplantable ? (lang === 'en' ? 'spoofable today' : 'suplantable hoy') : lang === 'en' ? 'DMARC enforced' : 'DMARC en bloqueo'}
+              </p>
+              <p className="mt-1">
+                {lang === 'en'
+                  ? 'The .md deliverable adds a step-by-step checklist: callback rule, dual approval, Positive Pay and the 2026 Nacha rules.'
+                  : 'El entregable .md trae una lista paso a paso: regla de devolución de llamada, doble aprobación, Positive Pay y reglas Nacha 2026.'}{' '}
+                <a
+                  href={lang === 'en' ? '/blog/wire-fraud-ach-fraud-small-business' : '/blog/fraude-ach-wire-facturas-falsas-contratistas'}
+                  className="underline decoration-hair underline-offset-4 hover:decoration-obsidian"
+                >
+                  {lang === 'en' ? 'Full guide' : 'Guía completa'}
+                </a>
+              </p>
+            </div>
+          )}
 
           <div className="mt-6 flex flex-col justify-between gap-6 border-b border-hair pb-6 lg:flex-row lg:items-center">
             <div className="max-w-[62ch]">

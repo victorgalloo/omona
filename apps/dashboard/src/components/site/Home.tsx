@@ -165,7 +165,7 @@ const AREAS_HERO: AreaHero[] = [
     guias: [
       { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Negocios latinos en EE. UU.' },
       { href: '/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos', label: 'Plan WISP del IRS' },
-      { href: '/blog/dmarc-spf-facturas-falsas-pymes', label: 'SPF y DMARC paso a paso' },
+      { href: '/blog/fraude-ach-wire-facturas-falsas-contratistas', label: 'Fraude ACH y wire' },
       { href: '/blog/seguridad-agentes-ia-aws-bedrock-mcp', label: 'Agentes seguros en AWS' },
     ],
   },

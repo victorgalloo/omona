@@ -44,6 +44,8 @@ const T = {
     pillarLabel: 'Leer guía pilar para negocios latinos en EE. UU. (ACH, FTC Safeguards, Cyber Insurance e IA) →',
     wispLabel: 'Plan WISP del IRS y FTC Safeguards para preparadores de impuestos (con medición de 604 dominios hispanos) →',
     wispHref: '/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos',
+    pagosLabel: 'Fraude ACH y wire: facturas y W-9 falsos (Microsoft 365 vs. Google Workspace en 604 dominios) →',
+    pagosHref: '/blog/fraude-ach-wire-facturas-falsas-contratistas',
     contactCta: 'Escribir a',
     servicesH: 'Cómo acompañamos a tu negocio en EE. UU. (paso a paso)',
     servicesSub: 'Cuatro etapas que puedes contratar desde lo más básico o en conjunto, siempre con alcance firmado.',
@@ -124,6 +126,8 @@ const T = {
     pillarLabel: 'Read our US Hispanic Small Business Cybersecurity & Bilingual AI Guide (Spanish) →',
     wispLabel: 'IRS WISP & FTC Safeguards Rule for tax preparers (with data on 604 Hispanic business domains) →',
     wispHref: '/blog/irs-wisp-ftc-safeguards-tax-preparers',
+    pagosLabel: 'Wire fraud & ACH fraud playbook (Microsoft 365 vs. Google Workspace across 604 domains) →',
+    pagosHref: '/blog/wire-fraud-ach-fraud-small-business',
     contactCta: 'Write to',
     servicesH: 'What we do',
     servicesSub: 'Four pieces, hired together or separately, always with a signed scope.',
@@ -291,6 +295,11 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                 <p className="mt-2">
                   <Link href={t.wispHref} className="mono-label text-[#297a3a] hover:underline">
                     {t.wispLabel}
+                  </Link>
+                </p>
+                <p className="mt-2">
+                  <Link href={t.pagosHref} className="mono-label text-[#297a3a] hover:underline">
+                    {t.pagosLabel}
                   </Link>
                 </p>
               </div>

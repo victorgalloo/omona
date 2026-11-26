@@ -56,6 +56,58 @@ async function headOrGet(url: string, maxBytes = 4096): Promise<{ status: number
   }
 }
 
+type Proveedor = 'microsoft365' | 'google' | 'pasarela' | 'otro' | 'sin-mx';
+
+function proveedorCorreo(mx: string[]): Proveedor {
+  const h = mx.join(' ').toLowerCase();
+  if (!h.trim()) return 'sin-mx';
+  if (h.includes('outlook.com')) return 'microsoft365';
+  if (h.includes('google.com') || h.includes('googlemail.com')) return 'google';
+  if (/pphosted|mimecast|barracudanetworks|iphmx|messagelabs|mailcontrol|trendmicro|sophos|spamtitan/.test(h)) return 'pasarela';
+  return 'otro';
+}
+
+// Lista determinista (0 tokens) para frenar el cambio de cuenta bancaria por correo: BEC, ACH, wire, W-9 falsos.
+// Guía completa: /blog/fraude-ach-wire-facturas-falsas-contratistas (es-US) y /blog/wire-fraud-ach-fraud-small-business (en-US).
+function checklistPagos(p: { proveedor: Proveedor; dkimDefecto: boolean | null; suplantable: boolean }, en: boolean): string[] {
+  const nombre = { microsoft365: 'Microsoft 365', google: 'Google Workspace', pasarela: en ? 'filtering gateway' : 'pasarela de filtrado', otro: en ? 'other provider' : 'otro proveedor', 'sin-mx': en ? 'no MX record' : 'sin registro MX' }[p.proveedor];
+  const dkim = p.dkimDefecto === null ? (en ? 'not checked for this provider' : 'no medible con este proveedor') : p.dkimDefecto ? (en ? 'published on the default selector' : 'publicado en el selector por defecto') : (en ? 'NOT found on the default selector' : 'NO encontrado en el selector por defecto');
+  const prov: string[] = p.proveedor === 'microsoft365'
+    ? en
+      ? ['- [ ] Microsoft 365: enable DKIM signing in Defender (selector1/selector2 CNAMEs) and turn on impersonation protection for owners and accounting.', '- [ ] Microsoft 365: set the outbound spam policy to block automatic external forwarding and review inbox rules every month.']
+      : ['- [ ] Microsoft 365: activa la firma DKIM en Defender (CNAME selector1/selector2) y la protección contra suplantación para dueños y contabilidad.', '- [ ] Microsoft 365: en la directiva de spam saliente bloquea el reenvío automático externo y revisa las reglas de bandeja cada mes.']
+    : p.proveedor === 'google'
+      ? en
+        ? ['- [ ] Google Workspace: generate the DKIM key in Admin console (Gmail > Authenticate email) and publish google._domainkey.', '- [ ] Google Workspace: disable automatic forwarding to external addresses and turn on the advanced phishing and malware protections.']
+        : ['- [ ] Google Workspace: genera la llave DKIM en la consola de administración (Gmail > Autenticar correo) y publica google._domainkey.', '- [ ] Google Workspace: desactiva el reenvío automático a direcciones externas y enciende las protecciones avanzadas contra phishing y malware.']
+      : [];
+  return en
+    ? [
+        '## Payment-diversion checklist (ACH, wire, fake invoices and W-9s)',
+        `Mail provider detected: **${nombre}** · DKIM: ${dkim} · Domain spoofable today: **${p.suplantable ? 'yes (no DMARC or p=none)' : 'no (DMARC quarantine/reject)'}**`,
+        '',
+        `- [ ] DMARC at p=quarantine, then p=reject, with reports (rua) — today: ${p.suplantable ? 'missing' : 'done'}.`,
+        ...prov,
+        '- [ ] Written callback rule: any new or changed bank account is confirmed by phone to a number you already had, never the one in the email.',
+        '- [ ] Two people approve every new payee and every wire or ACH above your limit; hold first payments to a new account 24 hours.',
+        '- [ ] Ask your bank for Positive Pay / ACH Positive Pay and ACH debit blocks on the operating account.',
+        '- [ ] Nacha rules in force since June 19, 2026: every business that originates ACH needs risk-based fraud monitoring, reviewed yearly.',
+        '- [ ] If money already left: call your bank for a recall the same day and file at ic3.gov with full transaction details.',
+      ]
+    : [
+        '## Checklist contra desvío de pagos (ACH, wire, facturas y W-9 falsos)',
+        `Proveedor de correo detectado: **${nombre}** · DKIM: ${dkim} · Dominio suplantable hoy: **${p.suplantable ? 'sí (sin DMARC o p=none)' : 'no (DMARC quarantine/reject)'}**`,
+        '',
+        `- [ ] DMARC en p=quarantine y luego p=reject, con reportes (rua) — hoy: ${p.suplantable ? 'pendiente' : 'listo'}.`,
+        ...prov,
+        '- [ ] Regla de devolución de llamada por escrito: toda cuenta bancaria nueva o cambiada se confirma por teléfono a un número que ya tenías, nunca al del correo.',
+        '- [ ] Dos personas aprueban cada beneficiario nuevo y cada wire o ACH arriba de tu límite; retén 24 horas el primer pago a una cuenta nueva.',
+        '- [ ] Pide a tu banco Positive Pay / ACH Positive Pay y bloqueo de débitos ACH en la cuenta operativa.',
+        '- [ ] Reglas Nacha vigentes desde el 19 de junio de 2026: toda empresa que origina ACH necesita monitoreo de fraude basado en riesgo, revisado cada año.',
+        '- [ ] Si el dinero ya salió: pide a tu banco el retiro (recall) el mismo día y denuncia en ic3.gov con todos los datos de la transferencia.',
+      ];
+}
+
 export async function POST(req: Request) {
   try {
     const body = (await req.json().catch(() => ({}))) as { dominio?: string; autorizado?: boolean; lang?: 'es' | 'en' };
@@ -74,7 +126,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const [mainResp, spfRecords, dmarcRecords, caaRecords, secTxt, llmsTxt, envCheck, gitCheck] = await Promise.all([
+    const [mainResp, spfRecords, dmarcRecords, caaRecords, secTxt, llmsTxt, envCheck, gitCheck, mxRecords] = await Promise.all([
       headOrGet(`https://${dominio}/`),
       dnsTxt(dominio, 'TXT'),
       dnsTxt(`_dmarc.${dominio}`, 'TXT'),
@@ -83,6 +135,7 @@ export async function POST(req: Request) {
       headOrGet(`https://${dominio}/llms.txt`, 1024),
       headOrGet(`https://${dominio}/.env`, 512),
       headOrGet(`https://${dominio}/.git/HEAD`, 512),
+      dnsTxt(dominio, 'MX'),
     ]);
 
     if (!mainResp) {
@@ -231,6 +284,16 @@ export async function POST(req: Request) {
     const puntaje = Math.round(((okCount * 1 + warnCount * 0.5) / controles.length) * 100);
     const fechaIso = new Date().toISOString().slice(0, 10);
 
+    // Checklist anti-desvío de pagos (ACH / wire / facturas falsas): no suma al puntaje; solo DNS público.
+    const proveedor = proveedorCorreo(mxRecords);
+    const dkimSelectores = proveedor === 'microsoft365' ? ['selector1', 'selector2'] : proveedor === 'google' ? ['google'] : [];
+    const dkimDefecto = dkimSelectores.length
+      ? (await Promise.all(dkimSelectores.map((sel) => dnsTxt(`${sel}._domainkey.${dominio}`, 'TXT')))).some((r) => r.length > 0)
+      : null;
+    const suplantable = !dmarc || /p=none/i.test(dmarc);
+    const pagos = { proveedor, dkimDefecto, suplantable };
+    const pagosMd = checklistPagos(pagos, en);
+
     const mdLines = [
       `# Diagnóstico Pasivo de Arquitectura y Superficie Pública — ${dominio}`,
       `Fecha: ${fechaIso} · Generado por Omona (https://omona.tech/seguridad)`,
@@ -244,6 +307,8 @@ export async function POST(req: Request) {
           `${i + 1}. **[${c.estado.toUpperCase()}] ${c.categoria} — ${c.control}**\n   - Hallazgo: ${c.detalle}\n   - Acción recomendada: ${c.recomendacion}`,
       ),
       ``,
+      ...pagosMd,
+      ``,
       `## Siguiente paso: Auditoría profunda (Alcance firmado)`,
       `Para evaluar repositorios privados, configuración IAM/secretos en AWS Bedrock o Cloudflare y resistencia a prompt injection de tus agentes de IA:`,
       `- Agendar revisión con Omona: mailto:victor@omona.tech?subject=${encodeURIComponent(`Auditoría de seguridad y agentes IA — ${dominio} (${puntaje}/100)`)}`,
@@ -256,6 +321,7 @@ export async function POST(req: Request) {
       puntaje,
       conteos: { ok: okCount, aviso: warnCount, brecha: failCount },
       controles,
+      pagos,
       markdown: mdLines.join('\n'),
     });
   } catch (e) {

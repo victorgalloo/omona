@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 418" width="920" height="418" role="img" aria-label="Share of spoofable email domains by mail provider among 604 US Hispanic chamber member domains">
+<rect width="920" height="418" fill="#fafafa"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+<text x="32" y="36" font-size="11" fill="#666666" letter-spacing="0.06em">SPOOFABLE EMAIL DOMAINS (NO DMARC OR p=none) BY MAIL PROVIDER · 604 US HISPANIC CHAMBER MEMBERS · NOV 26, 2026</text>
+<line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="97" font-size="13" font-family="system-ui, -apple-system, sans-serif">Google Workspace <tspan fill="#666666" font-size="11">n=159</tspan></text>
+<rect x="270" y="80" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="80" width="425" height="24" rx="3" fill="#111111"/>
+<text x="705" y="97" font-size="12">135 · 84.9%</text>
+<text x="32" y="145" font-size="13" font-family="system-ui, -apple-system, sans-serif">Other hosting <tspan fill="#666666" font-size="11">n=139</tspan></text>
+<rect x="270" y="128" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="128" width="388" height="24" rx="3" fill="#111111"/>
+<text x="668" y="145" font-size="12">108 · 77.7%</text>
+<text x="32" y="193" font-size="13" font-family="system-ui, -apple-system, sans-serif">Payment-heavy sectors* <tspan fill="#666666" font-size="11">n=129</tspan></text>
+<rect x="270" y="176" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="176" width="329" height="24" rx="3" fill="#111111"/>
+<text x="609" y="193" font-size="12">85 · 65.9%</text>
+<text x="32" y="241" font-size="13" font-family="system-ui, -apple-system, sans-serif">All 604 domains <tspan fill="#666666" font-size="11">n=604</tspan></text>
+<rect x="270" y="224" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="224" width="314" height="24" rx="3" fill="#297a3a"/>
+<text x="594" y="241" font-size="12">379 · 62.7%</text>
+<text x="32" y="289" font-size="13" font-family="system-ui, -apple-system, sans-serif">Microsoft 365 <tspan fill="#666666" font-size="11">n=225</tspan></text>
+<rect x="270" y="272" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="272" width="242" height="24" rx="3" fill="#8f8f8f"/>
+<text x="522" y="289" font-size="12">109 · 48.4%</text>
+<text x="32" y="337" font-size="13" font-family="system-ui, -apple-system, sans-serif">Filtering gateway <tspan fill="#666666" font-size="11">n=72</tspan></text>
+<rect x="270" y="320" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="320" width="125" height="24" rx="3" fill="#8f8f8f"/>
+<text x="405" y="337" font-size="12">18 · 25.0%</text>
+<line x1="32" y1="368" x2="888" y2="368" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="390" font-size="10.5" fill="#666666">* Construction, equipment, transportation, real estate, manufacturing/wholesale, industrial supplies. Source: Omona passive DNS measurement.</text>
+</g></svg>
