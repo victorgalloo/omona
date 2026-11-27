@@ -56,21 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     })),
-    ...['/verificador-embudo-bilingue', '/en/speed-to-lead-checker'].map((p) => ({
-      url: `${baseUrl}${p}`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-      alternates: {
-        languages: {
-          'es-US': `${baseUrl}/verificador-embudo-bilingue`,
-          'es-MX': `${baseUrl}/verificador-embudo-bilingue`,
-          'en-US': `${baseUrl}/en/speed-to-lead-checker`,
-          en: `${baseUrl}/en/speed-to-lead-checker`,
-          'x-default': `${baseUrl}/verificador-embudo-bilingue`,
-        },
-      },
-    })),
     ...['/verificador-dmarc-spf', '/en/dmarc-spf-checker'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
