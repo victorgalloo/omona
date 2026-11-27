@@ -25,6 +25,8 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
     links: [
       { href: '/comercial-ia', label: 'Procesos comerciales + IA' },
       { href: '/en/commercial-ai', label: 'Commercial + AI (EN)' },
+      { href: '/verificador-embudo-bilingue', label: 'Verificador de respuesta rápida' },
+      { href: '/en/speed-to-lead-checker', label: 'Speed-to-Lead Checker (EN)' },
       { href: '/seguridad', label: 'Ciberseguridad e IA' },
       { href: '/en/security', label: 'Security (EN)' },
       { href: '/verificador-dmarc-spf', label: 'Verificador SPF/DMARC' },

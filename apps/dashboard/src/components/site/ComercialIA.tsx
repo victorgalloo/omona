@@ -48,6 +48,9 @@ const T = {
       ['26 %', 'ofrece los dos idiomas, español e inglés (151 de 593)'],
       ['3.5 %', 'es bilingüe y además responde por texto al instante (21 de 593)'],
     ] as [string, string][],
+    toolLead: '¿Cómo sale tu sitio en estos mismos 7 controles?',
+    toolCta: 'Mídelo gratis en 2 segundos →',
+    toolHref: '/verificador-embudo-bilingue',
     stagesH: 'Qué construimos en un sistema comercial con IA',
     stagesSub: 'Cuatro capas donde el criterio comercial y los candados en código mandan sobre el modelo.',
     stages: [
@@ -116,6 +119,9 @@ const T = {
       ['26%', 'offer both languages, Spanish and English (151 of 593)'],
       ['3.5%', 'are bilingual and also answer by text instantly (21 of 593)'],
     ] as [string, string][],
+    toolLead: 'How does your website score on these same 7 checks?',
+    toolCta: 'Run the free speed-to-lead check →',
+    toolHref: '/en/speed-to-lead-checker',
     stagesH: 'What we build in an AI commercial system',
     stagesSub: 'Four layers where commercial discipline and deterministic code govern the language model.',
     stages: [
@@ -264,6 +270,12 @@ export function ComercialIA({ lang = 'es' }: { lang?: Lang }) {
                   </div>
                 ))}
               </dl>
+              <p className="mt-4 text-[14px] leading-[1.5] text-charcoal">
+                {t.toolLead}{' '}
+                <Link href={t.toolHref} className="font-medium text-obsidian underline decoration-hair underline-offset-4 transition-colors hover:decoration-obsidian">
+                  {t.toolCta}
+                </Link>
+              </p>
             </div>
           </Wrap>
         </header>
