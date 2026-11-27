@@ -1,17 +1,37 @@
 {
-  "generatedAt": "2026-11-26T14:00:31.928Z",
+  "generatedAt": "2026-11-27T17:59:30.363Z",
   "author": "victorgalloo",
   "stats": {
-    "prs": 8,
+    "prs": 9,
     "merged": 0,
-    "open": 8,
+    "open": 9,
     "closed": 0,
     "repos": 4,
     "issues": 2,
-    "additions": 578,
-    "deletions": 49
+    "additions": 587,
+    "deletions": 51
   },
   "prs": [
+    {
+      "key": "awslabs/agentcore-samples#2414",
+      "repo": "awslabs/agentcore-samples",
+      "number": 2414,
+      "title": "fix(harness/travel-agent): create the harness with memory disabled",
+      "url": "https://github.com/awslabs/agentcore-samples/pull/2414",
+      "state": "open",
+      "createdAt": "2026-11-27T17:59:05Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "additions": 9,
+      "deletions": 2,
+      "changedFiles": 3,
+      "comments": 0,
+      "fixes": null,
+      "area": null,
+      "es": "fix(harness/travel-agent): create the harness with memory disabled",
+      "en": "fix(harness/travel-agent): create the harness with memory disabled",
+      "post": null
+    },
     {
       "key": "awslabs/agentcore-samples#2413",
       "repo": "awslabs/agentcore-samples",
@@ -213,7 +233,7 @@
       "description": "Template for manager → sub-agent hierarchies on Amazon Bedrock: managers own an outcome, delegate to scoped workers, verify with evals. ES/EN. By Omona (omona.tech).",
       "language": "Python",
       "license": "Apache-2.0",
-      "pushedAt": "2026-11-26T03:54:48Z",
+      "pushedAt": "2026-11-27T17:53:11Z",
       "stars": 0,
       "es": "Plantilla en Python para jerarquías gerente → subagente sobre Amazon Bedrock: organigrama como dato, escalamiento de un nivel a la vez y cambios reversibles con respaldo. Etapa temprana (v0), Apache-2.0, README ES/EN.",
       "en": "Python template for manager → sub-agent hierarchies on Amazon Bedrock: org chart as data, one-level-at-a-time escalation and reversible changes with backups. Early stage (v0), Apache-2.0, README EN/ES."
@@ -224,7 +244,7 @@
       "description": "Cobro de inscripciones escolares con CoDi desde WhatsApp · Hackatón México 2026 (León)",
       "language": "TypeScript",
       "license": "MIT",
-      "pushedAt": "2026-11-26T13:19:18Z",
+      "pushedAt": "2026-11-27T17:56:39Z",
       "stars": 0,
       "es": "Cobro de inscripciones escolares con CoDi desde WhatsApp. Proyecto para el Hackatón México 2026 (León), licencia MIT.",
       "en": "School enrollment payments with CoDi (Mexico's instant-payment rail) from WhatsApp. Built for Hackatón México 2026 (León), MIT license."

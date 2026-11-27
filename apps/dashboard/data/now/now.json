@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-26T14:00:31.978Z",
-  "updated": "2026-11-26",
+  "generatedAt": "2026-11-27T17:59:30.443Z",
+  "updated": "2026-11-27",
   "foco": [
     {
-      "es": "8 pull requests esperando revisión en Hermes Agent y Strands Agents.",
-      "en": "8 pull requests awaiting review in Hermes Agent and Strands Agents.",
+      "es": "9 pull requests esperando revisión en Hermes Agent y Strands Agents.",
+      "en": "9 pull requests awaiting review in Hermes Agent and Strands Agents.",
       "url": "https://omona.tech/open-source"
     },
     {
@@ -20,6 +20,46 @@
   ],
   "items": [
     {
+      "date": "2026-11-27",
+      "kind": "pr",
+      "es": "Abrí agentcore-samples#2414: fix(harness/travel-agent): create the harness with memory disabled",
+      "en": "Opened agentcore-samples#2414: fix(harness/travel-agent): create the harness with memory disabled",
+      "url": "https://github.com/awslabs/agentcore-samples/pull/2414",
+      "ref": "awslabs/agentcore-samples#2414"
+    },
+    {
+      "date": "2026-11-27",
+      "kind": "nota",
+      "es": "Cyber insurance for small business: checklist",
+      "en": "Cyber insurance for small business: checklist (note in Spanish)",
+      "url": "https://omona.tech/blog/cyber-insurance-small-business-checklist",
+      "ref": "nota:cyber-insurance-small-business-checklist"
+    },
+    {
+      "date": "2026-11-27",
+      "kind": "nota",
+      "es": "Seguro cibernético para pequeñas empresas",
+      "en": "Seguro cibernético para pequeñas empresas (note in Spanish)",
+      "url": "https://omona.tech/blog/seguro-cibernetico-pequenas-empresas",
+      "ref": "nota:seguro-cibernetico-pequenas-empresas"
+    },
+    {
+      "date": "2026-11-26",
+      "kind": "nota",
+      "es": "\"Bilingual answering service: AI in 60 seconds\"",
+      "en": "\"Bilingual answering service: AI in 60 seconds\" (note in Spanish)",
+      "url": "https://omona.tech/blog/bilingual-answering-service-ai-small-business",
+      "ref": "nota:bilingual-answering-service-ai-small-business"
+    },
+    {
+      "date": "2026-11-26",
+      "kind": "nota",
+      "es": "Fraude ACH y wire: facturas y W-9 falsos",
+      "en": "Fraude ACH y wire: facturas y W-9 falsos (note in Spanish)",
+      "url": "https://omona.tech/blog/fraude-ach-wire-facturas-falsas-contratistas",
+      "ref": "nota:fraude-ach-wire-facturas-falsas-contratistas"
+    },
+    {
       "date": "2026-11-26",
       "kind": "nota",
       "es": "IRS WISP & FTC Safeguards for tax preparers",
@@ -34,6 +74,22 @@
       "en": "Plan WISP y FTC Safeguards para tax preparers (note in Spanish)",
       "url": "https://omona.tech/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos",
       "ref": "nota:plan-wisp-irs-ftc-safeguards-preparadores-impuestos"
+    },
+    {
+      "date": "2026-11-26",
+      "kind": "nota",
+      "es": "Recepcionista bilingüe con IA en 60 segundos",
+      "en": "Recepcionista bilingüe con IA en 60 segundos (note in Spanish)",
+      "url": "https://omona.tech/blog/recepcionista-bilingue-ia-negocios-latinos",
+      "ref": "nota:recepcionista-bilingue-ia-negocios-latinos"
+    },
+    {
+      "date": "2026-11-26",
+      "kind": "nota",
+      "es": "Wire fraud & ACH fraud: small business guide",
+      "en": "Wire fraud & ACH fraud: small business guide (note in Spanish)",
+      "url": "https://omona.tech/blog/wire-fraud-ach-fraud-small-business",
+      "ref": "nota:wire-fraud-ach-fraud-small-business"
     },
     {
       "date": "2026-11-25",
