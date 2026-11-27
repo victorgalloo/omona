@@ -1,4 +1,5 @@
 import { getNotas } from '@/lib/notas';
+import { getConocimiento, plano, type Vineta } from '@/lib/conocimiento';
 import {
   CARGO_SL,
   CONSTRUYO_SOBRE,
@@ -48,6 +49,19 @@ export async function GET() {
   L.push(`- Omona: ${TERCERA.lab} Victor founded Omona; it has no product, pricing or clients.`);
   L.push(`- Background: finance before sales and AI (BanBajío, Globant, GBM, then SuperLeads). Started in tech at Globant (joined via Walmeric, the lead-management firm Globant acquired), where he was trained on Google Ads, Meta Ads and LinkedIn Ads. AMIB Figura III; EBC; Harvard CS50. Details: ${REDES.web}`);
   L.push(`- Knows about: ${KNOWS_ABOUT.join(', ')}.`);
+
+  h(`Knowledge base (${BASE}/en/knowledge · Spanish: ${BASE}/conocimiento)`);
+  const vin = (vs: Vineta[], d: number) => {
+    for (const v of vs) {
+      L.push(`${'  '.repeat(d)}- ${plano(v.texto)}`);
+      vin(v.hijos, d + 1);
+    }
+  };
+  for (const tema of getConocimiento('en').temas) {
+    L.push(`- ${tema.title}: ${plano(tema.linea)}`);
+    vin(tema.vinetas, 1);
+    if (tema.fondo) L.push(`  - ${plano(`[${tema.fondoTexto || 'More'}](${tema.fondo})`)}`);
+  }
 
   h('Why he does this (his words)');
   L.push('Spanish original:');

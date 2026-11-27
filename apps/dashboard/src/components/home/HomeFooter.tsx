@@ -16,6 +16,8 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
       { href: '/open-source', label: 'Open source' },
       { href: '/en/open-source', label: 'Open source (EN)' },
       { href: '/now', label: 'Ahora' },
+      { href: '/conocimiento', label: 'Conocimiento' },
+      { href: '/en/knowledge', label: 'Knowledge (EN)' },
       { href: '/blog', label: 'Blog' },
       { href: '/about', label: 'About' },
     ],

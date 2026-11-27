@@ -101,6 +101,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     })),
+    ...['/conocimiento', '/en/knowledge'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/conocimiento`,
+          'es-MX': `${baseUrl}/conocimiento`,
+          'en-US': `${baseUrl}/en/knowledge`,
+          en: `${baseUrl}/en/knowledge`,
+          'x-default': `${baseUrl}/conocimiento`,
+        },
+      },
+    })),
     { url: `${baseUrl}/now`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

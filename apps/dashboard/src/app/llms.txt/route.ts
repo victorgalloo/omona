@@ -43,6 +43,7 @@ export async function GET() {
   L.push('## Pages', '');
   L.push(`- [Full profile for AI assistants](${BASE}/llms-full.txt): who, philosophy, evidence, daily log, all PRs.`);
   L.push(`- [About, in English](${BASE}/about): profile and evidence for program reviewers.`);
+  L.push(`- [Knowledge base](${BASE}/en/knowledge): who he is and how he works, one line per topic with expandable detail (commercial processes + AI, defensive cybersecurity, visibility on Google/ChatGPT/Claude/Gemini with an agent, agent system, second brain, open source, stack). Spanish: ${BASE}/conocimiento`);
   L.push(`- [Now](${BASE}/now): daily log, Spanish. RSS: ${BASE}/now/rss.xml`);
   L.push(`- [Open source](${BASE}/en/open-source): PRs and issues with live status. Spanish: ${BASE}/open-source`);
   L.push(`- [Blog](${BASE}/blog): engineering notes, Spanish. RSS: ${BASE}/blog/rss.xml`);
