@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { LandingNav } from '@/components/landing/LandingNav';
-import { Hero, Marcas, PorQue, Ahora, Actividad, Proyectos, Notas, Quien } from '@/components/site/Home';
+import { Hero, Diagnostico, Marcas, LoDemas } from '@/components/site/Home';
 import { BASE, ORG, ORG_DESC_ES, ORG_ID, PERSON } from '@/lib/entidad';
 import { HomeFooter } from '@/components/home/HomeFooter';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -9,7 +9,7 @@ import nowData from '../../data/now/now.json';
 
 const TITLE = 'Omona · IA Bilingüe y Ciberseguridad en EE. UU.';
 const DESC =
-  'Agentes de IA bilingües (español e inglés) y ciberseguridad para dueños de negocios latinos en Estados Unidos: correo, FTC, web y AWS.';
+  'Posicionamiento en Google, ChatGPT, Claude y Gemini, agentes de IA bilingües y ciberseguridad para negocios latinos en Estados Unidos.';
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -68,17 +68,20 @@ const jsonLdGraph = {
 
 /**
  * ══ LA PORTADA ══════════════════════════════════════════════════
- * v2, 22-nov-2026 (Victor: «lúcame más», logos, filosofía, algo que se actualice solo). Orden:
- *   1. héroe       Victor: nombre, foto, su línea, su cargo en SuperLeads
- *   2. marcas      contribuyo a / construyo sobre (logos nominativos con evidencia)
- *   3. por qué     su filosofía (BORRADOR en revisión, lib/perfil.ts)
- *   4. ahora       bitácora diaria (data/now/now.json, cron)
- *   5. actividad   panel CLI con el estado real de GitHub
- *   6. proyectos   repos propios
- *   7. notas       las últimas del blog
- *   8. qué es      Omona = laboratorio, sin producto
- * Las secciones del producto (ciclo, medición, alcance, FAQ, cierre) se
- * retiraron; siguen en el historial de git.
+ * v6, 27-nov-2026. Victor: «Replantea la landing de omona en base a lo aprendido
+ * en mi base de conocimiento y el nuevo producto también de posicionamiento seo
+ * geo chatgpt, claude, gemini». Lo aprendido («Poco texto, pero potente»): arriba
+ * solo la idea; el detalle existe pero no estorba, detrás de «ver más».
+ * Orden:
+ *   1. héroe         h1 de tres frases + tres productos con el mismo peso, una
+ *                    línea cada uno (<details name="producto">): posicionamiento
+ *                    SEO + GEO, agentes comerciales bilingües, ciberseguridad
+ *   2. diagnóstico   evaluación gratuita de dominio (#diagnostico)
+ *   3. marcas        contribuyo a / construyo sobre (logos nominativos con evidencia)
+ *   4. lo demás      cómo pienso, open source, notas, ahora y quién: una línea
+ *                    cada uno, todo el contenido plegado en el HTML del servidor
+ * La matriz «Sub héroe» y la ficha «Flujo comercial / Capas de defensa» viven
+ * ahora dentro de los productos (v5 en el historial de git).
  */
 export default function LandingPage() {
   return (
@@ -87,12 +90,9 @@ export default function LandingPage() {
       <LandingNav />
       <main>
         <Hero />
+        <Diagnostico />
         <Marcas />
-        <Actividad />
-        <Proyectos />
-        <Notas />
-        <Ahora />
-        <Quien />
+        <LoDemas />
       </main>
       <HomeFooter />
     </div>

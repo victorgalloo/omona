@@ -13,11 +13,13 @@ import Link from 'next/link';
 import { Logo } from '@/components/shared/Logo';
 import { AUTOR } from '@/lib/entidad';
 import { fechaCorta, getNotas } from '@/lib/notas';
+import { getTemas, type Tema } from '@/lib/conocimiento';
 import { AVISO_LOGOS, CONSTRUYO_SOBRE, CONTRIBUYO, FILOSOFIA, NOMBRE_LEGAL, REDES, type Marca } from '@/lib/perfil';
 import ossData from '../../../data/oss/oss.json';
 import nowData from '../../../data/now/now.json';
 import { StateBadge } from './Blog';
 import { DiagnosticoSaaS } from './DiagnosticoSaaS';
+import { GRUPO, VerMas, sumCls } from './VerMas';
 
 type Pr = {
   key: string; repo: string; number: number; title: string; url: string; state: string;
@@ -101,16 +103,17 @@ export function Seccion({ id, eyebrow, h, sub, more }: { id: string; eyebrow?: s
   );
 }
 
-// ── 1. Héroe ejecutivo: Omona · Seguridad para agentes de IA y arquitectura ──
-// 24-nov-2026, Victor: «que ese sea el CTA principal de la página y quítame
-// relevancia a mí, haz la página más ejecutiva y con estos CTAs, sin cards».
+// ── 1. Héroe v6: tres productos, una línea cada uno, «ver más» ──
+// 27-nov-2026, Victor: «Replantea la landing de omona en base a lo aprendido en
+// mi base de conocimiento» («Poco texto, pero potente»: arriba solo la idea, el
+// detalle existe pero no estorba) «y el nuevo producto también de
+// posicionamiento seo geo chatgpt, claude, gemini». Tres productos con el mismo
+// peso: rótulo + una línea en <h2> + «ver más» nativo (acordeón exclusivo con
+// name="producto"). Todo el detalle vive en el HTML del servidor.
 
-// Sub héroe v2 (26-nov-2026, Victor: «Sub hero»): cada área en lenguaje de dueño de
-// negocio: una orden como titular, una razón, y 3 filas «hoy → con Omona». La
-// jerga (SPF, IAM, MCP…) ya vive en la ficha del héroe y en las guías ligadas.
+// Textos de B y C aprobados por Victor (antes «Sub héroe» v2, 26-nov-2026): se
+// mueven, no se reescriben.
 type AreaHero = {
-  rotulo: string;
-  h: [string, string];
   porque: string;
   mas: { href: string; label: string };
   filas: { hoy: string; con: string }[];
@@ -119,8 +122,6 @@ type AreaHero = {
 
 const AREAS_HERO: AreaHero[] = [
   {
-    rotulo: 'Área 01 · Agentes comerciales bilingües',
-    h: ['Contesta primero,', 'en el idioma de tu cliente.'],
     porque: 'En Estados Unidos gana el contrato quien contesta en el primer minuto.',
     mas: { href: '/comercial-ia', label: 'Ver cómo funciona' },
     filas: [
@@ -145,8 +146,6 @@ const AREAS_HERO: AreaHero[] = [
     ],
   },
   {
-    rotulo: 'Área 02 · Ciberseguridad defensiva',
-    h: ['Frena la factura falsa', 'antes de que se pague.'],
     porque: 'El FBI documentó $2,770 millones USD perdidos en 2024 por correos que suplantan a un proveedor o a un jefe.',
     mas: { href: '/seguridad', label: 'Ver qué cubrimos' },
     filas: [
@@ -172,57 +171,6 @@ const AREAS_HERO: AreaHero[] = [
   },
 ];
 
-// En escritorio las dos áreas comparten filas (subgrid): rótulo, titular, razón,
-// cabecera, 3 filas, liga y guías caen a la misma altura en ambas columnas.
-function AreaSubHero({ a, i }: { a: AreaHero; i: number }) {
-  return (
-    <section
-      className={`py-9 lg:row-span-9 lg:grid lg:grid-rows-subgrid ${i === 0 ? 'lg:pr-10' : 'border-t border-hair lg:border-l lg:border-t-0 lg:pl-10'}`}
-    >
-      <p className="mono-label text-stone">{a.rotulo}</p>
-      <h2 className="mt-3 text-balance text-[26px] font-medium leading-[1.15] tracking-[-0.035em] text-obsidian sm:text-[30px]">
-        {a.h[0]} <span className="lg:block">{a.h[1]}</span>
-      </h2>
-      <p className="mt-3 max-w-[46ch] text-pretty text-[15px] leading-[1.5] text-stone">{a.porque}</p>
-
-      <div className="mono-label mt-7 hidden grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] items-end gap-x-6 border-b border-hair pb-2 text-stone sm:grid">
-        <span>Hoy</span>
-        <span>Con Omona</span>
-      </div>
-      <dl className="mt-6 divide-y divide-hair border-y border-hair sm:mt-0 sm:border-t-0 lg:row-span-3 lg:grid lg:grid-rows-subgrid">
-        {a.filas.map((f) => (
-          <div key={f.hoy} className="grid content-start gap-y-1.5 py-4 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] sm:gap-x-6">
-            <dt className="text-pretty text-[14px] leading-[1.45] text-stone">{f.hoy}</dt>
-            <dd className="flex gap-2 text-[15px] font-medium leading-[1.4] tracking-[-0.015em] text-obsidian">
-              <span aria-hidden className="text-stone sm:hidden">→</span>
-              <span className="text-pretty">{f.con}</span>
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      <p className="mt-6">
-        <Link href={a.mas.href} className="text-[15px] font-medium tracking-[-0.02em] text-obsidian underline decoration-hair underline-offset-4 hover:decoration-obsidian">
-          {a.mas.label} →
-        </Link>
-      </p>
-      <ul className="mono-label mt-4 flex flex-col content-start gap-y-2 text-charcoal sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-1.5">
-        <li className="text-stone">Guías</li>
-        {a.guias.map((g) => (
-          <li key={g.href}>
-            <Link href={g.href} className="hover:text-obsidian">
-              {g.label} →
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-// Héroe v5 (26-nov-2026, Victor: «Hero de Omona.tech»): una promesa por área en el
-// titular, una sola oración de apoyo, 2 botones y a la derecha la ficha del flujo
-// (franjas de 1 px, sin cards). El detalle largo vive en la matriz de abajo.
 const FLUJO_HERO: { n: string; paso: string; dato: string }[] = [
   { n: '01', paso: 'Entra un mensaje', dato: 'WhatsApp · web · SMS' },
   { n: '02', paso: 'Primera respuesta', dato: '< 60 seg · ES / EN' },
@@ -239,11 +187,14 @@ const DEFENSA_HERO: { n: string; paso: string; dato: string }[] = [
 
 const GIROS_HERO = ['Contratistas', 'Impuestos y contabilidad', 'Clínicas', 'Logística', 'B2B'];
 
+const ligaCls = 'text-obsidian underline decoration-hair underline-offset-2 hover:decoration-obsidian';
+const fondoCls = 'text-[15px] font-medium tracking-[-0.02em] text-obsidian underline decoration-hair underline-offset-4 hover:decoration-obsidian';
+
 function FranjasHero({ filas }: { filas: { n: string; paso: string; dato: string }[] }) {
   return (
     <ol className="mt-3 divide-y divide-hair border-y border-hair">
       {filas.map((x) => (
-        <li key={x.n} className="grid grid-cols-[1.75rem_minmax(0,1fr)] items-baseline gap-x-2 gap-y-1 py-[11px] lg:py-[15px] sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
+        <li key={x.n} className="grid grid-cols-[1.75rem_minmax(0,1fr)] items-baseline gap-x-2 gap-y-1 py-[11px] sm:grid-cols-[1.75rem_minmax(0,1fr)_auto]">
           <span className="mono-label tabular-nums text-graphite">{x.n}</span>
           <span className="text-[14.5px] font-medium tracking-[-0.02em] text-obsidian">{x.paso}</span>
           <span className="mono-label col-start-2 tabular-nums text-charcoal sm:col-start-3 sm:text-right">{x.dato}</span>
@@ -253,21 +204,213 @@ function FranjasHero({ filas }: { filas: { n: string; paso: string; dato: string
   );
 }
 
+/** Viñeta corta con guion, como en /conocimiento. */
+function Vin({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="text-pretty text-[15px] leading-[1.5] text-charcoal">
+      <span aria-hidden className="mr-2 font-mono text-ash">
+        –
+      </span>
+      {children}
+    </li>
+  );
+}
+
+/**
+ * Una franja plegable: rótulo mono + línea en <h2> + «› Ver más». La usan los
+ * tres productos del héroe (con `name`, acordeón exclusivo) y «Lo demás».
+ */
+export function Franja({
+  id,
+  rotulo,
+  linea,
+  name,
+  ancho = false,
+  children,
+}: {
+  id: string;
+  rotulo: string;
+  linea: React.ReactNode;
+  name?: string;
+  /** En «Lo demás»: rótulo a la izquierda y línea a la derecha desde md. */
+  ancho?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <details id={id} name={name} className={`${GRUPO[0]} scroll-mt-20`}>
+      {/* El <h2> lleva solo la línea (titular limpio para buscadores y lectores de pantalla); «Ver más» va de hermano. */}
+      <summary className={`${sumCls} block py-4 ${ancho ? 'md:grid md:grid-cols-[16ch_minmax(0,1fr)_auto] md:items-baseline md:gap-x-8' : 'lg:py-9'}`}>
+        <span className={`mono-label block text-stone ${ancho ? 'mb-1.5 md:mb-0' : 'mb-2'}`}>{rotulo}</span>
+        <h2
+          className={`inline text-obsidian ${
+            ancho
+              ? 'text-[18px] leading-[1.35] tracking-[-0.02em]'
+              : 'text-[19px] font-medium leading-[1.3] tracking-[-0.025em] sm:text-[21px]'
+          }`}
+        >
+          {linea}
+        </h2>
+        {/* En móvil «Ver más» va en su renglón (misma forma en todas las franjas); desde md, en línea o en su columna. */}
+        <span className="max-md:-ml-3 max-md:mt-1.5 max-md:block">
+          <VerMas nivel={0} />
+        </span>
+      </summary>
+      <div className="pb-6 pt-1">{children}</div>
+    </details>
+  );
+}
+
+/** Segundo nivel de «ver más» dentro de una franja. */
+function VerMasInterno({ titulo, children }: { titulo: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <details className={`${GRUPO[1]} mt-5`}>
+      <summary className={`${sumCls} text-[15px] font-medium leading-[1.5] tracking-[-0.015em] text-obsidian`}>
+        {titulo}
+        <VerMas nivel={1} />
+      </summary>
+      <div className="pt-1">{children}</div>
+    </details>
+  );
+}
+
+function FilasHoy({ a }: { a: AreaHero }) {
+  return (
+    <>
+      <p className="max-w-[52ch] text-pretty text-[15px] leading-[1.5] text-stone">{a.porque}</p>
+      <div className="mono-label mt-5 hidden grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] items-end gap-x-6 border-b border-hair pb-2 text-stone sm:grid">
+        <span>Hoy</span>
+        <span>Con Omona</span>
+      </div>
+      <dl className="mt-4 divide-y divide-hair border-y border-hair sm:mt-0 sm:border-t-0">
+        {a.filas.map((f) => (
+          <div key={f.hoy} className="grid content-start gap-y-1.5 py-3.5 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] sm:gap-x-6">
+            <dt className="text-pretty text-[14px] leading-[1.45] text-stone">{f.hoy}</dt>
+            <dd className="flex gap-2 text-[15px] font-medium leading-[1.4] tracking-[-0.015em] text-obsidian">
+              <span aria-hidden className="text-stone sm:hidden">→</span>
+              <span className="text-pretty">{f.con}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </>
+  );
+}
+
+function FondoArea({ a }: { a: AreaHero }) {
+  return (
+    <>
+      <p className="mt-6">
+        <Link href={a.mas.href} className={fondoCls}>
+          {a.mas.label} →
+        </Link>
+      </p>
+      <ul className="mono-label mt-4 flex flex-col gap-y-2 text-charcoal sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-1.5">
+        <li className="text-stone">Guías</li>
+        {a.guias.map((g) => (
+          <li key={g.href}>
+            <Link href={g.href} className="hover:text-obsidian">
+              {g.label} →
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+function Productos() {
+  return (
+    <div className="divide-y divide-hair border-y border-hair lg:border-t-0 lg:[&>details:first-child>summary]:pt-0">
+      <Franja
+        id="posicionamiento"
+        name="producto"
+        rotulo="Te encuentran · Posicionamiento SEO + GEO"
+        linea="Te posicionamos en Google, ChatGPT, Claude y Gemini para obtener más ventas. Punto."
+      >
+        {/* Candado (encargo 27-nov-2026): sin nombre, precio, plan, clientes, resultados, cifras ni plazos. */}
+        <ul className="grid gap-1.5">
+          <Vin>Un producto con agente: que tu negocio aparezca cuando alguien pregunta.</Vin>
+          <Vin>SEO es Google. GEO son los asistentes de IA: ChatGPT, Claude y Gemini.</Vin>
+          <li>
+            <details className={GRUPO[1]}>
+              <summary className={`${sumCls} text-pretty text-[15px] leading-[1.5] text-charcoal`}>
+                <span aria-hidden className="mr-2 font-mono text-ash">
+                  –
+                </span>
+                La muestra del método es este mismo sitio.
+                <VerMas nivel={1} />
+              </summary>
+              <ul className="mt-2 grid gap-1.5 border-l border-hair pl-4">
+                <Vin>
+                  <a href="/llms.txt" className={ligaCls}>llms.txt</a> y <a href="/llms-full.txt" className={ligaCls}>llms-full.txt</a>: el sitio
+                  explicado para modelos de IA.
+                </Vin>
+                <Vin>
+                  Verificadores gratuitos que contestan una pregunta real:{' '}
+                  <Link href="/verificador-embudo-bilingue" className={ligaCls}>respuesta rápida</Link> y{' '}
+                  <Link href="/verificador-dmarc-spf" className={ligaCls}>SPF/DMARC</Link>.
+                </Vin>
+                <Vin>
+                  <Link href="/blog" className={ligaCls}>Notas con medición propia</Link>.
+                </Vin>
+                <Vin>
+                  <Link href="/conocimiento" className={ligaCls}>Base de conocimiento</Link>: una línea por idea.
+                </Vin>
+              </ul>
+            </details>
+          </li>
+        </ul>
+        <p className="mt-6">
+          <a href="mailto:victor@omona.tech" className={fondoCls}>
+            Contacto: victor@omona.tech →
+          </a>
+        </p>
+      </Franja>
+
+      <Franja id="agentes" name="producto" rotulo="Les contestas primero · Agentes bilingües" linea="Contesta primero, en el idioma de tu cliente.">
+        <FilasHoy a={AREAS_HERO[0]} />
+        <VerMasInterno titulo="Los 5 pasos">
+          <FranjasHero filas={FLUJO_HERO} />
+        </VerMasInterno>
+        <FondoArea a={AREAS_HERO[0]} />
+      </Franja>
+
+      <Franja id="defensa" name="producto" rotulo="Cobras seguro · Ciberseguridad defensiva" linea="Frena la factura falsa antes de que se pague.">
+        <FilasHoy a={AREAS_HERO[1]} />
+        <VerMasInterno titulo="Las 3 capas">
+          <FranjasHero filas={DEFENSA_HERO} />
+        </VerMasInterno>
+        <FondoArea a={AREAS_HERO[1]} />
+      </Franja>
+    </div>
+  );
+}
+
+// Orden en móvil: eyebrow + h1 + descripción → productos → botones + giros.
+// En escritorio los productos van a la derecha, tras el divisor de 1 px.
 export function Hero() {
   return (
-    <header className="relative overflow-hidden pb-14 pt-10 sm:pb-24 sm:pt-16">
+    <header className="pb-12 pt-8 sm:pb-20 sm:pt-14">
       <Wrap>
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-0">
-          <div className="lg:pr-10">
+        <div className="grid gap-8 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-0">
+          <div className="lg:col-start-1 lg:row-start-1 lg:pr-10">
             <Eyebrow>Negocios latinos en EE. UU. · ES + EN</Eyebrow>
-            <h1 className="text-heading-lg text-balance text-obsidian">
-              Vende en español e inglés con agentes de IA.
-              <span className="mt-[0.12em] block text-stone">Protege tu negocio en EE. UU.</span>
+            {/* Una frase por renglón en todos los anchos: una por producto, mismo peso. */}
+            <h1 className="text-heading-lg text-obsidian max-sm:text-[length:clamp(27px,8.3vw,31px)] lg:text-[52px]">
+              <span className="block">Te encuentran.</span> <span className="block">Les contestas primero.</span>{' '}
+              <span className="block">Cobras seguro.</span>
             </h1>
-            <p id="hero-description" className="mt-6 max-w-[50ch] text-[18px] leading-[1.5] text-charcoal">
-              Agentes de IA bilingües que contestan en WhatsApp, web y CRM en menos de 60 segundos sin inventar precios, y ciberseguridad defensiva que frena facturas falsas y fraude ACH/wire.
+            <p id="hero-description" className="mt-5 max-w-[46ch] text-[15.5px] leading-[1.5] tracking-[-0.005em] text-charcoal sm:text-[18px] sm:tracking-normal">
+              Tres sistemas con agentes de IA para negocios latinos en Estados Unidos, en español e inglés.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          </div>
+
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:border-l lg:border-hair lg:pl-10">
+            <Productos />
+          </div>
+
+          <div className="lg:col-start-1 lg:row-start-2 lg:pr-10">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-8">
               <Link href="/comercial-ia" className="btn-fill w-full sm:w-auto">
                 Ver agentes bilingües →
               </Link>
@@ -275,48 +418,26 @@ export function Hero() {
                 Evaluar mi dominio gratis →
               </a>
             </div>
-            <ul className="mono-label mt-8 flex flex-wrap gap-x-5 gap-y-1.5 text-stone">
+            <ul className="mono-label mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-stone">
               {GIROS_HERO.map((g) => (
                 <li key={g} className="whitespace-nowrap">{g}</li>
               ))}
             </ul>
           </div>
-
-          <div className="border-t border-hair pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-            <div>
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="mono-label text-obsidian">Flujo comercial</p>
-              <Link href="/comercial-ia" className="mono-label text-charcoal hover:text-obsidian">
-                Ver →
-              </Link>
-            </div>
-            <FranjasHero filas={FLUJO_HERO} />
-            </div>
-
-            <div>
-            <div className="mt-7 flex items-baseline justify-between gap-3 lg:mt-10">
-              <p className="mono-label text-obsidian">Capas de defensa</p>
-              <Link href="/seguridad" className="mono-label text-charcoal hover:text-obsidian">
-                Ver →
-              </Link>
-            </div>
-            <FranjasHero filas={DEFENSA_HERO} />
-            </div>
-          </div>
-        </div>
-
-        {/* Sub héroe: las 2 áreas en «hoy → con Omona» (0 cards: franjas de 1 px) */}
-        <div className="mt-14 grid border-y border-hair lg:grid-cols-2">
-          {AREAS_HERO.map((a, i) => (
-            <AreaSubHero key={a.rotulo} a={a} i={i} />
-          ))}
-        </div>
-
-        <div className="mt-14">
-          <DiagnosticoSaaS lang="es" />
         </div>
       </Wrap>
     </header>
+  );
+}
+
+/** El diagnóstico gratuito, justo después del héroe (ancla #diagnostico desde la barra). */
+export function Diagnostico() {
+  return (
+    <section className="pb-14 sm:pb-20">
+      <Wrap>
+        <DiagnosticoSaaS lang="es" />
+      </Wrap>
+    </section>
   );
 }
 
@@ -412,21 +533,27 @@ export function PorQue() {
   );
 }
 
+/** Línea de contexto de una sección cuando va dentro de un «ver más» (variante compacta). */
+function SubCompacto({ children, more }: { children: React.ReactNode; more?: { href: string; label: string } }) {
+  return (
+    <p className="mb-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[14px] leading-[1.5] text-stone">
+      <span className="max-w-[70ch]">{children}</span>
+      {more && (
+        <a href={more.href} className="mono-label shrink-0 text-charcoal hover:text-obsidian">
+          {more.label} →
+        </a>
+      )}
+    </p>
+  );
+}
+
 // ── 4. Ahora: la bitácora que se actualiza sola ─────────────────
 // data/now/now.json lo arma scripts/now-refresh.mjs a diario (cron).
 
-export function Ahora({ limite = 6 }: { limite?: number }) {
+export function Ahora({ limite = 6, compacto = false }: { limite?: number; compacto?: boolean }) {
   const items = now.items.slice(0, limite);
-  return (
-    <section className="py-8 sm:py-16" aria-labelledby="ahora">
-      <Wrap>
-        <Seccion
-          id="ahora"
-          eyebrow="Ahora"
-          h="Qué estoy haciendo"
-          sub={`Se arma sola cada día desde GitHub, el blog y mi agenda confirmada. Última entrada: ${fecha(`${now.updated}T12:00:00-06:00`)}.`}
-          more={{ href: '/now', label: 'Toda la bitácora' }}
-        />
+  const sub = `Se arma sola cada día desde GitHub, el blog y mi agenda confirmada. Última entrada: ${fecha(`${now.updated}T12:00:00-06:00`)}.`;
+  const cuerpo = (
         <div className="grid gap-8 border-t border-hair pt-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)]">
           <div className="self-start">
             <p className="mono-label text-graphite">En foco</p>
@@ -463,6 +590,19 @@ export function Ahora({ limite = 6 }: { limite?: number }) {
             ))}
           </ul>
         </div>
+  );
+  if (compacto)
+    return (
+      <>
+        <SubCompacto>{sub}</SubCompacto>
+        {cuerpo}
+      </>
+    );
+  return (
+    <section className="py-8 sm:py-16" aria-labelledby="ahora">
+      <Wrap>
+        <Seccion id="ahora" eyebrow="Ahora" h="Qué estoy haciendo" sub={sub} more={{ href: '/now', label: 'Toda la bitácora' }} />
+        {cuerpo}
       </Wrap>
     </section>
   );
@@ -470,18 +610,10 @@ export function Ahora({ limite = 6 }: { limite?: number }) {
 
 // ── 5. Actividad: panel CLI con datos de GitHub ─────────────────
 
-export function Actividad() {
+export function Actividad({ compacto = false }: { compacto?: boolean } = {}) {
   const s = oss.stats;
-  return (
-    <section className="pt-8 sm:pt-16" aria-labelledby="actividad">
-      <Wrap>
-        <Seccion
-          id="actividad"
-          eyebrow="Open source"
-          h="Lo que estoy aportando"
-          sub="Pull requests a proyectos de terceros y los reportes que los originaron. El estado es el que dice GitHub."
-          more={{ href: '/open-source', label: 'Todo en open source' }}
-        />
+  const sub = 'Pull requests a proyectos de terceros y los reportes que los originaron. El estado es el que dice GitHub.';
+  const cuerpo = (
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div className="cli min-w-0 text-[12.5px]">
             <p className="mono-label mb-3 text-graphite">actividad · datos de GitHub</p>
@@ -543,6 +675,20 @@ export function Actividad() {
             </p>
           </div>
         </div>
+  );
+  if (compacto)
+    return (
+      <>
+        <p className="mono-label mb-2 text-graphite">Actividad</p>
+        <SubCompacto>{sub}</SubCompacto>
+        {cuerpo}
+      </>
+    );
+  return (
+    <section className="pt-8 sm:pt-16" aria-labelledby="actividad">
+      <Wrap>
+        <Seccion id="actividad" eyebrow="Open source" h="Lo que estoy aportando" sub={sub} more={{ href: '/open-source', label: 'Todo en open source' }} />
+        {cuerpo}
       </Wrap>
     </section>
   );
@@ -634,18 +780,12 @@ export function Aportes() {
 
 // ── 7. Proyectos propios ────────────────────────────────────────
 
-export function Proyectos() {
+export function Proyectos({ compacto = false }: { compacto?: boolean } = {}) {
   const ps = oss.projects ?? [];
   if (!ps.length) return null;
-  return (
-    <section className="py-8 sm:py-16" aria-labelledby="proyectos">
-      <Wrap>
-        <Seccion
-          id="proyectos"
-          h="Repositorios públicos"
-          sub="Herramientas y plantillas abiertas bajo licencia permisiva."
-          more={{ href: AUTOR.github, label: 'Todos en GitHub' }}
-        />
+  const sub = 'Herramientas y plantillas abiertas bajo licencia permisiva.';
+  const more = { href: AUTOR.github, label: 'Todos en GitHub' };
+  const cuerpo = (
         <ul className="divide-y divide-hair border-y border-hair">
           {ps.map((p) => (
             <li key={p.repo} className="grid gap-2 py-5 md:grid-cols-[28ch_minmax(0,1fr)_auto] md:items-baseline md:gap-8">
@@ -661,6 +801,20 @@ export function Proyectos() {
             </li>
           ))}
         </ul>
+  );
+  if (compacto)
+    return (
+      <>
+        <p className="mono-label mb-2 mt-8 text-graphite">Proyectos</p>
+        <SubCompacto more={more}>{sub}</SubCompacto>
+        {cuerpo}
+      </>
+    );
+  return (
+    <section className="py-8 sm:py-16" aria-labelledby="proyectos">
+      <Wrap>
+        <Seccion id="proyectos" h="Repositorios públicos" sub={sub} more={more} />
+        {cuerpo}
       </Wrap>
     </section>
   );
@@ -668,18 +822,11 @@ export function Proyectos() {
 
 // ── 8. Últimas notas ────────────────────────────────────────────
 
-export function Notas() {
+export function Notas({ compacto = false }: { compacto?: boolean } = {}) {
   const notas = getNotas().slice(0, 3);
   if (!notas.length) return null;
-  return (
-    <section className="py-12 sm:py-24" aria-labelledby="notas">
-      <Wrap>
-        <Seccion
-          id="notas"
-          h="Notas de ingeniería"
-          sub="Procesos comerciales con IA, seguridad de agentes y mediciones propias en producción."
-          more={{ href: '/blog', label: 'Todas las notas' }}
-        />
+  const sub = 'Procesos comerciales con IA, seguridad de agentes y mediciones propias en producción.';
+  const cuerpo = (
         <div className="divide-y divide-hair border-y border-hair">
           {notas.map((n) => (
             <Link key={n.slug} href={`/blog/${n.slug}`} className="group grid gap-2 py-5 md:grid-cols-[14ch_minmax(0,1fr)_18ch] md:items-baseline md:gap-8">
@@ -694,6 +841,19 @@ export function Notas() {
             </Link>
           ))}
         </div>
+  );
+  if (compacto)
+    return (
+      <>
+        <SubCompacto>{sub}</SubCompacto>
+        {cuerpo}
+      </>
+    );
+  return (
+    <section className="py-12 sm:py-24" aria-labelledby="notas">
+      <Wrap>
+        <Seccion id="notas" h="Notas de ingeniería" sub={sub} more={{ href: '/blog', label: 'Todas las notas' }} />
+        {cuerpo}
       </Wrap>
     </section>
   );
@@ -701,14 +861,12 @@ export function Notas() {
 
 // ── 9. Dirección técnica y respaldo legal ────────────────────────────────────
 
-export function Quien() {
-  return (
-    <section className="py-8 sm:py-16" aria-labelledby="quien">
-      <Wrap>
-        <div className="grid gap-6 border-y border-hair py-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+export function Quien({ compacto = false }: { compacto?: boolean } = {}) {
+  const cuerpo = (
+        <div className={`grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center ${compacto ? 'border-t border-hair pt-6' : 'border-y border-hair py-8'}`}>
           <div>
             <p className="mono-label text-graphite">Respaldo legal y dirección técnica</p>
-            <p id="quien" className="mt-2 max-w-[64ch] text-[16px] leading-[1.5] text-obsidian">
+            <p id={compacto ? undefined : 'quien'} className="mt-2 max-w-[64ch] text-[16px] leading-[1.5] text-obsidian">
               Omona atiende de forma remota y bilingüe a negocios hispanos en Estados Unidos y empresas en México; se representa y opera como persona moral formalmente establecida en México (León, Guanajuato), bajo la dirección técnica de {NOMBRE_LEGAL}.
             </p>
             <p className="mono-label mt-3 flex flex-wrap gap-x-4 gap-y-1 text-stone">
@@ -731,6 +889,88 @@ export function Quien() {
               Agendar llamada →
             </a>
           </div>
+        </div>
+  );
+  if (compacto) return cuerpo;
+  return (
+    <section className="py-8 sm:py-16" aria-labelledby="quien">
+      <Wrap>{cuerpo}</Wrap>
+    </section>
+  );
+}
+
+// ── 10. Lo demás, en una línea ──────────────────────────────────
+// v6 (27-nov-2026): lo que antes estaba siempre visible (open source, notas,
+// ahora, quién) queda plegado tras una línea, con el mismo patrón que los
+// productos. Sigue completo en el HTML del servidor.
+
+/** Hasta 5 líneas reales de la bóveda (data/conocimiento/boveda/), una por área, sin repetir la del rótulo. */
+function ideasBoveda(): Tema[] {
+  const vistas = new Set<string>();
+  return getTemas('es')
+    .filter((t) => t.origen === 'boveda' && t.slug !== 'boveda-poco-texto-pero-potente')
+    .filter((t) => {
+      const k = t.area ?? t.slug;
+      if (vistas.has(k)) return false;
+      vistas.add(k);
+      return true;
+    })
+    .slice(0, 5);
+}
+
+function Fondo({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <p className="mt-6">
+      <Link href={href} className={fondoCls}>
+        {children} →
+      </Link>
+    </p>
+  );
+}
+
+export function LoDemas() {
+  const nNotas = getNotas().length;
+  const ideas = ideasBoveda();
+  return (
+    <section aria-labelledby="lo-demas" className="pb-2 pt-14 sm:pb-4 sm:pt-20">
+      <Wrap>
+        <p id="lo-demas" className="eyebrow eyebrow-muted mb-4">
+          Lo demás, en una línea
+        </p>
+        <div className="divide-y divide-hair border-y border-hair">
+          <Franja ancho id="como-pienso" rotulo="Cómo pienso" linea="Poco texto, pero potente. Si te interesa, «ver más» y sale todo.">
+            <ul className="grid gap-1.5">
+              {ideas.map((t) => (
+                <Vin key={t.slug}>
+                  <Link href={`/conocimiento#${t.slug}`} className="hover:text-obsidian">
+                    {t.linea}
+                  </Link>
+                </Vin>
+              ))}
+            </ul>
+            <Fondo href="/conocimiento">Base de conocimiento completa</Fondo>
+          </Franja>
+
+          <Franja ancho id="open-source" rotulo="Open source" linea="Cuando algo se rompe, mando el arreglo al proyecto original.">
+            <Actividad compacto />
+            <Proyectos compacto />
+            <Fondo href="/open-source">Todo en open source</Fondo>
+          </Franja>
+
+          <Franja ancho id="notas" rotulo="Notas" linea={`Guías con medición propia: ${nNotas} publicadas.`}>
+            <Notas compacto />
+            <Fondo href="/blog">Todas las notas</Fondo>
+          </Franja>
+
+          <Franja ancho id="ahora" rotulo="Ahora" linea="Lo que estoy haciendo hoy, actualizado solo cada día.">
+            <Ahora compacto />
+            <Fondo href="/now">Toda la bitácora</Fondo>
+          </Franja>
+
+          <Franja ancho id="quien" rotulo="Quién" linea="Dirección técnica: Víctor Alejandro Jiménez Gallo.">
+            <Quien compacto />
+            <Fondo href="/about">Perfil completo (EN)</Fondo>
+          </Franja>
         </div>
       </Wrap>
     </section>

@@ -19,6 +19,7 @@ import { HomeFooter } from '@/components/home/HomeFooter';
 import { Wrap, Eyebrow } from './Home';
 import { BASE, ORG, ORG_ID, PERSON, PERSON_REF } from '@/lib/entidad';
 import { getConocimiento, type LangK, type Tema, type Vineta } from '@/lib/conocimiento';
+import { BV, GRUPO, VerMas, sumCls } from './VerMas';
 
 const T = {
   es: {
@@ -122,28 +123,7 @@ function enLinea(s: string): ReactNode[] {
   return out;
 }
 
-// ── «Ver más» ─────────────────────────────────────────────────────────────
-// Un nombre de grupo por nivel: el «Ver más» de adentro no hereda el estado del de afuera.
-// Índice 4 = el bloque plegado «Desde mi bóveda», que envuelve filas de nivel 0.
-const GRUPO = ['group/n0', 'group/n1', 'group/n2', 'group/n3', 'group/bv'] as const;
-const OCULTO_ABIERTO = ['group-open/n0:hidden', 'group-open/n1:hidden', 'group-open/n2:hidden', 'group-open/n3:hidden', 'group-open/bv:hidden'] as const;
-const VISIBLE_ABIERTO = ['group-open/n0:inline', 'group-open/n1:inline', 'group-open/n2:inline', 'group-open/n3:inline', 'group-open/bv:inline'] as const;
-const GIRO = ['group-open/n0:rotate-90', 'group-open/n1:rotate-90', 'group-open/n2:rotate-90', 'group-open/n3:rotate-90', 'group-open/bv:rotate-90'] as const;
-const BV = 4;
-
-function VerMas({ nivel, mas, menos }: { nivel: number; mas: string; menos: string }) {
-  return (
-    <span className="mono-label ml-3 inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap align-baseline text-stone group-hover/sum:text-obsidian">
-      <span aria-hidden className={`inline-block transition-transform motion-reduce:transition-none ${GIRO[nivel]}`}>
-        ›
-      </span>
-      <span className={OCULTO_ABIERTO[nivel]}>{mas}</span>
-      <span className={`hidden ${VISIBLE_ABIERTO[nivel]}`}>{menos}</span>
-    </span>
-  );
-}
-
-const sumCls = 'group/sum cursor-pointer list-none rounded-[2px] [&::-webkit-details-marker]:hidden';
+// ── «Ver más»: pieza compartida con la portada (./VerMas) ────────────────
 
 function Vinetas({ items, nivel, t }: { items: Vineta[]; nivel: number; t: (typeof T)[LangK] }) {
   return (
