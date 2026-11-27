@@ -18,6 +18,7 @@ type Resultado = {
   conteos: { ok: number; aviso: number; brecha: number };
   controles: Control[];
   pagos?: { proveedor: string; dkimDefecto: boolean | null; suplantable: boolean };
+  seguro?: { senales: { id: string; ok: boolean | null }[]; cumple: number; medibles: number };
   markdown: string;
 };
 
@@ -279,6 +280,26 @@ export function DiagnosticoSaaS({ lang = 'es', showScopeLink = true }: { lang?: 
                   : 'El entregable .md trae una lista paso a paso: regla de devolución de llamada, doble aprobación, Positive Pay y reglas Nacha 2026.'}{' '}
                 <a
                   href={lang === 'en' ? '/blog/wire-fraud-ach-fraud-small-business' : '/blog/fraude-ach-wire-facturas-falsas-contratistas'}
+                  className="underline decoration-hair underline-offset-4 hover:decoration-obsidian"
+                >
+                  {lang === 'en' ? 'Full guide' : 'Guía completa'}
+                </a>
+              </p>
+            </div>
+          )}
+
+          {res.seguro && (
+            <div className="border-b border-hair py-4 text-[14px] leading-[1.5] text-charcoal">
+              <p className="mono-label text-graphite">{lang === 'en' ? 'Cyber insurance · outside-in scan' : 'Seguro cibernético · escaneo externo'}</p>
+              <p className="mt-1 font-mono text-[12.5px] tabular-nums">
+                {res.seguro.cumple}/{res.seguro.medibles} {lang === 'en' ? 'signals in order (595 Hispanic businesses: 17.3% pass all 6)' : 'señales en orden (595 negocios hispanos: 17.3 % cumple las 6)'}
+              </p>
+              <p className="mt-1">
+                {lang === 'en'
+                  ? 'The .md deliverable adds the application questions to answer with evidence: MFA, EDR, offline backups, RDP and social engineering coverage.'
+                  : 'El entregable .md agrega las preguntas de la solicitud que debes contestar con evidencia: MFA, EDR, respaldos fuera de línea, RDP y cobertura de ingeniería social.'}{' '}
+                <a
+                  href={lang === 'en' ? '/blog/cyber-insurance-small-business-checklist' : '/blog/seguro-cibernetico-pequenas-empresas'}
                   className="underline decoration-hair underline-offset-4 hover:decoration-obsidian"
                 >
                   {lang === 'en' ? 'Full guide' : 'Guía completa'}

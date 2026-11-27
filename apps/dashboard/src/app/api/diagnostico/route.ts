@@ -108,6 +108,82 @@ function checklistPagos(p: { proveedor: Proveedor; dkimDefecto: boolean | null; 
       ];
 }
 
+// ¿El sitio por HTTP plano manda a HTTPS? Una sola petición, sin seguir redirecciones.
+async function httpAHttps(dominio: string): Promise<boolean | null> {
+  try {
+    const r = await fetch(`http://${dominio}/`, {
+      method: 'GET',
+      redirect: 'manual',
+      headers: { 'user-agent': 'Omona-Passive-Posture-Check/1.0 (+https://omona.tech/seguridad)' },
+      signal: AbortSignal.timeout(4000),
+    });
+    await r.body?.cancel().catch(() => {});
+    const loc = r.headers.get('location') || '';
+    return r.status >= 300 && r.status < 400 && /^https:\/\//i.test(loc);
+  } catch {
+    return null;
+  }
+}
+
+type Seguro = {
+  senales: { id: string; ok: boolean | null }[];
+  cumple: number;
+  medibles: number;
+};
+
+// Lectura «desde fuera» tipo aseguradora (escaneo externo de suscripción de cyber insurance). No suma al puntaje.
+// Mismas 6 señales de la medición de 595 negocios hispanos: /blog/cyber-insurance-small-business-checklist (en-US)
+// y /blog/seguro-cibernetico-pequenas-empresas (es-US).
+function checklistSeguro(s: Seguro, en: boolean): string[] {
+  const nombre: Record<string, [string, string]> = {
+    'spf-valido': ['SPF válido (un registro, cierre -all o ~all)', 'Valid SPF (one record, -all or ~all)'],
+    'dmarc-aplicado': ['DMARC aplicado (p=quarantine o p=reject)', 'DMARC enforced (p=quarantine or p=reject)'],
+    'https-valido': ['HTTPS con certificado válido', 'HTTPS with a valid certificate'],
+    'http-a-https': ['HTTP redirige a HTTPS', 'HTTP redirects to HTTPS'],
+    hsts: ['HSTS publicado', 'HSTS published'],
+    'sin-version': ['Sin versión de software anunciada (Server / X-Powered-By)', 'No software version announced (Server / X-Powered-By)'],
+  };
+  const marca = (ok: boolean | null) => (ok === null ? (en ? 'not measurable' : 'no medible') : ok ? (en ? 'yes' : 'sí') : en ? 'NO' : 'NO');
+  const senales = s.senales.map((x) => `- [${x.ok ? 'x' : ' '}] ${nombre[x.id][en ? 1 : 0]} — ${marca(x.ok)}`);
+  return en
+    ? [
+        '## Cyber insurance: what an outside-in underwriting scan sees',
+        `Outside-in signals in order: **${s.cumple}/${s.medibles}** (same 6 signals we measured on 595 US Hispanic chamber members: only 17.3% pass all 6).`,
+        '',
+        ...senales,
+        '',
+        '### Application questions to answer "yes" with evidence (does not change the score)',
+        '- [ ] MFA on email, remote access (VPN/RDP), cloud and admin accounts — screenshot of the policy.',
+        '- [ ] EDR on every laptop and server, not just antivirus — vendor console export.',
+        '- [ ] Encrypted backups kept offline or immutable, restore tested in the last 90 days — date and result.',
+        '- [ ] Patching: critical updates within 30 days; no end-of-life systems facing the internet.',
+        '- [ ] No RDP open to the internet; remote access only through VPN or zero-trust with MFA.',
+        '- [ ] Separate admin accounts; nobody reads email with an admin account.',
+        '- [ ] Phishing training at least yearly, plus the written callback rule for any bank-account change.',
+        '- [ ] Written incident response plan with your insurer\'s breach hotline and your bank\'s fraud line.',
+        '- [ ] Ask your agent in writing whether social engineering / funds transfer fraud is covered or needs a crime policy or endorsement (NAIC 2026: standard cyber policies frequently exclude or sharply limit it).',
+        '- [ ] Never answer "yes" to a control you do not have: a misstatement on the application is a common reason a claim gets contested.',
+      ]
+    : [
+        '## Seguro cibernético (cyber insurance): lo que ve el escaneo externo de la aseguradora',
+        `Señales en orden vistas desde fuera: **${s.cumple}/${s.medibles}** (las mismas 6 que medimos en 595 negocios de cámaras hispanas de EE. UU.: solo 17.3 % cumple las 6).`,
+        '',
+        ...senales,
+        '',
+        '### Preguntas de la solicitud que debes contestar «sí» con evidencia (no cambia el puntaje)',
+        '- [ ] MFA en correo, acceso remoto (VPN/RDP), nube y cuentas de administrador — captura de la política.',
+        '- [ ] EDR en cada laptop y servidor, no solo antivirus — exportación de la consola del proveedor.',
+        '- [ ] Respaldos cifrados fuera de línea o inmutables, restauración probada en los últimos 90 días — fecha y resultado.',
+        '- [ ] Parches: actualizaciones críticas en menos de 30 días; ningún sistema sin soporte expuesto a internet.',
+        '- [ ] Ningún RDP abierto a internet; acceso remoto solo por VPN o zero-trust con MFA.',
+        '- [ ] Cuentas de administrador separadas; nadie lee su correo con una cuenta de administrador.',
+        '- [ ] Capacitación contra phishing al menos una vez al año, más la regla de devolución de llamada para cualquier cambio de cuenta bancaria.',
+        '- [ ] Plan de respuesta a incidentes por escrito con la línea de la aseguradora y la de fraude de tu banco.',
+        '- [ ] Pregunta por escrito a tu agente si la ingeniería social / fraude por transferencia está cubierta o requiere póliza de crimen o endoso (NAIC 2026: las pólizas cibernéticas estándar con frecuencia la excluyen o la limitan mucho).',
+        '- [ ] Nunca contestes «sí» a un control que no tienes: una declaración falsa en la solicitud es motivo común para disputar un reclamo.',
+      ];
+}
+
 export async function POST(req: Request) {
   try {
     const body = (await req.json().catch(() => ({}))) as { dominio?: string; autorizado?: boolean; lang?: 'es' | 'en' };
@@ -126,7 +202,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const [mainResp, spfRecords, dmarcRecords, caaRecords, secTxt, llmsTxt, envCheck, gitCheck, mxRecords] = await Promise.all([
+    const [mainResp, spfRecords, dmarcRecords, caaRecords, secTxt, llmsTxt, envCheck, gitCheck, mxRecords, httpRedirige] = await Promise.all([
       headOrGet(`https://${dominio}/`),
       dnsTxt(dominio, 'TXT'),
       dnsTxt(`_dmarc.${dominio}`, 'TXT'),
@@ -136,6 +212,7 @@ export async function POST(req: Request) {
       headOrGet(`https://${dominio}/.env`, 512),
       headOrGet(`https://${dominio}/.git/HEAD`, 512),
       dnsTxt(dominio, 'MX'),
+      httpAHttps(dominio),
     ]);
 
     if (!mainResp) {
@@ -294,6 +371,24 @@ export async function POST(req: Request) {
     const pagos = { proveedor, dkimDefecto, suplantable };
     const pagosMd = checklistPagos(pagos, en);
 
+    // Lectura tipo aseguradora (cyber insurance): 6 señales externas; no suma al puntaje.
+    const spfLista = spfRecords.filter((t) => t.toLowerCase().startsWith('v=spf1'));
+    const serverHdr = h.get('server') || '';
+    const seguroSenales: Seguro['senales'] = [
+      { id: 'spf-valido', ok: spfLista.length === 1 && /[-~]all\b/i.test(spfLista[0]) },
+      { id: 'dmarc-aplicado', ok: Boolean(dmarcStrict) },
+      { id: 'https-valido', ok: true },
+      { id: 'http-a-https', ok: httpRedirige },
+      { id: 'hsts', ok: Boolean(hsts) },
+      { id: 'sin-version', ok: !(/\d/.test(serverHdr) || /\d/.test(powered || '')) },
+    ];
+    const seguro: Seguro = {
+      senales: seguroSenales,
+      cumple: seguroSenales.filter((x) => x.ok === true).length,
+      medibles: seguroSenales.filter((x) => x.ok !== null).length,
+    };
+    const seguroMd = checklistSeguro(seguro, en);
+
     const mdLines = [
       `# Diagnóstico Pasivo de Arquitectura y Superficie Pública — ${dominio}`,
       `Fecha: ${fechaIso} · Generado por Omona (https://omona.tech/seguridad)`,
@@ -309,6 +404,8 @@ export async function POST(req: Request) {
       ``,
       ...pagosMd,
       ``,
+      ...seguroMd,
+      ``,
       `## Siguiente paso: Auditoría profunda (Alcance firmado)`,
       `Para evaluar repositorios privados, configuración IAM/secretos en AWS Bedrock o Cloudflare y resistencia a prompt injection de tus agentes de IA:`,
       `- Agendar revisión con Omona: mailto:victor@omona.tech?subject=${encodeURIComponent(`Auditoría de seguridad y agentes IA — ${dominio} (${puntaje}/100)`)}`,
@@ -322,6 +419,7 @@ export async function POST(req: Request) {
       conteos: { ok: okCount, aviso: warnCount, brecha: failCount },
       controles,
       pagos,
+      seguro,
       markdown: mdLines.join('\n'),
     });
   } catch (e) {

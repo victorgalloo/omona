@@ -56,6 +56,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     })),
+    ...['/verificador-embudo-bilingue', '/en/speed-to-lead-checker'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/verificador-embudo-bilingue`,
+          'es-MX': `${baseUrl}/verificador-embudo-bilingue`,
+          'en-US': `${baseUrl}/en/speed-to-lead-checker`,
+          en: `${baseUrl}/en/speed-to-lead-checker`,
+          'x-default': `${baseUrl}/verificador-embudo-bilingue`,
+        },
+      },
+    })),
     ...['/verificador-dmarc-spf', '/en/dmarc-spf-checker'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
@@ -93,7 +108,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog/${n.slug}`,
       lastModified: new Date(n.updated),
       changeFrequency: 'monthly' as const,
-      priority: ['ciberseguridad-negocios-latinos-estados-unidos', 'plan-wisp-irs-ftc-safeguards-preparadores-impuestos', 'irs-wisp-ftc-safeguards-tax-preparers', 'wire-fraud-ach-fraud-small-business', 'fraude-ach-wire-facturas-falsas-contratistas'].includes(n.slug) ? 0.9 : 0.8,
+      priority: ['ciberseguridad-negocios-latinos-estados-unidos', 'plan-wisp-irs-ftc-safeguards-preparadores-impuestos', 'irs-wisp-ftc-safeguards-tax-preparers', 'wire-fraud-ach-fraud-small-business', 'fraude-ach-wire-facturas-falsas-contratistas', 'cyber-insurance-small-business-checklist', 'seguro-cibernetico-pequenas-empresas'].includes(n.slug) ? 0.9 : 0.8,
       alternates: { languages: notaLanguages(n, baseUrl) },
     })),
   ];

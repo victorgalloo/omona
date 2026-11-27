@@ -43,6 +43,7 @@ const T = {
       { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'Guía negocios latinos en EE. UU.' },
       { href: '/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos', label: 'Plan WISP del IRS (604 dominios hispanos)' },
       { href: '/blog/fraude-ach-wire-facturas-falsas-contratistas', label: 'Fraude ACH y wire: facturas y W-9 falsos' },
+      { href: '/blog/seguro-cibernetico-pequenas-empresas', label: 'Seguro cibernético: requisitos y solicitud' },
     ],
   },
   en: {
@@ -79,6 +80,7 @@ const T = {
       { href: '/blog/ciberseguridad-negocios-latinos-estados-unidos', label: 'US Hispanic SMB Guide (ES)' },
       { href: '/blog/irs-wisp-ftc-safeguards-tax-preparers', label: 'IRS WISP guide + data on 604 Hispanic domains' },
       { href: '/blog/wire-fraud-ach-fraud-small-business', label: 'Wire fraud & ACH fraud playbook' },
+      { href: '/blog/cyber-insurance-small-business-checklist', label: 'Cyber insurance checklist (595 businesses)' },
     ],
   },
 } as const;

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 502" width="920" height="502" role="img" aria-label="Share of US Hispanic chamber member businesses that pass all 6 outside-in signals an insurer's scan checks, by group">
+<rect width="920" height="502" fill="#fafafa"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+<text x="32" y="36" font-size="10.5" fill="#666666" letter-spacing="0.04em">PASS ALL 6 OUTSIDE-IN SIGNALS (SPF, DMARC ENFORCED, HTTPS, HTTP→HTTPS, HSTS, NO VERSION BANNER) · 595 US HISPANIC BUSINESSES</text>
+<line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="97" font-size="13" font-family="system-ui, -apple-system, sans-serif">Filtering gateway <tspan fill="#666666" font-size="11">n=69</tspan></text>
+<rect x="270" y="80" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="80" width="391" height="24" rx="3" fill="#8f8f8f"/>
+<text x="671" y="97" font-size="12">27 · 39.1%</text>
+<text x="32" y="145" font-size="13" font-family="system-ui, -apple-system, sans-serif">Finance &amp; Insurance <tspan fill="#666666" font-size="11">n=91</tspan></text>
+<rect x="270" y="128" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="128" width="341" height="24" rx="3" fill="#8f8f8f"/>
+<text x="621" y="145" font-size="12">31 · 34.1%</text>
+<text x="32" y="193" font-size="13" font-family="system-ui, -apple-system, sans-serif">Microsoft 365 <tspan fill="#666666" font-size="11">n=220</tspan></text>
+<rect x="270" y="176" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="176" width="227" height="24" rx="3" fill="#8f8f8f"/>
+<text x="507" y="193" font-size="12">50 · 22.7%</text>
+<text x="32" y="241" font-size="13" font-family="system-ui, -apple-system, sans-serif">All 595 businesses <tspan fill="#666666" font-size="11">n=595</tspan></text>
+<rect x="270" y="224" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="224" width="173" height="24" rx="3" fill="#297a3a"/>
+<text x="453" y="241" font-size="12">103 · 17.3%</text>
+<text x="32" y="289" font-size="13" font-family="system-ui, -apple-system, sans-serif">Payment-heavy sectors* <tspan fill="#666666" font-size="11">n=128</tspan></text>
+<rect x="270" y="272" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="272" width="141" height="24" rx="3" fill="#111111"/>
+<text x="421" y="289" font-size="12">18 · 14.1%</text>
+<text x="32" y="337" font-size="13" font-family="system-ui, -apple-system, sans-serif">Construction <tspan fill="#666666" font-size="11">n=69</tspan></text>
+<rect x="270" y="320" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="320" width="87" height="24" rx="3" fill="#111111"/>
+<text x="367" y="337" font-size="12">6 · 8.7%</text>
+<text x="32" y="385" font-size="13" font-family="system-ui, -apple-system, sans-serif">Google Workspace <tspan fill="#666666" font-size="11">n=158</tspan></text>
+<rect x="270" y="368" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="368" width="76" height="24" rx="3" fill="#111111"/>
+<text x="356" y="385" font-size="12">12 · 7.6%</text>
+<text x="32" y="433" font-size="13" font-family="system-ui, -apple-system, sans-serif">Health care <tspan fill="#666666" font-size="11">n=29</tspan></text>
+<rect x="270" y="416" width="500" height="24" rx="3" fill="#f0f0f0"/>
+<rect x="270" y="416" width="69" height="24" rx="3" fill="#111111"/>
+<text x="349" y="433" font-size="12">2 · 6.9%</text>
+<line x1="32" y1="468" x2="888" y2="468" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="490" font-size="10" fill="#666666">Scale 0–50%. *Construction, equipment, transport, real estate, wholesale, industrial supplies. Omona passive measurement, 2026-11-26.</text>
+</g></svg>

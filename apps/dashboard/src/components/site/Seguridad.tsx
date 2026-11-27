@@ -46,6 +46,8 @@ const T = {
     wispHref: '/blog/plan-wisp-irs-ftc-safeguards-preparadores-impuestos',
     pagosLabel: 'Fraude ACH y wire: facturas y W-9 falsos (Microsoft 365 vs. Google Workspace en 604 dominios) →',
     pagosHref: '/blog/fraude-ach-wire-facturas-falsas-contratistas',
+    seguroLabel: 'Seguro cibernético: requisitos y solicitud (solo 17.3 % de 595 negocios hispanos pasa el escaneo externo) →',
+    seguroHref: '/blog/seguro-cibernetico-pequenas-empresas',
     contactCta: 'Escribir a',
     servicesH: 'Cómo acompañamos a tu negocio en EE. UU. (paso a paso)',
     servicesSub: 'Cuatro etapas que puedes contratar desde lo más básico o en conjunto, siempre con alcance firmado.',
@@ -128,6 +130,8 @@ const T = {
     wispHref: '/blog/irs-wisp-ftc-safeguards-tax-preparers',
     pagosLabel: 'Wire fraud & ACH fraud playbook (Microsoft 365 vs. Google Workspace across 604 domains) →',
     pagosHref: '/blog/wire-fraud-ach-fraud-small-business',
+    seguroLabel: 'Cyber insurance checklist for small business (only 17.3% of 595 Hispanic businesses pass the outside-in scan) →',
+    seguroHref: '/blog/cyber-insurance-small-business-checklist',
     contactCta: 'Write to',
     servicesH: 'What we do',
     servicesSub: 'Four pieces, hired together or separately, always with a signed scope.',
@@ -300,6 +304,11 @@ export function SeguridadPage({ lang }: { lang: Lang }) {
                 <p className="mt-2">
                   <Link href={t.pagosHref} className="mono-label text-[#297a3a] hover:underline">
                     {t.pagosLabel}
+                  </Link>
+                </p>
+                <p className="mt-2">
+                  <Link href={t.seguroHref} className="mono-label text-[#297a3a] hover:underline">
+                    {t.seguroLabel}
                   </Link>
                 </p>
               </div>
