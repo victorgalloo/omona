@@ -1,13 +1,11 @@
-import { ogCard, OG_SIZE } from '@/lib/og';
+import { metadatosImagen, ogPortada } from '@/lib/og';
 
-export const alt = 'Omona: el laboratorio open source de Victor Gallo';
-export const size = OG_SIZE;
-export const contentType = 'image/png';
+/**
+ * Imagen al compartir el dominio (X): la tarjeta de la portada, dibujada con
+ * lib/portada.ts y con la versión en la URL. Se actualiza sola; no lleva texto propio.
+ */
+export const generateImageMetadata = metadatosImagen;
 
 export default function Image() {
-  return ogCard({
-    eyebrow: 'laboratorio open source · victor gallo',
-    title: 'Agentes de IA sobre Amazon Bedrock. Los arreglos van upstream.',
-    footer: 'github.com/victorgalloo',
-  });
+  return ogPortada();
 }

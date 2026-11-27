@@ -9,7 +9,9 @@
  * Reglas: nada de «merged» si GitHub no lo dice; sin clientes, cifras de
  * negocio, precios ni llamadas a comprar. Componentes de servidor.
  */
+import { Fragment } from 'react';
 import Link from 'next/link';
+import { HERO_DESC, HERO_EYEBROW, HERO_FRASES, producto, rotuloProducto } from '@/lib/portada';
 import { Logo } from '@/components/shared/Logo';
 import { AUTOR } from '@/lib/entidad';
 import { fechaCorta, getNotas } from '@/lib/notas';
@@ -324,8 +326,8 @@ function Productos() {
       <Franja
         id="posicionamiento"
         name="producto"
-        rotulo="Te encuentran · Posicionamiento SEO + GEO"
-        linea="Te posicionamos en Google, ChatGPT, Claude y Gemini para obtener más ventas. Punto."
+        rotulo={rotuloProducto('posicionamiento')}
+        linea={producto('posicionamiento').linea}
       >
         {/* Candado (encargo 27-nov-2026): sin nombre, precio, plan, clientes, resultados, cifras ni plazos. */}
         <ul className="grid gap-1.5">
@@ -367,7 +369,7 @@ function Productos() {
         </p>
       </Franja>
 
-      <Franja id="agentes" name="producto" rotulo="Les contestas primero · Agentes bilingües" linea="Contesta primero, en el idioma de tu cliente.">
+      <Franja id="agentes" name="producto" rotulo={rotuloProducto('agentes')} linea={producto('agentes').linea}>
         <FilasHoy a={AREAS_HERO[0]} />
         <VerMasInterno titulo="Los 5 pasos">
           <FranjasHero filas={FLUJO_HERO} />
@@ -375,7 +377,7 @@ function Productos() {
         <FondoArea a={AREAS_HERO[0]} />
       </Franja>
 
-      <Franja id="defensa" name="producto" rotulo="Cobras seguro · Ciberseguridad defensiva" linea="Frena la factura falsa antes de que se pague.">
+      <Franja id="defensa" name="producto" rotulo={rotuloProducto('defensa')} linea={producto('defensa').linea}>
         <FilasHoy a={AREAS_HERO[1]} />
         <VerMasInterno titulo="Las 3 capas">
           <FranjasHero filas={DEFENSA_HERO} />
@@ -394,14 +396,18 @@ export function Hero() {
       <Wrap>
         <div className="grid gap-8 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-0">
           <div className="lg:col-start-1 lg:row-start-1 lg:pr-10">
-            <Eyebrow>Negocios latinos en EE. UU. · ES + EN</Eyebrow>
-            {/* Una frase por renglón en todos los anchos: una por producto, mismo peso. */}
+            <Eyebrow>{HERO_EYEBROW}</Eyebrow>
+            {/* Una frase por renglón en todos los anchos: una por producto, mismo peso. El texto vive en lib/portada.ts (lo comparte la imagen que sale al compartir el dominio). */}
             <h1 className="text-heading-lg text-obsidian max-sm:text-[length:clamp(27px,8.3vw,31px)] lg:text-[52px]">
-              <span className="block">Te encuentran.</span> <span className="block">Les contestas primero.</span>{' '}
-              <span className="block">Cobras seguro.</span>
+              {HERO_FRASES.map((f, i) => (
+                <Fragment key={f}>
+                  {i > 0 ? ' ' : null}
+                  <span className="block">{f}</span>
+                </Fragment>
+              ))}
             </h1>
             <p id="hero-description" className="mt-5 max-w-[46ch] text-[15.5px] leading-[1.5] tracking-[-0.005em] text-charcoal sm:text-[18px] sm:tracking-normal">
-              Tres sistemas con agentes de IA para negocios latinos en Estados Unidos, en español e inglés.
+              {HERO_DESC}
             </p>
           </div>
 
