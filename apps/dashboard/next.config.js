@@ -26,6 +26,37 @@ function guiasGeo() {
     .filter((s) => s && !notas.has(s));
 }
 
+/**
+ * Content-Security-Policy del sitio (28-nov-2026). Es el control que el propio
+ * verificador de cabeceras de Omona marcaba como brecha en omona.tech.
+ *
+ * `script-src` lleva 'unsafe-inline' a propósito: el App Router escribe su
+ * estado en <script> en línea y la única forma de quitarlo es un nonce por
+ * petición desde middleware, que vuelve dinámicas TODAS las páginas (hoy salen
+ * de caché). Con esta política el verificador da «aviso», no «ok»; pasar a
+ * nonce es una decisión de rendimiento y costo, no un descuido.
+ *
+ * Orígenes: Google Analytics 4 (gtag) es el único script de terceros; PostHog
+ * sale por /ingest (mismo origen). `connect-src https: wss:` cubre Supabase y
+ * la API del panel, cuyas URL viven en variables de entorno.
+ */
+const CSP = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "connect-src 'self' https: wss:",
+  "media-src 'self' blob:",
+  "worker-src 'self' blob:",
+  "frame-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  'upgrade-insecure-requests',
+].join('; ');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Permite levantar un segundo `next dev` sobre el mismo checkout sin que los
@@ -101,6 +132,7 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'Content-Security-Policy', value: CSP },
         ],
       },
     ];

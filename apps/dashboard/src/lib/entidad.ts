@@ -21,7 +21,22 @@ export const BASE = 'https://omona.tech';
 export const ORG_ID = `${BASE}/#org`;
 export const PERSON_ID = 'https://victorgallo.com/#victor';
 
-export const PERSON_SAME_AS = [REDES.web, REDES.github, REDES.linkedin, REDES.x, REDES.builder];
+// La MISMA lista que publica victorgallo.com (build.py: REDES + GITHUB_PAGES + AWS_BUILDER) más el propio
+// victorgallo.com. Dos listas distintas para el mismo @id le restan certeza a quien une la entidad:
+// si agregas o quitas un perfil, hazlo en los dos sitios.
+export const PERSON_SAME_AS = [
+  REDES.web,
+  REDES.linkedin,
+  'https://open.spotify.com/show/60qzhpDBnYBmHSvoOHZEcJ',
+  'https://medium.com/@victor_76481',
+  'https://www.tiktok.com/@victor.gallo842',
+  REDES.x,
+  'https://www.facebook.com/VictorGallogbm',
+  'https://www.facebook.com/profile.php?id=61596452925767',
+  REDES.github,
+  'https://victorgalloo.github.io/',
+  REDES.builder,
+];
 
 export const PERSON_REF = { '@id': PERSON_ID };
 
