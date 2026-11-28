@@ -53,6 +53,9 @@ const T = {
     toolHref: '/verificador-embudo-bilingue',
     stagesH: 'Qué construimos en un sistema comercial con IA',
     stagesSub: 'Cuatro capas donde el criterio comercial y los candados en código mandan sobre el modelo.',
+    stagesGuideLead: 'Candado de precios y reglas de traspaso, con código que puedes correr y medición de 558 sitios:',
+    stagesGuideCta: 'Traspaso de IA a humano sin inventar precios →',
+    stagesGuideHref: '/blog/traspaso-ia-a-vendedor-humano-candados-precios',
     stages: [
       {
         k: '01',
@@ -124,6 +127,9 @@ const T = {
     toolHref: '/en/speed-to-lead-checker',
     stagesH: 'What we build in an AI commercial system',
     stagesSub: 'Four layers where commercial discipline and deterministic code govern the language model.',
+    stagesGuideLead: 'Price guard and handoff rules, with runnable code and data on 558 sites:',
+    stagesGuideCta: 'AI-to-human handoff without invented prices →',
+    stagesGuideHref: '/blog/ai-to-human-handoff-sales-guardrails',
     stages: [
       {
         k: '01',
@@ -296,6 +302,12 @@ export function ComercialIA({ lang = 'es' }: { lang?: Lang }) {
                 </li>
               ))}
             </ol>
+            <p className="mt-6 text-[14px] leading-[1.5] text-charcoal">
+              {t.stagesGuideLead}{' '}
+              <Link href={t.stagesGuideHref} className="font-medium text-obsidian underline decoration-hair underline-offset-4 transition-colors hover:decoration-obsidian">
+                {t.stagesGuideCta}
+              </Link>
+            </p>
           </Wrap>
         </section>
 

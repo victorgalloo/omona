@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" width="920" height="470" role="img" aria-label="Gráfica de barras: de 558 portadas de miembros de cámaras hispanas en EE. UU., 83.3 % no tiene fuente pública de precio, 9.9 % muestra un precio, 9.1 % liga a precios, 16.8 % pide cotizar; construcción 90.1 % sin precio público; 75 % de los sitios con chat sin precio público.">
+<rect width="920" height="470" fill="#fafafa"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+<text x="32" y="36" font-size="11" fill="#666666" letter-spacing="0.06em">¿DE DÓNDE SACARÍA EL PRECIO UN AGENTE DE IA? 558 PORTADAS DE CÁMARAS HISPANAS EN EE. UU. · 2026-11-28</text>
+<line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="86" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Sin fuente pública de precio (ni precio ni página)</text>
+<rect x="440" y="72" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="72" width="333.2" height="18" rx="3" fill="#297a3a"/>
+<text x="852" y="86" font-size="12">83.3%</text>
+<text x="32" y="126" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Muestra un precio de venta en la portada</text>
+<rect x="440" y="112" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="112" width="39.6" height="18" rx="3" fill="#111111"/>
+<text x="852" y="126" font-size="12">9.9%</text>
+<text x="32" y="166" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Liga a una página de precios, planes o menú</text>
+<rect x="440" y="152" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="152" width="36.4" height="18" rx="3" fill="#111111"/>
+<text x="852" y="166" font-size="12">9.1%</text>
+<text x="32" y="206" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Pide cotizar a la medida (free estimate, cotización)</text>
+<rect x="440" y="192" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="192" width="67.2" height="18" rx="3" fill="#111111"/>
+<text x="852" y="206" font-size="12">16.8%</text>
+<text x="48" y="246" font-size="12" fill="#666666" font-family="system-ui, -apple-system, sans-serif">de esos: cotiza sin ningún precio público</text>
+<rect x="440" y="232" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="232" width="58.8" height="18" rx="3" fill="#111111"/>
+<text x="852" y="246" font-size="12">14.7%</text>
+<text x="32" y="286" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Construcción y contratistas: sin precio público</text>
+<rect x="440" y="272" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="272" width="360.4" height="18" rx="3" fill="#297a3a"/>
+<text x="852" y="286" font-size="12">90.1%</text>
+<text x="48" y="326" font-size="12" fill="#666666" font-family="system-ui, -apple-system, sans-serif">Construcción y contratistas: cotización a la medida</text>
+<rect x="440" y="312" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="312" width="152.0" height="18" rx="3" fill="#111111"/>
+<text x="852" y="326" font-size="12">38.0%</text>
+<text x="32" y="366" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Sitios con chat/SMS/WhatsApp: sin precio público</text>
+<rect x="440" y="352" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="352" width="300.0" height="18" rx="3" fill="#297a3a"/>
+<text x="852" y="366" font-size="12">75.0%</text>
+<text x="32" y="406" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">La portada promete una persona (asesor, human)</text>
+<rect x="440" y="392" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="392" width="7.2" height="18" rx="3" fill="#111111"/>
+<text x="852" y="406" font-size="12">1.8%</text>
+<line x1="32" y1="432" x2="888" y2="432" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="454" font-size="10.5" fill="#666666">Fuente: medición pasiva de Omona, 1 GET por portada, miembros FWHCC (TX) + SHCCNJ (NJ), 0 .edu, 0 tokens. Es un piso, no un techo.</text>
+</g></svg>

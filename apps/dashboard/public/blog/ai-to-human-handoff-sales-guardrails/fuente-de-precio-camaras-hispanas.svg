@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" width="920" height="470" role="img" aria-label="Bar chart: of 558 US Hispanic chamber member homepages, 83.3% have no public price source, 9.9% show a price, 9.1% link to a pricing page, 16.8% ask for a custom quote; construction 90.1% without public price; 75% of sites with chat have no public price.">
+<rect width="920" height="470" fill="#fafafa"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+<text x="32" y="36" font-size="11" fill="#666666" letter-spacing="0.06em">WHERE WOULD AN AI AGENT GET THE PRICE? 558 US HISPANIC CHAMBER MEMBER HOMEPAGES · 2026-11-28</text>
+<line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="86" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">No public price source (no price, no pricing page)</text>
+<rect x="440" y="72" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="72" width="333.2" height="18" rx="3" fill="#297a3a"/>
+<text x="852" y="86" font-size="12">83.3%</text>
+<text x="32" y="126" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Shows a sales price on the homepage</text>
+<rect x="440" y="112" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="112" width="39.6" height="18" rx="3" fill="#111111"/>
+<text x="852" y="126" font-size="12">9.9%</text>
+<text x="32" y="166" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Links to a pricing, plans or menu page</text>
+<rect x="440" y="152" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="152" width="36.4" height="18" rx="3" fill="#111111"/>
+<text x="852" y="166" font-size="12">9.1%</text>
+<text x="32" y="206" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Asks for a custom quote (free estimate, get a quote)</text>
+<rect x="440" y="192" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="192" width="67.2" height="18" rx="3" fill="#111111"/>
+<text x="852" y="206" font-size="12">16.8%</text>
+<text x="48" y="246" font-size="12" fill="#666666" font-family="system-ui, -apple-system, sans-serif">of which: quote with no public price at all</text>
+<rect x="440" y="232" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="232" width="58.8" height="18" rx="3" fill="#111111"/>
+<text x="852" y="246" font-size="12">14.7%</text>
+<text x="32" y="286" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Construction & contractors: no public price</text>
+<rect x="440" y="272" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="272" width="360.4" height="18" rx="3" fill="#297a3a"/>
+<text x="852" y="286" font-size="12">90.1%</text>
+<text x="48" y="326" font-size="12" fill="#666666" font-family="system-ui, -apple-system, sans-serif">Construction & contractors: custom quote</text>
+<rect x="440" y="312" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="312" width="152.0" height="18" rx="3" fill="#111111"/>
+<text x="852" y="326" font-size="12">38.0%</text>
+<text x="32" y="366" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Sites with chat/SMS/WhatsApp: no public price</text>
+<rect x="440" y="352" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="352" width="300.0" height="18" rx="3" fill="#297a3a"/>
+<text x="852" y="366" font-size="12">75.0%</text>
+<text x="32" y="406" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Homepage promises a person (talk to a human, asesor)</text>
+<rect x="440" y="392" width="400" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="392" width="7.2" height="18" rx="3" fill="#111111"/>
+<text x="852" y="406" font-size="12">1.8%</text>
+<line x1="32" y1="432" x2="888" y2="432" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="454" font-size="10.5" fill="#666666">Source: Omona passive measurement, 1 GET per homepage, FWHCC (TX) + SHCCNJ (NJ) member sites, 0 .edu, 0 tokens. Floor, not ceiling.</text>
+</g></svg>

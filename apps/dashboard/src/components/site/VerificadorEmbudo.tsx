@@ -48,6 +48,7 @@ const T = {
     links: [
       { href: '/comercial-ia', label: 'Área 01 · Procesos comerciales + IA' },
       { href: '/blog/recepcionista-bilingue-ia-negocios-latinos', label: 'Recepcionista bilingüe con IA (593 sitios)' },
+      { href: '/blog/traspaso-ia-a-vendedor-humano-candados-precios', label: 'Traspaso a humano sin inventar precios' },
       { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Arquitectura comercial con IA' },
       { href: EN_PATH, label: 'English version (US)' },
       { href: '/verificador-dmarc-spf', label: 'Área 02 · Verificador SPF/DMARC' },
@@ -83,6 +84,7 @@ const T = {
     links: [
       { href: '/en/commercial-ai', label: 'Area 01 · Bilingual Commercial AI' },
       { href: '/blog/bilingual-answering-service-ai-small-business', label: 'Bilingual answering service guide (593 sites)' },
+      { href: '/blog/ai-to-human-handoff-sales-guardrails', label: 'AI-to-human handoff without invented prices' },
       { href: ES_PATH, label: 'Versión en español (EE. UU.)' },
       { href: '/en/dmarc-spf-checker', label: 'Area 02 · SPF/DMARC checker' },
     ],

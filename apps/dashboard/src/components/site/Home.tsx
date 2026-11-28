@@ -142,6 +142,7 @@ const AREAS_HERO: AreaHero[] = [
     ],
     guias: [
       { href: '/blog/recepcionista-bilingue-ia-negocios-latinos', label: 'Recepcionista bilingüe con IA' },
+      { href: '/blog/traspaso-ia-a-vendedor-humano-candados-precios', label: 'Traspaso a humano sin inventar precios' },
       { href: '/blog/procesos-comerciales-ia-whatsapp-arquitectura', label: 'Arquitectura comercial con IA' },
       { href: '/blog/agentes-en-jerarquia-gerentes-subagentes', label: 'Agentes en jerarquía' },
       { href: '/verificador-embudo-bilingue', label: 'Mide tu sitio gratis' },
