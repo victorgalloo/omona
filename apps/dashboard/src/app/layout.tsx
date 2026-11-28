@@ -50,13 +50,10 @@ export const metadata: Metadata = {
     description:
       'Agentes de IA bilingües (español e inglés) y ciberseguridad defensiva para dueños de negocios hispanos en Estados Unidos.',
   },
+  // Sin canonical ni hreflang aquí: cada página pública declara los suyos. Si la
+  // raíz los define, las páginas noindex (privacidad, términos, login, 404)
+  // heredan «canonical = portada» y Google mezcla su noindex con la portada.
   alternates: {
-    canonical: '/',
-    languages: {
-      'es-US': '/',
-      'es-MX': '/',
-      'x-default': '/',
-    },
     types: {
       'application/rss+xml': [
         { url: '/blog/rss.xml', title: 'Omona · Notas de ingeniería' },
