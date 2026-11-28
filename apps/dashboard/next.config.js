@@ -36,13 +36,15 @@ function guiasGeo() {
  * de caché). Con esta política el verificador da «aviso», no «ok»; pasar a
  * nonce es una decisión de rendimiento y costo, no un descuido.
  *
- * Orígenes: Google Analytics 4 (gtag) es el único script de terceros; PostHog
+ * Orígenes: Google Analytics 4 (gtag) y la baliza de Cloudflare Web Analytics
+ * (static.cloudflareinsights.com, la inyecta el proxy de Cloudflare, no este
+ * repo: solo se ve en producción) son los únicos scripts de terceros; PostHog
  * sale por /ingest (mismo origen). `connect-src https: wss:` cubre Supabase y
  * la API del panel, cuyas URL viven en variables de entorno.
  */
 const CSP = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"} https://www.googletagmanager.com https://static.cloudflareinsights.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
