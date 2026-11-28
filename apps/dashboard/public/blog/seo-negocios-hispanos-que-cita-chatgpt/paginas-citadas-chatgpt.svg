@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400" role="img" aria-label="Gráfica de barras: de 11 páginas citadas por ChatGPT, 11 tienen datos de la empresa en datos estructurados, 9 tienen preguntas frecuentes marcadas (faqpage), 9 tienen título de 60 caracteres o menos, 8 tienen oferta declarada en datos estructurados (offer), 7 tienen versión en otro idioma declarada (hreflang), 7 tienen teléfono en un toque (enlace tel:), 6 tienen enlace a whatsapp.">
+<rect width="920" height="400" fill="#fafafa"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#111111">
+<text x="32" y="36" font-size="11" fill="#666666" letter-spacing="0.06em">QUÉ TIENEN LAS 11 PÁGINAS DE AGENCIAS QUE CHATGPT CITÓ · 27-NOV-2026</text>
+<line x1="32" y1="50" x2="888" y2="50" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="86" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Datos de la empresa en datos estructurados</text>
+<rect x="440" y="72" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="72" width="380.0" height="18" rx="3" fill="#297a3a"/>
+<text x="832" y="86" font-size="12">11 de 11</text>
+<text x="32" y="126" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Preguntas frecuentes marcadas (FAQPage)</text>
+<rect x="440" y="112" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="112" width="310.9" height="18" rx="3" fill="#297a3a"/>
+<text x="832" y="126" font-size="12">9 de 11</text>
+<text x="32" y="166" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Título de 60 caracteres o menos</text>
+<rect x="440" y="152" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="152" width="310.9" height="18" rx="3" fill="#111111"/>
+<text x="832" y="166" font-size="12">9 de 11</text>
+<text x="32" y="206" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Oferta declarada en datos estructurados (Offer)</text>
+<rect x="440" y="192" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="192" width="276.4" height="18" rx="3" fill="#111111"/>
+<text x="832" y="206" font-size="12">8 de 11</text>
+<text x="32" y="246" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Versión en otro idioma declarada (hreflang)</text>
+<rect x="440" y="232" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="232" width="241.8" height="18" rx="3" fill="#111111"/>
+<text x="832" y="246" font-size="12">7 de 11</text>
+<text x="32" y="286" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Teléfono en un toque (enlace tel:)</text>
+<rect x="440" y="272" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="272" width="241.8" height="18" rx="3" fill="#111111"/>
+<text x="832" y="286" font-size="12">7 de 11</text>
+<text x="32" y="326" font-size="12" fill="#111111" font-family="system-ui, -apple-system, sans-serif">Enlace a WhatsApp</text>
+<rect x="440" y="312" width="380" height="18" rx="3" fill="#ffffff" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="440" y="312" width="207.3" height="18" rx="3" fill="#111111"/>
+<text x="832" y="326" font-size="12">6 de 11</text>
+<line x1="32" y1="354" x2="888" y2="354" stroke="#e5e5e5" stroke-width="1"/>
+<text x="32" y="378" font-size="11" fill="#666666">Visitas estimadas desde Google de los 11 sitios juntos: unas 28 al mes. Fuente: medición propia de Omona.</text>
+</g>
+</svg>
