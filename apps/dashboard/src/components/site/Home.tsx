@@ -351,8 +351,9 @@ function Productos() {
                 <Vin>
                   Verificadores gratuitos que contestan una pregunta real:{' '}
                   <Link href="/verificador-visibilidad-ia" className={ligaCls}>visibilidad en Google y asistentes de IA</Link>,{' '}
-                  <Link href="/verificador-embudo-bilingue" className={ligaCls}>respuesta rápida</Link> y{' '}
-                  <Link href="/verificador-dmarc-spf" className={ligaCls}>SPF/DMARC</Link>.
+                  <Link href="/verificador-embudo-bilingue" className={ligaCls}>respuesta rápida</Link>,{' '}
+                  <Link href="/verificador-dmarc-spf" className={ligaCls}>SPF/DMARC</Link> y{' '}
+                  <Link href="/verificador-cabeceras-seguridad" className={ligaCls}>cabeceras de seguridad</Link>.
                 </Vin>
                 <Vin>
                   <Link href="/blog" className={ligaCls}>Notas con medición propia</Link>.

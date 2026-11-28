@@ -86,6 +86,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     })),
+    ...['/verificador-cabeceras-seguridad', '/en/security-headers-checker'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/verificador-cabeceras-seguridad`,
+          'es-MX': `${baseUrl}/verificador-cabeceras-seguridad`,
+          'en-US': `${baseUrl}/en/security-headers-checker`,
+          en: `${baseUrl}/en/security-headers-checker`,
+          'x-default': `${baseUrl}/verificador-cabeceras-seguridad`,
+        },
+      },
+    })),
     ...['/verificador-visibilidad-ia', '/en/ai-visibility-checker'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
