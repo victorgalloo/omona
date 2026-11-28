@@ -18,7 +18,7 @@ export default function PrivacidadPage() {
       <main className="mx-auto max-w-3xl px-4 sm:px-6 py-16">
         <p className="eyebrow">Legal · privacidad</p>
         <h1 className="text-heading-lg mb-4 text-obsidian">Política de Privacidad</h1>
-        <p className="text-sm text-muted mb-12">Última actualización: 27 de marzo de 2026</p>
+        <p className="text-sm text-muted mb-12">Última actualización: 28 de noviembre de 2026</p>
 
         <div className="space-y-10 text-muted-foreground text-[15px] leading-relaxed">
           <section>
@@ -62,6 +62,7 @@ export default function PrivacidadPage() {
               <li><strong className="text-foreground">Proveedores de IA:</strong> para procesar mensajes y generar respuestas (Azure AI, Groq).</li>
               <li><strong className="text-foreground">Supabase:</strong> para almacenamiento de datos y autenticación.</li>
               <li><strong className="text-foreground">Resend:</strong> para envío de correos electrónicos de notificación.</li>
+              <li><strong className="text-foreground">Analítica web (Google Analytics, PostHog):</strong> para medir de forma agregada las visitas al sitio público (páginas vistas, país, dispositivo y origen de la visita). Sin señales publicitarias ni personalización de anuncios; el panel de la plataforma no se mide con Google Analytics.</li>
               <li><strong className="text-foreground">Apple Push Notification Service (APNs):</strong> para notificaciones push en dispositivos iOS.</li>
               <li><strong className="text-foreground">Autoridades legales:</strong> cuando sea requerido por ley.</li>
             </ul>

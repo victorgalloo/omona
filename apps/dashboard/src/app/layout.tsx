@@ -4,6 +4,7 @@ import { GeistMono } from 'geist/font/mono';
 import { Toaster } from 'sonner';
 import { PHProvider } from '@/components/providers/PostHogProvider';
 import { PostHogPageView } from '@/components/providers/PostHogPageView';
+import { GoogleAnalytics } from '@/components/providers/GoogleAnalytics';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import './globals.css';
 
@@ -79,6 +80,7 @@ export default function RootLayout({
     <html lang="es" data-theme="light" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="font-sans antialiased">
         <ThemeScript />
+        <GoogleAnalytics />
         <LanguageProvider>
         <PHProvider>
           <PostHogPageView />
