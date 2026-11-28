@@ -62,13 +62,13 @@ In other words, being cited for a question this specific did not take being big 
 
 ## 4. What to check on your page this week
 
-- [ ] **One page per service**, with the service, your customer and your area in the title, in 60 characters or fewer.
-- [ ] **The questions people ask you on the phone, answered on the page** in two or three lines each, and marked up as an FAQ.
-- [ ] **Your business facts in structured data:** name, area served, phone, hours.
-- [ ] **Spanish and English as two sister pages** that declare each other, not a machine translation layered on top.
-- [ ] **Text that reads without JavaScript.** Assistant crawlers generally do not run code.
-- [ ] **Crawlers allowed in:** make sure your `robots.txt` does not block the ones from OpenAI, Anthropic, Perplexity or Google.
-- [ ] **A way to answer fast.** Being found is worth little if the lead writes and nobody replies: measure your first response with the [free speed-to-lead checker](/en/speed-to-lead-checker).
+- **One page per service**, with the service, your customer and your area in the title, in 60 characters or fewer.
+- **The questions people ask you on the phone, answered on the page** in two or three lines each, and marked up as an FAQ.
+- **Your business facts in structured data:** name, area served, phone, hours.
+- **Spanish and English as two sister pages** that declare each other, not a machine translation layered on top.
+- **Text that reads without JavaScript.** Assistant crawlers generally do not run code.
+- **Crawlers allowed in:** make sure your `robots.txt` does not block the ones from OpenAI, Anthropic, Perplexity or Google.
+- **A way to answer fast.** Being found is worth little if the lead writes and nobody replies: measure your first response with the [free speed-to-lead checker](/en/speed-to-lead-checker).
 
 ## 5. Limits of this measurement
 

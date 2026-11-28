@@ -62,13 +62,13 @@ Es decir: para que un asistente te cite en una pregunta así de específica no h
 
 ## 4. Qué revisar en tu página esta semana
 
-- [ ] **Una página por servicio**, con el servicio, tu cliente y tu zona en el título, en 60 caracteres o menos.
-- [ ] **Las preguntas que te hacen por teléfono, contestadas en la página** en dos o tres líneas cada una, y marcadas como preguntas frecuentes.
-- [ ] **Los datos de tu negocio en datos estructurados:** nombre, zona que atiendes, teléfono, horario.
-- [ ] **Español e inglés como dos páginas hermanas** que se declaran entre sí, no una traducción automática encima de la otra.
-- [ ] **Texto que se lee sin JavaScript.** Los rastreadores de los asistentes en general no ejecutan código.
-- [ ] **Que los rastreadores puedan entrar:** revisa que tu `robots.txt` no bloquee a los de OpenAI, Anthropic, Perplexity ni Google.
-- [ ] **Una forma de contestar rápido.** Aparecer sirve de poco si el prospecto escribe y nadie responde: mide tu primera respuesta con el [verificador gratuito de embudo](/verificador-embudo-bilingue).
+- **Una página por servicio**, con el servicio, tu cliente y tu zona en el título, en 60 caracteres o menos.
+- **Las preguntas que te hacen por teléfono, contestadas en la página** en dos o tres líneas cada una, y marcadas como preguntas frecuentes.
+- **Los datos de tu negocio en datos estructurados:** nombre, zona que atiendes, teléfono, horario.
+- **Español e inglés como dos páginas hermanas** que se declaran entre sí, no una traducción automática encima de la otra.
+- **Texto que se lee sin JavaScript.** Los rastreadores de los asistentes en general no ejecutan código.
+- **Que los rastreadores puedan entrar:** revisa que tu `robots.txt` no bloquee a los de OpenAI, Anthropic, Perplexity ni Google.
+- **Una forma de contestar rápido.** Aparecer sirve de poco si el prospecto escribe y nadie responde: mide tu primera respuesta con el [verificador gratuito de embudo](/verificador-embudo-bilingue).
 
 ## 5. Límites de esta medición
 
