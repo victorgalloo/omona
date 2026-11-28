@@ -33,6 +33,8 @@ const COLUMNAS: { titulo: string; links: { href: string; label: string; ext?: bo
       { href: '/en/security', label: 'Security (EN)' },
       { href: '/verificador-dmarc-spf', label: 'Verificador SPF/DMARC' },
       { href: '/en/dmarc-spf-checker', label: 'SPF/DMARC Checker (EN)' },
+      { href: '/verificador-visibilidad-ia', label: 'Verificador de visibilidad en IA' },
+      { href: '/en/ai-visibility-checker', label: 'AI Visibility Checker (EN)' },
       { href: 'mailto:victor@omona.tech', label: 'victor@omona.tech' },
     ],
   },

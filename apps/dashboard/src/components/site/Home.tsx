@@ -349,6 +349,7 @@ function Productos() {
                 </Vin>
                 <Vin>
                   Verificadores gratuitos que contestan una pregunta real:{' '}
+                  <Link href="/verificador-visibilidad-ia" className={ligaCls}>visibilidad en Google y asistentes de IA</Link>,{' '}
                   <Link href="/verificador-embudo-bilingue" className={ligaCls}>respuesta rápida</Link> y{' '}
                   <Link href="/verificador-dmarc-spf" className={ligaCls}>SPF/DMARC</Link>.
                 </Vin>

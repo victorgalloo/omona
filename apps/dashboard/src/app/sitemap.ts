@@ -86,6 +86,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     })),
+    ...['/verificador-visibilidad-ia', '/en/ai-visibility-checker'].map((p) => ({
+      url: `${baseUrl}${p}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          'es-US': `${baseUrl}/verificador-visibilidad-ia`,
+          'es-MX': `${baseUrl}/verificador-visibilidad-ia`,
+          'en-US': `${baseUrl}/en/ai-visibility-checker`,
+          en: `${baseUrl}/en/ai-visibility-checker`,
+          'x-default': `${baseUrl}/verificador-visibilidad-ia`,
+        },
+      },
+    })),
     ...['/seguridad', '/en/security'].map((p) => ({
       url: `${baseUrl}${p}`,
       lastModified: now,
