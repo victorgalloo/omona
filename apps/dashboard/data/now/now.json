@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T17:59:30.443Z",
+  "generatedAt": "2026-11-28T14:01:14.385Z",
   "updated": "2026-11-27",
   "foco": [
     {
@@ -42,6 +42,22 @@
       "en": "Seguro cibernético para pequeñas empresas (note in Spanish)",
       "url": "https://omona.tech/blog/seguro-cibernetico-pequenas-empresas",
       "ref": "nota:seguro-cibernetico-pequenas-empresas"
+    },
+    {
+      "date": "2026-11-27",
+      "kind": "nota",
+      "es": "SEO for Hispanic Businesses: What ChatGPT Cites",
+      "en": "SEO for Hispanic Businesses: What ChatGPT Cites (note in Spanish)",
+      "url": "https://omona.tech/blog/seo-hispanic-businesses-what-chatgpt-cites",
+      "ref": "nota:seo-hispanic-businesses-what-chatgpt-cites"
+    },
+    {
+      "date": "2026-11-27",
+      "kind": "nota",
+      "es": "SEO para negocios hispanos: qué cita ChatGPT",
+      "en": "SEO para negocios hispanos: qué cita ChatGPT (note in Spanish)",
+      "url": "https://omona.tech/blog/seo-negocios-hispanos-que-cita-chatgpt",
+      "ref": "nota:seo-negocios-hispanos-que-cita-chatgpt"
     },
     {
       "date": "2026-11-26",
